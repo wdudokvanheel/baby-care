@@ -1,7 +1,8 @@
-package com.bitechular.babycare.controller.dto.mapper;
+package com.bitechular.babycare.api.mapper;
 
-import com.bitechular.babycare.controller.dto.BabyActionCreateDto;
-import com.bitechular.babycare.controller.dto.BabyActionUpdateDto;
+import com.bitechular.babycare.api.dto.BabyActionCreateRequestDto;
+import com.bitechular.babycare.api.dto.BabyActionDto;
+import com.bitechular.babycare.api.dto.BabyActionUpdateRequestDto;
 import com.bitechular.babycare.data.model.BabyAction;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -18,13 +19,17 @@ public class BabyActionMapper {
         this.mapper = mapper;
     }
 
-    public BabyAction fromCreateDto(BabyActionCreateDto dto) {
+    public BabyAction fromCreateDto(BabyActionCreateRequestDto dto) {
         BabyAction action = mapper.map(dto, BabyAction.class);
         return action;
     }
 
-    public BabyAction fromUpdateDto(BabyAction action, BabyActionUpdateDto dto) {
+    public BabyAction fromUpdateDto(BabyAction action, BabyActionUpdateRequestDto dto) {
         mapper.map(dto, action);
         return action;
+    }
+
+    public BabyActionDto toDto(BabyAction action) {
+        return mapper.map(action, BabyActionDto.class);
     }
 }

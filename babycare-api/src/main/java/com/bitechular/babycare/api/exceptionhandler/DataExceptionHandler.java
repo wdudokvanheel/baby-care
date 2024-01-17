@@ -1,4 +1,4 @@
-package com.bitechular.babycare.controller.exception;
+package com.bitechular.babycare.api.exceptionhandler;
 
 import com.bitechular.babycare.service.exception.EntityNotFoundException;
 import org.springframework.http.HttpHeaders;

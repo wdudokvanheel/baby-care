@@ -1,8 +1,9 @@
-package com.bitechular.babycare.controller;
+package com.bitechular.babycare.api.controller;
 
-import com.bitechular.babycare.controller.dto.BabyActionCreateDto;
-import com.bitechular.babycare.controller.dto.BabyActionUpdateDto;
-import com.bitechular.babycare.controller.dto.mapper.BabyActionMapper;
+import com.bitechular.babycare.api.dto.BabyActionCreateRequestDto;
+import com.bitechular.babycare.api.dto.BabyActionDto;
+import com.bitechular.babycare.api.dto.BabyActionUpdateRequestDto;
+import com.bitechular.babycare.api.mapper.BabyActionMapper;
 import com.bitechular.babycare.data.model.BabyAction;
 import com.bitechular.babycare.service.BabyActionService;
 import com.bitechular.babycare.service.exception.EntityNotFoundException;
@@ -25,18 +26,17 @@ public class BabyActionController {
     }
 
     @PostMapping("*")
-    public ResponseEntity<BabyAction> saveAction(@RequestBody BabyActionCreateDto dto) {
+    public ResponseEntity<BabyActionDto> saveAction(@RequestBody BabyActionCreateRequestDto dto) {
         BabyAction action = mapper.fromCreateDto(dto);
         action = service.save(action);
-
-        return ResponseEntity.ok(action);
+        return ResponseEntity.ok(mapper.toDto(action));
     }
 
     @PutMapping("{id}/")
-    public ResponseEntity<BabyAction> updateAction(@PathVariable Long id, @RequestBody BabyActionUpdateDto dto) throws EntityNotFoundException {
+    public ResponseEntity<BabyActionDto> updateAction(@PathVariable Long id, @RequestBody BabyActionUpdateRequestDto dto) throws EntityNotFoundException {
         BabyAction action = service.getById(id);
         action = mapper.fromUpdateDto(action, dto);
         action = service.save(action);
-        return ResponseEntity.ok(action);
+        return ResponseEntity.ok(mapper.toDto(action));
     }
 }
