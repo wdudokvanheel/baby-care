@@ -1,58 +1,39 @@
 import Foundation
 import os
+import SwiftData
 import SwiftUI
 
 class MainViewModel: ObservableObject {
-    private let container = CoreDataContainerController()
+    private let dataContainer: ModelContainer
+    private let actionService: BabyActionService
 
     @Published
     public var sleep: BabyAction?
     @Published
     public var feed: BabyAction?
 
+    init(dataContainer: ModelContainer) {
+        self.dataContainer = dataContainer
+        self.actionService = BabyActionService(container: dataContainer)
+    }
+
     public func toggleSleep() {
         if let current = sleep {
-            endSleep(current)
+            actionService.endSleep(current)
             sleep = nil
         }
         else {
-            sleep = startSleep()
+            sleep = actionService.startSleep()
         }
     }
 
     public func toggleFeed() {
         if let current = feed {
-            endFeed(current)
+            actionService.endFeed(current)
             feed = nil
         }
         else {
-            feed = startFeed()
+            feed = actionService.startFeed()
         }
-    }
-
-    public func startSleep() -> BabyAction {
-        let action = BabyAction(context: container.getContext())
-        action.type = .sleep
-        action.start = Date()
-        container.save()
-        return action
-    }
-
-    public func endSleep(_ sleep: BabyAction) {
-        sleep.end = Date()
-        container.save()
-    }
-
-    public func startFeed() -> BabyAction {
-        let action = BabyAction(context: container.getContext())
-        action.type = .feed
-        action.start = Date()
-        container.save()
-        return action
-    }
-
-    public func endFeed(_ feed: BabyAction) {
-        feed.end = Date()
-        container.save()
     }
 }

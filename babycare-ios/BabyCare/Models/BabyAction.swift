@@ -1,6 +1,16 @@
 import Foundation
-import SwiftUI
-import os
+import SwiftData
+
+@Model
+public class BabyAction {
+    var action: String?
+    var end: Date?
+    public var id: UUID?
+    var start: Date?
+    var syncRequired: Bool = true
+
+    public init() {}
+}
 
 public enum BabyActionType: String, Codable {
     case none

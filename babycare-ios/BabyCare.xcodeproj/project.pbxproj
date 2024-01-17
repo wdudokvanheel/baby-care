@@ -14,10 +14,8 @@
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
 		2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA02B54905C00B91132 /* MainViewModel.swift */; };
-		2B9FDAA42B54908200B91132 /* CoreDataContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA32B54908200B91132 /* CoreDataContainerController.swift */; };
-		2B9FDAA92B5492E400B91132 /* BabyAction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA72B5492E400B91132 /* BabyAction+CoreDataClass.swift */; };
-		2B9FDAAA2B5492E400B91132 /* BabyAction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA82B5492E400B91132 /* BabyAction+CoreDataProperties.swift */; };
-		2B9FDAAD2B5493A400B91132 /* BabyActionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAAC2B5493A400B91132 /* BabyActionExt.swift */; };
+		2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF568012B56B037004B3936 /* BabyActionService.swift */; };
+		2BF568042B56C13A004B3936 /* BabyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF568032B56C13A004B3936 /* BabyAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,10 +27,8 @@
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		2B9FDAA02B54905C00B91132 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		2B9FDAA32B54908200B91132 /* CoreDataContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataContainerController.swift; sourceTree = "<group>"; };
-		2B9FDAA72B5492E400B91132 /* BabyAction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BabyAction+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2B9FDAA82B5492E400B91132 /* BabyAction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BabyAction+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2B9FDAAC2B5493A400B91132 /* BabyActionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionExt.swift; sourceTree = "<group>"; };
+		2BF568012B56B037004B3936 /* BabyActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionService.swift; sourceTree = "<group>"; };
+		2BF568032B56C13A004B3936 /* BabyAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +45,6 @@
 		2B1F34A42B54865E004EA670 = {
 			isa = PBXGroup;
 			children = (
-				2B9FDAAB2B54939300B91132 /* Models */,
 				2B1F34AF2B54865E004EA670 /* BabyCare */,
 				2B1F34AE2B54865E004EA670 /* Products */,
 			);
@@ -66,7 +61,8 @@
 		2B1F34AF2B54865E004EA670 /* BabyCare */ = {
 			isa = PBXGroup;
 			children = (
-				2B9FDAA22B54907500B91132 /* Controller */,
+				2BF568002B56B022004B3936 /* Services */,
+				2BF567F92B56AFF6004B3936 /* Models */,
 				2B9FDA8E2B5486D400B91132 /* Presentation */,
 				2B1F34B02B54865E004EA670 /* BabyCareApp.swift */,
 				2B1F34B22B54865E004EA670 /* ContentView.swift */,
@@ -94,22 +90,20 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		2B9FDAA22B54907500B91132 /* Controller */ = {
+		2BF567F92B56AFF6004B3936 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2B9FDAA32B54908200B91132 /* CoreDataContainerController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		2B9FDAAB2B54939300B91132 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				2B9FDAA72B5492E400B91132 /* BabyAction+CoreDataClass.swift */,
-				2B9FDAA82B5492E400B91132 /* BabyAction+CoreDataProperties.swift */,
-				2B9FDAAC2B5493A400B91132 /* BabyActionExt.swift */,
+				2BF568032B56C13A004B3936 /* BabyAction.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2BF568002B56B022004B3936 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2BF568012B56B037004B3936 /* BabyActionService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,15 +176,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B9FDAA92B5492E400B91132 /* BabyAction+CoreDataClass.swift in Sources */,
 				2B1F34B32B54865E004EA670 /* ContentView.swift in Sources */,
 				2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */,
-				2B9FDAAD2B5493A400B91132 /* BabyActionExt.swift in Sources */,
+				2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */,
 				2B9FDA902B5486F300B91132 /* MainView.swift in Sources */,
 				2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */,
-				2B9FDAAA2B5492E400B91132 /* BabyAction+CoreDataProperties.swift in Sources */,
+				2BF568042B56C13A004B3936 /* BabyAction.swift in Sources */,
 				2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */,
-				2B9FDAA42B54908200B91132 /* CoreDataContainerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
