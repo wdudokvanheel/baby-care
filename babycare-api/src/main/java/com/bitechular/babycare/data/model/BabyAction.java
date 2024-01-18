@@ -1,33 +1,21 @@
 package com.bitechular.babycare.data.model;
 
-import jakarta.persistence.*;
+import com.bitechular.babycare.data.core.DomainEntity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "BabyAction")
-public class BabyAction implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
-
+public class BabyAction extends DomainEntity {
     @Enumerated(EnumType.STRING)
     public BabyActionType type;
 
-    public Date created;
-    public Date modified;
-
     public Date start;
     public Date end;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public BabyActionType getType() {
         return type;
