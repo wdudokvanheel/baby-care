@@ -52,7 +52,7 @@ public class AuthenticationService {
 
         validateUserActive(user);
 
-        return new UserAuthentication(user);
+        return new UserAuthentication(user, token);
     }
 
     public AuthenticationDetails createAuthenticationDetails(User user) {

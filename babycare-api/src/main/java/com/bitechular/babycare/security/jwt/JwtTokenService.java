@@ -16,10 +16,10 @@ import java.util.Date;
 public class JwtTokenService {
     private Logger logger = LoggerFactory.getLogger(JwtTokenService.class);
 
-    @Value("${security.jwt.token.secret-key:secret:304859n345hhjg}")
+    @Value("${security.jwt.token.secret-key:secret:304859n34swedfs5hhjg}")
     private String secretKey = "95834058347";
 
-    @Value("${security.jwt.token.expire-length:3600000}")
+    @Value("${security.jwt.token.expire-length:3600000000}")
     private long validityInMilliseconds;
 
     @PostConstruct

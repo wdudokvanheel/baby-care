@@ -11,10 +11,10 @@ import java.util.Collection;
 import java.util.List;
 
 public class UserAuthentication implements Authentication {
-    private User user;
+    private UserSession session;
 
-    public UserAuthentication(User user) {
-        this.user = user;
+    public UserAuthentication(User user, String token) {
+        this.session = new UserSession(user, token);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class UserAuthentication implements Authentication {
     }
 
     @Override
-    public User getPrincipal() {
-        return user;
+    public UserSession getPrincipal() {
+        return session;
     }
 
     @Override

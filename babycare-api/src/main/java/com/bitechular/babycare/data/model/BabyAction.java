@@ -17,6 +17,8 @@ public class BabyAction extends DomainEntity {
     public Date start;
     public Date end;
 
+    public String lastModifiedBy;
+
     public BabyActionType getType() {
         return type;
     }
@@ -39,5 +41,13 @@ public class BabyAction extends DomainEntity {
 
     public void setEnd(Date end) {
         this.end = end;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
     }
 }

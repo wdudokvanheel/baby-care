@@ -21,7 +21,11 @@ public class UsernameAuthenticationController {
     @PostMapping("/api/auth/*")
     public ResponseEntity<AuthenticationDetails> authenticateUser(@RequestBody EmailAuthenticationRequest request) throws UserNotFoundException, InactiveUserException, InvalidCredentialsException {
         User user = authenticationService.authenticateUser(request.getEmail(), request.getPassword());
-        return ResponseEntity.ok(authenticationService.createAuthenticationDetails(user));
+        AuthenticationDetails details = authenticationService.createAuthenticationDetails(user);
+
+        // TODO Do something with the token here
+
+        return ResponseEntity.ok(details);
     }
 
     @ExceptionHandler({InvalidCredentialsException.class, UserNotFoundException.class})
