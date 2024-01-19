@@ -2,10 +2,9 @@
 
 - [x] Spring Boot base project
 - [x] Save & Update API
-- [ ] App persist data
+- [x] App persist data
+- [x] Authentication
+- [ ] App sync data
 - [ ] Support for babies
-- [ ] Notifications/updates
-- [ ] Authentication
-- [ ] 
-- [ ]
+- [ ] Notifications/real-time updates
 

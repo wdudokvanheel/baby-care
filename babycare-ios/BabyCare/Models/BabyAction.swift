@@ -3,9 +3,10 @@ import SwiftData
 
 @Model
 public class BabyAction {
+    public var id: UUID?
+    var remoteId: Int64?
     var action: String?
     var end: Date?
-    public var id: UUID?
     var start: Date?
     var syncRequired: Bool = true
 

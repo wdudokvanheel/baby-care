@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0FFD572B5951FB00C20C9A /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FFD562B5951FB00C20C9A /* ApiService.swift */; };
+		2B0FFD5A2B59521A00C20C9A /* BabyActionCreateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FFD592B59521A00C20C9A /* BabyActionCreateDto.swift */; };
+		2B0FFD5C2B595D9100C20C9A /* BabyActionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FFD5B2B595D9100C20C9A /* BabyActionDto.swift */; };
+		2B0FFD5E2B5AFDD800C20C9A /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FFD5D2B5AFDD800C20C9A /* AuthenticationService.swift */; };
+		2B0FFD602B5B06CE00C20C9A /* BabyActionUpdateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FFD5F2B5B06CE00C20C9A /* BabyActionUpdateDto.swift */; };
 		2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F34B02B54865E004EA670 /* BabyCareApp.swift */; };
-		2B1F34B32B54865E004EA670 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F34B22B54865E004EA670 /* ContentView.swift */; };
+		2B1F34B32B54865E004EA670 /* ServiceInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F34B22B54865E004EA670 /* ServiceInjection.swift */; };
 		2B1F34B52B548660004EA670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F34B42B548660004EA670 /* Assets.xcassets */; };
 		2B1F34B82B548660004EA670 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F34B72B548660004EA670 /* Preview Assets.xcassets */; };
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
@@ -19,9 +24,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B0FFD562B5951FB00C20C9A /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		2B0FFD592B59521A00C20C9A /* BabyActionCreateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionCreateDto.swift; sourceTree = "<group>"; };
+		2B0FFD5B2B595D9100C20C9A /* BabyActionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionDto.swift; sourceTree = "<group>"; };
+		2B0FFD5D2B5AFDD800C20C9A /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		2B0FFD5F2B5B06CE00C20C9A /* BabyActionUpdateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionUpdateDto.swift; sourceTree = "<group>"; };
 		2B1F34AD2B54865E004EA670 /* BabyCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B1F34B02B54865E004EA670 /* BabyCareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyCareApp.swift; sourceTree = "<group>"; };
-		2B1F34B22B54865E004EA670 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2B1F34B22B54865E004EA670 /* ServiceInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInjection.swift; sourceTree = "<group>"; };
 		2B1F34B42B548660004EA670 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B1F34B72B548660004EA670 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -42,6 +52,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B0FFD582B59520600C20C9A /* DataTransferObjects */ = {
+			isa = PBXGroup;
+			children = (
+				2B0FFD592B59521A00C20C9A /* BabyActionCreateDto.swift */,
+				2B0FFD5B2B595D9100C20C9A /* BabyActionDto.swift */,
+				2B0FFD5F2B5B06CE00C20C9A /* BabyActionUpdateDto.swift */,
+			);
+			path = DataTransferObjects;
+			sourceTree = "<group>";
+		};
 		2B1F34A42B54865E004EA670 = {
 			isa = PBXGroup;
 			children = (
@@ -65,7 +85,7 @@
 				2BF567F92B56AFF6004B3936 /* Models */,
 				2B9FDA8E2B5486D400B91132 /* Presentation */,
 				2B1F34B02B54865E004EA670 /* BabyCareApp.swift */,
-				2B1F34B22B54865E004EA670 /* ContentView.swift */,
+				2B1F34B22B54865E004EA670 /* ServiceInjection.swift */,
 				2B1F34B42B548660004EA670 /* Assets.xcassets */,
 				2B1F34B62B548660004EA670 /* Preview Content */,
 				2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */,
@@ -93,6 +113,7 @@
 		2BF567F92B56AFF6004B3936 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2B0FFD582B59520600C20C9A /* DataTransferObjects */,
 				2BF568032B56C13A004B3936 /* BabyAction.swift */,
 			);
 			path = Models;
@@ -102,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				2BF568012B56B037004B3936 /* BabyActionService.swift */,
+				2B0FFD562B5951FB00C20C9A /* ApiService.swift */,
+				2B0FFD5D2B5AFDD800C20C9A /* AuthenticationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -176,12 +199,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B1F34B32B54865E004EA670 /* ContentView.swift in Sources */,
+				2B1F34B32B54865E004EA670 /* ServiceInjection.swift in Sources */,
 				2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */,
 				2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */,
+				2B0FFD5C2B595D9100C20C9A /* BabyActionDto.swift in Sources */,
+				2B0FFD5E2B5AFDD800C20C9A /* AuthenticationService.swift in Sources */,
 				2B9FDA902B5486F300B91132 /* MainView.swift in Sources */,
 				2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */,
 				2BF568042B56C13A004B3936 /* BabyAction.swift in Sources */,
+				2B0FFD5A2B59521A00C20C9A /* BabyActionCreateDto.swift in Sources */,
+				2B0FFD572B5951FB00C20C9A /* ApiService.swift in Sources */,
+				2B0FFD602B5B06CE00C20C9A /* BabyActionUpdateDto.swift in Sources */,
 				2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,7 +344,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
-				DEVELOPMENT_TEAM = 22Z3RFG9AR;
+				DEVELOPMENT_TEAM = L23NTUN6KV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -330,7 +358,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.BabyCare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -346,7 +374,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
-				DEVELOPMENT_TEAM = 22Z3RFG9AR;
+				DEVELOPMENT_TEAM = L23NTUN6KV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -360,7 +388,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.BabyCare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

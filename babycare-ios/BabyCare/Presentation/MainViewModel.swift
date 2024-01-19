@@ -4,7 +4,6 @@ import SwiftData
 import SwiftUI
 
 class MainViewModel: ObservableObject {
-    private let dataContainer: ModelContainer
     private let actionService: BabyActionService
 
     @Published
@@ -12,9 +11,8 @@ class MainViewModel: ObservableObject {
     @Published
     public var feed: BabyAction?
 
-    init(dataContainer: ModelContainer) {
-        self.dataContainer = dataContainer
-        self.actionService = BabyActionService(container: dataContainer)
+    public init(_ actionService: BabyActionService) {
+        self.actionService = actionService
     }
 
     public func toggleSleep() {
