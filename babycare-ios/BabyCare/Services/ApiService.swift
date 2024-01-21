@@ -56,7 +56,9 @@ public class ApiService {
             onError()
         }
     }
-    
+
+    // TODO: Single callback
+    // TODO: Auto decode JSON with generics
     public func performRequest<Dto: Encodable>(dto: Dto, path: String, method: String = "POST", onComplete: @escaping (Data) -> Void = { _ in }, onError: @escaping () -> Void = {}) {
         let url = URL(string: "\(BabyCareApp.API_URL)/\(path)")
         let session = URLSession.shared
@@ -90,7 +92,6 @@ public class ApiService {
                 onError()
             } else {
                 if let response = response as? HTTPURLResponse {
-                    print(response.statusCode)
                     if response.statusCode == 200 {
                         onComplete(data)
                     } else {

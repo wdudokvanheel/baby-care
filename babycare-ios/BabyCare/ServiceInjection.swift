@@ -6,6 +6,7 @@ struct ServiceInjection<Content: View>: View {
     private let actionService: BabyActionService
     private let authService: AuthenticationService
     private let apiService: ApiService
+    private let syncService: SyncService
 
     private let content: Content
 
@@ -21,11 +22,15 @@ struct ServiceInjection<Content: View>: View {
 
         let authService = AuthenticationService()
         let apiService = ApiService(authService)
+        let actionService = BabyActionService(container!, apiService)
+        let syncService = SyncService(apiService, actionService, container!)
 
         self.authService = authService
         self.apiService = apiService
+        self.syncService = syncService
         self.content = content()
-        actionService = .init(container!, apiService)
+
+        self.actionService = actionService
     }
 
     var body: some View {

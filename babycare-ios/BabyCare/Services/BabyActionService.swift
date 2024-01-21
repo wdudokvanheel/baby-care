@@ -16,9 +16,9 @@ public class BabyActionService: ObservableObject {
         let action = BabyAction()
         action.type = .sleep
         action.start = Date()
-        save(action)
         Task {
             apiService.syncAction(action)
+            await save(action)
         }
         return action
     }
@@ -35,9 +35,9 @@ public class BabyActionService: ObservableObject {
         let action = BabyAction()
         action.type = .feed
         action.start = Date()
-        save(action)
         Task {
             apiService.syncAction(action)
+            await save(action)
         }
         return action
     }
@@ -52,12 +52,30 @@ public class BabyActionService: ObservableObject {
 
     public func updateStorage() {}
 
-    private func save(_ action: BabyAction) {
-        Task {
-            await MainActor.run {
-                print("Saving action \(self.container.mainContext.autosaveEnabled)")
-                self.container.mainContext.insert(action)
+    public func getByRemoteId(_ id: Int64) async -> BabyAction? {
+        await MainActor.run {
+            var descriptor = FetchDescriptor<BabyAction>(predicate: #Predicate {
+                $0.remoteId == id
+            })
+
+            descriptor.fetchLimit = 1
+
+            do {
+                let result = try container.mainContext.fetch(descriptor)
+                if result.count > 0 {
+                    return result[0]
+                }
             }
+            catch {
+                print("Erorr \(error)")
+            }
+            return nil
+        }
+    }
+
+    public func save(_ action: BabyAction) async {
+        await MainActor.run {
+            self.container.mainContext.insert(action)
         }
     }
 }
