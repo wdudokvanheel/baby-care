@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import os
 import SwiftData
@@ -11,14 +12,14 @@ class MainViewModel: ObservableObject {
     @Published
     public var feed: BabyAction?
 
-    public init(_ actionService: BabyActionService) {
-        self.actionService = actionService
+    public init(_ services: BabyCareServiceContainer) {
+        self.actionService = services.actionService
     }
 
-    public func update(){
+    public func update() {
         actionService.updateStorage()
     }
-    
+
     public func toggleSleep() {
         if let current = sleep {
             actionService.endSleep(current)

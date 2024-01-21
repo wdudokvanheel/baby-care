@@ -53,7 +53,7 @@ struct MainView: View {
                             Text("Stop feeding")
                                 .font(.title)
                             Spacer()
-                            Text("\(timeDifference(from: feed.start!))")
+                            Text("\(timeDifference(from: feed.start ))")
                                 .font(.footnote)
                         }
                         else {

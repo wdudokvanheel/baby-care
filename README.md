@@ -4,7 +4,8 @@
 - [x] Save & Update API
 - [x] App persist data
 - [x] Authentication
-- [ ] App sync data
-- [ ] Support for babies
+- [x] App sync data
+- [x] Session tracking in db with clientId & notificationId
 - [ ] Notifications/real-time updates
-
+- [ ] API endpoint to set notificationId
+- [ ] Support for babies

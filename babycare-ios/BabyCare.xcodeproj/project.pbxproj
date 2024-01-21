@@ -23,6 +23,8 @@
 		2B46AE422B5D3C3A0019D710 /* BabyActionSyncRequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE412B5D3C3A0019D710 /* BabyActionSyncRequestDto.swift */; };
 		2B46AE442B5D3C710019D710 /* BabyActionSyncResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE432B5D3C710019D710 /* BabyActionSyncResponseDto.swift */; };
 		2B46AE462B5D3CFF0019D710 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE452B5D3CFF0019D710 /* SyncService.swift */; };
+		2B46AE482B5D781B0019D710 /* BabyCareDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE472B5D781B0019D710 /* BabyCareDelegate.swift */; };
+		2B46AE4B2B5D9D5E0019D710 /* BabyCareServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE4A2B5D9D5E0019D710 /* BabyCareServiceContainer.swift */; };
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
 		2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA02B54905C00B91132 /* MainViewModel.swift */; };
@@ -47,6 +49,9 @@
 		2B46AE412B5D3C3A0019D710 /* BabyActionSyncRequestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionSyncRequestDto.swift; sourceTree = "<group>"; };
 		2B46AE432B5D3C710019D710 /* BabyActionSyncResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionSyncResponseDto.swift; sourceTree = "<group>"; };
 		2B46AE452B5D3CFF0019D710 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
+		2B46AE472B5D781B0019D710 /* BabyCareDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyCareDelegate.swift; sourceTree = "<group>"; };
+		2B46AE492B5D794A0019D710 /* BabyCare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyCare.entitlements; sourceTree = "<group>"; };
+		2B46AE4A2B5D9D5E0019D710 /* BabyCareServiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyCareServiceContainer.swift; sourceTree = "<group>"; };
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		2B9FDAA02B54905C00B91132 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -96,13 +101,16 @@
 			isa = PBXGroup;
 			children = (
 				2B46AE342B5C73A90019D710 /* Core */,
-				2BF568002B56B022004B3936 /* Services */,
 				2BF567F92B56AFF6004B3936 /* Models */,
 				2B9FDA8E2B5486D400B91132 /* Presentation */,
-				2B1F34B02B54865E004EA670 /* BabyCareApp.swift */,
-				2B1F34B22B54865E004EA670 /* ServiceInjection.swift */,
-				2B1F34B42B548660004EA670 /* Assets.xcassets */,
 				2B1F34B62B548660004EA670 /* Preview Content */,
+				2BF568002B56B022004B3936 /* Services */,
+				2B1F34B02B54865E004EA670 /* BabyCareApp.swift */,
+				2B46AE472B5D781B0019D710 /* BabyCareDelegate.swift */,
+				2B46AE4A2B5D9D5E0019D710 /* BabyCareServiceContainer.swift */,
+				2B1F34B22B54865E004EA670 /* ServiceInjection.swift */,
+				2B46AE492B5D794A0019D710 /* BabyCare.entitlements */,
+				2B1F34B42B548660004EA670 /* Assets.xcassets */,
 				2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */,
 			);
 			path = BabyCare;
@@ -237,11 +245,13 @@
 				2B46AE442B5D3C710019D710 /* BabyActionSyncResponseDto.swift in Sources */,
 				2B9FDA902B5486F300B91132 /* MainView.swift in Sources */,
 				2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */,
+				2B46AE482B5D781B0019D710 /* BabyCareDelegate.swift in Sources */,
 				2B0FFD5A2B59521A00C20C9A /* BabyActionCreateDto.swift in Sources */,
 				2B0FFD572B5951FB00C20C9A /* ApiService.swift in Sources */,
 				2B0FFD602B5B06CE00C20C9A /* BabyActionUpdateDto.swift in Sources */,
 				2B46AE3A2B5C81120019D710 /* BabyActionExt.swift in Sources */,
 				2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */,
+				2B46AE4B2B5D9D5E0019D710 /* BabyCareServiceContainer.swift in Sources */,
 				2B0FFD622B5B0BB700C20C9A /* LatestActionsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,6 +383,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BabyCare/BabyCare.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
@@ -392,6 +404,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -403,6 +416,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BabyCare/BabyCare.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
@@ -422,6 +437,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
