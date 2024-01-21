@@ -19,7 +19,7 @@ public class JwtTokenService {
     @Value("${security.jwt.token.secret-key:secret:304859n34swedfs5hhjg}")
     private String secretKey = "95834058347";
 
-    @Value("${security.jwt.token.expire-length:3600000000}")
+    @Value("${security.jwt.token.expire-length:3600000000000}")
     private long validityInMilliseconds;
 
     @PostConstruct
@@ -47,7 +47,6 @@ public class JwtTokenService {
     }
 
     public boolean validateToken(String authToken) {
-        logger.info("Vlaidating: {}", authToken);
         try {
             JWT.require(Algorithm.HMAC512(secretKey)).build().verify(authToken);
             return true;

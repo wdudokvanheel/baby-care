@@ -1,8 +1,6 @@
 package com.bitechular.babycare.api.controller;
 
-import com.bitechular.babycare.api.dto.BabyActionCreateRequestDto;
-import com.bitechular.babycare.api.dto.BabyActionDto;
-import com.bitechular.babycare.api.dto.BabyActionUpdateRequestDto;
+import com.bitechular.babycare.api.dto.*;
 import com.bitechular.babycare.api.mapper.BabyActionMapper;
 import com.bitechular.babycare.data.model.BabyAction;
 import com.bitechular.babycare.security.UserSession;
@@ -13,6 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/action")
@@ -42,5 +44,23 @@ public class BabyActionController {
         action.lastModifiedBy = session.clientId;
         action = service.save(action);
         return ResponseEntity.ok(mapper.toDto(action));
+    }
+
+    @PostMapping("sync")
+    public ResponseEntity<BabyActionSyncResponse> syncActions(@RequestBody BabyActionSyncRequest request, @AuthenticationPrincipal UserSession session) {
+        logger.debug("Request sync from: {}", request.from);
+        // Get list of baby actions for this user starting from date request.from
+        List<BabyAction> actions = service.getNewActionsForClient(session, request.from, 10);
+        List<BabyActionDto> dtos = actions
+                .stream()
+                .map(action -> mapper.toDto(action))
+                .collect(Collectors.toList());
+
+        Date syncedUntil = request.from;
+        if (actions.size() > 0) {
+            syncedUntil = actions.getLast().getModified();
+        }
+
+        return ResponseEntity.ok(new BabyActionSyncResponse(dtos, syncedUntil));
     }
 }
