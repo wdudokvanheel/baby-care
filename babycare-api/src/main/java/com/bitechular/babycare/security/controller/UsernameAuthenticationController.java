@@ -22,7 +22,6 @@ public class UsernameAuthenticationController {
     public ResponseEntity<AuthenticationDetails> authenticateUser(@RequestBody EmailAuthenticationRequest request) throws UserNotFoundException, InactiveUserException, InvalidCredentialsException {
         User user = authenticationService.authenticateUser(request.getEmail(), request.getPassword());
         AuthenticationDetails details = authenticationService.createAuthenticationDetails(user);
-
         // TODO Do something with the token here
 
         return ResponseEntity.ok(details);

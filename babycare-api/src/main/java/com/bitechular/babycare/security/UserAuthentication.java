@@ -1,7 +1,7 @@
 package com.bitechular.babycare.security;
 
 
-import com.bitechular.babycare.data.model.User;
+import com.bitechular.babycare.data.model.AuthSession;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,10 +11,10 @@ import java.util.Collection;
 import java.util.List;
 
 public class UserAuthentication implements Authentication {
-    private UserSession session;
+    private AuthSession session;
 
-    public UserAuthentication(User user, String token) {
-        this.session = new UserSession(user, token);
+    public UserAuthentication(AuthSession session) {
+        this.session = session;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class UserAuthentication implements Authentication {
     }
 
     @Override
-    public UserSession getPrincipal() {
+    public AuthSession getPrincipal() {
         return session;
     }
 

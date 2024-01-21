@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public interface BabyActionRepository extends DomainRepository<BabyAction> {
-    @Query("SELECT b FROM BabyAction b WHERE b.modified > :afterDate AND b.lastModifiedBy <> :clientId ORDER BY b.start ASC")
+    @Query("SELECT b FROM BabyAction b WHERE b.modified > :afterDate AND b.lastModifiedBy <> :clientId ORDER BY b.modified ASC")
     List<BabyAction> findActionsAfterDateExcludingClient(
             @Param("afterDate") Date afterDate,
             @Param("clientId") String clientId,

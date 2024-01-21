@@ -2,8 +2,8 @@ package com.bitechular.babycare.api.controller;
 
 import com.bitechular.babycare.api.dto.*;
 import com.bitechular.babycare.api.mapper.BabyActionMapper;
+import com.bitechular.babycare.data.model.AuthSession;
 import com.bitechular.babycare.data.model.BabyAction;
-import com.bitechular.babycare.security.UserSession;
 import com.bitechular.babycare.service.BabyActionService;
 import com.bitechular.babycare.service.exception.EntityNotFoundException;
 import org.slf4j.Logger;
@@ -30,7 +30,7 @@ public class BabyActionController {
     }
 
     @PostMapping("*")
-    public ResponseEntity<BabyActionDto> saveAction(@RequestBody BabyActionCreateRequestDto dto, @AuthenticationPrincipal UserSession session) {
+    public ResponseEntity<BabyActionDto> saveAction(@RequestBody BabyActionCreateRequestDto dto, @AuthenticationPrincipal AuthSession session) {
         BabyAction action = mapper.fromCreateDto(dto);
         action.lastModifiedBy = session.clientId;
         action = service.save(action);
@@ -38,7 +38,7 @@ public class BabyActionController {
     }
 
     @PutMapping("{id}/")
-    public ResponseEntity<BabyActionDto> updateAction(@PathVariable Long id, @RequestBody BabyActionUpdateRequestDto dto, @AuthenticationPrincipal UserSession session) throws EntityNotFoundException {
+    public ResponseEntity<BabyActionDto> updateAction(@PathVariable Long id, @RequestBody BabyActionUpdateRequestDto dto, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
         BabyAction action = service.getById(id);
         action = mapper.fromUpdateDto(action, dto);
         action.lastModifiedBy = session.clientId;
@@ -47,7 +47,7 @@ public class BabyActionController {
     }
 
     @PostMapping("sync")
-    public ResponseEntity<BabyActionSyncResponse> syncActions(@RequestBody BabyActionSyncRequest request, @AuthenticationPrincipal UserSession session) {
+    public ResponseEntity<BabyActionSyncResponse> syncActions(@RequestBody BabyActionSyncRequest request, @AuthenticationPrincipal AuthSession session) {
         logger.debug("Request sync from: {}", request.from);
         // Get list of baby actions for this user starting from date request.from
         List<BabyAction> actions = service.getNewActionsForClient(session, request.from, 10);

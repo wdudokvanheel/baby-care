@@ -1,8 +1,8 @@
 package com.bitechular.babycare.service;
 
 import com.bitechular.babycare.data.dao.BabyActionRepository;
+import com.bitechular.babycare.data.model.AuthSession;
 import com.bitechular.babycare.data.model.BabyAction;
-import com.bitechular.babycare.security.UserSession;
 import com.bitechular.babycare.service.exception.EntityNotFoundException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class BabyActionService {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("BabyAction", id));
     }
 
-    public List<BabyAction> getNewActionsForClient(UserSession session, Date from, int limit) {
+    public List<BabyAction> getNewActionsForClient(AuthSession session, Date from, int limit) {
         return repository.findActionsAfterDateExcludingClient(from, session.clientId, Pageable.ofSize(limit));
     }
 }
