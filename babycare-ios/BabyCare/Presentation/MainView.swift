@@ -68,6 +68,8 @@ struct MainView: View {
                     .background(Color.green)
                     .cornerRadius(10)
                 }
+                LatestActionsView()
+
             }
             .padding()
             .navigationBarTitle("Little Tiny Baby Care")

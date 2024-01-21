@@ -50,9 +50,12 @@ public class BabyActionService: ObservableObject {
         }
     }
 
+    public func updateStorage() {}
+
     private func save(_ action: BabyAction) {
         Task {
             await MainActor.run {
+                print("Saving action \(self.container.mainContext.autosaveEnabled)")
                 self.container.mainContext.insert(action)
             }
         }

@@ -10,7 +10,7 @@ public class ApiService {
     }
     
     public func syncAction(_ action: BabyAction) {
-        if action.remoteId == nil {
+        if action.remoteId == nil || action.remoteId! <= 0 {
             saveAction(action) { id in
                 print("Got assigned id #\(id)")
                 action.remoteId = id

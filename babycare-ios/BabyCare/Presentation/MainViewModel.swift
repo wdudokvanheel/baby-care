@@ -15,6 +15,10 @@ class MainViewModel: ObservableObject {
         self.actionService = actionService
     }
 
+    public func update(){
+        actionService.updateStorage()
+    }
+    
     public func toggleSleep() {
         if let current = sleep {
             actionService.endSleep(current)

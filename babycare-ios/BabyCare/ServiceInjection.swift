@@ -24,13 +24,13 @@ struct ServiceInjection<Content: View>: View {
 
         self.authService = authService
         self.apiService = apiService
-        actionService = .init(container!, apiService)
-
         self.content = content()
+        actionService = .init(container!, apiService)
     }
 
     var body: some View {
         content
+            .modelContext(self.container!.mainContext)
             .environmentObject(MainViewModel(actionService))
     }
 }

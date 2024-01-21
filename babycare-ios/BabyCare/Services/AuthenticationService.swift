@@ -4,19 +4,41 @@ import SwiftUI
 
 public class AuthenticationService: ObservableObject {
     @Published
-    public var authenticated: Bool = false
+    private(set) var authenticated: Bool = false
     @Published
-    public var email: String?
+    private(set) var email: String?
     @Published
-    public var token: String?
-    
-    init(){
-        email = "wesley@bitechular.com"
-        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3ZXNsZXlAYml0ZWNodWxhci5jb20iLCJleHAiOjE3MDkyOTA5MzQsImlhdCI6MTcwNTY5MDkzNH0.9nWyQOCxH9gK_3OSuCMO1lqBfF--kgYVUwn88luKUCtjG5x5vuluYp0Ki8WPmSMaVTJKrBDnPZmz3FULf7OOrg"
-    }
-}
+    private(set) var token: String?
 
-public struct AuthenticatinonDetails {
-    public let email: String
-    public let token: String
+    init() {
+        do {
+            self.email = try KeychainItem(service: "com.bitechular.babycare", account: "email").readItem()
+            self.token = try KeychainItem(service: "com.bitechular.babycare", account: "token").readItem()
+        }
+        catch {
+            print("Failed to read keychain: \(error)")
+        }
+        
+        persistDetails()
+    }
+    
+    public func setAuthDetails(email: String, token: String) {
+        self.email = email
+        self.token = token
+    }
+    
+    private func persistDetails() {
+        do {
+            if let email = email {
+                try KeychainItem(service: "com.bitechular.babycare", account: "email").saveItem(email)
+            }
+            
+            if let token = token {
+                try KeychainItem(service: "com.bitechular.babycare", account: "token").saveItem(token)
+            }
+        }
+        catch {
+            print("Failed to persist auth details: \(error)")
+        }
+    }
 }
