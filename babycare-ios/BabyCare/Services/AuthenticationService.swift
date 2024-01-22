@@ -18,12 +18,30 @@ public class AuthenticationService: ObservableObject {
         catch {
             print("Failed to read keychain: \(error)")
         }
+        
+        if self.token != nil {
+            self.authenticated = true
+        }
+    }
+    
+    public func logout() {
+        do {
+            try KeychainItem(service: "com.bitechular.babycare", account: "email").deleteItem()
+            try KeychainItem(service: "com.bitechular.babycare", account: "token").deleteItem()
+        }
+        catch {
+            print("Failed to delete keychain: \(error)")
+        }
+        self.authenticated = false
     }
     
     public func setAuthDetails(email: String, token: String) {
         self.email = email
         self.token = token
-        persistDetails()
+        self.persistDetails()
+        if self.token != nil {
+            self.authenticated = true
+        }
     }
     
     private func persistDetails() {

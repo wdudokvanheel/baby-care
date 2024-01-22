@@ -5,7 +5,7 @@ import SwiftData
 import SwiftUI
 
 class MainViewModel: ObservableObject {
-    private let services: BabyCareServiceContainer
+    public let services: BabyCareServiceContainer
 
     @Published
     public var sleep: BabyAction?
@@ -22,9 +22,25 @@ class MainViewModel: ObservableObject {
     public func login() {
         showLogin.toggle()
     }
-    
+
+    public func logout() {
+        // TODO: Do this in a better way
+        UserDefaults.standard.removeObject(forKey: "com.bitechular.babycare.data.syncedUntil")
+        Task {
+            await MainActor.run {
+                do {
+                    try services.container.mainContext.delete(model: BabyAction.self)
+                }
+                catch {}
+            }
+        }
+
+        services.authService.logout()
+    }
+
     public func authenticate(_ email: String, _ password: String) {
-        services.apiService.authenticate(email, password){
+        services.apiService.authenticate(email, password) {
+            self.services.notificationService.registerForNotifications()
             self.services.syncService.syncNow()
         }
     }

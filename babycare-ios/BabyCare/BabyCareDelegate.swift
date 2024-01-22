@@ -16,7 +16,6 @@ class BabyCareDelegate: NSObject, UIApplicationDelegate {
 
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             if granted {
-                print("Permission granted")
                 self.data.notificationsGranted = true
                 Task {
                     let center = UNUserNotificationCenter.current()
@@ -25,9 +24,7 @@ class BabyCareDelegate: NSObject, UIApplicationDelegate {
 
                     if authorizationStatus == .authorized {
                         await MainActor.run {
-                            print("REgistering")
                             application.registerForRemoteNotifications()
-                            print(application.isRegisteredForRemoteNotifications)
                         }
                     }
                 }
@@ -61,7 +58,6 @@ class BabyCareDelegate: NSObject, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.reduce("") { $0 + String(format: "%02x", $1) }
-        print("my token is \(token)")
         data.deviceId = token
     }
 

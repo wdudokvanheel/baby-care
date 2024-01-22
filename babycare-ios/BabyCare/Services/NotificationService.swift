@@ -18,7 +18,7 @@ public class NotificationService {
 
     public func registerForNotifications(){
         if let id = delegateData.deviceId{
-            apiService.performRequest(dto: NotifcationRegistrationDto(clientId: id), path: "notifications/register"){ data in
+            apiService.performRequest(dto: NotificationRegistrationDto(clientId: id), path: "notifications/register"){ data in
                 print("Registed for notifications")
             } onError: {
             

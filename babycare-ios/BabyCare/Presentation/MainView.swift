@@ -68,14 +68,11 @@ struct MainView: View {
                     .background(Color.green)
                     .cornerRadius(10)
                 }
-                
-                Button("Login"){
-                    model.login()
-                }
-                
+
+              
+                AuthButton(authService: model.services.authService)
+
                 LatestActionsView()
-                
-                
             }
             .padding()
             .navigationBarTitle("Little Tiny Baby Care")
