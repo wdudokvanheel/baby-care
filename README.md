@@ -7,5 +7,7 @@
 - [x] App sync data
 - [x] Session tracking in db with clientId & notificationId
 - [x] Notifications/real-time updates
-- [ ] API endpoint to set notificationId
-- [ ] Support for babies
+- [x] API endpoint to set notificationId
+- [ ] Auto sync unsaved entities
+- [ ] Support for babies 
+- [ ] Support for multiple users

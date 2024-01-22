@@ -22,4 +22,9 @@ public class AuthSessionService {
                 .map(session -> session.getNotificationId())
                 .collect(Collectors.toList());
     }
+
+    public void registerNotifications(AuthSession session, String id){
+        session.notificationId = id;
+        repository.save(session);
+    }
 }
