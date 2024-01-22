@@ -33,6 +33,8 @@ public class AuthenticationService: ObservableObject {
             print("Failed to delete keychain: \(error)")
         }
         self.authenticated = false
+        self.token = nil
+        self.email = nil
     }
     
     public func setAuthDetails(email: String, token: String) {

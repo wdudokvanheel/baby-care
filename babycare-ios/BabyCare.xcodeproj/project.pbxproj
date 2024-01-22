@@ -31,6 +31,7 @@
 		2B6D4D122B5E8488000F6BFA /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D112B5E8488000F6BFA /* AuthenticationResponse.swift */; };
 		2B6D4D142B5E89A8000F6BFA /* NotificationRegistrationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D132B5E89A8000F6BFA /* NotificationRegistrationDto.swift */; };
 		2B6D4D162B5E9281000F6BFA /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D152B5E9281000F6BFA /* AuthButton.swift */; };
+		2B6D4D182B5E952C000F6BFA /* AuthGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D172B5E952C000F6BFA /* AuthGuard.swift */; };
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
 		2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA02B54905C00B91132 /* MainViewModel.swift */; };
@@ -65,6 +66,7 @@
 		2B6D4D112B5E8488000F6BFA /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 		2B6D4D132B5E89A8000F6BFA /* NotificationRegistrationDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRegistrationDto.swift; sourceTree = "<group>"; };
 		2B6D4D152B5E9281000F6BFA /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
+		2B6D4D172B5E952C000F6BFA /* AuthGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGuard.swift; sourceTree = "<group>"; };
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		2B9FDAA02B54905C00B91132 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				2B9FDAA02B54905C00B91132 /* MainViewModel.swift */,
 				2B0FFD612B5B0BB700C20C9A /* LatestActionsView.swift */,
 				2B6D4D0D2B5E825E000F6BFA /* LoginView.swift */,
+				2B6D4D172B5E952C000F6BFA /* AuthGuard.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				2B6D4D142B5E89A8000F6BFA /* NotificationRegistrationDto.swift in Sources */,
 				2B6D4D0C2B5E6E31000F6BFA /* NotificationService.swift in Sources */,
 				2B46AE3A2B5C81120019D710 /* BabyActionExt.swift in Sources */,
+				2B6D4D182B5E952C000F6BFA /* AuthGuard.swift in Sources */,
 				2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */,
 				2B46AE4B2B5D9D5E0019D710 /* BabyCareServiceContainer.swift in Sources */,
 				2B6D4D122B5E8488000F6BFA /* AuthenticationResponse.swift in Sources */,

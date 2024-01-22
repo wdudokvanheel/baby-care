@@ -85,7 +85,7 @@ public class ApiService {
                 return
             }
             
-            print("API response:\n\(String(decoding: data, as: UTF8.self))")
+            print("API response: \(String(decoding: data, as: UTF8.self))")
 
             if let error = error {
                 print("Request Failed: \(error.localizedDescription)")
@@ -107,7 +107,7 @@ public class ApiService {
     public func authenticate(_ email: String, _ password: String, callback: @escaping () -> Void = {}) {
         let request = AuthenticationRequest(email: email, password: password)
         
-        performRequest(dto: request, path: "auth/", method: "POST"){ data in
+        performRequest(dto: request, path: "auth/", method: "POST") { data in
             if let result: AuthenticationResponse = (self.parseJson(responseData: data) as AuthenticationResponse?) {
                 self.authService.setAuthDetails(email: result.email, token: result.token)
                 callback()

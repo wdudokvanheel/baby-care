@@ -11,68 +11,69 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                Button(action: {
-                    model.toggleSleep()
-                }) {
-                    HStack {
-                        Image(systemName: "moon.stars.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 40)
-                        Spacer()
-                        if let sleep = model.sleep {
-                            Text("Stop sleep")
-                                .font(.title)
-                            Spacer()
-                            Text("\(timeDifference(from: sleep.start!))")
-                                .font(.footnote)
-                        }
-                        else {
-                            Text("Start sleep")
-                                .font(.title)
-                            Spacer()
-                        }
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-                }
-
-                Button(action: {
-                    model.toggleFeed()
-                }) {
-                    HStack {
-                        Image(systemName: "mug.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 40)
-                        Spacer()
-                        if let feed = model.feed {
-                            Text("Stop feeding")
-                                .font(.title)
-                            Spacer()
-                            Text("\(timeDifference(from: feed.start))")
-                                .font(.footnote)
-                        }
-                        else {
-                            Text("Start feeding")
-                                .font(.title)
-                            Spacer()
-                        }
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.green)
-                    .cornerRadius(10)
-                }
-
-              
                 AuthButton(authService: model.services.authService)
 
-                LatestActionsView()
+                AuthGuard(model.services.authService) {
+
+                    Button(action: {
+                        model.toggleSleep()
+                    }) {
+                        HStack {
+                            Image(systemName: "moon.stars.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 40)
+                            Spacer()
+                            if let sleep = model.sleep {
+                                Text("Stop sleep")
+                                    .font(.title)
+                                Spacer()
+                                Text("\(timeDifference(from: sleep.start!))")
+                                    .font(.footnote)
+                            }
+                            else {
+                                Text("Start sleep")
+                                    .font(.title)
+                                Spacer()
+                            }
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                    }
+
+                    Button(action: {
+                        model.toggleFeed()
+                    }) {
+                        HStack {
+                            Image(systemName: "mug.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 40)
+                            Spacer()
+                            if let feed = model.feed {
+                                Text("Stop feeding")
+                                    .font(.title)
+                                Spacer()
+                                Text("\(timeDifference(from: feed.start))")
+                                    .font(.footnote)
+                            }
+                            else {
+                                Text("Start feeding")
+                                    .font(.title)
+                                Spacer()
+                            }
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.green)
+                        .cornerRadius(10)
+                    }
+                    LatestActionsView()
+                }
             }
             .padding()
             .navigationBarTitle("Little Tiny Baby Care")
