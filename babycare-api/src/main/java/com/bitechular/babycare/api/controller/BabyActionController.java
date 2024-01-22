@@ -5,6 +5,7 @@ import com.bitechular.babycare.api.mapper.BabyActionMapper;
 import com.bitechular.babycare.data.model.AuthSession;
 import com.bitechular.babycare.data.model.BabyAction;
 import com.bitechular.babycare.service.BabyActionService;
+import com.bitechular.babycare.service.PushNotificationService;
 import com.bitechular.babycare.service.exception.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,27 +24,36 @@ public class BabyActionController {
 
     private BabyActionService service;
     private BabyActionMapper mapper;
+    private PushNotificationService notificationService;
 
-    public BabyActionController(BabyActionService service, BabyActionMapper mapper) {
+    public BabyActionController(BabyActionService service, BabyActionMapper mapper, PushNotificationService notificationService) {
         this.service = service;
         this.mapper = mapper;
+        this.notificationService = notificationService;
     }
 
     @PostMapping("*")
-    public ResponseEntity<BabyActionDto> saveAction(@RequestBody BabyActionCreateRequestDto dto, @AuthenticationPrincipal AuthSession session) {
-        BabyAction action = mapper.fromCreateDto(dto);
+    public ResponseEntity<BabyActionDto> saveAction(@RequestBody BabyActionCreateRequestDto request, @AuthenticationPrincipal AuthSession session) {
+        BabyAction action = mapper.fromCreateDto(request);
         action.lastModifiedBy = session.clientId;
         action = service.save(action);
-        return ResponseEntity.ok(mapper.toDto(action));
+
+        BabyActionDto dto = mapper.toDto(action);
+        notificationService.notifyClientsOfUpdate(session, dto);
+        return ResponseEntity.ok(dto);
     }
 
     @PutMapping("{id}/")
-    public ResponseEntity<BabyActionDto> updateAction(@PathVariable Long id, @RequestBody BabyActionUpdateRequestDto dto, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
+    public ResponseEntity<BabyActionDto> updateAction(@PathVariable Long id, @RequestBody BabyActionUpdateRequestDto request, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
         BabyAction action = service.getById(id);
-        action = mapper.fromUpdateDto(action, dto);
+        action = mapper.fromUpdateDto(action, request);
         action.lastModifiedBy = session.clientId;
         action = service.save(action);
-        return ResponseEntity.ok(mapper.toDto(action));
+
+        BabyActionDto dto = mapper.toDto(action);
+        notificationService.notifyClientsOfUpdate(session, dto);
+
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping("sync")

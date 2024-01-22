@@ -7,23 +7,24 @@ import com.bitechular.babycare.security.AuthenticationService;
 import com.bitechular.babycare.security.exception.InactiveUserException;
 import com.bitechular.babycare.security.exception.InvalidCredentialsException;
 import com.bitechular.babycare.security.exception.UserNotFoundException;
+import com.bitechular.babycare.service.PushNotificationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UsernameAuthenticationController {
     private AuthenticationService authenticationService;
+    private PushNotificationService pushNotificationService;
 
-    public UsernameAuthenticationController(AuthenticationService authenticationService) {
+    public UsernameAuthenticationController(AuthenticationService authenticationService, PushNotificationService pushNotificationService) {
         this.authenticationService = authenticationService;
+        this.pushNotificationService = pushNotificationService;
     }
 
     @PostMapping("/api/auth/*")
     public ResponseEntity<AuthenticationDetails> authenticateUser(@RequestBody EmailAuthenticationRequest request) throws UserNotFoundException, InactiveUserException, InvalidCredentialsException {
         User user = authenticationService.authenticateUser(request.getEmail(), request.getPassword());
         AuthenticationDetails details = authenticationService.createAuthenticationDetails(user);
-        // TODO Do something with the token here
-
         return ResponseEntity.ok(details);
     }
 
