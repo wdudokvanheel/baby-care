@@ -12,4 +12,5 @@ import java.util.Optional;
 public interface AuthSessionRepository extends DomainRepository<AuthSession> {
     Optional<AuthSession> findAuthSessionByUserAndToken(User user, String token);
     List<AuthSession> findAuthSessionsByTokenNotAndNotificationIdNotNull(String token);
+    List<AuthSession> deleteAuthSessionByUserAndNotificationId(User user, String id);
 }
