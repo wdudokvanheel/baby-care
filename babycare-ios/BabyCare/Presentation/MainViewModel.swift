@@ -16,7 +16,7 @@ class MainViewModel: ObservableObject {
 
     public init(_ services: BabyCareServiceContainer) {
         self.services = services
-        services.syncService.syncNow()
+        services.syncService.syncActions()
     }
 
     public func login() {
@@ -37,18 +37,15 @@ class MainViewModel: ObservableObject {
             }
         }
 
+        services.syncService.resetSyncDate()
         services.authService.logout()
     }
 
     public func authenticate(_ email: String, _ password: String) {
         services.apiService.authenticate(email, password) {
             self.services.notificationService.registerForNotifications()
-            self.services.syncService.syncNow()
+            self.services.syncService.syncActions()
         }
-    }
-
-    public func update() {
-        services.actionService.updateStorage()
     }
 
     public func toggleSleep() {

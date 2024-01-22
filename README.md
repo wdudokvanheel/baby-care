@@ -8,6 +8,6 @@
 - [x] Session tracking in db with clientId & notificationId
 - [x] Notifications/real-time updates
 - [x] API endpoint to set notificationId
-- [ ] Auto sync unsaved entities
+- [x] Auto sync unsaved entities
 - [ ] Support for babies 
 - [ ] Support for multiple users

@@ -17,7 +17,7 @@ public class BabyActionService: ObservableObject {
         action.type = .sleep
         action.start = Date()
         Task {
-            apiService.syncAction(action)
+            apiService.syncActionRemote(action)
             await save(action)
         }
         return action
@@ -27,7 +27,7 @@ public class BabyActionService: ObservableObject {
         sleep.end = Date()
         sleep.syncRequired = true
         Task {
-            apiService.syncAction(sleep)
+            apiService.syncActionRemote(sleep)
         }
     }
 
@@ -36,7 +36,7 @@ public class BabyActionService: ObservableObject {
         action.type = .feed
         action.start = Date()
         Task {
-            apiService.syncAction(action)
+            apiService.syncActionRemote(action)
             await save(action)
         }
         return action
@@ -46,7 +46,7 @@ public class BabyActionService: ObservableObject {
         feed.end = Date()
         feed.syncRequired = true
         Task {
-            apiService.syncAction(feed)
+            apiService.syncActionRemote(feed)
         }
     }
 
@@ -65,8 +65,6 @@ public class BabyActionService: ObservableObject {
         }
     }
 
-    public func updateStorage() {}
-
     public func getByRemoteId(_ id: Int64) async -> BabyAction? {
         await MainActor.run {
             var descriptor = FetchDescriptor<BabyAction>(predicate: #Predicate {
@@ -84,6 +82,24 @@ public class BabyActionService: ObservableObject {
                 print("Erorr \(error)")
             }
             return nil
+        }
+    }
+
+    public func getUnsavedActions() async -> [BabyAction] {
+        return await MainActor.run {
+            var descriptor = FetchDescriptor<BabyAction>(predicate: #Predicate {
+                $0.syncRequired == true
+            })
+
+            do {
+                let result = try container.mainContext.fetch(descriptor)
+                if result.count > 0 {
+                    return result
+                }
+            } catch {
+                print("Erorr \(error)")
+            }
+            return []
         }
     }
 

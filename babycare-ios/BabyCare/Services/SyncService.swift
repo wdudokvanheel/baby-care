@@ -17,57 +17,60 @@ public class SyncService: ObservableObject {
         self.container = container
     }
 
-    public func syncNow() {
-        print("Syncing from: \(syncedUntilTimestamp)")
+    public func resetSyncDate() {
+        syncedUntilTimestamp = 0
+    }
+
+    public func syncActions() {
         Task {
-            let dto = BabyActionSyncRequestDto(syncedUntilTimestamp)
-
-            let actionsUpdated = await withCheckedContinuation { continuation in
-                apiService.performRequest(dto: dto, path: "action/sync", method: "POST") { data in
-                    if let response: BabyActionSyncResponseDto = (self.apiService.parseJson(responseData: data) as BabyActionSyncResponseDto?) {
-                        if response.actions.count > 0 {
-                            Task {
-                                print("Syncing \(response.actions.count) actions:")
-                                for action in response.actions {
-                                    await self.actionService.insertOrUpdateAction(action)
-                                }
-                                print("Sync complete, up to date until: \(response.syncedDate)")
-                                self.syncedUntilTimestamp = response.syncedDate
-
-                                // Continue the outer task
-                                continuation.resume(returning: response.actions.count)
-                            }
-                        } else {
-                            continuation.resume(returning: 0)
-                        }
-                    } else {
-                        print("Error parsing response")
-                        continuation.resume(returning: -1)
-                    }
-                } onError: {
-                    print("Error in sync request")
-                    continuation.resume(returning: -1)
-                }
-            }
-
-            if actionsUpdated == -1 {
-                print("Failed to sync")
-            }
-            if actionsUpdated > 0 {
-                print("Got more to sync")
-                syncNow()
-            }
+            await getNewActions()
+            await sendUnsavedActions()
         }
     }
-}
 
-func performOnMainThread<T>(operation: @escaping () async -> T) async -> T {
-    await withCheckedContinuation { continuation in
-        DispatchQueue.main.async {
-            Task {
-                let result = await operation()
-                continuation.resume(returning: result)
+    private func sendUnsavedActions() async {
+        print("Syncing unsaved actions")
+        await self.actionService.getUnsavedActions().forEach{ action in
+            self.apiService.syncActionRemote(action)
+        }
+    }
+
+    private func getNewActions() async {
+        print("Retrieving new actions, synced until: \(syncedUntilTimestamp)")
+        let dto = BabyActionSyncRequestDto(syncedUntilTimestamp)
+
+        let actionsUpdated = await withCheckedContinuation { continuation in
+            apiService.performRequest(dto: dto, path: "action/sync", method: "POST") { data in
+                if let response: BabyActionSyncResponseDto = (self.apiService.parseJson(responseData: data) as BabyActionSyncResponseDto?) {
+                    if response.actions.count > 0 {
+                        Task {
+                            print("Syncing \(response.actions.count) actions:")
+                            for action in response.actions {
+                                await self.actionService.insertOrUpdateAction(action)
+                            }
+                            print("Sync complete, up to date until: \(response.syncedDate)")
+                            self.syncedUntilTimestamp = response.syncedDate
+
+                            continuation.resume(returning: response.actions.count)
+                        }
+                    } else {
+                        continuation.resume(returning: 0)
+                    }
+                } else {
+                    print("Error parsing response")
+                    continuation.resume(returning: -1)
+                }
+            } onError: {
+                print("Error in sync request")
+                continuation.resume(returning: -1)
             }
+        }
+
+        if actionsUpdated == -1 {
+            print("Failed to sync")
+        } else if actionsUpdated > 0 {
+            print("Got more to sync")
+            await getNewActions()
         }
     }
 }

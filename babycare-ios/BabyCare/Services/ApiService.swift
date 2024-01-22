@@ -9,7 +9,7 @@ public class ApiService {
         self.authService = authService
     }
     
-    public func syncAction(_ action: BabyAction) {
+    public func syncActionRemote(_ action: BabyAction) {
         if action.remoteId == nil || action.remoteId! <= 0 {
             saveAction(action) { id in
                 print("Got assigned id #\(id)")
