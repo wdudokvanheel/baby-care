@@ -5,8 +5,9 @@ struct ServiceInjection<Content: View>: View {
     private let content: Content
     private let services: BabyCareServiceContainer
 
-    init(data: DelegateData, @ViewBuilder content: () -> Content) {
-        services = .init(container: Self.createModelContainer(), delegateData: data)
+    init(delegate: BabyCareDelegate, @ViewBuilder content: () -> Content) {
+        services = .init(container: Self.createModelContainer(), delegateData: delegate.data)
+        delegate.setServices(services: services)
         self.content = content()
     }
 

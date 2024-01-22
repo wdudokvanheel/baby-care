@@ -15,22 +15,6 @@ public class SyncService: ObservableObject {
         self.apiService = apiService
         self.actionService = babyActionService
         self.container = container
-        syncNow()
-    }
-
-    private func syncAction(_ dto: BabyActionDto) async {
-        let action = await actionService.getByRemoteId(dto.id)
-
-        if let action = action {
-            await MainActor.run {
-                print("\tUpdating action #\(dto.id)")
-                action.update(source: dto)
-            }
-        } else {
-            print("\tAdding action #\(dto.id)")
-            let newAction = BabyAction(from: dto)
-            await actionService.save(newAction)
-        }
     }
 
     public func syncNow() {
@@ -45,7 +29,7 @@ public class SyncService: ObservableObject {
                             Task {
                                 print("Syncing \(response.actions.count) actions:")
                                 for action in response.actions {
-                                    await self.syncAction(action)
+                                    await self.actionService.insertOrUpdateAction(action)
                                 }
                                 print("Sync complete, up to date until: \(response.syncedDate)")
                                 self.syncedUntilTimestamp = response.syncedDate

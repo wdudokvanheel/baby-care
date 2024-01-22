@@ -104,6 +104,17 @@ public class ApiService {
         task.resume()
     }
     
+    public func authenticate(_ email: String, _ password: String, callback: @escaping () -> Void = {}) {
+        let request = AuthenticationRequest(email: email, password: password)
+        
+        performRequest(dto: request, path: "auth/", method: "POST"){ data in
+            if let result: AuthenticationResponse = (self.parseJson(responseData: data) as AuthenticationResponse?) {
+                self.authService.setAuthDetails(email: result.email, token: result.token)
+                callback()
+            }
+        }
+    }
+    
     public func parseJson<ResultType: Decodable>(responseData: Data) -> ResultType? {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")

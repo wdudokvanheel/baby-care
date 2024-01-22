@@ -18,13 +18,12 @@ public class AuthenticationService: ObservableObject {
         catch {
             print("Failed to read keychain: \(error)")
         }
-        
-        persistDetails()
     }
     
     public func setAuthDetails(email: String, token: String) {
         self.email = email
         self.token = token
+        persistDetails()
     }
     
     private func persistDetails() {

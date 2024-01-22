@@ -50,6 +50,21 @@ public class BabyActionService: ObservableObject {
         }
     }
 
+    public func insertOrUpdateAction(_ dto: BabyActionDto) async {
+        let action = await getByRemoteId(dto.id)
+
+        if let action = action {
+            await MainActor.run {
+                print("Updating action #\(dto.id)")
+                action.update(source: dto)
+            }
+        } else {
+            print("Adding action #\(dto.id)")
+            let newAction = BabyAction(from: dto)
+            await save(newAction)
+        }
+    }
+
     public func updateStorage() {}
 
     public func getByRemoteId(_ id: Int64) async -> BabyAction? {
@@ -65,8 +80,7 @@ public class BabyActionService: ObservableObject {
                 if result.count > 0 {
                     return result[0]
                 }
-            }
-            catch {
+            } catch {
                 print("Erorr \(error)")
             }
             return nil

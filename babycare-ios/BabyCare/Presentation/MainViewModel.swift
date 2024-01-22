@@ -5,38 +5,51 @@ import SwiftData
 import SwiftUI
 
 class MainViewModel: ObservableObject {
-    private let actionService: BabyActionService
+    private let services: BabyCareServiceContainer
 
     @Published
     public var sleep: BabyAction?
     @Published
     public var feed: BabyAction?
+    @Published
+    public var showLogin = false
 
     public init(_ services: BabyCareServiceContainer) {
-        self.actionService = services.actionService
+        self.services = services
+        services.syncService.syncNow()
+    }
+
+    public func login() {
+        showLogin.toggle()
+    }
+    
+    public func authenticate(_ email: String, _ password: String) {
+        services.apiService.authenticate(email, password){
+            self.services.syncService.syncNow()
+        }
     }
 
     public func update() {
-        actionService.updateStorage()
+        services.actionService.updateStorage()
     }
 
     public func toggleSleep() {
         if let current = sleep {
-            actionService.endSleep(current)
+            services.actionService.endSleep(current)
             sleep = nil
         }
         else {
-            sleep = actionService.startSleep()
+            sleep = services.actionService.startSleep()
         }
     }
 
     public func toggleFeed() {
         if let current = feed {
-            actionService.endFeed(current)
+            services.actionService.endFeed(current)
             feed = nil
         }
         else {
-            feed = actionService.startFeed()
+            feed = services.actionService.startFeed()
         }
     }
 }

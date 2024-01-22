@@ -53,7 +53,7 @@ struct MainView: View {
                             Text("Stop feeding")
                                 .font(.title)
                             Spacer()
-                            Text("\(timeDifference(from: feed.start ))")
+                            Text("\(timeDifference(from: feed.start))")
                                 .font(.footnote)
                         }
                         else {
@@ -68,14 +68,21 @@ struct MainView: View {
                     .background(Color.green)
                     .cornerRadius(10)
                 }
+                
+                Button("Login"){
+                    model.login()
+                }
+                
                 LatestActionsView()
-
+                
+                
             }
             .padding()
             .navigationBarTitle("Little Tiny Baby Care")
             .onReceive(timer) { input in
                 currentDate = input
             }
+            .sheet(isPresented: $model.showLogin, content: LoginView.init)
         }
     }
 

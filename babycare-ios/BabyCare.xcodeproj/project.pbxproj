@@ -25,6 +25,11 @@
 		2B46AE462B5D3CFF0019D710 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE452B5D3CFF0019D710 /* SyncService.swift */; };
 		2B46AE482B5D781B0019D710 /* BabyCareDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE472B5D781B0019D710 /* BabyCareDelegate.swift */; };
 		2B46AE4B2B5D9D5E0019D710 /* BabyCareServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE4A2B5D9D5E0019D710 /* BabyCareServiceContainer.swift */; };
+		2B6D4D0C2B5E6E31000F6BFA /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D0B2B5E6E31000F6BFA /* NotificationService.swift */; };
+		2B6D4D0E2B5E825E000F6BFA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D0D2B5E825E000F6BFA /* LoginView.swift */; };
+		2B6D4D102B5E8464000F6BFA /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D0F2B5E8464000F6BFA /* AuthenticationRequest.swift */; };
+		2B6D4D122B5E8488000F6BFA /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D112B5E8488000F6BFA /* AuthenticationResponse.swift */; };
+		2B6D4D142B5E89A8000F6BFA /* NotifcationRegistrationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D132B5E89A8000F6BFA /* NotifcationRegistrationDto.swift */; };
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
 		2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA02B54905C00B91132 /* MainViewModel.swift */; };
@@ -52,6 +57,12 @@
 		2B46AE472B5D781B0019D710 /* BabyCareDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyCareDelegate.swift; sourceTree = "<group>"; };
 		2B46AE492B5D794A0019D710 /* BabyCare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyCare.entitlements; sourceTree = "<group>"; };
 		2B46AE4A2B5D9D5E0019D710 /* BabyCareServiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyCareServiceContainer.swift; sourceTree = "<group>"; };
+		2B46AE4C2B5DB8CE0019D710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2B6D4D0B2B5E6E31000F6BFA /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		2B6D4D0D2B5E825E000F6BFA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2B6D4D0F2B5E8464000F6BFA /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
+		2B6D4D112B5E8488000F6BFA /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
+		2B6D4D132B5E89A8000F6BFA /* NotifcationRegistrationDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifcationRegistrationDto.swift; sourceTree = "<group>"; };
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		2B9FDAA02B54905C00B91132 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -77,6 +88,9 @@
 				2B0FFD5F2B5B06CE00C20C9A /* BabyActionUpdateDto.swift */,
 				2B46AE412B5D3C3A0019D710 /* BabyActionSyncRequestDto.swift */,
 				2B46AE432B5D3C710019D710 /* BabyActionSyncResponseDto.swift */,
+				2B6D4D0F2B5E8464000F6BFA /* AuthenticationRequest.swift */,
+				2B6D4D112B5E8488000F6BFA /* AuthenticationResponse.swift */,
+				2B6D4D132B5E89A8000F6BFA /* NotifcationRegistrationDto.swift */,
 			);
 			path = DataTransferObjects;
 			sourceTree = "<group>";
@@ -100,6 +114,7 @@
 		2B1F34AF2B54865E004EA670 /* BabyCare */ = {
 			isa = PBXGroup;
 			children = (
+				2B46AE4C2B5DB8CE0019D710 /* Info.plist */,
 				2B46AE342B5C73A90019D710 /* Core */,
 				2BF567F92B56AFF6004B3936 /* Models */,
 				2B9FDA8E2B5486D400B91132 /* Presentation */,
@@ -138,6 +153,7 @@
 				2B9FDA8F2B5486F300B91132 /* MainView.swift */,
 				2B9FDAA02B54905C00B91132 /* MainViewModel.swift */,
 				2B0FFD612B5B0BB700C20C9A /* LatestActionsView.swift */,
+				2B6D4D0D2B5E825E000F6BFA /* LoginView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -155,10 +171,11 @@
 		2BF568002B56B022004B3936 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				2BF568012B56B037004B3936 /* BabyActionService.swift */,
 				2B0FFD562B5951FB00C20C9A /* ApiService.swift */,
 				2B0FFD5D2B5AFDD800C20C9A /* AuthenticationService.swift */,
+				2BF568012B56B037004B3936 /* BabyActionService.swift */,
 				2B46AE452B5D3CFF0019D710 /* SyncService.swift */,
+				2B6D4D0B2B5E6E31000F6BFA /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -179,6 +196,8 @@
 			dependencies = (
 			);
 			name = BabyCare;
+			packageProductDependencies = (
+			);
 			productName = BabyCare;
 			productReference = 2B1F34AD2B54865E004EA670 /* BabyCare.app */;
 			productType = "com.apple.product-type.application";
@@ -207,6 +226,8 @@
 				Base,
 			);
 			mainGroup = 2B1F34A42B54865E004EA670;
+			packageReferences = (
+			);
 			productRefGroup = 2B1F34AE2B54865E004EA670 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -241,17 +262,22 @@
 				2B46AE3E2B5C816C0019D710 /* BabyAction.swift in Sources */,
 				2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */,
 				2B0FFD5C2B595D9100C20C9A /* BabyActionDto.swift in Sources */,
+				2B6D4D0E2B5E825E000F6BFA /* LoginView.swift in Sources */,
 				2B0FFD5E2B5AFDD800C20C9A /* AuthenticationService.swift in Sources */,
 				2B46AE442B5D3C710019D710 /* BabyActionSyncResponseDto.swift in Sources */,
 				2B9FDA902B5486F300B91132 /* MainView.swift in Sources */,
+				2B6D4D102B5E8464000F6BFA /* AuthenticationRequest.swift in Sources */,
 				2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */,
 				2B46AE482B5D781B0019D710 /* BabyCareDelegate.swift in Sources */,
 				2B0FFD5A2B59521A00C20C9A /* BabyActionCreateDto.swift in Sources */,
 				2B0FFD572B5951FB00C20C9A /* ApiService.swift in Sources */,
 				2B0FFD602B5B06CE00C20C9A /* BabyActionUpdateDto.swift in Sources */,
+				2B6D4D142B5E89A8000F6BFA /* NotifcationRegistrationDto.swift in Sources */,
+				2B6D4D0C2B5E6E31000F6BFA /* NotificationService.swift in Sources */,
 				2B46AE3A2B5C81120019D710 /* BabyActionExt.swift in Sources */,
 				2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */,
 				2B46AE4B2B5D9D5E0019D710 /* BabyCareServiceContainer.swift in Sources */,
+				2B6D4D122B5E8488000F6BFA /* AuthenticationResponse.swift in Sources */,
 				2B0FFD622B5B0BB700C20C9A /* LatestActionsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,7 +416,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
 				DEVELOPMENT_TEAM = L23NTUN6KV;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BabyCare/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -423,7 +451,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
 				DEVELOPMENT_TEAM = L23NTUN6KV;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BabyCare/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
