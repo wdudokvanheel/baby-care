@@ -105,7 +105,8 @@ public class ApiService {
     }
     
     public func authenticate(_ email: String, _ password: String, callback: @escaping () -> Void = {}) {
-        let request = AuthenticationRequest(email: email, password: password)
+        let deviceId = UIDevice.current.identifierForVendor?.uuidString ?? ""
+        let request = AuthenticationRequest(email: email, password: password, deviceId: deviceId)
         
         performRequest(dto: request, path: "auth/", method: "POST") { data in
             if let result: AuthenticationResponse = (self.parseJson(responseData: data) as AuthenticationResponse?) {
