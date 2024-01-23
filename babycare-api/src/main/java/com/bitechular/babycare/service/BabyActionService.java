@@ -27,6 +27,6 @@ public class BabyActionService {
     }
 
     public List<BabyAction> getNewActionsForClient(AuthSession session, Date from, int limit) {
-        return repository.findActionsAfterDateExcludingClient(from, session.clientId, Pageable.ofSize(limit));
+        return repository.findUpdatedActionsForUser(from, session, Pageable.ofSize(10));
     }
 }

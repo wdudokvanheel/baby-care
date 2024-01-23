@@ -1,6 +1,6 @@
 package com.bitechular.babycare.service;
 
-import com.bitechular.babycare.api.dto.BabyActionDto;
+import com.bitechular.babycare.api.dto.babyaction.BabyActionDto;
 import com.bitechular.babycare.data.model.AuthSession;
 import com.eatthepath.pushy.apns.*;
 import com.eatthepath.pushy.apns.auth.ApnsSigningKey;
@@ -22,6 +22,8 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import static com.bitechular.babycare.BabyCareApiApplication.ENABLE_NOTIFICATIONS;
+
 @Service
 public class PushNotificationService {
     private Logger logger = LoggerFactory.getLogger(PushNotificationService.class);
@@ -42,6 +44,10 @@ public class PushNotificationService {
     }
 
     public void notifyClientsOfUpdate(AuthSession sender, BabyActionDto action) {
+        if(!ENABLE_NOTIFICATIONS){
+            return;
+        }
+
         try {
             String data = mapper.writeValueAsString(action);
             logger.debug("Sending notification data: {}", data);

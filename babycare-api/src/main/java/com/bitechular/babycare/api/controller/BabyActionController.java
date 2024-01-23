@@ -1,6 +1,6 @@
 package com.bitechular.babycare.api.controller;
 
-import com.bitechular.babycare.api.dto.*;
+import com.bitechular.babycare.api.dto.babyaction.*;
 import com.bitechular.babycare.api.mapper.BabyActionMapper;
 import com.bitechular.babycare.data.model.AuthSession;
 import com.bitechular.babycare.data.model.BabyAction;
@@ -33,9 +33,9 @@ public class BabyActionController {
     }
 
     @PostMapping("*")
-    public ResponseEntity<BabyActionDto> saveAction(@RequestBody BabyActionCreateRequestDto request, @AuthenticationPrincipal AuthSession session) {
+    public ResponseEntity<BabyActionDto> saveAction(@RequestBody BabyActionCreateRequest request, @AuthenticationPrincipal AuthSession session) {
         BabyAction action = mapper.fromCreateDto(request);
-        action.lastModifiedBy = session.clientId;
+        action.setLastModifiedBy(session);
         action = service.save(action);
 
         BabyActionDto dto = mapper.toDto(action);
@@ -44,10 +44,10 @@ public class BabyActionController {
     }
 
     @PutMapping("{id}/")
-    public ResponseEntity<BabyActionDto> updateAction(@PathVariable Long id, @RequestBody BabyActionUpdateRequestDto request, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
+    public ResponseEntity<BabyActionDto> updateAction(@PathVariable Long id, @RequestBody BabyActionUpdateRequest request, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
         BabyAction action = service.getById(id);
         action = mapper.fromUpdateDto(action, request);
-        action.lastModifiedBy = session.clientId;
+        action.setLastModifiedBy(session);
         action = service.save(action);
 
         BabyActionDto dto = mapper.toDto(action);
@@ -57,7 +57,7 @@ public class BabyActionController {
     }
 
     @PostMapping("sync")
-    public ResponseEntity<BabyActionSyncResponse> syncActions(@RequestBody BabyActionSyncRequest request, @AuthenticationPrincipal AuthSession session) {
+    public ResponseEntity<SyncResponse> syncActions(@RequestBody SyncRequest request, @AuthenticationPrincipal AuthSession session) {
         logger.debug("Request sync from: {}", request.from);
         // Get list of baby actions for this user starting from date request.from
         List<BabyAction> actions = service.getNewActionsForClient(session, request.from, 10);
@@ -71,6 +71,6 @@ public class BabyActionController {
             syncedUntil = actions.getLast().getModified();
         }
 
-        return ResponseEntity.ok(new BabyActionSyncResponse(dtos, syncedUntil));
+        return ResponseEntity.ok(new SyncResponse(dtos, syncedUntil));
     }
 }

@@ -1,8 +1,8 @@
-package com.bitechular.babycare.api.dto;
+package com.bitechular.babycare.api.dto.babyaction;
 
 import java.util.Date;
 
-public class BabyActionSyncRequest {
+public class SyncRequest {
     public Date from;
 
     public Date getFrom() {

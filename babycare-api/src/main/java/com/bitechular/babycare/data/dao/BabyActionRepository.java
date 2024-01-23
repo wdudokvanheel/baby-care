@@ -1,6 +1,7 @@
 package com.bitechular.babycare.data.dao;
 
 import com.bitechular.babycare.data.core.DomainRepository;
+import com.bitechular.babycare.data.model.AuthSession;
 import com.bitechular.babycare.data.model.BabyAction;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -12,9 +13,6 @@ import java.util.List;
 
 @Repository
 public interface BabyActionRepository extends DomainRepository<BabyAction> {
-    @Query("SELECT b FROM BabyAction b WHERE b.modified > :afterDate AND b.lastModifiedBy <> :clientId ORDER BY b.modified ASC")
-    List<BabyAction> findActionsAfterDateExcludingClient(
-            @Param("afterDate") Date afterDate,
-            @Param("clientId") String clientId,
-            Pageable pageable);
+    @Query("SELECT ac FROM BabyAction ac, UserBaby ub, Baby ba WHERE ub.user = :#{#auth.user} AND ub.baby = ba AND ac.baby = ub.baby AND ac.modified > :date AND (ac.lastModifiedBy != :auth OR ac.lastModifiedBy IS NULL)")
+    List<BabyAction> findUpdatedActionsForUser(@Param("date") Date date, @Param("auth") AuthSession authSession, Pageable pageable);
 }

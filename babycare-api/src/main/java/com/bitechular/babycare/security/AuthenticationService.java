@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AuthenticationService {
@@ -65,9 +66,14 @@ public class AuthenticationService {
         return new UserAuthentication(session);
     }
 
-    public AuthenticationDetails createAuthenticationDetails(User user) {
+    @Transactional
+    public AuthenticationDetails createNewSession(User user, String deviceId) {
         String token = tokenService.createToken(user.getEmail());
-        AuthSession session = new AuthSession(user, token);
+
+        // Delete any open sessions for this device
+        authRepo.deleteAuthSessionByUserAndDeviceId(user, deviceId);
+
+        AuthSession session = new AuthSession(user, token, deviceId);
         authRepo.save(session);
 
         return new AuthenticationDetails(token, user.getEmail());

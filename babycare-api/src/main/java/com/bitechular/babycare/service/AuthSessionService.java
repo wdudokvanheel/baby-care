@@ -25,9 +25,8 @@ public class AuthSessionService {
     }
 
     @Transactional
-    public void registerNotifications(AuthSession session, String id){
-        repository.deleteAuthSessionByUserAndNotificationId(session.getUser(), id);
-        session.notificationId = id;
+    public void registerNotifications(AuthSession session, String id) {
+        session.setNotificationId(id);
         repository.save(session);
     }
 }

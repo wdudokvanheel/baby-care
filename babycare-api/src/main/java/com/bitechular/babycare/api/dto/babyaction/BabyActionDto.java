@@ -1,13 +1,22 @@
-package com.bitechular.babycare.api.dto;
+package com.bitechular.babycare.api.dto.babyaction;
 
 import com.bitechular.babycare.data.model.BabyActionType;
 
 import java.util.Date;
 
-public class BabyActionCreateRequestDto {
+public class BabyActionDto {
+    public Long id;
     public BabyActionType type;
     public Date start;
     public Date end;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public BabyActionType getType() {
         return type;

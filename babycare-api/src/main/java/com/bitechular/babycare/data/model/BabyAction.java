@@ -1,23 +1,24 @@
 package com.bitechular.babycare.data.model;
 
 import com.bitechular.babycare.data.core.DomainEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "BabyAction")
 public class BabyAction extends DomainEntity {
+    @ManyToOne(optional = false)
+    public Baby baby;
+
     @Enumerated(EnumType.STRING)
-    public BabyActionType type;
+    private BabyActionType type;
 
-    public Date start;
-    public Date end;
+    private Date start;
+    private Date end;
 
-    public String lastModifiedBy;
+    @ManyToOne
+    private AuthSession lastModifiedBy;
 
     public BabyActionType getType() {
         return type;
@@ -43,11 +44,11 @@ public class BabyAction extends DomainEntity {
         this.end = end;
     }
 
-    public String getLastModifiedBy() {
+    public AuthSession getLastModifiedBy() {
         return lastModifiedBy;
     }
 
-    public void setLastModifiedBy(String lastModifiedBy) {
+    public void setLastModifiedBy(AuthSession lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 }

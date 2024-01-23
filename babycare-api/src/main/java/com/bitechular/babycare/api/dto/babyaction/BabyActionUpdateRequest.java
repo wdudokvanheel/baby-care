@@ -1,8 +1,8 @@
-package com.bitechular.babycare.api.dto;
+package com.bitechular.babycare.api.dto.babyaction;
 
 import java.util.Date;
 
-public class BabyActionUpdateRequestDto {
+public class BabyActionUpdateRequest {
     public Date start;
     public Date end;
 
