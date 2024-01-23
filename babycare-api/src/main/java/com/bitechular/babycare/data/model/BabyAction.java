@@ -20,6 +20,14 @@ public class BabyAction extends DomainEntity {
     @ManyToOne
     private AuthSession lastModifiedBy;
 
+    public Baby getBaby() {
+        return baby;
+    }
+
+    public void setBaby(Baby baby) {
+        this.baby = baby;
+    }
+
     public BabyActionType getType() {
         return type;
     }

@@ -5,17 +5,26 @@ import com.bitechular.babycare.data.model.BabyActionType;
 import java.util.Date;
 
 public class BabyActionDto {
-    public Long id;
+    public long id;
+    public long babyId;
     public BabyActionType type;
     public Date start;
     public Date end;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public long getBabyId() {
+        return babyId;
+    }
+
+    public void setBabyId(long babyId) {
+        this.babyId = babyId;
     }
 
     public BabyActionType getType() {
