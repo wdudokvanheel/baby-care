@@ -3,10 +3,18 @@ import os
 import SwiftData
 import SwiftUI
 
-public enum BabyActionType: String, Codable {
+public enum BabyActionType: String, Codable, CaseIterable, Identifiable, Comparable {
     case none
     case feed
     case sleep
+
+    public static func < (lhs: BabyActionType, rhs: BabyActionType) -> Bool {
+        lhs.rawValue < rhs.rawValue
+    }
+
+    public var id: Self {
+        return self
+    }
 }
 
 extension BabyAction: CustomDebugStringConvertible {

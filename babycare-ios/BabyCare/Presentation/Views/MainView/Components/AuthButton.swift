@@ -5,17 +5,21 @@ struct AuthButton: View {
     var authService: AuthenticationService
     @EnvironmentObject
     var model: MainViewModel
-    
+
     var body: some View {
-        if(authService.authenticated){
+        if authService.authenticated {
             Button("Logout") {
                 model.logout()
             }
+            .font(.footnote)
+            .foregroundColor(.white)
         }
-        else{
+        else {
             Button("Login") {
                 model.login()
             }
+            .font(.footnote)
+            .foregroundColor(.white)
         }
     }
 }

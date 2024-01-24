@@ -3,7 +3,7 @@ import SwiftUI
 
 public struct BabySelector<Content: View>: View {
     static var babiesQuery: FetchDescriptor<Baby> {
-        var descriptor = FetchDescriptor<Baby>(sortBy: [SortDescriptor(\.birthDate)])
+        let descriptor = FetchDescriptor<Baby>(sortBy: [SortDescriptor(\.birthDate)])
         return descriptor
     }
     
@@ -23,18 +23,26 @@ public struct BabySelector<Content: View>: View {
             Spacer()
             HStack {
                 ForEach(babies, id: \.self) { baby in
-                    Text("\t \(baby.remoteId ?? 0) \(baby.name ?? "Unnamed Baby")")
+                    Text("\(baby.displayName)")
                         .onTapGesture {
                             self.selected = baby
                         }
-                        .foregroundColor(baby == selected ? .blue : .black)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .foregroundColor(baby == selected ? .white : .white.opacity(0.5))
                 }
             }
         }
+        .onChange(of: babies) {
+            setDefaultBaby()
+        }
         .onAppear {
-            if babies.count > 0 {
-                self.selected = babies[0]
-            }
+            setDefaultBaby()
+        }
+    }
+    
+    private func setDefaultBaby() {
+        if babies.count > 0, selected == nil {
+            selected = babies[0]
         }
     }
 }

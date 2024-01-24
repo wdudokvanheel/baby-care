@@ -9,25 +9,22 @@ struct MainView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        NavigationView {
+        ZStack {
+            Color.black.ignoresSafeArea()
+            
             VStack(spacing: 20) {
-                AuthButton(authService: model.services.authService)
-
                 AuthGuard(model.services.authService) {
                     BabySelector { baby in
-                        VStack {
-
-                            LatestActionsView(baby: baby)
-                        }
+                        BabyView(model: BabyViewModel(services: model.services, baby: baby))
                     }
                 }
+                AuthButton(authService: model.services.authService)
             }
             .padding()
-            .navigationBarTitle("Little Tiny Baby Care")
-            .onReceive(timer) { input in
-                currentDate = input
-            }
-            .sheet(isPresented: $model.showLogin, content: LoginView.init)
+        }
+        .sheet(isPresented: $model.showLogin, content: LoginView.init)
+        .onReceive(timer) { input in
+            currentDate = input
         }
     }
 

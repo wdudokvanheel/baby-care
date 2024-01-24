@@ -34,7 +34,13 @@ public class ApiService {
         
         let dto = BabyActionUpdateDto(from: action)
         
-        performRequest(dto: dto, path: "action/\(actionId)/", method: "PUT") { data in
+        guard let babyId = action.baby?.remoteId else{
+            print("Failed to save action: no remoteId for baby")
+            onError()
+            return
+        }
+        
+        performRequest(dto: dto, path: "baby/\(babyId)/action/\(actionId)/", method: "PUT") { data in
             if (self.parseJson(responseData: data) as BabyActionDto?) != nil {
                 onComplete()
             }

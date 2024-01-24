@@ -32,8 +32,9 @@ public class SyncService: ObservableObject {
 
         print("Not authenticated, waiting for change")
         authService.$authenticated.sink { authenticated in
-            print("AUth update")
+            print("Auth updated to \(authenticated)")
             if authenticated {
+                print("Starting sync with \(self.syncedBabiesUntilTimestamp)")
                 self.startSync()
             }
         }
@@ -46,14 +47,18 @@ public class SyncService: ObservableObject {
     }
 
     public func resetSyncDate() {
-        syncedBabiesUntilTimestamp = 0
+        DispatchQueue.main.async {
+            print("RESET SYNC TO 0")
+            self.syncedBabiesUntilTimestamp = 0
+            print("\(self.syncedBabiesUntilTimestamp)")
+        }
     }
 
     public func syncBabyData() {
-
         Task {
             await getNewBabies()
 
+            print("Syncing available babies from \(self.syncedBabiesUntilTimestamp)")
             let babies = await babyService.getAllBabies()
             print("\n\nBabies synced, retreiving new actions for \(babies.count) babies")
 

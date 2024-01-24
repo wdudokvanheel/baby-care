@@ -41,6 +41,9 @@
 		2BF16ED22B610BCC00A84DE3 /* BabyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16ED02B610BCC00A84DE3 /* BabyAction.swift */; };
 		2BF16ED32B610BCC00A84DE3 /* Baby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16ED12B610BCC00A84DE3 /* Baby.swift */; };
 		2BF16ED52B613A5B00A84DE3 /* BabyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16ED42B613A5B00A84DE3 /* BabyViewModel.swift */; };
+		2BF16EDC2B613B4F00A84DE3 /* BabyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EDB2B613B4F00A84DE3 /* BabyView.swift */; };
+		2BF16EDF2B613E0A00A84DE3 /* SleepControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EDE2B613E0A00A84DE3 /* SleepControlView.swift */; };
+		2BF16EE22B618FCA00A84DE3 /* FeedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EE12B618FCA00A84DE3 /* FeedControlView.swift */; };
 		2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF568012B56B037004B3936 /* BabyActionService.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +85,9 @@
 		2BF16ED02B610BCC00A84DE3 /* BabyAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabyAction.swift; sourceTree = "<group>"; };
 		2BF16ED12B610BCC00A84DE3 /* Baby.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Baby.swift; sourceTree = "<group>"; };
 		2BF16ED42B613A5B00A84DE3 /* BabyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyViewModel.swift; sourceTree = "<group>"; };
+		2BF16EDB2B613B4F00A84DE3 /* BabyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyView.swift; sourceTree = "<group>"; };
+		2BF16EDE2B613E0A00A84DE3 /* SleepControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlView.swift; sourceTree = "<group>"; };
+		2BF16EE12B618FCA00A84DE3 /* FeedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedControlView.swift; sourceTree = "<group>"; };
 		2BF568012B56B037004B3936 /* BabyActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,16 +173,67 @@
 		2B9FDA8E2B5486D400B91132 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				2B6D4D152B5E9281000F6BFA /* AuthButton.swift */,
-				2B6D4D172B5E952C000F6BFA /* AuthGuard.swift */,
-				2BF16EC42B60159900A84DE3 /* BabySelector.swift */,
+				2BF16ED72B613B1200A84DE3 /* Components */,
+				2BF16ED62B613AF200A84DE3 /* Views */,
 				2B0FFD612B5B0BB700C20C9A /* LatestActionsView.swift */,
-				2B6D4D0D2B5E825E000F6BFA /* LoginView.swift */,
-				2B9FDA8F2B5486F300B91132 /* MainView.swift */,
-				2B9FDAA02B54905C00B91132 /* MainViewModel.swift */,
-				2BF16ED42B613A5B00A84DE3 /* BabyViewModel.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		2BF16ED62B613AF200A84DE3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2BF16EDA2B613B3B00A84DE3 /* BabyView */,
+				2BF16ED82B613B1D00A84DE3 /* MainView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2BF16ED72B613B1200A84DE3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2B6D4D172B5E952C000F6BFA /* AuthGuard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		2BF16ED82B613B1D00A84DE3 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				2BF16ED92B613B2800A84DE3 /* Components */,
+				2B9FDA8F2B5486F300B91132 /* MainView.swift */,
+				2B6D4D0D2B5E825E000F6BFA /* LoginView.swift */,
+				2B9FDAA02B54905C00B91132 /* MainViewModel.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		2BF16ED92B613B2800A84DE3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2BF16EC42B60159900A84DE3 /* BabySelector.swift */,
+				2B6D4D152B5E9281000F6BFA /* AuthButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		2BF16EDA2B613B3B00A84DE3 /* BabyView */ = {
+			isa = PBXGroup;
+			children = (
+				2BF16EDD2B613DF500A84DE3 /* Components */,
+				2BF16ED42B613A5B00A84DE3 /* BabyViewModel.swift */,
+				2BF16EDB2B613B4F00A84DE3 /* BabyView.swift */,
+			);
+			path = BabyView;
+			sourceTree = "<group>";
+		};
+		2BF16EDD2B613DF500A84DE3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2BF16EDE2B613E0A00A84DE3 /* SleepControlView.swift */,
+				2BF16EE12B618FCA00A84DE3 /* FeedControlView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		2BF567F92B56AFF6004B3936 /* Models */ = {
@@ -281,6 +338,7 @@
 				2B46AE362B5C73B70019D710 /* KeychainItem.swift in Sources */,
 				2B6D4D162B5E9281000F6BFA /* AuthButton.swift in Sources */,
 				2B1F34B32B54865E004EA670 /* ServiceInjection.swift in Sources */,
+				2BF16EDF2B613E0A00A84DE3 /* SleepControlView.swift in Sources */,
 				2BF16ED32B610BCC00A84DE3 /* Baby.swift in Sources */,
 				2B46AE462B5D3CFF0019D710 /* SyncService.swift in Sources */,
 				2BF16EC32B6010DE00A84DE3 /* BabyExt.swift in Sources */,
@@ -304,6 +362,8 @@
 				2B0FFD572B5951FB00C20C9A /* ApiService.swift in Sources */,
 				2B0FFD602B5B06CE00C20C9A /* BabyActionUpdateDto.swift in Sources */,
 				2B6D4D142B5E89A8000F6BFA /* NotificationRegistrationDto.swift in Sources */,
+				2BF16EDC2B613B4F00A84DE3 /* BabyView.swift in Sources */,
+				2BF16EE22B618FCA00A84DE3 /* FeedControlView.swift in Sources */,
 				2B6D4D0C2B5E6E31000F6BFA /* NotificationService.swift in Sources */,
 				2B46AE3A2B5C81120019D710 /* BabyActionExt.swift in Sources */,
 				2B6D4D182B5E952C000F6BFA /* AuthGuard.swift in Sources */,

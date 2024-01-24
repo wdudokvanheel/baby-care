@@ -13,4 +13,8 @@ public extension Baby {
         self.name = source.name
         self.birthDate = source.birthDate
     }
+
+    var displayName: String {
+        return name ?? "Unnamed Baby"
+    }
 }

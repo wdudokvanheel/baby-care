@@ -21,13 +21,13 @@ class MainViewModel: ObservableObject {
 
     public func logout() {
         // TODO: Do this in a better way, an enum for each key (app-wide) and just delete all keys
-        UserDefaults.standard.removeObject(forKey: "com.bitechular.babycare.data.syncedUntil")
+        UserDefaults.standard.removeObject(forKey: "com.bitechular.babycare.data.syncedBabiesUntil")
         UserDefaults.standard.synchronize()
         Task {
             await MainActor.run {
                 do {
-                    try services.container.mainContext.delete(model: BabyAction.self)
                     try services.container.mainContext.delete(model: Baby.self)
+                    try services.container.mainContext.delete(model: BabyAction.self)
                     try services.container.mainContext.save()
                 }
                 catch {}

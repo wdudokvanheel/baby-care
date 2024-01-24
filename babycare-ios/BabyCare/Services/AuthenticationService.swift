@@ -32,13 +32,19 @@ public class AuthenticationService: ObservableObject {
         catch {
             print("Failed to delete keychain: \(error)")
         }
-        self.authenticated = false
-        self.token = nil
-        self.email = nil
+        
+        Task {
+            DispatchQueue.main.sync {
+                print("Setting to false")
+                self.authenticated = false
+                self.token = nil
+                self.email = nil
+            }
+        }
     }
     
     public func setAuthDetails(email: String, token: String) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.sync {
             self.email = email
             self.token = token
             self.persistDetails()

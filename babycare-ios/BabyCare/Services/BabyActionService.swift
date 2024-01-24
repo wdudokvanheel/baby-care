@@ -14,6 +14,7 @@ public class BabyActionService: ObservableObject {
         self.babyService = babyService
     }
 
+    @discardableResult
     public func startAction(baby: Baby, type: BabyActionType) -> BabyAction {
         let action = BabyAction()
         action.baby = baby
@@ -27,8 +28,7 @@ public class BabyActionService: ObservableObject {
         return action
     }
 
-    public func endAction(baby: Baby, action: BabyAction) {
-        action.baby = baby
+    public func endAction(_ action: BabyAction) {
         action.end = Date()
         action.syncRequired = true
         Task {
