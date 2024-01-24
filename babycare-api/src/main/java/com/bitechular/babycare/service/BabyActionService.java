@@ -27,10 +27,6 @@ public class BabyActionService {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("BabyAction", id));
     }
 
-    public List<BabyAction> getNewActionsForClient(AuthSession session, Date from, int limit) {
-        return repository.findUpdatedActionsForUser(from, session, Pageable.ofSize(limit));
-    }
-
     public List<BabyAction> getNewBabyActionsForClient(AuthSession session, Baby baby, Date from, int limit) {
         return repository.findUpdatedActionsForUser(from, session, baby, Pageable.ofSize(limit));
     }

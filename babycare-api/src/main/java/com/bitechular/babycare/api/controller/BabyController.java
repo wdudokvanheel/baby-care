@@ -42,7 +42,7 @@ public class BabyController {
     }
 
     @PostMapping("sync")
-    public ResponseEntity<SyncResponse<BabyDto>> syncActions(@RequestBody SyncRequest request, @AuthenticationPrincipal AuthSession session) {
+    public ResponseEntity<SyncResponse<BabyDto>> syncBabies(@RequestBody SyncRequest request, @AuthenticationPrincipal AuthSession session) {
         logger.debug("Request baby sync from: {}", request.from);
         // Get list of baby actions for this user starting from date request.from
         List<Baby> babies = service.getNewBabiesForClient(session, request.from, 256);

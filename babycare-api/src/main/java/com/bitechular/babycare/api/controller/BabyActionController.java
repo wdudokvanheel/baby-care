@@ -1,7 +1,7 @@
 package com.bitechular.babycare.api.controller;
 
 import com.bitechular.babycare.api.dto.babyaction.*;
-import com.bitechular.babycare.api.mapper.BabyActionMapper;
+import com.bitechular.babycare.api.mapper.action.BabyActionMapper;
 import com.bitechular.babycare.data.model.AuthSession;
 import com.bitechular.babycare.data.model.Baby;
 import com.bitechular.babycare.data.model.BabyAction;
@@ -39,11 +39,14 @@ public class BabyActionController {
     @PostMapping("action/*")
     public ResponseEntity<BabyActionDto> saveAction(@RequestBody BabyActionCreateRequest request, @PathVariable long babyId, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
         Baby baby = babyService.getBabyByUser(session.getUser(), babyId);
-
         BabyAction action = mapper.fromCreateDto(request);
         action.setBaby(baby);
         action.setLastModifiedBy(session);
         action = actionService.save(action);
+        if(action.getStart() == null){
+            action.setStart(action.getCreated());
+            actionService.save(action);
+        }
 
         BabyActionDto dto = mapper.toDto(action);
         notificationService.notifyClientsOfUpdate(session, dto);
@@ -72,7 +75,7 @@ public class BabyActionController {
 
     @PostMapping("sync")
     public ResponseEntity<SyncResponse> syncActions(@RequestBody SyncRequest request, @PathVariable long babyId, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
-        logger.debug("Request sync from: {}", request.from);
+        logger.debug("Request action sync from: {}", request.from);
         Baby baby = babyService.getBabyByUser(session.getUser(), babyId);
 
         // Get list of baby actions for this user starting from date request.from

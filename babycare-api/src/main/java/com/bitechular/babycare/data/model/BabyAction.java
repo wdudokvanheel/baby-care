@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "BabyAction")
 public class BabyAction extends DomainEntity {
     @ManyToOne(optional = false)
@@ -59,4 +60,6 @@ public class BabyAction extends DomainEntity {
     public void setLastModifiedBy(AuthSession lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
+
+
 }
