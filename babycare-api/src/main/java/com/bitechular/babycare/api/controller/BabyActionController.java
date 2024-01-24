@@ -3,8 +3,10 @@ package com.bitechular.babycare.api.controller;
 import com.bitechular.babycare.api.dto.babyaction.*;
 import com.bitechular.babycare.api.mapper.BabyActionMapper;
 import com.bitechular.babycare.data.model.AuthSession;
+import com.bitechular.babycare.data.model.Baby;
 import com.bitechular.babycare.data.model.BabyAction;
 import com.bitechular.babycare.service.BabyActionService;
+import com.bitechular.babycare.service.BabyService;
 import com.bitechular.babycare.service.PushNotificationService;
 import com.bitechular.babycare.service.exception.EntityNotFoundException;
 import org.slf4j.Logger;
@@ -18,37 +20,49 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/action")
+@RequestMapping("/api/baby/{babyId}/")
 public class BabyActionController {
     private final Logger logger = LoggerFactory.getLogger(BabyActionController.class);
 
-    private BabyActionService service;
+    private BabyActionService actionService;
     private BabyActionMapper mapper;
     private PushNotificationService notificationService;
+    private BabyService babyService;
 
-    public BabyActionController(BabyActionService service, BabyActionMapper mapper, PushNotificationService notificationService) {
-        this.service = service;
+    public BabyActionController(BabyActionService actionService, BabyActionMapper mapper, PushNotificationService notificationService, BabyService babyService) {
+        this.actionService = actionService;
         this.mapper = mapper;
         this.notificationService = notificationService;
+        this.babyService = babyService;
     }
 
-    @PostMapping("*")
-    public ResponseEntity<BabyActionDto> saveAction(@RequestBody BabyActionCreateRequest request, @AuthenticationPrincipal AuthSession session) {
+    @PostMapping("action/*")
+    public ResponseEntity<BabyActionDto> saveAction(@RequestBody BabyActionCreateRequest request, @PathVariable long babyId, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
+        Baby baby = babyService.getBabyByUser(session.getUser(), babyId);
+
         BabyAction action = mapper.fromCreateDto(request);
+        action.setBaby(baby);
         action.setLastModifiedBy(session);
-        action = service.save(action);
+        action = actionService.save(action);
 
         BabyActionDto dto = mapper.toDto(action);
         notificationService.notifyClientsOfUpdate(session, dto);
         return ResponseEntity.ok(dto);
     }
 
-    @PutMapping("{id}/")
-    public ResponseEntity<BabyActionDto> updateAction(@PathVariable Long id, @RequestBody BabyActionUpdateRequest request, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
-        BabyAction action = service.getById(id);
+    @PutMapping("action/{id}/")
+    public ResponseEntity<BabyActionDto> updateAction(@PathVariable Long id, @PathVariable long babyId, @RequestBody BabyActionUpdateRequest request, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
+        Baby baby = babyService.getBabyByUser(session.getUser(), babyId);
+
+        BabyAction action = actionService.getById(id);
+        if (action.baby != baby) {
+            // TODO Improve error reporting
+            throw new EntityNotFoundException("Action", id);
+        }
+
         action = mapper.fromUpdateDto(action, request);
         action.setLastModifiedBy(session);
-        action = service.save(action);
+        action = actionService.save(action);
 
         BabyActionDto dto = mapper.toDto(action);
         notificationService.notifyClientsOfUpdate(session, dto);
@@ -57,10 +71,12 @@ public class BabyActionController {
     }
 
     @PostMapping("sync")
-    public ResponseEntity<SyncResponse> syncActions(@RequestBody SyncRequest request, @AuthenticationPrincipal AuthSession session) {
+    public ResponseEntity<SyncResponse> syncActions(@RequestBody SyncRequest request, @PathVariable long babyId, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
         logger.debug("Request sync from: {}", request.from);
+        Baby baby = babyService.getBabyByUser(session.getUser(), babyId);
+
         // Get list of baby actions for this user starting from date request.from
-        List<BabyAction> actions = service.getNewActionsForClient(session, request.from, 10);
+        List<BabyAction> actions = actionService.getNewBabyActionsForClient(session, baby, request.from, 10);
         List<BabyActionDto> dtos = actions
                 .stream()
                 .map(action -> mapper.toDto(action))

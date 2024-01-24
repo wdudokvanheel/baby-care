@@ -4,6 +4,7 @@ import com.bitechular.babycare.data.dao.BabyRepository;
 import com.bitechular.babycare.data.model.AuthSession;
 import com.bitechular.babycare.data.model.Baby;
 import com.bitechular.babycare.data.model.User;
+import com.bitechular.babycare.service.exception.EntityNotFoundException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,9 @@ public class BabyService {
 
     public List<Baby> getNewBabiesForClient(AuthSession session, Date from, int limit) {
         return repository.findUpdatedBabiesForUser(from, session, Pageable.ofSize(limit));
+    }
+
+    public Baby getBabyByUser(User user, long babyId) throws EntityNotFoundException {
+        return repository.findBabyByIdAndUser(babyId, user).orElseThrow(() -> new EntityNotFoundException("Baby", babyId));
     }
 }

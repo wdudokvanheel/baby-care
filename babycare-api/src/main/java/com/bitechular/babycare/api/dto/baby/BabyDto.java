@@ -5,7 +5,7 @@ import java.util.Date;
 public class BabyDto {
     private long id;
     private String name;
-    private Date birthdate;
+    private Date birthDate;
 
     public long getId() {
         return id;
@@ -23,11 +23,11 @@ public class BabyDto {
         this.name = name;
     }
 
-    public Date getBirthdate() {
-        return birthdate;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 }

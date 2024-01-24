@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BabyRepository extends DomainRepository<Baby> {
@@ -19,4 +20,7 @@ public interface BabyRepository extends DomainRepository<Baby> {
 
     @Query("SELECT ba FROM UserBaby ub, Baby ba WHERE ub.user = :#{#auth.user} AND ub.baby = ba AND ba.modified > :date AND (ba.lastModifiedBy != :auth OR ba.lastModifiedBy IS NULL)")
     List<Baby> findUpdatedBabiesForUser(@Param("date") Date date, @Param("auth") AuthSession authSession, Pageable pageable);
+
+    @Query("SELECT ub.baby FROM UserBaby ub WHERE ub.baby.id = :babyId AND ub.user = :user")
+    Optional<Baby> findBabyByIdAndUser(Long babyId, User user);
 }
