@@ -13,7 +13,7 @@ struct ServiceInjection<Content: View>: View {
 
     private static func createModelContainer() -> ModelContainer {
         do {
-            return try ModelContainer(for: BabyAction.self)
+            return try ModelContainer(for: Baby.self, BabyAction.self)
         }
         catch {
             print("Data Source Error")

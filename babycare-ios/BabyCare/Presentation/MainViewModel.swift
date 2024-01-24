@@ -8,15 +8,11 @@ class MainViewModel: ObservableObject {
     public let services: BabyCareServiceContainer
 
     @Published
-    public var sleep: BabyAction?
-    @Published
-    public var feed: BabyAction?
-    @Published
     public var showLogin = false
 
     public init(_ services: BabyCareServiceContainer) {
         self.services = services
-        services.syncService.syncActions()
+        services.syncService.syncWhenAuthenticated()
     }
 
     public func login() {
@@ -31,6 +27,7 @@ class MainViewModel: ObservableObject {
             await MainActor.run {
                 do {
                     try services.container.mainContext.delete(model: BabyAction.self)
+                    try services.container.mainContext.delete(model: Baby.self)
                     try services.container.mainContext.save()
                 }
                 catch {}
@@ -44,27 +41,6 @@ class MainViewModel: ObservableObject {
     public func authenticate(_ email: String, _ password: String) {
         services.apiService.authenticate(email, password) {
             self.services.notificationService.registerForNotifications()
-            self.services.syncService.syncActions()
-        }
-    }
-
-    public func toggleSleep() {
-        if let current = sleep {
-            services.actionService.endSleep(current)
-            sleep = nil
-        }
-        else {
-            sleep = services.actionService.startSleep()
-        }
-    }
-
-    public func toggleFeed() {
-        if let current = feed {
-            services.actionService.endFeed(current)
-            feed = nil
-        }
-        else {
-            feed = services.actionService.startFeed()
         }
     }
 }

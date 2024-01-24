@@ -38,11 +38,13 @@ public class AuthenticationService: ObservableObject {
     }
     
     public func setAuthDetails(email: String, token: String) {
-        self.email = email
-        self.token = token
-        self.persistDetails()
-        if self.token != nil {
-            self.authenticated = true
+        DispatchQueue.main.async {
+            self.email = email
+            self.token = token
+            self.persistDetails()
+            if self.token != nil {
+                self.authenticated = true
+            }
         }
     }
     

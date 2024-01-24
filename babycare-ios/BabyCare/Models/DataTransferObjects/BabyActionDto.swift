@@ -4,6 +4,7 @@ import SwiftUI
 
 public struct BabyActionDto: Decodable {
     var id: Int64
+    var babyId: Int64
     var type: String
     var start: Date
     var end: Date?

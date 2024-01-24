@@ -47,7 +47,13 @@ public class ApiService {
     public func saveAction(_ action: BabyAction, onComplete: @escaping (Int64) -> Void = { _ in }, onError: @escaping () -> Void = {}) {
         let dto = BabyActionCreateDto(from: action)
         
-        performRequest(dto: dto, path: "action/") { data in
+        guard let babyId = action.baby?.remoteId else{
+            print("Failed to save action: no remoteId for baby")
+            onError()
+            return
+        }
+        
+        performRequest(dto: dto, path: "baby/\(babyId)/action/") { data in
             if let result: BabyActionDto = (self.parseJson(responseData: data) as BabyActionDto?) {
                 onComplete(result.id)
             }

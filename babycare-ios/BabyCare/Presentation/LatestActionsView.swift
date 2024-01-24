@@ -4,19 +4,24 @@ import SwiftData
 import SwiftUI
 
 public struct LatestActionsView: View {
-    static var latestQuery: FetchDescriptor<BabyAction> {
-        var descriptor = FetchDescriptor<BabyAction>(sortBy: [SortDescriptor(\.start, order: .reverse)])
-        descriptor.fetchLimit = 100
-        return descriptor
+    private let baby: Baby
+
+    @Query
+    var actions: [BabyAction]
+
+    init(baby: Baby) {
+        self.baby = baby
+        let id = baby.persistentModelID
+
+        self._actions = Query(filter: #Predicate<BabyAction> {
+            $0.baby?.persistentModelID == id
+        })
     }
 
-    @Query(latestQuery)
-    var latest: [BabyAction]
-
     public var body: some View {
-        Text("Items: \(latest.count)")
+        Text("Items for \(baby.name ?? ""): \(actions.count)")
         VStack {
-            ForEach(latest, id: \.self) { action in
+            ForEach(actions, id: \.self) { action in
                 Text("-Action: #\(Int(action.remoteId ?? -1)) \(action.type.rawValue) end: \(action.end != nil ? "YES" : "NO")")
             }
         }

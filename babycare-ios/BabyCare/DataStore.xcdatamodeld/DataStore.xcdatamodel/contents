@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23B81" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Baby" representedClassName="Baby" syncable="YES">
+        <attribute name="birthDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastSync" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="remoteId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="BabyAction" representedClassName="BabyAction" syncable="YES">
         <attribute name="action" optional="YES" attributeType="String"/>
         <attribute name="end" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -7,5 +14,6 @@
         <attribute name="remoteId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="start" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="syncRequired" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="baby" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Baby"/>
     </entity>
 </model>
