@@ -1,9 +1,16 @@
 package com.bitechular.babycare.api.dto.babyaction;
 
 import com.bitechular.babycare.data.model.BabyActionType;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.Date;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", visible = true)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = BabyActionCreateRequest.class, name = "SLEEP"),
+        @JsonSubTypes.Type(value = FeedActionCreateRequest.class, name = "FEED")
+})
 public class BabyActionCreateRequest {
     public BabyActionType type;
     public Date start;

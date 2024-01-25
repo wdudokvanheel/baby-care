@@ -1,7 +1,10 @@
 package com.bitechular.babycare.api.mapper.action;
 
+import com.bitechular.babycare.api.dto.babyaction.BabyActionCreateRequest;
 import com.bitechular.babycare.api.dto.babyaction.BabyActionDto;
+import com.bitechular.babycare.api.dto.babyaction.BabyActionUpdateRequest;
 import com.bitechular.babycare.data.model.BabyAction;
+import com.bitechular.babycare.data.model.BabyActionType;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +19,10 @@ public abstract class AbstractBabyActionToDtoMapper<Action extends BabyAction> {
     }
 
     public abstract BabyActionDto toDto(Action action);
+    public abstract Action fromCreateDto(BabyActionCreateRequest dto);
+    public abstract Action fromUpdateDto(BabyActionUpdateRequest dto);
+
+    public abstract BabyActionType forType();
 
     public Class<Action> getActionClass() {
         return (Class<Action>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];

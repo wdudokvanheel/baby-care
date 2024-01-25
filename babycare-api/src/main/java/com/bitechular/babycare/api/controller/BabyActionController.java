@@ -43,6 +43,7 @@ public class BabyActionController {
         action.setBaby(baby);
         action.setLastModifiedBy(session);
         action = actionService.save(action);
+
         if(action.getStart() == null){
             action.setStart(action.getCreated());
             actionService.save(action);
