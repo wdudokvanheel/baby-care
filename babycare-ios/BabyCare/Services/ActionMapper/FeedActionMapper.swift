@@ -2,13 +2,6 @@ import Foundation
 import SwiftData
 
 public class FeedActionMapper: ActionMapper {
-    public func getDtoType() -> FeedActionDto.Type {
-        return FeedActionDto.self
-    }
-    
-    public typealias ActionType = FeedAction
-    public typealias ActionDtoType = FeedActionDto
-
     public func createFromDto(_ dto: ActionDto) -> FeedAction {
         return FeedAction(from: dto as! FeedActionDto)
     }
@@ -30,5 +23,9 @@ public class FeedActionMapper: ActionMapper {
         FetchDescriptor<FeedAction>(predicate: #Predicate {
             $0.remoteId == id
         })
+    }
+    
+    public func getDtoType() -> FeedActionDto.Type {
+        return FeedActionDto.self
     }
 }

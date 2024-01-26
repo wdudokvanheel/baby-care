@@ -2,13 +2,6 @@ import Foundation
 import SwiftData
 
 public class DefaultActionMapper: ActionMapper {
-    public typealias ActionType = BabyAction
-    public typealias ActionDtoType = BabyActionDto
-    
-    public func getDtoType() -> BabyActionDto.Type {
-        return BabyActionDto.self
-    }
-    
     public func createFindByRemoteIdDescriptor(_ id: Int64) -> FetchDescriptor<BabyAction> {
         FetchDescriptor<BabyAction>(predicate: #Predicate {
             $0.remoteId == id
@@ -29,5 +22,9 @@ public class DefaultActionMapper: ActionMapper {
 
     public func create() -> BabyAction {
         return BabyAction()
+    }
+
+    public func getDtoType() -> BabyActionDto.Type {
+        return BabyActionDto.self
     }
 }
