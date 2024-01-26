@@ -1,0 +1,65 @@
+pipeline {
+    agent any
+
+    environment {
+        APP_NAME = 'babycare-api'
+        JAVA_TOOL_OPTIONS = '-Duser.home=/var/maven'
+        REPO_CREDS = credentials('bitechular-repo')
+    }
+
+    options {
+        disableConcurrentBuilds()
+    }
+
+    stages {
+        stage('Build') {
+            stages {
+                stage('Build JAR') {
+                    agent {
+                        docker {
+                            image 'maven:3-eclipse-temurin-21-alpine'
+                            args '-v $HOME:/var/maven -u 1000:1000'
+                        }
+                    }
+
+                    steps {
+                        dir("${APP_NAME}") {
+                            sh 'mvn clean'
+                            sh 'mvn install -DskipTests'
+
+                            script {
+                                def pom = readMavenPom file: 'pom.xml'
+                                env.APP_VERSION = pom.version
+                            }
+                            stash includes: 'target/**/*.jar', name: 'jar'
+                        }
+                    }
+                }
+
+                stage('Build Docker image') {
+                    steps {
+                        dir("${APP_NAME}") {
+                            sh 'rm -Rf target/'
+                            unstash 'jar'
+                            script {
+                                app = docker.build("${APP_NAME}")
+                            }
+                        }
+                    }
+                }
+
+                stage('Deploy') {
+                    steps {
+                        script {
+                            docker.withRegistry('https://repo.bitechular.com', 'bitechular-repo') {
+                                app.push("${env.APP_VERSION}")
+                                app.push("latest")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
