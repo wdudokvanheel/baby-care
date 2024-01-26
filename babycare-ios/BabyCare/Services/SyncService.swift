@@ -88,9 +88,8 @@ public class SyncService: ObservableObject {
                 continuation.resume(returning: -1)
                 return
             }
-            apiService.performRequest(dto: dto,
-                                      path: "baby/\(babyId)/sync", method: "POST") { data in
-                if let response: SyncResponseDto<BabyActionDto> = (self.apiService.parseJson(responseData: data) as SyncResponseDto?) {
+            apiService.performRequest(dto: dto, path: "baby/\(babyId)/sync", method: "POST") { data in
+                if let response: ActionSyncResponse = (self.apiService.parseJson(responseData: data) as ActionSyncResponse?) {
                     if response.items.count > 0 {
                         Task {
                             print("Syncing \(response.items.count) actions:")

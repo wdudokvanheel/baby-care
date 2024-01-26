@@ -17,7 +17,16 @@ public enum BabyActionType: String, Codable, CaseIterable, Identifiable, Compara
     }
 }
 
-extension BabyAction: CustomDebugStringConvertible {
+extension BabyAction: Action {
+    public func update(source: ActionDto) {
+        self.start = source.start
+        self.end = source.end
+        self.remoteId = source.id
+        self.action = source.type.lowercased()
+    }
+}
+
+extension Action {
     var type: BabyActionType {
         get {
             BabyActionType(rawValue: self.action ?? BabyActionType.none.rawValue) ?? .none
@@ -26,6 +35,9 @@ extension BabyAction: CustomDebugStringConvertible {
             self.action = newValue.rawValue
         }
     }
+}
+
+extension BabyAction: CustomDebugStringConvertible {
 
     public var debugDescription: String {
         return """
@@ -44,12 +56,5 @@ public extension BabyAction {
     convenience init(from: BabyActionDto) {
         self.init()
         self.update(source: from)
-    }
-
-    func update(source: BabyActionDto) {
-        self.start = source.start
-        self.end = source.end
-        self.remoteId = source.id
-        self.action = source.type.lowercased()
     }
 }

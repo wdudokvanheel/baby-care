@@ -4,12 +4,16 @@ import SwiftUI
 
 public class ApiService {
     private let authService: AuthenticationService
+    private let mappers: ActionMapperService
     
-    init(_ authService: AuthenticationService) {
+    init(_ authService: AuthenticationService, _ actionMapperService: ActionMapperService) {
         self.authService = authService
+        self.mappers = actionMapperService
     }
     
-    public func syncActionRemote(_ action: BabyAction) {
+    public func syncActionRemote(_ action: any Action) {
+        var action = action
+        
         if action.remoteId == nil || action.remoteId! <= 0 {
             saveAction(action) { id in
                 print("Got assigned id #\(id)")
@@ -26,15 +30,17 @@ public class ApiService {
         }
     }
     
-    public func updateAction(_ action: BabyAction, onComplete: @escaping () -> Void = {}, onError: @escaping () -> Void = {}) {
+    public func updateAction(_ action: any Action, onComplete: @escaping () -> Void = {}, onError: @escaping () -> Void = {}) {
         guard let actionId = action.remoteId else {
             onError()
             return
         }
         
-        let dto = BabyActionUpdateDto(from: action)
+        let dto = mappers
+            .getMapper(type: action.type)
+            .toUpdateDto(action)
         
-        guard let babyId = action.baby?.remoteId else{
+        guard let babyId = action.baby?.remoteId else {
             print("Failed to save action: no remoteId for baby")
             onError()
             return
@@ -50,10 +56,12 @@ public class ApiService {
         }
     }
     
-    public func saveAction(_ action: BabyAction, onComplete: @escaping (Int64) -> Void = { _ in }, onError: @escaping () -> Void = {}) {
-        let dto = BabyActionCreateDto(from: action)
+    public func saveAction(_ action: any Action, onComplete: @escaping (Int64) -> Void = { _ in }, onError: @escaping () -> Void = {}) {
+        let dto = mappers
+            .getMapper(type: action.type)
+            .toCreateDto(action)
         
-        guard let babyId = action.baby?.remoteId else{
+        guard let babyId = action.baby?.remoteId else {
             print("Failed to save action: no remoteId for baby")
             onError()
             return

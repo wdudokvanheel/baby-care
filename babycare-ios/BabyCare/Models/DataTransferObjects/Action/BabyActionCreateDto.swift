@@ -2,7 +2,7 @@ import Foundation
 import os
 import SwiftUI
 
-public class BabyActionCreateDto: Encodable {
+public class BabyActionCreateDto: ActionCreateDto {
     public var type: String
     public var start: Date
     public var end: Date?

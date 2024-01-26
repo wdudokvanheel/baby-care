@@ -6,7 +6,7 @@ struct FeedControlView: View {
     private var model: BabyViewModel
 
     @Query()
-    var feedQuery: [BabyAction]
+    var feedQuery: [FeedAction]
 
     @State
     private var feedDuration = 0
@@ -16,7 +16,7 @@ struct FeedControlView: View {
         let type = BabyActionType.feed.rawValue
 
         let babyId = baby.persistentModelID
-        let filter = #Predicate<BabyAction> { action in
+        let filter = #Predicate<FeedAction> { action in
             action.action ?? "" == type &&
                 action.end == nil &&
                 action.baby?.persistentModelID == babyId
@@ -25,7 +25,7 @@ struct FeedControlView: View {
         _feedQuery = Query(filter: filter)
     }
 
-    var feed: BabyAction? { feedQuery.first }
+    var feed: FeedAction? { feedQuery.first }
 
     var body: some View {
         VStack {

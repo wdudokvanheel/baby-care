@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-public class BabyActionUpdateDto: Encodable {
+public class BabyActionUpdateDto: ActionUpdateDto {
     public var start: Date
     public var end: Date?
 
