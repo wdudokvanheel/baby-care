@@ -1,8 +1,11 @@
 package com.bitechular.babycare.api.dto.babyaction;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
 
-public class BabyActionUpdateRequest {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ActionUpdateRequest {
     public Date start;
     public Date end;
 

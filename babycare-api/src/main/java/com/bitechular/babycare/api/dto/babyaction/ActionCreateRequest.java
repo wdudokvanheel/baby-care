@@ -8,10 +8,10 @@ import java.util.Date;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", visible = true)
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = BabyActionCreateRequest.class, name = "SLEEP"),
+        @JsonSubTypes.Type(value = ActionCreateRequest.class, name = "SLEEP"),
         @JsonSubTypes.Type(value = FeedActionCreateRequest.class, name = "FEED")
 })
-public class BabyActionCreateRequest {
+public class ActionCreateRequest {
     public BabyActionType type;
     public Date start;
     public Date end;

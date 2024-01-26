@@ -1,7 +1,9 @@
 package com.bitechular.babycare.api.controller;
 
 import com.bitechular.babycare.api.dto.babyaction.*;
-import com.bitechular.babycare.api.mapper.action.BabyActionMapper;
+import com.bitechular.babycare.api.mapper.BabyActionUpdateRequestDeserializer;
+import com.bitechular.babycare.api.mapper.action.ActionMapper;
+import com.bitechular.babycare.configuration.spring.resolver.UpdateActionRequestBody;
 import com.bitechular.babycare.data.model.AuthSession;
 import com.bitechular.babycare.data.model.Baby;
 import com.bitechular.babycare.data.model.BabyAction;
@@ -9,8 +11,11 @@ import com.bitechular.babycare.service.BabyActionService;
 import com.bitechular.babycare.service.BabyService;
 import com.bitechular.babycare.service.PushNotificationService;
 import com.bitechular.babycare.service.exception.EntityNotFoundException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -25,11 +30,17 @@ public class BabyActionController {
     private final Logger logger = LoggerFactory.getLogger(BabyActionController.class);
 
     private BabyActionService actionService;
-    private BabyActionMapper mapper;
+    private ActionMapper mapper;
     private PushNotificationService notificationService;
     private BabyService babyService;
 
-    public BabyActionController(BabyActionService actionService, BabyActionMapper mapper, PushNotificationService notificationService, BabyService babyService) {
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @Autowired
+    private BabyActionUpdateRequestDeserializer updateRequestDeserializer;
+
+    public BabyActionController(BabyActionService actionService, ActionMapper mapper, PushNotificationService notificationService, BabyService babyService) {
         this.actionService = actionService;
         this.mapper = mapper;
         this.notificationService = notificationService;
@@ -37,14 +48,14 @@ public class BabyActionController {
     }
 
     @PostMapping("action/*")
-    public ResponseEntity<BabyActionDto> saveAction(@RequestBody BabyActionCreateRequest request, @PathVariable long babyId, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
+    public ResponseEntity<BabyActionDto> saveAction(@RequestBody ActionCreateRequest request, @PathVariable long babyId, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
         Baby baby = babyService.getBabyByUser(session.getUser(), babyId);
         BabyAction action = mapper.fromCreateDto(request);
         action.setBaby(baby);
         action.setLastModifiedBy(session);
         action = actionService.save(action);
 
-        if(action.getStart() == null){
+        if (action.getStart() == null) {
             action.setStart(action.getCreated());
             actionService.save(action);
         }
@@ -55,11 +66,11 @@ public class BabyActionController {
     }
 
     @PutMapping("action/{id}/")
-    public ResponseEntity<BabyActionDto> updateAction(@PathVariable Long id, @PathVariable long babyId, @RequestBody BabyActionUpdateRequest request, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
+    public ResponseEntity<BabyActionDto> updateAction(@PathVariable Long id, @PathVariable long babyId, @UpdateActionRequestBody ActionUpdateRequest request, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException, JsonProcessingException {
         Baby baby = babyService.getBabyByUser(session.getUser(), babyId);
-
         BabyAction action = actionService.getById(id);
-        if (action.baby != baby) {
+
+        if (action == null || action.baby != baby) {
             // TODO Improve error reporting
             throw new EntityNotFoundException("Action", id);
         }

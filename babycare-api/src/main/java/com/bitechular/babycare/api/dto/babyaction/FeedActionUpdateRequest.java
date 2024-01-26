@@ -2,7 +2,7 @@ package com.bitechular.babycare.api.dto.babyaction;
 
 import com.bitechular.babycare.data.model.FeedSide;
 
-public class FeedActionUpdateRequest extends BabyActionUpdateRequest {
+public class FeedActionUpdateRequest extends ActionUpdateRequest {
     public FeedSide side;
 
     public FeedSide getSide() {

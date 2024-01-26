@@ -1,8 +1,9 @@
 package com.bitechular.babycare.api.mapper.action;
 
-import com.bitechular.babycare.api.dto.babyaction.BabyActionCreateRequest;
-import com.bitechular.babycare.api.dto.babyaction.BabyActionUpdateRequest;
+import com.bitechular.babycare.api.dto.babyaction.ActionCreateRequest;
+import com.bitechular.babycare.api.dto.babyaction.ActionUpdateRequest;
 import com.bitechular.babycare.api.dto.babyaction.FeedActionDto;
+import com.bitechular.babycare.api.dto.babyaction.FeedActionUpdateRequest;
 import com.bitechular.babycare.data.model.BabyActionType;
 import com.bitechular.babycare.data.model.FeedAction;
 import org.springframework.stereotype.Service;
@@ -15,17 +16,23 @@ public class FeedActionMapper extends AbstractBabyActionToDtoMapper<FeedAction> 
     }
 
     @Override
-    public FeedAction fromCreateDto(BabyActionCreateRequest dto) {
+    public FeedAction fromCreateDto(ActionCreateRequest dto) {
         return mapper.map(dto, FeedAction.class);
     }
 
     @Override
-    public FeedAction fromUpdateDto(BabyActionUpdateRequest dto) {
-        return mapper.map(dto, FeedAction.class);
+    public FeedAction fromUpdateDto(FeedAction action, ActionUpdateRequest dto) {
+        mapper.map(dto, action);
+        return action;
     }
 
     @Override
     public BabyActionType forType() {
         return BabyActionType.FEED;
+    }
+
+    @Override
+    public Class<? extends ActionUpdateRequest> getUpdateRequestClass() {
+        return FeedActionUpdateRequest.class;
     }
 }
