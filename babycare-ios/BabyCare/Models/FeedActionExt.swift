@@ -1,9 +1,8 @@
 import Foundation
-import SwiftUI
 import os
+import SwiftUI
 
-
-extension FeedAction: Action{
+extension FeedAction: Action {
     public func update(source: ActionDto) {
         self.start = source.start
         self.end = source.end
@@ -17,5 +16,29 @@ public extension FeedAction {
     convenience init(from: FeedActionDto) {
         self.init()
         self.update(source: from)
+    }
+}
+
+public enum FeedSide: String, Codable, CaseIterable, Identifiable, Comparable {
+    case left
+    case right
+
+    public static func < (lhs: FeedSide, rhs: FeedSide) -> Bool {
+        lhs.rawValue < rhs.rawValue
+    }
+
+    public var id: Self {
+        return self
+    }
+}
+
+extension FeedAction {
+    var feedSide: FeedSide? {
+        get {
+            side != nil ? FeedSide(rawValue: self.side!.lowercased()) : nil
+        }
+        set {
+            self.side = newValue?.rawValue.uppercased() ?? nil
+        }
     }
 }

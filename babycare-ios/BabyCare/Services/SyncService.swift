@@ -94,10 +94,12 @@ public class SyncService: ObservableObject {
                         Task {
                             print("Syncing \(response.items.count) actions:")
                             for action in response.items {
+                                print("SYNC ACTION: \(action)")
                                 await self.actionService.insertOrUpdateAction(action, forBaby: baby)
                             }
                             print("Sync complete, up to date until: \(response.syncedDate)")
                             baby.lastSync = Int64(response.syncedDate)
+                            await self.babyService.save(baby)
 
                             continuation.resume(returning: response.items.count)
                         }

@@ -1,9 +1,9 @@
 import Foundation
 import os
-import SwiftUI
 import SwiftData
+import SwiftUI
 
-public protocol Action : PersistentModel {
+public protocol Action: PersistentModel {
     var action: String? { get set }
     var end: Date? { get set }
     var id: UUID? { get set }
@@ -11,6 +11,6 @@ public protocol Action : PersistentModel {
     var start: Date? { get set }
     var syncRequired: Bool? { get set }
     var baby: Baby? { get set }
-    
+
     func update(source: any ActionDto)
 }

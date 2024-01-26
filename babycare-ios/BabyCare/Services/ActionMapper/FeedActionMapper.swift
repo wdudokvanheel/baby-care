@@ -1,8 +1,18 @@
+import Foundation
+import SwiftData
+
 public class FeedActionMapper: ActionMapper {
+    public func getDtoType() -> FeedActionDto.Type {
+        return FeedActionDto.self
+    }
+    
+    public typealias ActionType = FeedAction
+    public typealias ActionDtoType = FeedActionDto
+
     public func createFromDto(_ dto: ActionDto) -> FeedAction {
         return FeedAction(from: dto as! FeedActionDto)
     }
-    
+
     public func toUpdateDto(_ action: any Action) -> ActionUpdateDto {
         FeedActionUpdateDto(from: action as! FeedAction)
     }
@@ -15,6 +25,10 @@ public class FeedActionMapper: ActionMapper {
         let action = FeedAction()
         return action
     }
-    
- 
+
+    public func createFindByRemoteIdDescriptor(_ id: Int64) -> FetchDescriptor<FeedAction> {
+        FetchDescriptor<FeedAction>(predicate: #Predicate {
+            $0.remoteId == id
+        })
+    }
 }

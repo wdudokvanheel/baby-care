@@ -33,7 +33,7 @@ struct FeedControlView: View {
                 HStack {
                     Image(systemName: "fork.knife.circle")
                         .font(.title2)
-                    Text("Feeding for \(formatDuration(feedDuration))")
+                    Text("Feeding for \(formatDuration(feedDuration)) at \(feed.side ?? "x") \(feed.feedSide?.rawValue ?? "x")")
                     Spacer()
                 }
                 .font(.title3)
@@ -47,11 +47,29 @@ struct FeedControlView: View {
                     updateSleepDuration()
                 }
 
-                Button("Stop Feed") {
-                    model.stopFeed(feed)
+                HStack {
+                    Button("L") {
+                        model.setFeedSide(feed, .left)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(feed.feedSide == .left ? .mint : .mint.opacity(0.5))
+
+                    Spacer()
+                    
+                    Button("Stop Feed") {
+                        model.stopFeed(feed)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.mint)
+                    
+                    Spacer()
+                    
+                    Button("R") {
+                        model.setFeedSide(feed, .right)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(feed.feedSide == .right ? .mint : .mint.opacity(0.5))
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(.mint)
             }
             else {
                 HStack {
@@ -62,12 +80,30 @@ struct FeedControlView: View {
                     Spacer()
                 }
                 .font(.title3)
-                
-                Button("Start Feed") {
-                    model.startFeed()
+
+                HStack {
+                    Button("L") {
+                        model.startFeed(.left)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.mint)
+
+                    Spacer()
+
+                    Button("Start Feed") {
+                        model.startFeed()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.mint)
+
+                    Spacer()
+
+                    Button("R") {
+                        model.startFeed(.right)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.mint)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(.mint)
             }
         }
         .foregroundColor(.white)

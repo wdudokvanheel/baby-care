@@ -28,12 +28,13 @@ extension ActionSyncResponse: Decodable {
         while !itemsArray.isAtEnd {
             let item = try itemsArrayForType.nestedContainer(keyedBy: DynamicCodingKeys.self)
             let type = try item.decode(String.self, forKey: DynamicCodingKeys(stringValue: "type")!)
+
+            // TODO: Use custom decoder so it's possible to use the mapperservice to map each type instead of switch statement
+
             switch type {
             case "FEED":
-                print("GOOT FGEEEED!!!")
                 items.append(try itemsArray.decode(FeedActionDto.self))
             default:
-                print("GOOT LAME ASS SHIZZL")
                 items.append(try itemsArray.decode(BabyActionDto.self))
             }
         }

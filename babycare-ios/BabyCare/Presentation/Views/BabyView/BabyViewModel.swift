@@ -15,16 +15,23 @@ public class BabyViewModel: ObservableObject {
     func startSleep() {
         actionService.startAction(baby: baby, type: .sleep)
     }
-    
-    func stopSleep(_ action: BabyAction){
+
+    func stopSleep(_ action: BabyAction) {
         actionService.endAction(action)
     }
-    
-    func startFeed() {
-        actionService.startAction(baby: baby, type: .feed)
+
+    func startFeed(_ side: FeedSide? = nil) {
+        let action: FeedAction = actionService.createAction(baby: baby, type: .feed)
+        action.feedSide = side
+        actionService.persistAction(action)
     }
-    
-    func stopFeed(_ action: FeedAction){
+
+    func setFeedSide(_ action: FeedAction, _ side: FeedSide? = nil) {
+        action.feedSide = side
+        actionService.persistAction(action)
+    }
+
+    func stopFeed(_ action: FeedAction) {
         action.side = "RIGHT"
         actionService.endAction(action)
     }
