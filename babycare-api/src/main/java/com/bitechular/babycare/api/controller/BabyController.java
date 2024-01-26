@@ -46,7 +46,7 @@ public class BabyController {
         logger.debug("Request baby sync from: {}", request.from);
         // Get list of baby actions for this user starting from date request.from
         List<Baby> babies = service.getNewBabiesForClient(session, request.from, 256);
-        logger.info("Found {} babies for {}", babies.size(), session.getUser().getEmail());
+        logger.info("Found {} babies to update for {}", babies.size(), session.getUser().getEmail());
         List<BabyDto> dtos = babies
                 .stream()
                 .map(action -> mapper.toDto(action))

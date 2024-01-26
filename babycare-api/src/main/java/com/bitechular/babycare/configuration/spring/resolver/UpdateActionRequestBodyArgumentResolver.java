@@ -58,21 +58,24 @@ public class UpdateActionRequestBodyArgumentResolver implements HandlerMethodArg
         BabyActionType type;
 
         try {
+            // Parse ID value from the request path
             long id = Long.valueOf(attribute.get("id"));
             if (id <= 0) {
                 return null;
             }
 
+            // Find the action
             BabyAction action = actionService.getById(id);
-            type = action.getType();
             if (action == null) {
                 logger.error("Action type not set for action #{}", id);
                 throw new EntityNotFoundException("Action", id);
             }
+            type = action.getType();
         } catch (NumberFormatException e) {
             logger.error("Failed to parse ID number for update action: {}", attribute.get("id"));
             return null;
         }
+
         BabyActionUpdateRequestDeserializer deserializer = applicationContext.getBean(BabyActionUpdateRequestDeserializer.class);
         deserializer.setType(type);
 

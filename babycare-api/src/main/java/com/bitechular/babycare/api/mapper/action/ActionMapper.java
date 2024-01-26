@@ -1,13 +1,11 @@
 package com.bitechular.babycare.api.mapper.action;
 
 import com.bitechular.babycare.api.dto.babyaction.ActionCreateRequest;
-import com.bitechular.babycare.api.dto.babyaction.BabyActionDto;
 import com.bitechular.babycare.api.dto.babyaction.ActionUpdateRequest;
+import com.bitechular.babycare.api.dto.babyaction.BabyActionDto;
 import com.bitechular.babycare.data.model.BabyAction;
 import com.bitechular.babycare.data.model.BabyActionType;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -16,8 +14,6 @@ import java.util.Map;
 
 @Service
 public class ActionMapper {
-    private Logger logger = LoggerFactory.getLogger(ActionMapper.class);
-
     private ModelMapper mapper;
     private Map<Class<? extends BabyAction>, AbstractBabyActionToDtoMapper> actionMappers = new HashMap<>();
     private Map<BabyActionType, AbstractBabyActionToDtoMapper> actionMappersByType = new HashMap<>();
@@ -44,7 +40,6 @@ public class ActionMapper {
         AbstractBabyActionToDtoMapper actionMapper = actionMappersByType.get(action.getType());
 
         if (actionMapper != null) {
-            logger.info("Converting with custom mapper");
             return actionMapper.fromUpdateDto(action, dto);
         }
 
