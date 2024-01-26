@@ -2,12 +2,6 @@ import Foundation
 import SwiftData
 
 public class DefaultActionMapper: ActionMapper {
-    public func createFindByRemoteIdDescriptor(_ id: Int64) -> FetchDescriptor<BabyAction> {
-        FetchDescriptor<BabyAction>(predicate: #Predicate {
-            $0.remoteId == id
-        })
-    }
-
     public func createFromDto(_ dto: ActionDto) -> BabyAction {
         BabyAction(from: dto as! BabyActionDto)
     }
@@ -22,6 +16,18 @@ public class DefaultActionMapper: ActionMapper {
 
     public func create() -> BabyAction {
         return BabyAction()
+    }
+
+    public func createFindByRemoteIdDescriptor(_ id: Int64) -> FetchDescriptor<BabyAction> {
+        FetchDescriptor<BabyAction>(predicate: #Predicate {
+            $0.remoteId == id
+        })
+    }
+
+    public func createFindUnsyncedActionsDescriptor() -> FetchDescriptor<BabyAction> {
+        FetchDescriptor<BabyAction>(predicate: #Predicate {
+            $0.syncRequired ?? true
+        })
     }
 
     public func getDtoType() -> BabyActionDto.Type {

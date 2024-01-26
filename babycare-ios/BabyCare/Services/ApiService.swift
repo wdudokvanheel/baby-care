@@ -61,6 +61,12 @@ public class ApiService {
             .getMapper(type: action.type)
             .toCreateDto(action)
         
+        guard let baby = action.baby else {
+            print("Failed to save action: no baby set")
+            onError()
+            return
+        }
+        
         guard let babyId = action.baby?.remoteId else {
             print("Failed to save action: no remoteId for baby")
             onError()

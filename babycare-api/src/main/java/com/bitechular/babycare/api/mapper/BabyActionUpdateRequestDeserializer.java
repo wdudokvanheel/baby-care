@@ -6,6 +6,7 @@ import com.bitechular.babycare.data.model.BabyActionType;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,8 @@ public class BabyActionUpdateRequestDeserializer extends JsonDeserializer<Action
          */
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(JsonParser.Feature.AUTO_CLOSE_SOURCE, true);
+        mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
+
         return mapper.readValue(parser, mappers.getUpdateRequestType(type));
     }
 }

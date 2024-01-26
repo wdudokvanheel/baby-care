@@ -104,24 +104,26 @@ public class BabyActionService: ObservableObject {
         }
     }
 
-    public func getUnsavedActions() async -> [BabyAction] {
-        // TODO: implement with support for all types
-        return []
-//        return await MainActor.run {
-//            let descriptor = FetchDescriptor<BabyAction>(predicate: #Predicate {
-//                $0.syncRequired == true
-//            })
-//
-//            do {
-//                let result = try container.mainContext.fetch(descriptor)
-//                if result.count > 0 {
-//                    return result
-//                }
-//            } catch {
-//                print("Erorr \(error)")
-//            }
-//            return []
-//        }
+    public func getUnsavedActions() async -> [any Action] {
+        var actions: [any Action] = []
+        for mapper in mappers.all {
+            actions.append(contentsOf: await getUnsavedActions(from: mapper))
+        }
+        return actions
+    }
+
+    private func getUnsavedActions<Mapper: ActionMapper>(from: Mapper) async -> [any Action] {
+        await MainActor.run {
+            let descriptor = from.createFindUnsyncedActionsDescriptor()
+            do {
+                let result = try self.container.mainContext.fetch(descriptor)
+                return result
+            } catch {
+                print("Error getting unsaved actions \(error)")
+            }
+
+            return []
+        }
     }
 
     public func save(_ action: any Action) async {

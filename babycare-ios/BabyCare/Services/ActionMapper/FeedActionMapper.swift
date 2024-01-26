@@ -24,7 +24,13 @@ public class FeedActionMapper: ActionMapper {
             $0.remoteId == id
         })
     }
-    
+
+    public func createFindUnsyncedActionsDescriptor() -> FetchDescriptor<FeedAction> {
+        FetchDescriptor<FeedAction>(predicate: #Predicate {
+            $0.syncRequired ?? true
+        })
+    }
+
     public func getDtoType() -> FeedActionDto.Type {
         return FeedActionDto.self
     }

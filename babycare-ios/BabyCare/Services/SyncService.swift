@@ -72,8 +72,9 @@ public class SyncService: ObservableObject {
     }
 
     private func sendUnsavedActions() async {
-        print("Syncing unsaved actions")
-        await actionService.getUnsavedActions().forEach { action in
+        let actions = await actionService.getUnsavedActions()
+        print("Syncing \(actions.count) unsaved actions")
+        actions.forEach { action in
             self.apiService.syncActionRemote(action)
         }
     }
