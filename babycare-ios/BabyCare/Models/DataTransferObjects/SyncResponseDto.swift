@@ -18,6 +18,9 @@ extension ActionSyncResponse: Decodable {
     }
 
     public init(from decoder: Decoder) throws {
+        // TODO: Create customer decoder and inject ActionMapperService instead of creating a new one here
+        let mappers = ActionMapperService()
+
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.syncedDate = try container.decode(Int.self, forKey: .syncedDate)
 
@@ -28,15 +31,8 @@ extension ActionSyncResponse: Decodable {
         while !itemsArray.isAtEnd {
             let item = try itemsArrayForType.nestedContainer(keyedBy: DynamicCodingKeys.self)
             let type = try item.decode(String.self, forKey: DynamicCodingKeys(stringValue: "type")!)
-
-            // TODO: Use custom decoder so it's possible to use the mapperservice to map each type instead of switch statement
-
-            switch type {
-            case "FEED":
-                items.append(try itemsArray.decode(FeedActionDto.self))
-            default:
-                items.append(try itemsArray.decode(BabyActionDto.self))
-            }
+            let mapper = mappers.getMapper(type: BabyActionType(rawValue: type.lowercased())!)
+            items.append(try itemsArray.decode(mapper.getDtoType()))
         }
 
         self.items = items

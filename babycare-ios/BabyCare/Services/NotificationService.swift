@@ -52,6 +52,7 @@ public class NotificationService {
         }
         type = type.lowercased()
 
+        // Get mapper by type and decode
         let mapper = mappers.getMapper(type: BabyActionType(rawValue: type)!)
         return try? decoder.decode(mapper.getDtoType(), from: data)
     }
