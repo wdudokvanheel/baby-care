@@ -91,7 +91,7 @@ public class ApiService {
         
         let json = toJson(object: dto) ?? ""
         
-        print("Performing request: \n\(json)")
+        print("Performing request to \(url?.absoluteString ?? ""): \(json)")
         
         var request = URLRequest(url: url!)
         request.httpMethod = method
@@ -111,7 +111,7 @@ public class ApiService {
                 return
             }
             
-            print("API response: \(String(decoding: data, as: UTF8.self))")
+//            print("API response: \(String(decoding: data, as: UTF8.self))")
 
             if let error = error {
                 print("Request Failed: \(error.localizedDescription)")

@@ -7,9 +7,9 @@ public struct LoginView: View {
     private var model: MainViewModel
     
     @State
-    private var email = "wesley@bitechular.com"
+    private var email = ""
     @State
-    private var password = "wesley"
+    private var password = ""
 
     public var body: some View {
         VStack {

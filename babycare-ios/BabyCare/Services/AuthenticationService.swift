@@ -48,7 +48,9 @@ public class AuthenticationService: ObservableObject {
             self.email = email
             self.token = token
             self.persistDetails()
+            
             if self.token != nil {
+                print("Details set and logged in!")
                 self.authenticated = true
             }
         }

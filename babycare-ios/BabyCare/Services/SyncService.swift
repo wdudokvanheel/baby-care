@@ -25,33 +25,28 @@ public class SyncService: ObservableObject {
     }
 
     public func syncWhenAuthenticated() {
-        if authService.authenticated {
-            startSync()
-            return
-        }
-
-        print("Not authenticated, waiting for change")
-        authService.$authenticated.sink { authenticated in
-            print("Auth updated to \(authenticated)")
-            if authenticated {
-                print("Starting sync with \(self.syncedBabiesUntilTimestamp)")
-                self.startSync()
+        authService.$authenticated
+            .removeDuplicates()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] authenticated in
+                if authenticated {
+                    self?.startSync()
+                } else {
+                    self?.stopSync()
+                }
             }
-        }
-        .store(in: &cancellable)
+            .store(in: &cancellable)
     }
 
-    public func startSync() {
+    private func startSync() {
         // TODO: Setup sync scheduler? Or are notifications enough?
+        print("Starting sync with \(syncedBabiesUntilTimestamp)")
         syncBabyData()
     }
 
-    public func resetSyncDate() {
-        DispatchQueue.main.async {
-            print("RESET SYNC TO 0")
-            self.syncedBabiesUntilTimestamp = 0
-            print("\(self.syncedBabiesUntilTimestamp)")
-        }
+    private func stopSync() {
+        print("Stopping sync")
+        syncedBabiesUntilTimestamp = 0
     }
 
     public func syncBabyData() {

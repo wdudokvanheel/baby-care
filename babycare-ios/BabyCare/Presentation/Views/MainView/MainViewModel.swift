@@ -34,7 +34,6 @@ class MainViewModel: ObservableObject {
             }
         }
 
-        services.syncService.resetSyncDate()
         services.authService.logout()
     }
 
