@@ -10,8 +10,10 @@ import com.eatthepath.pushy.apns.util.SimpleApnsPushNotification;
 import com.eatthepath.pushy.apns.util.TokenUtil;
 import com.eatthepath.pushy.apns.util.concurrent.PushNotificationFuture;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -23,33 +25,41 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-import static com.bitechular.babycare.BabyCareApiApplication.ENABLE_NOTIFICATIONS;
-
 @Service
 public class PushNotificationService {
     private Logger logger = LoggerFactory.getLogger(PushNotificationService.class);
+
+    @Value("${babycare.notifications.push.enabled}")
+    private Boolean enabled;
+    @Value("${babycare.notifications.push.production}")
+    private Boolean production;
 
     private AuthSessionService sessionService;
     private ApnsClient apnsClient;
     private ObjectMapper mapper;
 
-    public PushNotificationService(AuthSessionService sessionService, ObjectMapper mapper) throws IOException, NoSuchAlgorithmException, InvalidKeyException {
+    public PushNotificationService(AuthSessionService sessionService, ObjectMapper mapper) {
         this.sessionService = sessionService;
         this.mapper = mapper;
+    }
 
-        Resource keyFile = new ClassPathResource("key.p8");
+    @PostConstruct
+    public void init() throws IOException, NoSuchAlgorithmException, InvalidKeyException {
+        if (!enabled) {
+            logger.warn("Push notifications disabled");
+        } else {
+            logger.info("Starting Push notifications to " + (production ? "production" : "development") + " APNS host");
+            Resource keyFile = new ClassPathResource("key.p8");
+            String host = production ? ApnsClientBuilder.PRODUCTION_APNS_HOST : ApnsClientBuilder.DEVELOPMENT_APNS_HOST;
 
-        apnsClient = new ApnsClientBuilder()
-                .setApnsServer(ApnsClientBuilder.DEVELOPMENT_APNS_HOST)
-                .setSigningKey(ApnsSigningKey.loadFromInputStream(keyFile.getInputStream(), "L23NTUN6KV", "2RBVXWR25Z"))
-                .build();
+            apnsClient = new ApnsClientBuilder()
+                    .setApnsServer(host)
+                    .setSigningKey(ApnsSigningKey.loadFromInputStream(keyFile.getInputStream(), "L23NTUN6KV", "2RBVXWR25Z"))
+                    .build();
+        }
     }
 
     public void notifyClientsOfUpdate(AuthSession sender, BabyActionDto action) {
-        if (!ENABLE_NOTIFICATIONS) {
-            return;
-        }
-
         try {
             String data = mapper.writeValueAsString(action);
             logger.debug("Sending notification data: {}", data);

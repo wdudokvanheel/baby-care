@@ -32,6 +32,7 @@ public class AuthenticationService {
     }
 
     public User authenticateUser(String email, String password) throws UserNotFoundException, InactiveUserException, InvalidCredentialsException {
+        logger.trace("Trying to auth for {} with {}", email, passwordEncoder.encode(password));
         User user = userService.getByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
 
         validatePassword(user, password);

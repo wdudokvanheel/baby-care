@@ -13,13 +13,8 @@ import java.util.TimeZone;
 @EnableJpaRepositories("com.bitechular.babycare.data")
 public class BabyCareApiApplication {
     private static Logger logger = LoggerFactory.getLogger(BabyCareApiApplication.class);
-    public static final boolean ENABLE_NOTIFICATIONS = true;
 
     public static void main(String[] args) {
-        if (!ENABLE_NOTIFICATIONS) {
-            logger.warn("Push Notifications disabled");
-        }
-
         String conf = System.getProperty("conf");
         if (conf == null || conf.length() < 0) {
             System.setProperty("conf", "/api.conf");
