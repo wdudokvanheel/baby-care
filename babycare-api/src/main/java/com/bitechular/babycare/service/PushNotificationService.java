@@ -12,9 +12,10 @@ import com.eatthepath.pushy.apns.util.concurrent.PushNotificationFuture;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -36,15 +37,16 @@ public class PushNotificationService {
         this.sessionService = sessionService;
         this.mapper = mapper;
 
+        Resource keyFile = new ClassPathResource("key.p8");
+
         apnsClient = new ApnsClientBuilder()
                 .setApnsServer(ApnsClientBuilder.DEVELOPMENT_APNS_HOST)
-                .setSigningKey(ApnsSigningKey.loadFromPkcs8File(new File(getClass().getClassLoader().getResource("key.p8").getFile()),
-                        "L23NTUN6KV", "2RBVXWR25Z"))
+                .setSigningKey(ApnsSigningKey.loadFromInputStream(keyFile.getInputStream(), "L23NTUN6KV", "2RBVXWR25Z"))
                 .build();
     }
 
     public void notifyClientsOfUpdate(AuthSession sender, BabyActionDto action) {
-        if(!ENABLE_NOTIFICATIONS){
+        if (!ENABLE_NOTIFICATIONS) {
             return;
         }
 

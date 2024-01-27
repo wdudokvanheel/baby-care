@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.bitechular.babycare</groupId>
     <artifactId>babycare-api</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <name>babycare-api</name>
     <description>BabyCare</description>
     <properties>
