@@ -16,8 +16,13 @@ public class BabyCareApiApplication {
     public static final boolean ENABLE_NOTIFICATIONS = true;
 
     public static void main(String[] args) {
-        if(!ENABLE_NOTIFICATIONS){
+        if (!ENABLE_NOTIFICATIONS) {
             logger.warn("Push Notifications disabled");
+        }
+
+        String conf = System.getProperty("conf");
+        if (conf == null || conf.length() < 0) {
+            System.setProperty("conf", "/api.conf");
         }
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
