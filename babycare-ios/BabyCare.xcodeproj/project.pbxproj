@@ -13,6 +13,8 @@
 		2B0FFD5E2B5AFDD800C20C9A /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FFD5D2B5AFDD800C20C9A /* AuthenticationService.swift */; };
 		2B0FFD602B5B06CE00C20C9A /* BabyActionUpdateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FFD5F2B5B06CE00C20C9A /* BabyActionUpdateDto.swift */; };
 		2B0FFD622B5B0BB700C20C9A /* LatestActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FFD612B5B0BB700C20C9A /* LatestActionsView.swift */; };
+		2B1552E52B66540C00AD95FE /* SleepLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552E42B66540C00AD95FE /* SleepLog.swift */; };
+		2B1552E72B66769600AD95FE /* FeedLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552E62B66769600AD95FE /* FeedLog.swift */; };
 		2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F34B02B54865E004EA670 /* BabyCareApp.swift */; };
 		2B1F34B32B54865E004EA670 /* ServiceInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F34B22B54865E004EA670 /* ServiceInjection.swift */; };
 		2B1F34B52B548660004EA670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F34B42B548660004EA670 /* Assets.xcassets */; };
@@ -67,6 +69,8 @@
 		2B0FFD5D2B5AFDD800C20C9A /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		2B0FFD5F2B5B06CE00C20C9A /* BabyActionUpdateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionUpdateDto.swift; sourceTree = "<group>"; };
 		2B0FFD612B5B0BB700C20C9A /* LatestActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestActionsView.swift; sourceTree = "<group>"; };
+		2B1552E42B66540C00AD95FE /* SleepLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLog.swift; sourceTree = "<group>"; };
+		2B1552E62B66769600AD95FE /* FeedLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLog.swift; sourceTree = "<group>"; };
 		2B1F34AD2B54865E004EA670 /* BabyCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B1F34B02B54865E004EA670 /* BabyCareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyCareApp.swift; sourceTree = "<group>"; };
 		2B1F34B22B54865E004EA670 /* ServiceInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInjection.swift; sourceTree = "<group>"; };
@@ -140,6 +144,15 @@
 				2B46AE432B5D3C710019D710 /* SyncResponseDto.swift */,
 			);
 			path = DataTransferObjects;
+			sourceTree = "<group>";
+		};
+		2B1552E32B6653F800AD95FE /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				2BF16EDE2B613E0A00A84DE3 /* SleepControlView.swift */,
+				2BF16EE12B618FCA00A84DE3 /* FeedControlView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		2B1F34A42B54865E004EA670 = {
@@ -244,6 +257,7 @@
 		2BF16EDA2B613B3B00A84DE3 /* BabyView */ = {
 			isa = PBXGroup;
 			children = (
+				2B1552E32B6653F800AD95FE /* SubViews */,
 				2BF16EDD2B613DF500A84DE3 /* Components */,
 				2BF16ED42B613A5B00A84DE3 /* BabyViewModel.swift */,
 				2BF16EDB2B613B4F00A84DE3 /* BabyView.swift */,
@@ -254,8 +268,8 @@
 		2BF16EDD2B613DF500A84DE3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				2BF16EDE2B613E0A00A84DE3 /* SleepControlView.swift */,
-				2BF16EE12B618FCA00A84DE3 /* FeedControlView.swift */,
+				2B1552E42B66540C00AD95FE /* SleepLog.swift */,
+				2B1552E62B66769600AD95FE /* FeedLog.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -399,6 +413,7 @@
 				2BF16EFF2B6281B000A84DE3 /* ActionMapperService.swift in Sources */,
 				2B46AE462B5D3CFF0019D710 /* SyncService.swift in Sources */,
 				2BF16EE82B62631A00A84DE3 /* FeedActionDto.swift in Sources */,
+				2B1552E72B66769600AD95FE /* FeedLog.swift in Sources */,
 				2BF16EC32B6010DE00A84DE3 /* BabyExt.swift in Sources */,
 				2BF16EF42B62654F00A84DE3 /* Action.swift in Sources */,
 				2B46AE422B5D3C3A0019D710 /* SyncRequestDto.swift in Sources */,
@@ -412,6 +427,7 @@
 				2BF16F0A2B62889000A84DE3 /* FeedActionCreateDto.swift in Sources */,
 				2B6D4D0E2B5E825E000F6BFA /* LoginView.swift in Sources */,
 				2BF16EF12B62650D00A84DE3 /* FeedAction.swift in Sources */,
+				2B1552E52B66540C00AD95FE /* SleepLog.swift in Sources */,
 				2BF16EC52B60159900A84DE3 /* BabySelector.swift in Sources */,
 				2BF16ED52B613A5B00A84DE3 /* BabyViewModel.swift in Sources */,
 				2B0FFD5E2B5AFDD800C20C9A /* AuthenticationService.swift in Sources */,

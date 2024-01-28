@@ -35,6 +35,14 @@ extension Action {
             self.action = newValue.rawValue
         }
     }
+
+    var duration: TimeInterval {
+        if let start = self.start, let end = self.end {
+            return end.timeIntervalSince(start)
+        }
+
+        return TimeInterval.zero
+    }
 }
 
 extension BabyAction: CustomDebugStringConvertible {

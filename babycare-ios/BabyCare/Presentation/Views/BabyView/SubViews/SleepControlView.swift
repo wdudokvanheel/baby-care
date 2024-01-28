@@ -20,8 +20,9 @@ struct SleepControlView: View {
                 action.end == nil &&
                 action.baby?.persistentModelID == babyId
         }
-
-        _sleepQuery = Query(filter: filter)
+        var fetchDescriptor = FetchDescriptor<BabyAction>(predicate: filter)
+        fetchDescriptor.fetchLimit = 1
+        _sleepQuery = Query(fetchDescriptor)
     }
 
     var sleep: BabyAction? { sleepQuery.first }
@@ -49,7 +50,7 @@ struct SleepControlView: View {
                     model.stopSleep(sleep)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.indigo)
+                .tint(.indigo.opacity(0.9))
             }
             else {
                 HStack {
@@ -59,13 +60,13 @@ struct SleepControlView: View {
                 }
                 .font(.title3)
 
-
                 Button("Start Sleep") {
                     model.startSleep()
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.indigo)
             }
+            SleepLog(model)
         }
         .foregroundColor(.white)
         .padding()

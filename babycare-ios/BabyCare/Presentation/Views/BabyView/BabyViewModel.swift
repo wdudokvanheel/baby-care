@@ -32,7 +32,6 @@ public class BabyViewModel: ObservableObject {
     }
 
     func stopFeed(_ action: FeedAction) {
-        action.side = "RIGHT"
         actionService.endAction(action)
     }
 }

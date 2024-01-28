@@ -21,8 +21,10 @@ struct FeedControlView: View {
                 action.end == nil &&
                 action.baby?.persistentModelID == babyId
         }
-
-        _feedQuery = Query(filter: filter)
+        var fetchDescriptor = FetchDescriptor<FeedAction>(predicate: filter)
+        fetchDescriptor.fetchLimit = 1
+        
+        _feedQuery = Query(fetchDescriptor)
     }
 
     var feed: FeedAction? { feedQuery.first }
@@ -33,7 +35,7 @@ struct FeedControlView: View {
                 HStack {
                     Image(systemName: "fork.knife.circle")
                         .font(.title2)
-                    Text("Feeding for \(formatDuration(feedDuration)) at \(feed.side ?? "x") \(feed.feedSide?.rawValue ?? "x")")
+                    Text("Feeding for \(formatDuration(feedDuration))")
                     Spacer()
                 }
                 .font(.title3)
@@ -52,7 +54,7 @@ struct FeedControlView: View {
                         model.setFeedSide(feed, .left)
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(feed.feedSide == .left ? .mint : .mint.opacity(0.5))
+                    .tint(feed.feedSide == .left ? .mint : .mint.opacity(0.3))
 
                     Spacer()
                     
@@ -60,7 +62,7 @@ struct FeedControlView: View {
                         model.stopFeed(feed)
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(.mint)
+                    .tint(.mint.opacity(0.9))
                     
                     Spacer()
                     
@@ -68,7 +70,7 @@ struct FeedControlView: View {
                         model.setFeedSide(feed, .right)
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(feed.feedSide == .right ? .mint : .mint.opacity(0.5))
+                    .tint(feed.feedSide == .right ? .mint : .mint.opacity(0.3))
                 }
             }
             else {
@@ -105,6 +107,7 @@ struct FeedControlView: View {
                     .tint(.mint)
                 }
             }
+            FeedLog(model)
         }
         .foregroundColor(.white)
         .padding()
