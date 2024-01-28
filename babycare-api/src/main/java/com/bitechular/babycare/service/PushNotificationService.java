@@ -34,12 +34,12 @@ public class PushNotificationService {
     @Value("${babycare.notifications.push.production}")
     private Boolean production;
 
-    private AuthSessionService sessionService;
+    private AuthSessionService authService;
     private ApnsClient apnsClient;
     private ObjectMapper mapper;
 
-    public PushNotificationService(AuthSessionService sessionService, ObjectMapper mapper) {
-        this.sessionService = sessionService;
+    public PushNotificationService(AuthSessionService authService, ObjectMapper mapper) {
+        this.authService = authService;
         this.mapper = mapper;
     }
 
@@ -63,7 +63,7 @@ public class PushNotificationService {
         try {
             String data = mapper.writeValueAsString(action);
             logger.debug("Sending notification data: {}", data);
-            List<String> ids = sessionService.getNotificationIdsForUpdate(sender);
+            List<String> ids = authService.getNotificationIdsForUpdate(sender);
 
             for (String id : ids) {
                 logger.debug("\t To id: {}", id);
@@ -79,11 +79,9 @@ public class PushNotificationService {
         ApnsPayloadBuilder payloadBuilder = new SimpleApnsPayloadBuilder();
         payloadBuilder.setContentAvailable(true);
 
-//        payloadBuilder.addCustomProperty("data", "UPDATE ACTION");
         payloadBuilder.addCustomProperty("data", data);
 
         String payload = payloadBuilder.build();
-//        String token = TokenUtil.sanitizeTokenString("bef2cb5f16ccecb425b69e8c8cc2fec34e7c56043f76eae843cfdc541e2e3b53");
         String token = TokenUtil.sanitizeTokenString(to);
 
         SimpleApnsPushNotification pushNotification = new SimpleApnsPushNotification(token, "com.bitechular.tinybaby", payload, Instant.now().plus(90, ChronoUnit.MINUTES), DeliveryPriority.CONSERVE_POWER, PushType.BACKGROUND, null, null);
@@ -92,6 +90,9 @@ public class PushNotificationService {
         future.whenComplete((response, cause) -> {
             if (response != null) {
                 // Handle the push notification response as before from here.
+                logger.error("Notification denied: {}", response.getRejectionReason().orElse(""));
+                authService.invalidateNotificationId(to);
+
             } else {
                 // Something went wrong when trying to send the notification to the
                 // APNs server. Note that this is distinct from a rejection from

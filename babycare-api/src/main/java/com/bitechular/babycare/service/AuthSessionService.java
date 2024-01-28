@@ -29,4 +29,11 @@ public class AuthSessionService {
         session.setNotificationId(id);
         repository.save(session);
     }
+
+    public void invalidateNotificationId(String id) {
+        repository.getByNotificationId(id).ifPresent(session -> {
+            session.setNotificationId(null);
+            repository.save(session);
+        });
+    }
 }

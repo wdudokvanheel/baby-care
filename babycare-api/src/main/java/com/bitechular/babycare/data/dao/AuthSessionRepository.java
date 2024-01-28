@@ -13,4 +13,5 @@ public interface AuthSessionRepository extends DomainRepository<AuthSession> {
     Optional<AuthSession> findAuthSessionByUserAndToken(User user, String token);
     List<AuthSession> findAuthSessionsByTokenNotAndNotificationIdNotNull(String token);
     List<AuthSession> deleteAuthSessionByUserAndDeviceId(User user, String id);
+    Optional<AuthSession> getByNotificationId(String id);
 }
