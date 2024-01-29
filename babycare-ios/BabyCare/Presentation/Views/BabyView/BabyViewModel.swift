@@ -46,4 +46,9 @@ public class BabyViewModel: ObservableObject {
     func stopFeed(_ action: FeedAction) {
         actionService.endAction(action)
     }
+
+    func updateAction(_ action: any Action) {
+        action.syncRequired = true
+        actionService.persistAction(action)
+    }
 }

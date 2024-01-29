@@ -2,13 +2,18 @@ import SwiftData
 import SwiftUI
 
 struct SleepLog: View {
+    @EnvironmentObject
+    private var model: BabyViewModel
+    
     @Query()
     var items: [BabyAction]
+
+    @State
+    private var selectedSleep: BabyAction?
 
     private let gridColumns = [
         GridItem(.flexible(), alignment: .leading),
         GridItem(.flexible(), alignment: .center),
-        GridItem(.flexible(), alignment: .trailing)
     ]
 
     init(_ model: BabyViewModel) {
@@ -29,12 +34,32 @@ struct SleepLog: View {
 
     var body: some View {
         ForEach(items, id: \.self) { sleep in
+
             LazyVGrid(columns: gridColumns, spacing: 0) {
                 Text(formatdate(date: sleep.start!))
+                    .onTapGesture {
+                        self.selectedSleep = sleep
+                    }
                 Text(timeIntervalString(from: sleep.start!, to: sleep.end!))
+                    .onTapGesture {
+                        self.selectedSleep = sleep
+                    }
             }
             .padding(0)
             .font(.footnote)
+        }
+
+        if let selected = self.selectedSleep {
+            let view = SleepView(sleep: selected, onChange: { sleep in
+                self.model.updateAction(sleep)
+            })
+
+            NavigationLink(destination: view, isActive: Binding<Bool>(
+                get: { self.selectedSleep != nil },
+                set: { if !$0 { self.selectedSleep = nil } }
+            )) {
+                EmptyView()
+            }
         }
     }
 

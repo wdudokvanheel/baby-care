@@ -13,6 +13,7 @@
 		2B0FFD5E2B5AFDD800C20C9A /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FFD5D2B5AFDD800C20C9A /* AuthenticationService.swift */; };
 		2B0FFD602B5B06CE00C20C9A /* BabyActionUpdateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FFD5F2B5B06CE00C20C9A /* BabyActionUpdateDto.swift */; };
 		2B0FFD622B5B0BB700C20C9A /* LatestActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FFD612B5B0BB700C20C9A /* LatestActionsView.swift */; };
+		2B11499F2B68387A0096E427 /* SleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B11499E2B68387A0096E427 /* SleepView.swift */; };
 		2B1552E52B66540C00AD95FE /* SleepLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552E42B66540C00AD95FE /* SleepLog.swift */; };
 		2B1552E72B66769600AD95FE /* FeedLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552E62B66769600AD95FE /* FeedLog.swift */; };
 		2B1552E92B667F9900AD95FE /* BottleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552E82B667F9900AD95FE /* BottleAction.swift */; };
@@ -43,6 +44,7 @@
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
 		2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA02B54905C00B91132 /* MainViewModel.swift */; };
+		2BC0E4CE2B68456500E5A60A /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E4CD2B68456500E5A60A /* FeedView.swift */; };
 		2BF16EBF2B600FF400A84DE3 /* BabyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EBE2B600FF400A84DE3 /* BabyService.swift */; };
 		2BF16EC12B60104000A84DE3 /* BabyDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EC02B60104000A84DE3 /* BabyDto.swift */; };
 		2BF16EC32B6010DE00A84DE3 /* BabyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EC22B6010DE00A84DE3 /* BabyExt.swift */; };
@@ -76,6 +78,7 @@
 		2B0FFD5D2B5AFDD800C20C9A /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		2B0FFD5F2B5B06CE00C20C9A /* BabyActionUpdateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionUpdateDto.swift; sourceTree = "<group>"; };
 		2B0FFD612B5B0BB700C20C9A /* LatestActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestActionsView.swift; sourceTree = "<group>"; };
+		2B11499E2B68387A0096E427 /* SleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepView.swift; sourceTree = "<group>"; };
 		2B1552E42B66540C00AD95FE /* SleepLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLog.swift; sourceTree = "<group>"; };
 		2B1552E62B66769600AD95FE /* FeedLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLog.swift; sourceTree = "<group>"; };
 		2B1552E82B667F9900AD95FE /* BottleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleAction.swift; sourceTree = "<group>"; };
@@ -109,6 +112,7 @@
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		2B9FDAA02B54905C00B91132 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		2BC0E4CD2B68456500E5A60A /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		2BF16EBE2B600FF400A84DE3 /* BabyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyService.swift; sourceTree = "<group>"; };
 		2BF16EC02B60104000A84DE3 /* BabyDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDto.swift; sourceTree = "<group>"; };
 		2BF16EC22B6010DE00A84DE3 /* BabyExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyExt.swift; sourceTree = "<group>"; };
@@ -160,14 +164,12 @@
 			path = DataTransferObjects;
 			sourceTree = "<group>";
 		};
-		2B1552E32B6653F800AD95FE /* SubViews */ = {
+		2B1552E32B6653F800AD95FE /* Bottle */ = {
 			isa = PBXGroup;
 			children = (
-				2BF16EDE2B613E0A00A84DE3 /* SleepControlView.swift */,
-				2BF16EE12B618FCA00A84DE3 /* FeedControlView.swift */,
 				2B1552F22B66834500AD95FE /* BottleControlView.swift */,
 			);
-			path = SubViews;
+			path = Bottle;
 			sourceTree = "<group>";
 		};
 		2B1F34A42B54865E004EA670 = {
@@ -232,6 +234,26 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		2BC0E4CB2B68452B00E5A60A /* Sleep */ = {
+			isa = PBXGroup;
+			children = (
+				2BF16EDE2B613E0A00A84DE3 /* SleepControlView.swift */,
+				2B1552E42B66540C00AD95FE /* SleepLog.swift */,
+				2B11499E2B68387A0096E427 /* SleepView.swift */,
+			);
+			path = Sleep;
+			sourceTree = "<group>";
+		};
+		2BC0E4CC2B68453400E5A60A /* Feeding */ = {
+			isa = PBXGroup;
+			children = (
+				2BF16EE12B618FCA00A84DE3 /* FeedControlView.swift */,
+				2B1552E62B66769600AD95FE /* FeedLog.swift */,
+				2BC0E4CD2B68456500E5A60A /* FeedView.swift */,
+			);
+			path = Feeding;
+			sourceTree = "<group>";
+		};
 		2BF16ED62B613AF200A84DE3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,21 +294,13 @@
 		2BF16EDA2B613B3B00A84DE3 /* BabyView */ = {
 			isa = PBXGroup;
 			children = (
-				2B1552E32B6653F800AD95FE /* SubViews */,
-				2BF16EDD2B613DF500A84DE3 /* Components */,
+				2BC0E4CC2B68453400E5A60A /* Feeding */,
+				2BC0E4CB2B68452B00E5A60A /* Sleep */,
+				2B1552E32B6653F800AD95FE /* Bottle */,
 				2BF16ED42B613A5B00A84DE3 /* BabyViewModel.swift */,
 				2BF16EDB2B613B4F00A84DE3 /* BabyView.swift */,
 			);
 			path = BabyView;
-			sourceTree = "<group>";
-		};
-		2BF16EDD2B613DF500A84DE3 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				2B1552E42B66540C00AD95FE /* SleepLog.swift */,
-				2B1552E62B66769600AD95FE /* FeedLog.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		2BF16EF92B627F3D00A84DE3 /* ActionMapper */ = {
@@ -463,7 +477,9 @@
 				2B9FDA902B5486F300B91132 /* MainView.swift in Sources */,
 				2BF16EBF2B600FF400A84DE3 /* BabyService.swift in Sources */,
 				2B1552F32B66834500AD95FE /* BottleControlView.swift in Sources */,
+				2B11499F2B68387A0096E427 /* SleepView.swift in Sources */,
 				2B6D4D102B5E8464000F6BFA /* AuthenticationRequest.swift in Sources */,
+				2BC0E4CE2B68456500E5A60A /* FeedView.swift in Sources */,
 				2BF16EF62B6265AE00A84DE3 /* BabyAction.swift in Sources */,
 				2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */,
 				2B46AE482B5D781B0019D710 /* BabyCareDelegate.swift in Sources */,

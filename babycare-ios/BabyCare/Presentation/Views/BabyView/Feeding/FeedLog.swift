@@ -2,13 +2,18 @@ import SwiftData
 import SwiftUI
 
 struct FeedLog: View {
+    @EnvironmentObject
+    private var model: BabyViewModel
+
     @Query()
     var items: [FeedAction]
+
+    @State
+    private var selectedFeed: FeedAction?
 
     private let gridColumns = [
         GridItem(.flexible(), alignment: .leading),
         GridItem(.flexible(), alignment: .leading),
-        GridItem(.flexible(), alignment: .trailing)
     ]
 
     init(_ model: BabyViewModel) {
@@ -30,15 +35,33 @@ struct FeedLog: View {
     var body: some View {
         ForEach(items, id: \.self) { feeding in
             LazyVGrid(columns: gridColumns, spacing: 0) {
-
                 Text(formatdate(date: feeding.start!))
+                    .onTapGesture {
+                        self.selectedFeed = feeding
+                    }
                 HStack {
                     Image(systemName: getSideIcon(feeding))
                     Text(timeIntervalString(from: feeding.start!, to: feeding.end!))
                 }
+                .onTapGesture {
+                    self.selectedFeed = feeding
+                }
             }
             .padding(0)
             .font(.footnote)
+        }
+
+        if let selected = self.selectedFeed {
+            let view = FeedView(feeding: selected, onChange: { feed in
+                self.model.updateAction(feed)
+            })
+
+            NavigationLink(destination: view, isActive: Binding<Bool>(
+                get: { self.selectedFeed != nil },
+                set: { if !$0 { self.selectedFeed = nil } }
+            )) {
+                EmptyView()
+            }
         }
     }
 
