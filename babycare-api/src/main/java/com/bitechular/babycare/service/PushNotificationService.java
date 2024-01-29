@@ -60,6 +60,10 @@ public class PushNotificationService {
     }
 
     public void notifyClientsOfUpdate(AuthSession sender, BabyActionDto action) {
+        if (!enabled) {
+            return;
+        }
+
         try {
             String data = mapper.writeValueAsString(action);
             logger.debug("Sending notification data: {}", data);
