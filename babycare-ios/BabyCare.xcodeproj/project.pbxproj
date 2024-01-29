@@ -15,6 +15,13 @@
 		2B0FFD622B5B0BB700C20C9A /* LatestActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FFD612B5B0BB700C20C9A /* LatestActionsView.swift */; };
 		2B1552E52B66540C00AD95FE /* SleepLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552E42B66540C00AD95FE /* SleepLog.swift */; };
 		2B1552E72B66769600AD95FE /* FeedLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552E62B66769600AD95FE /* FeedLog.swift */; };
+		2B1552E92B667F9900AD95FE /* BottleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552E82B667F9900AD95FE /* BottleAction.swift */; };
+		2B1552EB2B667FAC00AD95FE /* BottleActionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552EA2B667FAC00AD95FE /* BottleActionExt.swift */; };
+		2B1552ED2B66801B00AD95FE /* BottleActionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552EC2B66801B00AD95FE /* BottleActionDto.swift */; };
+		2B1552EF2B6680A900AD95FE /* BottleActionUpdateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552EE2B6680A900AD95FE /* BottleActionUpdateDto.swift */; };
+		2B1552F12B66819300AD95FE /* BottleActionCreateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552F02B66819300AD95FE /* BottleActionCreateDto.swift */; };
+		2B1552F32B66834500AD95FE /* BottleControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552F22B66834500AD95FE /* BottleControlView.swift */; };
+		2B1552F52B66DA3600AD95FE /* BottleActionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552F42B66DA3600AD95FE /* BottleActionMapper.swift */; };
 		2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F34B02B54865E004EA670 /* BabyCareApp.swift */; };
 		2B1F34B32B54865E004EA670 /* ServiceInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F34B22B54865E004EA670 /* ServiceInjection.swift */; };
 		2B1F34B52B548660004EA670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F34B42B548660004EA670 /* Assets.xcassets */; };
@@ -71,6 +78,13 @@
 		2B0FFD612B5B0BB700C20C9A /* LatestActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestActionsView.swift; sourceTree = "<group>"; };
 		2B1552E42B66540C00AD95FE /* SleepLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLog.swift; sourceTree = "<group>"; };
 		2B1552E62B66769600AD95FE /* FeedLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLog.swift; sourceTree = "<group>"; };
+		2B1552E82B667F9900AD95FE /* BottleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleAction.swift; sourceTree = "<group>"; };
+		2B1552EA2B667FAC00AD95FE /* BottleActionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleActionExt.swift; sourceTree = "<group>"; };
+		2B1552EC2B66801B00AD95FE /* BottleActionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleActionDto.swift; sourceTree = "<group>"; };
+		2B1552EE2B6680A900AD95FE /* BottleActionUpdateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleActionUpdateDto.swift; sourceTree = "<group>"; };
+		2B1552F02B66819300AD95FE /* BottleActionCreateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleActionCreateDto.swift; sourceTree = "<group>"; };
+		2B1552F22B66834500AD95FE /* BottleControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleControlView.swift; sourceTree = "<group>"; };
+		2B1552F42B66DA3600AD95FE /* BottleActionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleActionMapper.swift; sourceTree = "<group>"; };
 		2B1F34AD2B54865E004EA670 /* BabyCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B1F34B02B54865E004EA670 /* BabyCareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyCareApp.swift; sourceTree = "<group>"; };
 		2B1F34B22B54865E004EA670 /* ServiceInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInjection.swift; sourceTree = "<group>"; };
@@ -151,6 +165,7 @@
 			children = (
 				2BF16EDE2B613E0A00A84DE3 /* SleepControlView.swift */,
 				2BF16EE12B618FCA00A84DE3 /* FeedControlView.swift */,
+				2B1552F22B66834500AD95FE /* BottleControlView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -281,6 +296,7 @@
 				2BF16EFC2B6280B900A84DE3 /* DefaultActionMapper.swift */,
 				2BF16F002B62824900A84DE3 /* FeedActionMapper.swift */,
 				2BF16EFE2B6281B000A84DE3 /* ActionMapperService.swift */,
+				2B1552F42B66DA3600AD95FE /* BottleActionMapper.swift */,
 			);
 			path = ActionMapper;
 			sourceTree = "<group>";
@@ -295,6 +311,9 @@
 				2B0FFD5B2B595D9100C20C9A /* BabyActionDto.swift */,
 				2B0FFD5F2B5B06CE00C20C9A /* BabyActionUpdateDto.swift */,
 				2BF16EE72B62631A00A84DE3 /* FeedActionDto.swift */,
+				2B1552EC2B66801B00AD95FE /* BottleActionDto.swift */,
+				2B1552EE2B6680A900AD95FE /* BottleActionUpdateDto.swift */,
+				2B1552F02B66819300AD95FE /* BottleActionCreateDto.swift */,
 				2BF16F072B62887700A84DE3 /* FeedActionUpdateDto.swift */,
 				2BF16F092B62889000A84DE3 /* FeedActionCreateDto.swift */,
 			);
@@ -310,6 +329,8 @@
 				2BF16EF52B6265AE00A84DE3 /* BabyAction.swift */,
 				2B46AE392B5C81120019D710 /* BabyActionExt.swift */,
 				2BF16EC22B6010DE00A84DE3 /* BabyExt.swift */,
+				2B1552E82B667F9900AD95FE /* BottleAction.swift */,
+				2B1552EA2B667FAC00AD95FE /* BottleActionExt.swift */,
 				2BF16EEE2B62650D00A84DE3 /* FeedAction.swift */,
 				2BF16EF72B62662900A84DE3 /* FeedActionExt.swift */,
 			);
@@ -405,6 +426,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BF16F082B62887700A84DE3 /* FeedActionUpdateDto.swift in Sources */,
+				2B1552F12B66819300AD95FE /* BottleActionCreateDto.swift in Sources */,
+				2B1552EB2B667FAC00AD95FE /* BottleActionExt.swift in Sources */,
+				2B1552EF2B6680A900AD95FE /* BottleActionUpdateDto.swift in Sources */,
 				2B46AE362B5C73B70019D710 /* KeychainItem.swift in Sources */,
 				2B6D4D162B5E9281000F6BFA /* AuthButton.swift in Sources */,
 				2B1F34B32B54865E004EA670 /* ServiceInjection.swift in Sources */,
@@ -414,6 +438,7 @@
 				2B46AE462B5D3CFF0019D710 /* SyncService.swift in Sources */,
 				2BF16EE82B62631A00A84DE3 /* FeedActionDto.swift in Sources */,
 				2B1552E72B66769600AD95FE /* FeedLog.swift in Sources */,
+				2B1552ED2B66801B00AD95FE /* BottleActionDto.swift in Sources */,
 				2BF16EC32B6010DE00A84DE3 /* BabyExt.swift in Sources */,
 				2BF16EF42B62654F00A84DE3 /* Action.swift in Sources */,
 				2B46AE422B5D3C3A0019D710 /* SyncRequestDto.swift in Sources */,
@@ -424,7 +449,9 @@
 				2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */,
 				2BF16EF82B62662900A84DE3 /* FeedActionExt.swift in Sources */,
 				2B0FFD5C2B595D9100C20C9A /* BabyActionDto.swift in Sources */,
+				2B1552F52B66DA3600AD95FE /* BottleActionMapper.swift in Sources */,
 				2BF16F0A2B62889000A84DE3 /* FeedActionCreateDto.swift in Sources */,
+				2B1552E92B667F9900AD95FE /* BottleAction.swift in Sources */,
 				2B6D4D0E2B5E825E000F6BFA /* LoginView.swift in Sources */,
 				2BF16EF12B62650D00A84DE3 /* FeedAction.swift in Sources */,
 				2B1552E52B66540C00AD95FE /* SleepLog.swift in Sources */,
@@ -435,6 +462,7 @@
 				2BF16EF02B62650D00A84DE3 /* Baby.swift in Sources */,
 				2B9FDA902B5486F300B91132 /* MainView.swift in Sources */,
 				2BF16EBF2B600FF400A84DE3 /* BabyService.swift in Sources */,
+				2B1552F32B66834500AD95FE /* BottleControlView.swift in Sources */,
 				2B6D4D102B5E8464000F6BFA /* AuthenticationRequest.swift in Sources */,
 				2BF16EF62B6265AE00A84DE3 /* BabyAction.swift in Sources */,
 				2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */,
@@ -600,6 +628,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -635,6 +664,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

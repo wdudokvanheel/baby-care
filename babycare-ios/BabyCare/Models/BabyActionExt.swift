@@ -7,6 +7,7 @@ public enum BabyActionType: String, Codable, CaseIterable, Identifiable, Compara
     case none
     case feed
     case sleep
+    case bottle
 
     public static func < (lhs: BabyActionType, rhs: BabyActionType) -> Bool {
         lhs.rawValue < rhs.rawValue

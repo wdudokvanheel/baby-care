@@ -9,9 +9,7 @@ struct MainView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
-            
+        NavigationView {
             VStack(spacing: 20) {
                 AuthGuard(model.services.authService) {
                     BabySelector { baby in
@@ -21,10 +19,10 @@ struct MainView: View {
                 AuthButton(authService: model.services.authService)
             }
             .padding()
-        }
-        .sheet(isPresented: $model.showLogin, content: LoginView.init)
-        .onReceive(timer) { input in
-            currentDate = input
+            .sheet(isPresented: $model.showLogin, content: LoginView.init)
+            .onReceive(timer) { input in
+                currentDate = input
+            }
         }
     }
 

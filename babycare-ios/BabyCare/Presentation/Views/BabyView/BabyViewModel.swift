@@ -26,6 +26,18 @@ public class BabyViewModel: ObservableObject {
         actionService.persistAction(action)
     }
 
+    func startBottle(_ quantity: Int? = nil) {
+        let action: BottleAction = actionService.createAction(baby: baby, type: .bottle)
+        if let quantity = quantity {
+            action.quantity = Int64(quantity)
+        }
+        actionService.persistAction(action)
+    }
+
+    func stopBottle(_ action: BottleAction) {
+        actionService.endAction(action)
+    }
+
     func setFeedSide(_ action: FeedAction, _ side: FeedSide? = nil) {
         action.feedSide = side
         actionService.persistAction(action)

@@ -8,6 +8,7 @@ public class ActionMapperService: ObservableObject {
 
     init() {
         mappers[.feed] = FeedActionMapper()
+        mappers[.bottle] = BottleActionMapper()
     }
     
     public var all: [any ActionMapper] {

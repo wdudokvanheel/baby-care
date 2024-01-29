@@ -7,7 +7,7 @@ struct FeedLog: View {
 
     private let gridColumns = [
         GridItem(.flexible(), alignment: .leading),
-        GridItem(.flexible(), alignment: .center),
+        GridItem(.flexible(), alignment: .leading),
         GridItem(.flexible(), alignment: .trailing)
     ]
 
