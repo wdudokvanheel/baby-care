@@ -45,6 +45,9 @@
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
 		2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA02B54905C00B91132 /* MainViewModel.swift */; };
 		2BC0E4CE2B68456500E5A60A /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E4CD2B68456500E5A60A /* FeedView.swift */; };
+		2BC0E4D02B69144000E5A60A /* BottleLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E4CF2B69144000E5A60A /* BottleLog.swift */; };
+		2BC0E4D22B69147100E5A60A /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E4D12B69147100E5A60A /* BottleView.swift */; };
+		2BC0E4D52B691DE700E5A60A /* UIApplicationHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E4D42B691DE700E5A60A /* UIApplicationHideKeyboard.swift */; };
 		2BF16EBF2B600FF400A84DE3 /* BabyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EBE2B600FF400A84DE3 /* BabyService.swift */; };
 		2BF16EC12B60104000A84DE3 /* BabyDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EC02B60104000A84DE3 /* BabyDto.swift */; };
 		2BF16EC32B6010DE00A84DE3 /* BabyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EC22B6010DE00A84DE3 /* BabyExt.swift */; };
@@ -113,6 +116,9 @@
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		2B9FDAA02B54905C00B91132 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		2BC0E4CD2B68456500E5A60A /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		2BC0E4CF2B69144000E5A60A /* BottleLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleLog.swift; sourceTree = "<group>"; };
+		2BC0E4D12B69147100E5A60A /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
+		2BC0E4D42B691DE700E5A60A /* UIApplicationHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationHideKeyboard.swift; sourceTree = "<group>"; };
 		2BF16EBE2B600FF400A84DE3 /* BabyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyService.swift; sourceTree = "<group>"; };
 		2BF16EC02B60104000A84DE3 /* BabyDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDto.swift; sourceTree = "<group>"; };
 		2BF16EC22B6010DE00A84DE3 /* BabyExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyExt.swift; sourceTree = "<group>"; };
@@ -168,6 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				2B1552F22B66834500AD95FE /* BottleControlView.swift */,
+				2BC0E4CF2B69144000E5A60A /* BottleLog.swift */,
+				2BC0E4D12B69147100E5A60A /* BottleView.swift */,
 			);
 			path = Bottle;
 			sourceTree = "<group>";
@@ -219,6 +227,7 @@
 		2B46AE342B5C73A90019D710 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				2BC0E4D32B691DCE00E5A60A /* Extensions */,
 				2B46AE352B5C73B70019D710 /* KeychainItem.swift */,
 			);
 			path = Core;
@@ -252,6 +261,14 @@
 				2BC0E4CD2B68456500E5A60A /* FeedView.swift */,
 			);
 			path = Feeding;
+			sourceTree = "<group>";
+		};
+		2BC0E4D32B691DCE00E5A60A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2BC0E4D42B691DE700E5A60A /* UIApplicationHideKeyboard.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2BF16ED62B613AF200A84DE3 /* Views */ = {
@@ -445,6 +462,7 @@
 				2B1552EF2B6680A900AD95FE /* BottleActionUpdateDto.swift in Sources */,
 				2B46AE362B5C73B70019D710 /* KeychainItem.swift in Sources */,
 				2B6D4D162B5E9281000F6BFA /* AuthButton.swift in Sources */,
+				2BC0E4D22B69147100E5A60A /* BottleView.swift in Sources */,
 				2B1F34B32B54865E004EA670 /* ServiceInjection.swift in Sources */,
 				2BF16EDF2B613E0A00A84DE3 /* SleepControlView.swift in Sources */,
 				2BF16F032B6285D600A84DE3 /* ActionUpdateDto.swift in Sources */,
@@ -454,6 +472,7 @@
 				2B1552E72B66769600AD95FE /* FeedLog.swift in Sources */,
 				2B1552ED2B66801B00AD95FE /* BottleActionDto.swift in Sources */,
 				2BF16EC32B6010DE00A84DE3 /* BabyExt.swift in Sources */,
+				2BC0E4D02B69144000E5A60A /* BottleLog.swift in Sources */,
 				2BF16EF42B62654F00A84DE3 /* Action.swift in Sources */,
 				2B46AE422B5D3C3A0019D710 /* SyncRequestDto.swift in Sources */,
 				2BF16F052B6285FE00A84DE3 /* ActionCreateDto.swift in Sources */,
@@ -463,6 +482,7 @@
 				2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */,
 				2BF16EF82B62662900A84DE3 /* FeedActionExt.swift in Sources */,
 				2B0FFD5C2B595D9100C20C9A /* BabyActionDto.swift in Sources */,
+				2BC0E4D52B691DE700E5A60A /* UIApplicationHideKeyboard.swift in Sources */,
 				2B1552F52B66DA3600AD95FE /* BottleActionMapper.swift in Sources */,
 				2BF16F0A2B62889000A84DE3 /* FeedActionCreateDto.swift in Sources */,
 				2B1552E92B667F9900AD95FE /* BottleAction.swift in Sources */,

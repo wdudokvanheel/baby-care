@@ -122,6 +122,7 @@ public class ApiService {
                         onComplete(data)
                     } else {
                         print("Error status code: \(response.statusCode)")
+                        print("\(String(data: data, encoding: .utf8)!)")
                         onError()
                     }
                 }

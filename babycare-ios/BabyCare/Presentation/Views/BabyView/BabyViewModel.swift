@@ -26,10 +26,10 @@ public class BabyViewModel: ObservableObject {
         actionService.persistAction(action)
     }
 
-    func startBottle(_ quantity: Int? = nil) {
+    func startBottle(_ quantity: Int64? = nil) {
         let action: BottleAction = actionService.createAction(baby: baby, type: .bottle)
         if let quantity = quantity {
-            action.quantity = Int64(quantity)
+            action.quantity = quantity
         }
         actionService.persistAction(action)
     }

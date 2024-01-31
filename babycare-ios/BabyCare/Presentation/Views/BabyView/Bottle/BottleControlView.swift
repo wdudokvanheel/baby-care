@@ -10,6 +10,17 @@ struct BottleControlView: View {
 
     @State
     private var bottleDuration = 0
+
+    @State
+    var quantity: String = "0"
+
+    var quantityInt: Int64? {
+        if quantity.isEmpty {
+            return nil
+        }
+        return Int64(quantity)
+    }
+
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     init(baby: Baby) {
@@ -61,12 +72,31 @@ struct BottleControlView: View {
                 .font(.title3)
 
                 Button("Start bottle feeding") {
-                    model.startBottle()
+                    model.startBottle(quantityInt)
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.brown)
             }
-//            SleepLog(model)
+
+            HStack {
+                Text("Milliliter")
+                TextField("Ml", text: Binding(get: { quantity }, set: { val in
+                    if self.quantity == val {
+                        return
+                    }
+                    self.quantity = val
+                    if let bottle = bottle {
+                        bottle.quantity = self.quantityInt
+                        model.updateAction(bottle)
+                    }
+                }))
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.numberPad)
+                .onTapGesture {
+                    UIApplication.shared.endEditing()
+                }
+            }
+            BottleLog(model)
         }
         .foregroundColor(.white)
         .padding()

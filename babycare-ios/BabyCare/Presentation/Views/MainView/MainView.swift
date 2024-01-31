@@ -23,6 +23,9 @@ struct MainView: View {
             .onReceive(timer) { input in
                 currentDate = input
             }
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
         }
     }
 
