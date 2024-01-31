@@ -9,7 +9,8 @@ import java.util.Date;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", visible = true)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = ActionCreateRequest.class, name = "SLEEP"),
-        @JsonSubTypes.Type(value = FeedActionCreateRequest.class, name = "FEED")
+        @JsonSubTypes.Type(value = FeedActionCreateRequest.class, name = "FEED"),
+        @JsonSubTypes.Type(value = BottleActionCreateRequest.class, name = "BOTTLE")
 })
 public class ActionCreateRequest {
     public BabyActionType type;

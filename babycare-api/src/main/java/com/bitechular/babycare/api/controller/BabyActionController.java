@@ -69,7 +69,6 @@ public class BabyActionController {
     public ResponseEntity<BabyActionDto> updateAction(@PathVariable Long id, @PathVariable long babyId, @UpdateActionRequestBody ActionUpdateRequest request, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException, JsonProcessingException {
         Baby baby = babyService.getBabyByUser(session.getUser(), babyId);
         BabyAction action = actionService.getById(id);
-
         if (action == null || action.baby != baby) {
             // TODO Improve error reporting
             throw new EntityNotFoundException("Action", id);
@@ -81,7 +80,6 @@ public class BabyActionController {
 
         BabyActionDto dto = mapper.toDto(action);
         notificationService.notifyClientsOfUpdate(session, dto);
-
         return ResponseEntity.ok(dto);
     }
 
