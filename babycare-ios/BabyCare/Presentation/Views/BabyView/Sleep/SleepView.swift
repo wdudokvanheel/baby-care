@@ -11,23 +11,49 @@ struct SleepView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                Text("Start at")
-                if let startDate = sleep.start {
+            if let startDate = sleep.start {
+                HStack {
+                    Text("Start at")
+                    
+                    if let endDate = sleep.end {
+                        if !startDate.isSameDateIgnoringTime(as: endDate) {
+                            Text("(\(startDate.formatDateAsRelativeString()))")
+                                .foregroundStyle(Color.gray)
+                                .font(.footnote)
+                                .fontWeight(.light)
+                        }
+                    }
+                    
                     DatePicker("", selection: Binding(get: { startDate }, set: { newValue in
                         sleep.start = newValue
                         startDateUpdate()
                     }), displayedComponents: .hourAndMinute)
                 }
-            }
 
-            HStack {
-                Text("End at")
                 if let endDate = sleep.end {
-                    DatePicker("", selection: Binding(get: { endDate }, set: { newValue in
-                        sleep.end = newValue
-                        endDateUpdate()
-                    }), displayedComponents: .hourAndMinute)
+                    HStack {
+                        Text("End at")
+                        
+                        if !startDate.isSameDateIgnoringTime(as: endDate) {
+                            Text("(\(endDate.formatDateAsRelativeString()))")
+                                .foregroundStyle(Color.gray)
+                                .font(.footnote)
+                                .fontWeight(.light)
+                        }
+                        
+                        DatePicker("", selection: Binding(get: { endDate }, set: { newValue in
+                            sleep.end = newValue
+                            endDateUpdate()
+                        }),
+                        in: startDate...,
+                        displayedComponents: .hourAndMinute)
+                    }
+                    HStack {
+                        Spacer()
+                        Text("Total sleep time of \(startDate.timeIntervalToString(to: endDate))")
+                            .foregroundStyle(Color.white.opacity(0.75))
+                            .font(.footnote)
+                    }
                 }
             }
         }
@@ -71,8 +97,8 @@ struct SleepView: View {
 
         let formatter = DateFormatter()
         formatter.dateStyle = .none
-        formatter.timeStyle = .short // You can change this to .medium, .long, or .full
-        formatter.locale = Locale.current // Ensures user's locale format is used
+        formatter.timeStyle = .short
+        formatter.locale = Locale.current
         return formatter.string(from: date)
     }
 }

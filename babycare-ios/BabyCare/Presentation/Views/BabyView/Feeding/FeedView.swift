@@ -33,13 +33,11 @@ struct FeedView: View {
                 if let endDate = feeding.end {
                     HStack {
                         Text("End at")
-                        if let startDate = feeding.start {
-                            if !startDate.isSameDateIgnoringTime(as: endDate) {
-                                Text("(\(endDate.formatDateAsRelativeString()))")
-                                    .foregroundStyle(Color.gray)
-                                    .font(.footnote)
-                                    .fontWeight(.light)
-                            }
+                        if !startDate.isSameDateIgnoringTime(as: endDate) {
+                            Text("(\(endDate.formatDateAsRelativeString()))")
+                                .foregroundStyle(Color.gray)
+                                .font(.footnote)
+                                .fontWeight(.light)
                         }
                         DatePicker("", selection: Binding(get: { endDate }, set: { newValue in
                             feeding.end = newValue
@@ -48,7 +46,7 @@ struct FeedView: View {
                         in: startDate...,
                         displayedComponents: .hourAndMinute)
                     }
-                    HStack{
+                    HStack {
                         Spacer()
                         Text("Total feed time of \(startDate.timeIntervalToString(to: endDate))")
                             .foregroundStyle(Color.white.opacity(0.75))
@@ -78,7 +76,6 @@ struct FeedView: View {
             let later = endDate.isTimeLaterThan(date: startDate)
             let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
 
-
             if endDate < startDate, startDate.isSameDateIgnoringTime(as: endDate) {
                 feeding.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)
             }
@@ -99,7 +96,6 @@ struct FeedView: View {
             }
         }
         actionUpdate()
-
     }
 
     func actionUpdate() {

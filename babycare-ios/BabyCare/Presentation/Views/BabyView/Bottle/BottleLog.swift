@@ -44,10 +44,12 @@ struct BottleLog: View {
                     .onTapGesture {
                         self.selectedBottle = bottle
                     }
-                Text("\(bottle.quantity != nil ? String("\(bottle.quantity!) ml") : "")")
-                    .onTapGesture {
-                        self.selectedBottle = bottle
-                    }
+                if let quantity = bottle.quantity, quantity > 0 {
+                    Text("\(quantity) ml")
+                        .onTapGesture {
+                            self.selectedBottle = bottle
+                        }
+                }
             }
             .padding(0)
             .font(.footnote)

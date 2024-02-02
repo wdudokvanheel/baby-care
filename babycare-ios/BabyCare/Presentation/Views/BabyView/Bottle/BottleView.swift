@@ -20,40 +20,65 @@ struct BottleView: View {
     }
 
     init(_ bottle: BottleAction, _ onChange: @escaping (BottleAction) -> Void) {
-        self.quantity = bottle.quantity.debugDescription
+        self.quantity = String(bottle.quantity ?? 0)
         self.bottle = bottle
         self.onChange = onChange
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                Text("Start at")
-                if let startDate = bottle.start {
+            if let startDate = bottle.start {
+                HStack {
+                    Text("Start at")
+
+                    if let endDate = bottle.end {
+                        if !startDate.isSameDateIgnoringTime(as: endDate) {
+                            Text("(\(startDate.formatDateAsRelativeString()))")
+                                .foregroundStyle(Color.gray)
+                                .font(.footnote)
+                                .fontWeight(.light)
+                        }
+                    }
+
                     DatePicker("", selection: Binding(get: { startDate }, set: { newValue in
                         bottle.start = newValue
                         startDateUpdate()
                     }), displayedComponents: .hourAndMinute)
                 }
-            }
 
-            HStack {
-                Text("End at")
                 if let endDate = bottle.end {
-                    DatePicker("", selection: Binding(get: { endDate }, set: { newValue in
-                        bottle.end = newValue
-                        endDateUpdate()
-                    }), displayedComponents: .hourAndMinute)
+                    HStack {
+                        Text("End at")
+
+                        if !startDate.isSameDateIgnoringTime(as: endDate) {
+                            Text("(\(endDate.formatDateAsRelativeString()))")
+                                .foregroundStyle(Color.gray)
+                                .font(.footnote)
+                                .fontWeight(.light)
+                        }
+
+                        DatePicker("", selection: Binding(get: { endDate }, set: { newValue in
+                            bottle.end = newValue
+                            endDateUpdate()
+                        }),
+                        in: startDate...,
+                        displayedComponents: .hourAndMinute)
+                    }
+                    HStack {
+                        Spacer()
+                        Text("Total bottle feeding time of \(startDate.timeIntervalToString(to: endDate))")
+                            .foregroundStyle(Color.white.opacity(0.75))
+                            .font(.footnote)
+                    }
                 }
             }
 
             HStack {
                 Text("Milliliter")
-                TextField("Ml", text: Binding(get: { quantity }, set: { val in
+                TextField("Ml", text: Binding(get: { self.quantity }, set: { val in
                     if self.quantity == val {
                         return
                     }
-                    print("GO")
                     self.quantity = val
                     bottle.quantity = self.quantityInt
                     actionUpdate()
