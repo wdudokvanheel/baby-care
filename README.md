@@ -1,8 +1,7 @@
 ## Todo
 
 - [x] Fix time day before editing
-- [ ] Start time editing while action is enabled
-- [ ] Time elapsed since start
+- [x] Start time editing while action is enabled
 - [ ] Logbook
 - [ ] Night option sleep
 - [ ] Total sleep / feed past 24h

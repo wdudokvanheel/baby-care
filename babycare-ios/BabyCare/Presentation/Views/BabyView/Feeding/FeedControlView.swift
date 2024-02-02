@@ -35,18 +35,34 @@ struct FeedControlView: View {
                 HStack {
                     Image(systemName: "fork.knife.circle")
                         .font(.title2)
-                    Text("Feeding for \(formatDuration(feedDuration))")
+                    Text("Feeding \(formatDuration(feedDuration))")
                     Spacer()
+                    
+                    if let start = feed.start {
+                        VStack(alignment: .trailing) {
+                            DatePicker("", selection: Binding(get: { start }, set: { newValue in
+                                feed.start = newValue
+                                startDateUpdate()
+                                updatefeedDuration()
+                            }),
+                            displayedComponents: .hourAndMinute)
+                            if !start.isSameDateIgnoringTime(as: Date()) {
+                                Text(start.formatDateAsRelativeString())
+                                    .font(.footnote)
+                                    .foregroundStyle(Color.white.opacity(0.25))
+                            }
+                        }
+                    }
                 }
-                .font(.title3)
+                .font(.body)
                 .onReceive(timer) { _ in
-                    updateSleepDuration()
+                    updatefeedDuration()
                 }
                 .onChange(of: feed) {
-                    updateSleepDuration()
+                    updatefeedDuration()
                 }
                 .onAppear {
-                    updateSleepDuration()
+                    updatefeedDuration()
                 }
 
                 HStack {
@@ -58,7 +74,7 @@ struct FeedControlView: View {
 
                     Spacer()
                     
-                    Button("Stop Feed") {
+                    Button("Stop feeding") {
                         model.stopFeed(feed)
                     }
                     .buttonStyle(.borderedProminent)
@@ -92,7 +108,7 @@ struct FeedControlView: View {
 
                     Spacer()
 
-                    Button("Start Feed") {
+                    Button("Start feeding") {
                         model.startFeed()
                     }
                     .buttonStyle(.borderedProminent)
@@ -117,8 +133,26 @@ struct FeedControlView: View {
                 .fill(.mint.opacity(0.5))
         )
     }
+    
+    private func startDateUpdate() {
+        let endDate = Date()
+        if let feed = feed, let startDate = feed.start {
+            let later = endDate.isTimeLaterThan(date: startDate)
+            let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
 
-    private func updateSleepDuration() {
+            if endDate < startDate, startDate.isSameDateIgnoringTime(as: endDate) {
+                feed.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)
+            }
+            else if !later, !sameDay {
+                feed.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+            }
+
+            model.updateAction(feed)
+        }
+    }
+
+
+    private func updatefeedDuration() {
         if let startTime = feed?.start {
             feedDuration = max(0, Int(Date().timeIntervalSince(startTime)))
         }

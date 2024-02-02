@@ -18,7 +18,10 @@ public struct BabySelector<Content: View>: View {
     public var body: some View {
         VStack {
             if let baby = selected {
-                content(baby)
+                ScrollView {
+                    content(baby)
+                }
+                .padding(0)
             }
             Spacer()
             HStack {

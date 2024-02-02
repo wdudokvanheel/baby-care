@@ -12,23 +12,22 @@ public class ApiService {
     }
     
     public func syncActionRemote(_ action: any Action) {
-        return
-//        var action = action
-//        
-//        if action.remoteId == nil || action.remoteId! <= 0 {
-//            saveAction(action) { id in
-//                print("Got assigned id #\(id)")
-//                action.remoteId = id
-//                action.syncRequired = false
-//            }
-//        } else {
-//            updateAction(action) {
-//                print("Action updated")
-//                action.syncRequired = false
-//            } onError: {
-//                print("Error during update")
-//            }
-//        }
+        var action = action
+        
+        if action.remoteId == nil || action.remoteId! <= 0 {
+            saveAction(action) { id in
+                print("Got assigned id #\(id)")
+                action.remoteId = id
+                action.syncRequired = false
+            }
+        } else {
+            updateAction(action) {
+                print("Action updated")
+                action.syncRequired = false
+            } onError: {
+                print("Error during update")
+            }
+        }
     }
     
     public func updateAction(_ action: any Action, onComplete: @escaping () -> Void = {}, onError: @escaping () -> Void = {}) {

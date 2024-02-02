@@ -43,10 +43,26 @@ struct BottleControlView: View {
             if let bottle = self.bottle {
                 HStack {
                     Image(systemName: "takeoutbag.and.cup.and.straw.fill")
-                    Text("Feeding a bottle for \(formatDuration(bottleDuration))")
+                    Text("Feeding \(formatDuration(bottleDuration))")
                     Spacer()
+
+                    if let start = bottle.start {
+                        VStack(alignment: .trailing) {
+                            DatePicker("", selection: Binding(get: { start }, set: { newValue in
+                                bottle.start = newValue
+                                startDateUpdate()
+                                updateBottleDuration()
+                            }),
+                            displayedComponents: .hourAndMinute)
+                            if !start.isSameDateIgnoringTime(as: Date()) {
+                                Text(start.formatDateAsRelativeString())
+                                    .font(.footnote)
+                                    .foregroundStyle(Color.white.opacity(0.25))
+                            }
+                        }
+                    }
                 }
-                .font(.title3)
+                .font(.body)
                 .onReceive(timer) { _ in
                     updateBottleDuration()
                 }
@@ -105,6 +121,23 @@ struct BottleControlView: View {
             RoundedRectangle(cornerRadius: 8)
                 .fill(.brown.opacity(0.5))
         )
+    }
+
+    private func startDateUpdate() {
+        let endDate = Date()
+        if let bottle = bottle, let startDate = bottle.start {
+            let later = endDate.isTimeLaterThan(date: startDate)
+            let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
+
+            if endDate < startDate, startDate.isSameDateIgnoringTime(as: endDate) {
+                bottle.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)
+            }
+            else if !later, !sameDay {
+                bottle.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+            }
+
+            model.updateAction(bottle)
+        }
     }
 
     private func updateBottleDuration() {

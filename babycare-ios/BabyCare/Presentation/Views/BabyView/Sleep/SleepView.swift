@@ -35,7 +35,7 @@ struct SleepView: View {
                         Text("End at")
                         
                         if !startDate.isSameDateIgnoringTime(as: endDate) {
-                            Text("(\(endDate.formatDateAsRelativeString()))")
+                            Text(endDate.formatDateAsRelativeString())
                                 .foregroundStyle(Color.gray)
                                 .font(.footnote)
                                 .fontWeight(.light)

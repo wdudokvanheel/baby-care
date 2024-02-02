@@ -32,10 +32,26 @@ struct SleepControlView: View {
             if let sleep = self.sleep {
                 HStack {
                     Image(systemName: "moon")
-                    Text("Sleeping for \(formatDuration(sleepDuration))")
+                    Text("Sleeping \(formatDuration(sleepDuration))")
                     Spacer()
+
+                    if let start = sleep.start {
+                        VStack(alignment: .trailing) {
+                            DatePicker("", selection: Binding(get: { start }, set: { newValue in
+                                sleep.start = newValue
+                                startDateUpdate()
+                                updateSleepDuration()
+                            }),
+                            displayedComponents: .hourAndMinute)
+                            if !start.isSameDateIgnoringTime(as: Date()) {
+                                Text(start.formatDateAsRelativeString())
+                                    .font(.footnote)
+                                    .foregroundStyle(Color.white.opacity(0.25))
+                            }
+                        }
+                    }
                 }
-                .font(.title3)
+                .font(.body)
                 .onReceive(timer) { _ in
                     updateSleepDuration()
                 }
@@ -46,7 +62,7 @@ struct SleepControlView: View {
                     updateSleepDuration()
                 }
 
-                Button("Stop Sleep") {
+                Button("Stop sleeping") {
                     model.stopSleep(sleep)
                 }
                 .buttonStyle(.borderedProminent)
@@ -60,7 +76,7 @@ struct SleepControlView: View {
                 }
                 .font(.title3)
 
-                Button("Start Sleep") {
+                Button("Start sleeping") {
                     model.startSleep()
                 }
                 .buttonStyle(.borderedProminent)
@@ -75,6 +91,23 @@ struct SleepControlView: View {
             RoundedRectangle(cornerRadius: 8)
                 .fill(.indigo.opacity(0.5))
         )
+    }
+
+    private func startDateUpdate() {
+        let endDate = Date()
+        if let sleep = sleep, let startDate = sleep.start {
+            let later = endDate.isTimeLaterThan(date: startDate)
+            let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
+
+            if endDate < startDate, startDate.isSameDateIgnoringTime(as: endDate) {
+                sleep.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)
+            }
+            else if !later, !sameDay {
+                sleep.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+            }
+
+            model.updateAction(sleep)
+        }
     }
 
     private func updateSleepDuration() {
