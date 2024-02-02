@@ -16,7 +16,7 @@ struct SleepView: View {
                 if let startDate = sleep.start {
                     DatePicker("", selection: Binding(get: { startDate }, set: { newValue in
                         sleep.start = newValue
-                        dateChanged()
+                        startDateUpdate()
                     }), displayedComponents: .hourAndMinute)
                 }
             }
@@ -26,7 +26,7 @@ struct SleepView: View {
                 if let endDate = sleep.end {
                     DatePicker("", selection: Binding(get: { endDate }, set: { newValue in
                         sleep.end = newValue
-                        dateChanged()
+                        endDateUpdate()
                     }), displayedComponents: .hourAndMinute)
                 }
             }
@@ -35,8 +35,34 @@ struct SleepView: View {
         .navigationTitle("Sleep data")
     }
 
-    func dateChanged() {
-        print("Updating action")
+    func startDateUpdate() {
+        if let startDate = sleep.start, let endDate = sleep.end {
+            let later = endDate.isTimeLaterThan(date: startDate)
+            let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
+
+            if endDate < startDate, startDate.isSameDateIgnoringTime(as: endDate) {
+                sleep.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)
+            }
+            else if !later, !sameDay {
+                sleep.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+            }
+        }
+        actionUpdate()
+    }
+
+    func endDateUpdate() {
+        if let startDate = sleep.start, let endDate = sleep.end {
+            let later = endDate.isTimeLaterThan(date: startDate)
+            let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
+
+            if !later, !sameDay {
+                sleep.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+            }
+        }
+        actionUpdate()
+    }
+
+    func actionUpdate() {
         onChange(sleep)
     }
 

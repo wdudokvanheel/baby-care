@@ -1,13 +1,10 @@
 ## Todo
 
-- [x] Spring Boot base project
-- [x] Save & Update API
-- [x] App persist data
-- [x] Authentication
-- [x] App sync data
-- [x] Session tracking in db with clientId & notificationId
-- [x] Notifications/real-time updates
-- [x] API endpoint to set notificationId
-- [x] Auto sync unsaved entities
-- [ ] Support for babies 
-- [ ] Support for multiple users
+- [x] Fix time day before editing
+- [ ] Start time editing while action is enabled
+- [ ] Time elapsed since start
+- [ ] Logbook
+- [ ] Night option sleep
+- [ ] Total sleep / feed past 24h
+- [ ] Total feed L / R breast past 24
+- [ ] Delete function

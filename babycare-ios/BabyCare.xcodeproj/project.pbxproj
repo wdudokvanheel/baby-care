@@ -23,6 +23,7 @@
 		2B1552F12B66819300AD95FE /* BottleActionCreateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552F02B66819300AD95FE /* BottleActionCreateDto.swift */; };
 		2B1552F32B66834500AD95FE /* BottleControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552F22B66834500AD95FE /* BottleControlView.swift */; };
 		2B1552F52B66DA3600AD95FE /* BottleActionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552F42B66DA3600AD95FE /* BottleActionMapper.swift */; };
+		2B1A9A7B2B6BD7D4000FC5A3 /* DateIsSameIgnoringTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A9A7A2B6BD7D4000FC5A3 /* DateIsSameIgnoringTime.swift */; };
 		2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F34B02B54865E004EA670 /* BabyCareApp.swift */; };
 		2B1F34B32B54865E004EA670 /* ServiceInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F34B22B54865E004EA670 /* ServiceInjection.swift */; };
 		2B1F34B52B548660004EA670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F34B42B548660004EA670 /* Assets.xcassets */; };
@@ -91,6 +92,7 @@
 		2B1552F02B66819300AD95FE /* BottleActionCreateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleActionCreateDto.swift; sourceTree = "<group>"; };
 		2B1552F22B66834500AD95FE /* BottleControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleControlView.swift; sourceTree = "<group>"; };
 		2B1552F42B66DA3600AD95FE /* BottleActionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleActionMapper.swift; sourceTree = "<group>"; };
+		2B1A9A7A2B6BD7D4000FC5A3 /* DateIsSameIgnoringTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIsSameIgnoringTime.swift; sourceTree = "<group>"; };
 		2B1F34AD2B54865E004EA670 /* BabyCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B1F34B02B54865E004EA670 /* BabyCareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyCareApp.swift; sourceTree = "<group>"; };
 		2B1F34B22B54865E004EA670 /* ServiceInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInjection.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				2BC0E4D42B691DE700E5A60A /* UIApplicationHideKeyboard.swift */,
+				2B1A9A7A2B6BD7D4000FC5A3 /* DateIsSameIgnoringTime.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				2BF16F082B62887700A84DE3 /* FeedActionUpdateDto.swift in Sources */,
 				2B1552F12B66819300AD95FE /* BottleActionCreateDto.swift in Sources */,
 				2B1552EB2B667FAC00AD95FE /* BottleActionExt.swift in Sources */,
+				2B1A9A7B2B6BD7D4000FC5A3 /* DateIsSameIgnoringTime.swift in Sources */,
 				2B1552EF2B6680A900AD95FE /* BottleActionUpdateDto.swift in Sources */,
 				2B46AE362B5C73B70019D710 /* KeychainItem.swift in Sources */,
 				2B6D4D162B5E9281000F6BFA /* AuthButton.swift in Sources */,

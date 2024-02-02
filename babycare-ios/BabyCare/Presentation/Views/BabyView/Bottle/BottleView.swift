@@ -32,7 +32,7 @@ struct BottleView: View {
                 if let startDate = bottle.start {
                     DatePicker("", selection: Binding(get: { startDate }, set: { newValue in
                         bottle.start = newValue
-                        actionUpdate()
+                        startDateUpdate()
                     }), displayedComponents: .hourAndMinute)
                 }
             }
@@ -42,7 +42,7 @@ struct BottleView: View {
                 if let endDate = bottle.end {
                     DatePicker("", selection: Binding(get: { endDate }, set: { newValue in
                         bottle.end = newValue
-                        actionUpdate()
+                        endDateUpdate()
                     }), displayedComponents: .hourAndMinute)
                 }
             }
@@ -64,7 +64,34 @@ struct BottleView: View {
             Spacer()
         }
         .padding(16)
-        .navigationTitle("Bottle feeding data")
+        .navigationTitle("Bottle bottle data")
+    }
+
+    func startDateUpdate() {
+        if let startDate = bottle.start, let endDate = bottle.end {
+            let later = endDate.isTimeLaterThan(date: startDate)
+            let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
+
+            if endDate < startDate, startDate.isSameDateIgnoringTime(as: endDate) {
+                bottle.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)
+            }
+            else if !later, !sameDay {
+                bottle.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+            }
+        }
+        actionUpdate()
+    }
+
+    func endDateUpdate() {
+        if let startDate = bottle.start, let endDate = bottle.end {
+            let later = endDate.isTimeLaterThan(date: startDate)
+            let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
+
+            if !later, !sameDay {
+                bottle.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+            }
+        }
+        actionUpdate()
     }
 
     func actionUpdate() {

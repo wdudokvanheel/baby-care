@@ -36,7 +36,7 @@ struct BottleLog: View {
     var body: some View {
         ForEach(items, id: \.self) { bottle in
             LazyVGrid(columns: gridColumns, spacing: 0) {
-                Text(formatdate(date: bottle.start!))
+                Text(bottle.start?.formatDateTimeAsRelativeString() ?? "")
                     .onTapGesture {
                         self.selectedBottle = bottle
                     }
@@ -65,15 +65,6 @@ struct BottleLog: View {
                 EmptyView()
             }
         }
-    }
-
-    func formatdate(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .short
-        dateFormatter.doesRelativeDateFormatting = true
-
-        return dateFormatter.string(from: date)
     }
 
     func timeIntervalString(from startDate: Date, to endDate: Date) -> String {
