@@ -12,8 +12,6 @@ public class ApiService {
     }
     
     public func syncActionRemote(_ action: any Action) {
-        var action = action
-        
         if action.remoteId == nil || action.remoteId! <= 0 {
             saveAction(action) { id in
                 print("Got assigned id #\(id)")

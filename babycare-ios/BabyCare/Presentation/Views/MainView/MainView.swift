@@ -15,9 +15,20 @@ struct MainView: View {
                     BabySelector { baby in
                         BabyView(model: BabyViewModel(services: model.services, baby: baby))
                     }
+                    .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "gear")
+                            .imageScale(.large)
+                    })
                 }
-                AuthButton(authService: model.services.authService)
+                UnAuthGuard(model.services.authService) {
+                    Button("Login") {
+                        model.login()
+                    }
+                    .font(.footnote)
+                    .foregroundColor(.white)
+                }
             }
+
             .padding()
             .sheet(isPresented: $model.showLogin, content: LoginView.init)
             .onReceive(timer) { input in

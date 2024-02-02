@@ -28,6 +28,8 @@ class MainViewModel: ObservableObject {
                 do {
                     try services.container.mainContext.delete(model: Baby.self)
                     try services.container.mainContext.delete(model: BabyAction.self)
+                    try services.container.mainContext.delete(model: FeedAction.self)
+                    try services.container.mainContext.delete(model: BottleAction.self)
                     try services.container.mainContext.save()
                 }
                 catch {}

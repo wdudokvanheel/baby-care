@@ -20,6 +20,7 @@ public struct BabySelector<Content: View>: View {
             if let baby = selected {
                 ScrollView {
                     content(baby)
+                        .navigationBarTitleDisplayMode(.inline)
                 }
                 .padding(0)
             }

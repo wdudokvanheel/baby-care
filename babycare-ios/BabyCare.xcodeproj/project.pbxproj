@@ -35,6 +35,7 @@
 		2B46AE462B5D3CFF0019D710 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE452B5D3CFF0019D710 /* SyncService.swift */; };
 		2B46AE482B5D781B0019D710 /* BabyCareDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE472B5D781B0019D710 /* BabyCareDelegate.swift */; };
 		2B46AE4B2B5D9D5E0019D710 /* BabyCareServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE4A2B5D9D5E0019D710 /* BabyCareServiceContainer.swift */; };
+		2B51CBEE2B6D2363009A50F3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B51CBED2B6D2363009A50F3 /* SettingsView.swift */; };
 		2B6D4D0C2B5E6E31000F6BFA /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D0B2B5E6E31000F6BFA /* NotificationService.swift */; };
 		2B6D4D0E2B5E825E000F6BFA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D0D2B5E825E000F6BFA /* LoginView.swift */; };
 		2B6D4D102B5E8464000F6BFA /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D0F2B5E8464000F6BFA /* AuthenticationRequest.swift */; };
@@ -107,6 +108,7 @@
 		2B46AE492B5D794A0019D710 /* BabyCare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyCare.entitlements; sourceTree = "<group>"; };
 		2B46AE4A2B5D9D5E0019D710 /* BabyCareServiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyCareServiceContainer.swift; sourceTree = "<group>"; };
 		2B46AE4C2B5DB8CE0019D710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2B51CBED2B6D2363009A50F3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2B6D4D0B2B5E6E31000F6BFA /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		2B6D4D0D2B5E825E000F6BFA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2B6D4D0F2B5E8464000F6BFA /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
@@ -235,6 +237,14 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		2B51CBEC2B6D2359009A50F3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2B51CBED2B6D2363009A50F3 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		2B9FDA8E2B5486D400B91132 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +287,7 @@
 		2BF16ED62B613AF200A84DE3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2B51CBEC2B6D2359009A50F3 /* Settings */,
 				2BF16EDA2B613B3B00A84DE3 /* BabyView */,
 				2BF16ED82B613B1D00A84DE3 /* MainView */,
 			);
@@ -484,6 +495,7 @@
 				2BF16EFD2B6280B900A84DE3 /* DefaultActionMapper.swift in Sources */,
 				2BF16EC12B60104000A84DE3 /* BabyDto.swift in Sources */,
 				2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */,
+				2B51CBEE2B6D2363009A50F3 /* SettingsView.swift in Sources */,
 				2BF16EF82B62662900A84DE3 /* FeedActionExt.swift in Sources */,
 				2B0FFD5C2B595D9100C20C9A /* BabyActionDto.swift in Sources */,
 				2BC0E4D52B691DE700E5A60A /* UIApplicationHideKeyboard.swift in Sources */,
