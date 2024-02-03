@@ -29,6 +29,7 @@ struct BottleControlView: View {
         let filter = #Predicate<BottleAction> { action in
             action.action ?? "" == type &&
                 action.end == nil &&
+                action.deleted == false &&
                 action.baby?.persistentModelID == babyId
         }
         var fetchDescriptor = FetchDescriptor<BottleAction>(predicate: filter)

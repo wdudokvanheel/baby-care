@@ -51,4 +51,8 @@ public class BabyViewModel: ObservableObject {
         action.syncRequired = true
         actionService.persistAction(action)
     }
+    
+    func deleteAction(_ action: any Action) {
+        actionService.deleteAction(action)
+    }
 }

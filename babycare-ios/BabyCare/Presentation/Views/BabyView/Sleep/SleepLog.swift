@@ -24,6 +24,7 @@ struct SleepLog: View {
             action.action ?? "" == type &&
                 action.start != nil &&
                 action.end != nil &&
+                action.deleted == false &&
                 action.baby?.persistentModelID == babyId
         }
 

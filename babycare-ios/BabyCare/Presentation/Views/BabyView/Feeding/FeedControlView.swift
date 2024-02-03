@@ -19,11 +19,12 @@ struct FeedControlView: View {
         let filter = #Predicate<FeedAction> { action in
             action.action ?? "" == type &&
                 action.end == nil &&
+                action.deleted == false &&
                 action.baby?.persistentModelID == babyId
         }
         var fetchDescriptor = FetchDescriptor<FeedAction>(predicate: filter)
         fetchDescriptor.fetchLimit = 1
-        
+
         _feedQuery = Query(fetchDescriptor)
     }
 
@@ -37,7 +38,7 @@ struct FeedControlView: View {
                         .font(.title2)
                     Text("Feeding \(formatDuration(feedDuration))")
                     Spacer()
-                    
+
                     if let start = feed.start {
                         VStack(alignment: .trailing) {
                             DatePicker("", selection: Binding(get: { start }, set: { newValue in
@@ -73,15 +74,15 @@ struct FeedControlView: View {
                     .tint(feed.feedSide == .left ? .mint : .mint.opacity(0.3))
 
                     Spacer()
-                    
+
                     Button("Stop feeding") {
                         model.stopFeed(feed)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.mint.opacity(0.9))
-                    
+
                     Spacer()
-                    
+
                     Button("R") {
                         model.setFeedSide(feed, .right)
                     }
@@ -133,7 +134,7 @@ struct FeedControlView: View {
                 .fill(.mint.opacity(0.5))
         )
     }
-    
+
     private func startDateUpdate() {
         let endDate = Date()
         if let feed = feed, let startDate = feed.start {
@@ -150,7 +151,6 @@ struct FeedControlView: View {
             model.updateAction(feed)
         }
     }
-
 
     private func updatefeedDuration() {
         if let startTime = feed?.start {
