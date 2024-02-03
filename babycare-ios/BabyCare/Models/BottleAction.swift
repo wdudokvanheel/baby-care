@@ -3,6 +3,7 @@ import SwiftData
 
 @Model public class BottleAction {
     public var action: String?
+    public var deleted: Bool?
     public var end: Date?
     public var id: UUID?
     public var remoteId: Int64? = 0

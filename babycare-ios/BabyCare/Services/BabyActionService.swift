@@ -52,6 +52,18 @@ public class BabyActionService: ObservableObject {
         }
     }
 
+    public func deleteAction(_ action: any Action) {
+        action.deleted = true
+        action.syncRequired = true
+
+        apiService.deleteAction(action) { action in
+            print("Deleted action: \(action)")
+            Task {
+                await self.insertOrUpdateAction(action)
+            }
+        }
+    }
+
     public func insertOrUpdateAction(_ dto: any ActionDto, forBaby: Baby? = nil) async {
         let type = BabyActionType(rawValue: dto.type.lowercased())
         guard let actionType = type else {
@@ -59,6 +71,18 @@ public class BabyActionService: ObservableObject {
         }
 
         let action = await getByRemoteId(type: actionType, dto.id)
+
+        if let deleted = dto.deleted, deleted {
+            print("Action is already deleted; deleting local action if available (#\(dto.id))")
+            if let action = action {
+                print("Deleting action: \(action)")
+                await delete(action)
+            }
+
+            // Stop processing action if it's deleted
+            return
+        }
+
         var forBaby = forBaby
 
         if forBaby == nil {
@@ -73,11 +97,13 @@ public class BabyActionService: ObservableObject {
             await MainActor.run {
                 print("Updating action #\(dto.id)")
                 action.baby = baby
+                action.syncRequired = false
                 action.update(source: dto)
             }
         } else {
             print("Adding action #\(dto.id)")
             let newAction = mappers.getMapper(type: actionType).createFromDto(dto)
+            newAction.syncRequired = false
             newAction.baby = baby
             await save(newAction)
         }
@@ -129,6 +155,12 @@ public class BabyActionService: ObservableObject {
     public func save(_ action: any Action) async {
         await MainActor.run {
             self.container.mainContext.insert(action)
+        }
+    }
+
+    public func delete(_ action: any Action) async {
+        await MainActor.run {
+            self.container.mainContext.delete(action)
         }
     }
 }

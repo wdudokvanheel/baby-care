@@ -54,6 +54,23 @@ public class ApiService {
         }
     }
     
+    public func deleteAction(_ action: any Action, _ onComplete: @escaping (any ActionDto) -> Void) {
+        guard let actionId = action.remoteId else {
+            return
+        }
+        
+        guard let babyId = action.baby?.remoteId else {
+            print("Failed to save action: no remoteId for baby")
+            return
+        }
+        
+        performDeleteRequest(path: "baby/\(babyId)/action/\(actionId)/") { data in
+            if let result: BabyActionDto = (self.parseJson(responseData: data) as BabyActionDto?) {
+                onComplete(result)
+            }
+        } onError: {}
+    }
+    
     public func saveAction(_ action: any Action, onComplete: @escaping (Int64) -> Void = { _ in }, onError: @escaping () -> Void = {}) {
         let dto = mappers
             .getMapper(type: action.type)
@@ -83,7 +100,7 @@ public class ApiService {
 
     // TODO: Single callback
     // TODO: Auto decode JSON with generics
-    public func performRequest<Dto: Encodable>(dto: Dto, path: String, method: String = "POST", onComplete: @escaping (Data) -> Void = { _ in }, onError: @escaping () -> Void = {}) {
+    public func performRequest<Dto: Encodable>(dto: Dto? = nil, path: String, method: String = "POST", onComplete: @escaping (Data) -> Void = { _ in }, onError: @escaping () -> Void = {}) {
         let url = URL(string: "\(BabyCareApp.API_URL)/\(path)")
         let session = URLSession.shared
         
@@ -101,6 +118,48 @@ public class ApiService {
         }
         
         request.httpBody = json.data(using: .utf8)
+        
+        let task = session.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                print("ApiRequest Failed: No data")
+                onError()
+                return
+            }
+            
+//            print("API response: \(String(decoding: data, as: UTF8.self))")
+
+            if let error = error {
+                print("Request Failed: \(error.localizedDescription)")
+                onError()
+            } else {
+                if let response = response as? HTTPURLResponse {
+                    if response.statusCode == 200 {
+                        onComplete(data)
+                    } else {
+                        print("Error status code: \(response.statusCode)")
+                        print("\(String(data: data, encoding: .utf8)!)")
+                        onError()
+                    }
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    public func performDeleteRequest(path: String, onComplete: @escaping (Data) -> Void = { _ in }, onError: @escaping () -> Void = {}) {
+        let url = URL(string: "\(BabyCareApp.API_URL)/\(path)")
+        let session = URLSession.shared
+        
+        print("Performing DELETE request to \(url?.absoluteString ?? "")")
+        
+        var request = URLRequest(url: url!)
+        request.httpMethod = "DELETE"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        if let token = authService.token {
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
         
         let task = session.dataTask(with: request) { data, response, error in
             guard let data = data else {

@@ -52,9 +52,7 @@ struct FeedLog: View {
         }
 
         if let selected = self.selectedFeed {
-            let view = FeedView(feeding: selected, onChange: { feed in
-                self.model.updateAction(feed)
-            })
+            let view = FeedView(feeding: selected, onChange: model.updateAction, onDelete: self.model.deleteAction)
 
             NavigationLink(destination: view, isActive: Binding<Bool>(
                 get: { self.selectedFeed != nil },

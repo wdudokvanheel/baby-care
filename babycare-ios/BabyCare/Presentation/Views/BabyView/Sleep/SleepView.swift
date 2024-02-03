@@ -1,20 +1,27 @@
 import SwiftUI
 
 struct SleepView: View {
+    @Environment(\.presentationMode)
+    var presentationMode
+    
     @State
     private var showingStartPicker = false
     @State
     private var showingEndPicker = false
     @State
+    private var showingDeleteConfirmation = false
+    
+    @State
     var sleep: BabyAction
     var onChange: (BabyAction) -> Void
+    var onDelete: (BabyAction) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             if let startDate = sleep.start {
                 HStack {
                     Text("Start at")
-                    
+
                     if let endDate = sleep.end {
                         if !startDate.isSameDateIgnoringTime(as: endDate) {
                             Text("(\(startDate.formatDateAsRelativeString()))")
@@ -23,7 +30,7 @@ struct SleepView: View {
                                 .fontWeight(.light)
                         }
                     }
-                    
+
                     DatePicker("", selection: Binding(get: { startDate }, set: { newValue in
                         sleep.start = newValue
                         startDateUpdate()
@@ -33,14 +40,14 @@ struct SleepView: View {
                 if let endDate = sleep.end {
                     HStack {
                         Text("End at")
-                        
+
                         if !startDate.isSameDateIgnoringTime(as: endDate) {
                             Text(endDate.formatDateAsRelativeString())
                                 .foregroundStyle(Color.gray)
                                 .font(.footnote)
                                 .fontWeight(.light)
                         }
-                        
+
                         DatePicker("", selection: Binding(get: { endDate }, set: { newValue in
                             sleep.end = newValue
                             endDateUpdate()
@@ -55,6 +62,12 @@ struct SleepView: View {
                             .font(.footnote)
                     }
                 }
+            }
+            Spacer()
+
+            DeleteButton {
+                onDelete(sleep)
+                presentationMode.wrappedValue.dismiss()
             }
         }
         .padding(16)

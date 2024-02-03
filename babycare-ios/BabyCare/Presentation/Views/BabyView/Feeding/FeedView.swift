@@ -1,13 +1,20 @@
 import SwiftUI
 
 struct FeedView: View {
+    @Environment(\.presentationMode)
+    var presentationMode
+
     @State
     private var showingStartPicker = false
     @State
     private var showingEndPicker = false
     @State
+    private var showingDeleteConfirmation = false
+
+    @State
     var feeding: FeedAction
     var onChange: (FeedAction) -> Void
+    var onDelete: (FeedAction) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -65,6 +72,13 @@ struct FeedView: View {
                 .onChange(of: feeding.feedSide) {
                     actionUpdate()
                 }
+            }
+
+            Spacer()
+
+            DeleteButton {
+                onDelete(feeding)
+                presentationMode.wrappedValue.dismiss()
             }
         }
         .padding(16)

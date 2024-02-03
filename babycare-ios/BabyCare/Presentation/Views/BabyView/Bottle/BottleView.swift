@@ -2,27 +2,28 @@ import Combine
 import SwiftUI
 
 struct BottleView: View {
+    @Environment(\.presentationMode) 
+    private var presentationMode
+
     @State
     private var showingStartPicker = false
     @State
     private var showingEndPicker = false
     @State
+    private var quantity: String = "0"
+    @State
+    private var showingDeleteConfirmation = false
+
+    @State
     var bottle: BottleAction
     var onChange: (BottleAction) -> Void
-    @State
-    var quantity: String = "0"
+    var onDelete: (BottleAction) -> Void
 
     var quantityInt: Int64? {
         if quantity.isEmpty {
             return nil
         }
         return Int64(quantity)
-    }
-
-    init(_ bottle: BottleAction, _ onChange: @escaping (BottleAction) -> Void) {
-        self.quantity = String(bottle.quantity ?? 0)
-        self.bottle = bottle
-        self.onChange = onChange
     }
 
     var body: some View {
@@ -87,6 +88,14 @@ struct BottleView: View {
                 .keyboardType(.numberPad)
             }
             Spacer()
+
+            DeleteButton {
+                onDelete(bottle)
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
+        .onAppear {
+            self.quantity = String(bottle.quantity ?? 0)
         }
         .padding(16)
         .navigationTitle("Bottle bottle data")

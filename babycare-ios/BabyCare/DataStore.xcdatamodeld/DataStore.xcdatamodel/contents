@@ -9,6 +9,7 @@
     </entity>
     <entity name="BabyAction" representedClassName="BabyAction" syncable="YES">
         <attribute name="action" optional="YES" attributeType="String"/>
+        <attribute name="deleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="end" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="remoteId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -18,6 +19,7 @@
     </entity>
     <entity name="BottleAction" representedClassName="BabyAction" syncable="YES">
         <attribute name="action" optional="YES" attributeType="String"/>
+        <attribute name="deleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="end" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="quantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -28,6 +30,7 @@
     </entity>
     <entity name="FeedAction" representedClassName="BabyAction" syncable="YES">
         <attribute name="action" optional="YES" attributeType="String"/>
+        <attribute name="deleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="end" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="remoteId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

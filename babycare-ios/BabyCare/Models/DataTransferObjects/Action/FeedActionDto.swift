@@ -6,6 +6,7 @@ public struct FeedActionDto: ActionDto {
     public var id: Int64
     public var babyId: Int64
     public var type: String
+    public var deleted: Bool?
     public var start: Date
     public var end: Date?
     public var side: String?

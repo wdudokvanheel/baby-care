@@ -18,6 +18,7 @@ struct SleepControlView: View {
         let filter = #Predicate<BabyAction> { action in
             action.action ?? "" == type &&
                 action.end == nil &&
+                action.deleted == false &&
                 action.baby?.persistentModelID == babyId
         }
         var fetchDescriptor = FetchDescriptor<BabyAction>(predicate: filter)

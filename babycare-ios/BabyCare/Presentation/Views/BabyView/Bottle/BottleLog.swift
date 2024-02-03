@@ -56,9 +56,7 @@ struct BottleLog: View {
         }
 
         if let selected = self.selectedBottle {
-            let view = BottleView(selected) { bottle in
-                self.model.updateAction(bottle)
-            }
+            let view = BottleView(bottle: selected, onChange: model.updateAction, onDelete: model.deleteAction)
 
             NavigationLink(destination: view, isActive: Binding<Bool>(
                 get: { self.selectedBottle != nil },
