@@ -48,7 +48,7 @@ public class BabyActionController {
     }
 
     @PostMapping("action/*")
-    public ResponseEntity<BabyActionDto> saveAction(@RequestBody ActionCreateRequest request, @PathVariable long babyId, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
+    public ResponseEntity<BabyActionDto> createAction(@RequestBody ActionCreateRequest request, @PathVariable long babyId, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException {
         Baby baby = babyService.getBabyByUser(session.getUser(), babyId);
         BabyAction action = mapper.fromCreateDto(request);
         action.setBaby(baby);
@@ -77,6 +77,26 @@ public class BabyActionController {
         action = mapper.fromUpdateDto(action, request);
         action.setLastModifiedBy(session);
         action = actionService.save(action);
+
+        BabyActionDto dto = mapper.toDto(action);
+        notificationService.notifyClientsOfUpdate(session, dto);
+        return ResponseEntity.ok(dto);
+    }
+
+    @DeleteMapping("action/{id}/")
+    public ResponseEntity<BabyActionDto> deleteAction(@PathVariable Long id, @PathVariable long babyId, @AuthenticationPrincipal AuthSession session) throws EntityNotFoundException, JsonProcessingException {
+        Baby baby = babyService.getBabyByUser(session.getUser(), babyId);
+        BabyAction action = actionService.getById(id);
+        if (action == null || action.baby != baby) {
+            // TODO Improve error reporting
+            throw new EntityNotFoundException("Action", id);
+        }
+
+        if (!action.isDeleted()) {
+            action.setDeleted(true);
+            action.setLastModifiedBy(session);
+            action = actionService.save(action);
+        }
 
         BabyActionDto dto = mapper.toDto(action);
         notificationService.notifyClientsOfUpdate(session, dto);

@@ -15,6 +15,9 @@ public class BabyAction extends DomainEntity {
     @Enumerated(EnumType.STRING)
     private BabyActionType type;
 
+    @Basic(optional = false)
+    private boolean deleted = false;
+
     private Date start;
     private Date end;
 
@@ -35,6 +38,14 @@ public class BabyAction extends DomainEntity {
 
     public void setType(BabyActionType type) {
         this.type = type;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Date getStart() {
@@ -60,6 +71,4 @@ public class BabyAction extends DomainEntity {
     public void setLastModifiedBy(AuthSession lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
-
-
 }
