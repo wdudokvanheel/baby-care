@@ -19,7 +19,7 @@ struct FeedControlView: View {
         let filter = #Predicate<FeedAction> { action in
             action.action ?? "" == type &&
                 action.end == nil &&
-                action.deleted == false &&
+                action.deleted != true &&
                 action.baby?.persistentModelID == babyId
         }
         var fetchDescriptor = FetchDescriptor<FeedAction>(predicate: filter)

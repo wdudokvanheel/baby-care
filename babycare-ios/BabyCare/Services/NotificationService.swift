@@ -31,7 +31,36 @@ public class NotificationService {
         }
         if let dto = decodeActionDto(from: data) {
             Task {
-                await actionService.insertOrUpdateAction(dto)
+                let update = await actionService.insertOrUpdateAction(dto)
+
+                if let action = update.action {
+                    let id = "baby_\(action.baby?.remoteId ?? 0)_\(action.type.rawValue.lowercased())"
+                    if update.status == .STARTED {
+                        showLocalNotification(id: id, title: "\(action.baby!.displayName) started \(action.type.rawValue.lowercased())", message: "\(action.baby!.displayName) started \(action.type.rawValue.lowercased())")
+                    }
+                    else if update.status == .ENDED {
+                        showLocalNotification(id: id, title: "\(action.baby!.displayName) stopped \(action.type.rawValue.lowercased())", message: "\(action.baby!.displayName) stopped \(action.type.rawValue.lowercased())")
+                    }
+                }
+            }
+        }
+    }
+
+    func showLocalNotification(id: String, title: String, message: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = message
+        content.sound = UNNotificationSound.default
+
+        // Deliver the notification in 5 seconds
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.01, repeats: false)
+
+        // Schedule the notification
+        let request = UNNotificationRequest(identifier: "NotificationServiceMessage_", content: content, trigger: trigger)
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request) { (error: Error?) in
+            if let error = error {
+                print("Error scheduling notification: \(error.localizedDescription)")
             }
         }
     }

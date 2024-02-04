@@ -64,10 +64,11 @@ public class BabyActionService: ObservableObject {
         }
     }
 
-    public func insertOrUpdateAction(_ dto: any ActionDto, forBaby: Baby? = nil) async {
+    @discardableResult
+    public func insertOrUpdateAction(_ dto: any ActionDto, forBaby: Baby? = nil) async -> UpdateStatus {
         let type = BabyActionType(rawValue: dto.type.lowercased())
         guard let actionType = type else {
-            return
+            return UpdateStatus(.ERROR)
         }
 
         let action = await getByRemoteId(type: actionType, dto.id)
@@ -80,7 +81,7 @@ public class BabyActionService: ObservableObject {
             }
 
             // Stop processing action if it's deleted
-            return
+            return UpdateStatus(.DELETED)
         }
 
         var forBaby = forBaby
@@ -90,22 +91,35 @@ public class BabyActionService: ObservableObject {
         }
 
         guard let baby = forBaby else {
-            return
+            return UpdateStatus(.ERROR)
         }
+        var updateType: ACTION_SYNC_STATUS = .UPDATED
 
         if let action = action {
+            if action.end == nil, dto.end != nil {
+                updateType = .ENDED
+            }
+
             await MainActor.run {
                 print("Updating action #\(dto.id)")
                 action.baby = baby
+                action.deleted = false
                 action.syncRequired = false
                 action.update(source: dto)
+//                Task {
+//                    await save(action)
+//                }
             }
+            return UpdateStatus(updateType, action)
         } else {
             print("Adding action #\(dto.id)")
+            updateType = .STARTED
             let newAction = mappers.getMapper(type: actionType).createFromDto(dto)
+            newAction.deleted = false
             newAction.syncRequired = false
             newAction.baby = baby
             await save(newAction)
+            return UpdateStatus(updateType, newAction)
         }
     }
 
@@ -163,4 +177,22 @@ public class BabyActionService: ObservableObject {
             self.container.mainContext.delete(action)
         }
     }
+}
+
+public struct UpdateStatus {
+    let action: (any Action)?
+    let status: ACTION_SYNC_STATUS
+
+    init(_ status: ACTION_SYNC_STATUS, _ action: (any Action)? = nil) {
+        self.action = action
+        self.status = status
+    }
+}
+
+public enum ACTION_SYNC_STATUS {
+    case STARTED
+    case ENDED
+    case UPDATED
+    case DELETED
+    case ERROR
 }

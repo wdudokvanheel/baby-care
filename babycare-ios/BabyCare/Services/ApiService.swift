@@ -82,7 +82,7 @@ public class ApiService {
             return
         }
         
-        guard let babyId = action.baby?.remoteId else {
+        guard let babyId = baby.remoteId else {
             print("Failed to save action: no remoteId for baby")
             onError()
             return
