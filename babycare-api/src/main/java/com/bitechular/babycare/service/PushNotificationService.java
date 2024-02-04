@@ -64,10 +64,14 @@ public class PushNotificationService {
             return;
         }
 
+        List<String> ids = authService.getNotificationIdsForUpdate(sender);
+        if(ids.size() == 0){
+            return;
+        }
+
         try {
             String data = mapper.writeValueAsString(action);
-            logger.debug("Sending notification data: {}", data);
-            List<String> ids = authService.getNotificationIdsForUpdate(sender);
+            logger.debug("Sending notification data: {} to {} clients", data, ids.size());
 
             for (String id : ids) {
                 logger.debug("\t To id: {}", id);
@@ -94,9 +98,13 @@ public class PushNotificationService {
         future.whenComplete((response, cause) -> {
             if (response != null) {
                 // Handle the push notification response as before from here.
-                logger.error("Notification denied: {}", response.getRejectionReason().orElse(""));
-                authService.invalidateNotificationId(to);
-
+                if (!response.isAccepted()) {
+                    logger.error("Notification denied: {}", response.getRejectionReason().orElse(""));
+                    authService.invalidateNotificationId(to);
+                }
+                else{
+                    logger.info("Send notification successful to {}: {}", to, response);
+                }
             } else {
                 // Something went wrong when trying to send the notification to the
                 // APNs server. Note that this is distinct from a rejection from
