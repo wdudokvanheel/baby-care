@@ -1,4 +1,6 @@
-package com.bitechular.babycare.api.dto.babyaction;
+package com.bitechular.babycare.api.dto.babyaction.bottle;
+
+import com.bitechular.babycare.api.dto.babyaction.ActionCreateRequest;
 
 public class BottleActionCreateRequest extends ActionCreateRequest {
     public int quantity;

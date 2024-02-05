@@ -2,8 +2,8 @@ package com.bitechular.babycare.api.mapper.action;
 
 import com.bitechular.babycare.api.dto.babyaction.ActionCreateRequest;
 import com.bitechular.babycare.api.dto.babyaction.ActionUpdateRequest;
-import com.bitechular.babycare.api.dto.babyaction.BottleActionDto;
-import com.bitechular.babycare.api.dto.babyaction.BottleActionUpdateRequest;
+import com.bitechular.babycare.api.dto.babyaction.bottle.BottleActionDto;
+import com.bitechular.babycare.api.dto.babyaction.bottle.BottleActionUpdateRequest;
 import com.bitechular.babycare.data.model.BabyActionType;
 import com.bitechular.babycare.data.model.BottleAction;
 import org.springframework.stereotype.Service;

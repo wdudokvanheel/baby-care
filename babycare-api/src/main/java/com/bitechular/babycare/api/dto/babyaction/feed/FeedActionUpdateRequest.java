@@ -1,8 +1,9 @@
-package com.bitechular.babycare.api.dto.babyaction;
+package com.bitechular.babycare.api.dto.babyaction.feed;
 
+import com.bitechular.babycare.api.dto.babyaction.ActionUpdateRequest;
 import com.bitechular.babycare.data.model.FeedSide;
 
-public class FeedActionCreateRequest extends ActionCreateRequest {
+public class FeedActionUpdateRequest extends ActionUpdateRequest {
     public FeedSide side;
 
     public FeedSide getSide() {

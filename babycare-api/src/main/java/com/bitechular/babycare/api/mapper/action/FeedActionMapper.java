@@ -2,8 +2,8 @@ package com.bitechular.babycare.api.mapper.action;
 
 import com.bitechular.babycare.api.dto.babyaction.ActionCreateRequest;
 import com.bitechular.babycare.api.dto.babyaction.ActionUpdateRequest;
-import com.bitechular.babycare.api.dto.babyaction.FeedActionDto;
-import com.bitechular.babycare.api.dto.babyaction.FeedActionUpdateRequest;
+import com.bitechular.babycare.api.dto.babyaction.feed.FeedActionDto;
+import com.bitechular.babycare.api.dto.babyaction.feed.FeedActionUpdateRequest;
 import com.bitechular.babycare.data.model.BabyActionType;
 import com.bitechular.babycare.data.model.FeedAction;
 import org.springframework.stereotype.Service;

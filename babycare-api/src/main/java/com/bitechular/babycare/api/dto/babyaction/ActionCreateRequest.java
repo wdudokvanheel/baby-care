@@ -1,5 +1,8 @@
 package com.bitechular.babycare.api.dto.babyaction;
 
+import com.bitechular.babycare.api.dto.babyaction.bottle.BottleActionCreateRequest;
+import com.bitechular.babycare.api.dto.babyaction.feed.FeedActionCreateRequest;
+import com.bitechular.babycare.api.dto.babyaction.sleep.SleepActionCreateRequest;
 import com.bitechular.babycare.data.model.BabyActionType;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -8,7 +11,7 @@ import java.util.Date;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", visible = true)
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = ActionCreateRequest.class, name = "SLEEP"),
+        @JsonSubTypes.Type(value = SleepActionCreateRequest.class, name = "SLEEP"),
         @JsonSubTypes.Type(value = FeedActionCreateRequest.class, name = "FEED"),
         @JsonSubTypes.Type(value = BottleActionCreateRequest.class, name = "BOTTLE")
 })

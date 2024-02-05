@@ -1,4 +1,6 @@
-package com.bitechular.babycare.api.dto.babyaction;
+package com.bitechular.babycare.api.dto.babyaction.bottle;
+
+import com.bitechular.babycare.api.dto.babyaction.BabyActionDto;
 
 public class BottleActionDto extends BabyActionDto {
     public int quantity;
