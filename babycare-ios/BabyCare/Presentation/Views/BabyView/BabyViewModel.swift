@@ -13,10 +13,15 @@ public class BabyViewModel: ObservableObject {
     }
 
     func startSleep() {
-        actionService.startAction(baby: baby, type: .sleep)
+        let action: SleepAction = actionService.createAction(baby: baby, type: .sleep)
+
+        let hour = Calendar.current.component(.hour, from: Date())
+        action.night = hour >= BabyCareApp.nightStartHour || hour < BabyCareApp.nightEndHour
+        
+        actionService.persistAction(action)
     }
 
-    func stopSleep(_ action: BabyAction) {
+    func stopSleep(_ action: SleepAction) {
         actionService.endAction(action)
     }
 
@@ -51,7 +56,7 @@ public class BabyViewModel: ObservableObject {
         action.syncRequired = true
         actionService.persistAction(action)
     }
-    
+
     func deleteAction(_ action: any Action) {
         actionService.deleteAction(action)
     }

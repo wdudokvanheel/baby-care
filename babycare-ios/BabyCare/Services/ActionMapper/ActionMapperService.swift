@@ -7,6 +7,7 @@ public class ActionMapperService: ObservableObject {
     private(set) var defaultMapper: any ActionMapper = DefaultActionMapper()
 
     init() {
+        mappers[.sleep] = SleepActionMapper()
         mappers[.feed] = FeedActionMapper()
         mappers[.bottle] = BottleActionMapper()
     }

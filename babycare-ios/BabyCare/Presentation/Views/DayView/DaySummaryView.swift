@@ -13,7 +13,7 @@ struct DaySummaryView: View {
     var date: Date
 
     @Query()
-    var sleepItems: [BabyAction]
+    var sleepItems: [SleepAction]
     @Query()
     var feedItems: [FeedAction]
     @Query()

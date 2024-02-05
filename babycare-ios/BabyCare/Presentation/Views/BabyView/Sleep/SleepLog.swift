@@ -6,20 +6,20 @@ struct SleepLog: View {
     private var model: BabyViewModel
 
     @Query()
-    var items: [BabyAction]
+    var items: [SleepAction]
 
     init(_ model: BabyViewModel) {
         let type = BabyActionType.sleep.rawValue
         let babyId = model.baby.persistentModelID
 
-        let filter = #Predicate<BabyAction> { action in
+        let filter = #Predicate<SleepAction> { action in
             action.action == type &&
                 action.end != nil &&
                 action.deleted == false &&
                 action.baby?.persistentModelID == babyId
         }
 
-        var fetchDescriptor = FetchDescriptor<BabyAction>(predicate: filter, sortBy: [SortDescriptor<BabyAction>(\.end, order: .reverse)])
+        var fetchDescriptor = FetchDescriptor<SleepAction>(predicate: filter, sortBy: [SortDescriptor<SleepAction>(\.end, order: .reverse)])
         fetchDescriptor.fetchLimit = 3
         _items = Query(fetchDescriptor)
     }
@@ -31,10 +31,10 @@ struct SleepLog: View {
 
 struct SleepLogView: View {
     var model: BabyViewModel
-    var items: [BabyAction]
+    var items: [SleepAction]
 
     @State
-    private var selectedSleep: BabyAction?
+    private var selectedSleep: SleepAction?
 
     private let gridColumns = [
         GridItem(.flexible(), alignment: .leading),

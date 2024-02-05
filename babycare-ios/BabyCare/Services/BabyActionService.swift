@@ -17,8 +17,8 @@ public class BabyActionService: ObservableObject {
     }
 
     @discardableResult
-    public func startAction(baby: Baby, type: BabyActionType) -> any Action {
-        let action: BabyAction = createAction(baby: baby, type: type)
+    public func startAction<T: Action>(baby: Baby, type: BabyActionType) -> T {
+        let action: T = createAction(baby: baby, type: type)
         persistAction(action)
         return action
     }

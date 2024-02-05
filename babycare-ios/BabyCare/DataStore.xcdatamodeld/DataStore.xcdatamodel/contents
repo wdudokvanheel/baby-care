@@ -39,4 +39,15 @@
         <attribute name="syncRequired" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="baby" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Baby"/>
     </entity>
+    <entity name="SleepAction" representedClassName="BabyAction" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="String"/>
+        <attribute name="deleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="end" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="night" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="remoteId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="start" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="syncRequired" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="baby" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Baby"/>
+    </entity>
 </model>

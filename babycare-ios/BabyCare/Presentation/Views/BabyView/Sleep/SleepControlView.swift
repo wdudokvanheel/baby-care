@@ -6,7 +6,7 @@ struct SleepControlView: View {
     private var model: BabyViewModel
 
     @Query()
-    var sleepQuery: [BabyAction]
+    var sleepQuery: [SleepAction]
 
     @State
     private var sleepDuration = 0
@@ -15,17 +15,17 @@ struct SleepControlView: View {
     init(baby: Baby) {
         let type = BabyActionType.sleep.rawValue
         let babyId = baby.persistentModelID
-        let filter = #Predicate<BabyAction> { action in
+        let filter = #Predicate<SleepAction> { action in
             action.action ?? "" == type &&
                 action.end == nil &&
                 action.baby?.persistentModelID == babyId
         }
-        var fetchDescriptor = FetchDescriptor<BabyAction>(predicate: filter)
+        var fetchDescriptor = FetchDescriptor<SleepAction>(predicate: filter)
         fetchDescriptor.fetchLimit = 1
         _sleepQuery = Query(fetchDescriptor)
     }
 
-    var sleep: BabyAction? { sleepQuery.first }
+    var sleep: SleepAction? { sleepQuery.first }
 
     var body: some View {
         VStack {
@@ -65,6 +65,13 @@ struct SleepControlView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.indigo.opacity(0.9))
+
+                Toggle(isOn: Binding(get: { sleep.night ?? false }, set: { newValue in
+                    sleep.night = newValue
+                    model.updateAction(sleep)
+                })) {
+                    Text("Night")
+                }
             }
             else {
                 HStack {
@@ -110,7 +117,7 @@ struct SleepControlView: View {
     }
 
     private func updateSleepDuration() {
-        if let sleep = sleep{
+        if let sleep = sleep {
             sleepDuration = max(0, Int(Date().timeIntervalSince(sleep.start)))
         }
     }

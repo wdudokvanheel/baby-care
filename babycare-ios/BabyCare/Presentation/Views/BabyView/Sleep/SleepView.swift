@@ -12,64 +12,74 @@ struct SleepView: View {
     private var showingDeleteConfirmation = false
 
     @State
-    var sleep: BabyAction
-    var onChange: (BabyAction) -> Void
-    var onDelete: (BabyAction) -> Void
+    var sleep: SleepAction
+    var onChange: (SleepAction) -> Void
+    var onDelete: (SleepAction) -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                Text("Start at")
+        VStack {
+            VStack(alignment: .leading, spacing: 16) {
+                HStack {
+                    Text("Start at")
+
+                    if let endDate = sleep.end {
+                        if !sleep.start.isSameDateIgnoringTime(as: endDate) {
+                            Text("(\(sleep.start.formatDateAsRelativeString()))")
+                                .foregroundStyle(Color.gray)
+                                .font(.footnote)
+                                .fontWeight(.light)
+                        }
+                    }
+
+                    DatePicker("", selection: Binding(get: { sleep.start }, set: { newValue in
+                        sleep.start = newValue
+                        startDateUpdate()
+                    }), displayedComponents: .hourAndMinute)
+                }
 
                 if let endDate = sleep.end {
-                    if !sleep.start.isSameDateIgnoringTime(as: endDate) {
-                        Text("(\(sleep.start.formatDateAsRelativeString()))")
-                            .foregroundStyle(Color.gray)
+                    HStack {
+                        Text("End at")
+
+                        if !sleep.start.isSameDateIgnoringTime(as: endDate) {
+                            Text(endDate.formatDateAsRelativeString())
+                                .foregroundStyle(Color.gray)
+                                .font(.footnote)
+                                .fontWeight(.light)
+                        }
+
+                        DatePicker("", selection: Binding(get: { endDate }, set: { newValue in
+                            sleep.end = newValue
+                            endDateUpdate()
+                        }),
+                        in: sleep.start...,
+                        displayedComponents: .hourAndMinute)
+                    }
+                    HStack {
+                        Spacer()
+                        Text("Total sleep time of \(sleep.start.timeIntervalToString(to: endDate))")
+                            .foregroundStyle(Color.white.opacity(0.75))
                             .font(.footnote)
-                            .fontWeight(.light)
                     }
                 }
 
-                DatePicker("", selection: Binding(get: { sleep.start }, set: { newValue in
-                    sleep.start = newValue
-                    startDateUpdate()
-                }), displayedComponents: .hourAndMinute)
-            }
-
-            if let endDate = sleep.end {
-                HStack {
-                    Text("End at")
-
-                    if !sleep.start.isSameDateIgnoringTime(as: endDate) {
-                        Text(endDate.formatDateAsRelativeString())
-                            .foregroundStyle(Color.gray)
-                            .font(.footnote)
-                            .fontWeight(.light)
-                    }
-
-                    DatePicker("", selection: Binding(get: { endDate }, set: { newValue in
-                        sleep.end = newValue
-                        endDateUpdate()
-                    }),
-                    in: sleep.start...,
-                    displayedComponents: .hourAndMinute)
-                }
-                HStack {
-                    Spacer()
-                    Text("Total sleep time of \(sleep.start.timeIntervalToString(to: endDate))")
-                        .foregroundStyle(Color.white.opacity(0.75))
-                        .font(.footnote)
+                Toggle(isOn: Binding(get: { sleep.night ?? false }, set: { newValue in
+                    sleep.night = newValue
+                    actionUpdate()
+                })) {
+                    Text("Night sleep")
                 }
             }
-        }
-        Spacer()
+            Spacer()
 
-        DeleteButton {
-            onDelete(sleep)
-            presentationMode.wrappedValue.dismiss()
+            DeleteButton {
+                onDelete(sleep)
+                presentationMode.wrappedValue.dismiss()
+            }
+            .padding(16)
+            .navigationTitle("Sleep data")
         }
-        .padding(16)
-        .navigationTitle("Sleep data")
+        .padding()
     }
 
     func startDateUpdate() {
