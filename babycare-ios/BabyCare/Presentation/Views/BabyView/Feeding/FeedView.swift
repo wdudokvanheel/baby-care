@@ -18,95 +18,97 @@ struct FeedView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            if let startDate = feeding.start {
-                HStack(alignment: .bottom) {
-                    Text("Start at")
-
-                    if let endDate = feeding.end {
-                        if !startDate.isSameDateIgnoringTime(as: endDate) {
-                            Text("(\(startDate.formatDateAsRelativeString()))")
-                                .foregroundStyle(Color.gray)
-                                .font(.footnote)
-                                .fontWeight(.light)
-                        }
-                    }
-
-                    DatePicker("", selection: Binding(get: { startDate }, set: { newValue in
-                        feeding.start = newValue
-                        startDateUpdate()
-                    }), displayedComponents: .hourAndMinute)
-                }
+            HStack(alignment: .bottom) {
+                Text("Start at")
 
                 if let endDate = feeding.end {
-                    HStack {
-                        Text("End at")
-                        if !startDate.isSameDateIgnoringTime(as: endDate) {
-                            Text("(\(endDate.formatDateAsRelativeString()))")
-                                .foregroundStyle(Color.gray)
-                                .font(.footnote)
-                                .fontWeight(.light)
-                        }
-                        DatePicker("", selection: Binding(get: { endDate }, set: { newValue in
-                            feeding.end = newValue
-                            endDateUpdate()
-                        }),
-                        in: startDate...,
-                        displayedComponents: .hourAndMinute)
-                    }
-                    HStack {
-                        Spacer()
-                        Text("Total feed time of \(startDate.timeIntervalToString(to: endDate))")
-                            .foregroundStyle(Color.white.opacity(0.75))
+                    if !feeding.start.isSameDateIgnoringTime(as: endDate) {
+                        Text("(\(feeding.start.formatDateAsRelativeString()))")
+                            .foregroundStyle(Color.gray)
                             .font(.footnote)
+                            .fontWeight(.light)
                     }
                 }
-            }
-            HStack {
-                Text("Feed side")
-                Picker("", selection: $feeding.feedSide) {
-                    ForEach(FeedSide.allCases, id: \.self) { side in
-                        Text(side.rawValue.capitalized).tag(side as FeedSide?)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .onChange(of: feeding.feedSide) {
+
+                DatePicker("", selection: Binding(get: { feeding.start }, set: { newValue in
+                    feeding.start = newValue
                     actionUpdate()
+
+                }), displayedComponents: .hourAndMinute)
+            }
+
+            if let endDate = feeding.end {
+                HStack {
+                    Text("End at")
+                    if !feeding.start.isSameDateIgnoringTime(as: endDate) {
+                        Text("(\(endDate.formatDateAsRelativeString()))")
+                            .foregroundStyle(Color.gray)
+                            .font(.footnote)
+                            .fontWeight(.light)
+                    }
+                    DatePicker("", selection: Binding(get: { endDate }, set: { newValue in
+                        feeding.end = newValue
+                        endDateUpdate()
+                    }),
+                    in: feeding.start...,
+                    displayedComponents: .hourAndMinute)
+                }
+                HStack {
+                    Spacer()
+                    Text("Total feed time of \(feeding.start.timeIntervalToString(to: endDate))")
+                        .foregroundStyle(Color.white.opacity(0.75))
+                        .font(.footnote)
                 }
             }
-
-            Spacer()
-
-            DeleteButton {
-                onDelete(feeding)
-                presentationMode.wrappedValue.dismiss()
+        }
+        HStack {
+            Text("Feed side")
+            Picker("", selection: $feeding.feedSide) {
+                ForEach(FeedSide.allCases, id: \.self) { side in
+                    Text(side.rawValue.capitalized).tag(side as FeedSide?)
+                }
             }
+            .pickerStyle(SegmentedPickerStyle())
+            .onChange(of: feeding.feedSide) {
+                actionUpdate()
+            }
+        }
+
+        Spacer()
+
+        DeleteButton {
+            onDelete(feeding)
+            presentationMode.wrappedValue.dismiss()
         }
         .padding(16)
         .navigationTitle("Breast feeding data")
     }
 
     func startDateUpdate() {
-        if let startDate = feeding.start, let endDate = feeding.end {
+        let startDate = feeding.start
+        if let endDate = feeding.end {
             let later = endDate.isTimeLaterThan(date: startDate)
             let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
 
             if endDate < startDate, startDate.isSameDateIgnoringTime(as: endDate) {
-                feeding.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)
+                feeding.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)!
             }
             else if !later, !sameDay {
-                feeding.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+                feeding.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
             }
         }
         actionUpdate()
     }
 
     func endDateUpdate() {
-        if let startDate = feeding.start, let endDate = feeding.end {
+        let startDate = feeding.start
+
+        if let endDate = feeding.end {
             let later = endDate.isTimeLaterThan(date: startDate)
             let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
 
             if !later, !sameDay {
-                feeding.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+                feeding.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
             }
         }
         actionUpdate()

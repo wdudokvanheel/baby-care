@@ -8,22 +8,12 @@ struct BottleLog: View {
     @Query()
     var items: [BottleAction]
 
-    @State
-    private var selectedBottle: BottleAction?
-
-    private let gridColumns = [
-        GridItem(.flexible(), alignment: .leading),
-        GridItem(.flexible(), alignment: .leading),
-        GridItem(.flexible(), alignment: .leading),
-    ]
-
     init(_ model: BabyViewModel) {
         let type = BabyActionType.bottle.rawValue
         let babyId = model.baby.persistentModelID
 
         let filter = #Predicate<BottleAction> { action in
             action.action ?? "" == type &&
-                action.start != nil &&
                 action.end != nil &&
                 action.deleted == false &&
                 action.baby?.persistentModelID == babyId
@@ -35,13 +25,31 @@ struct BottleLog: View {
     }
 
     var body: some View {
+        BottleLogView(model: model, items: items)
+    }
+}
+
+struct BottleLogView: View {
+    var model: BabyViewModel
+    var items: [BottleAction]
+
+    @State
+    private var selectedBottle: BottleAction?
+
+    private let gridColumns = [
+        GridItem(.flexible(), alignment: .leading),
+        GridItem(.flexible(), alignment: .leading),
+        GridItem(.flexible(), alignment: .leading),
+    ]
+
+    var body: some View {
         ForEach(items, id: \.self) { bottle in
             LazyVGrid(columns: gridColumns, spacing: 0) {
-                Text(bottle.start?.formatDateTimeAsRelativeString() ?? "")
+                Text(bottle.start.formatDateTimeAsRelativeString())
                     .onTapGesture {
                         self.selectedBottle = bottle
                     }
-                Text(timeIntervalString(from: bottle.start!, to: bottle.end!))
+                Text(timeIntervalString(from: bottle.start, to: bottle.end!))
                     .onTapGesture {
                         self.selectedBottle = bottle
                     }
@@ -67,7 +75,7 @@ struct BottleLog: View {
             }
         }
     }
-
+    
     func timeIntervalString(from startDate: Date, to endDate: Date) -> String {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full

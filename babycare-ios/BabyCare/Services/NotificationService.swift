@@ -52,11 +52,9 @@ public class NotificationService {
         content.body = message
         content.sound = UNNotificationSound.default
 
-        // Deliver the notification in 5 seconds
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.01, repeats: false)
 
-        // Schedule the notification
-        let request = UNNotificationRequest(identifier: "NotificationServiceMessage_", content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.add(request) { (error: Error?) in
             if let error = error {

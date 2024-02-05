@@ -39,19 +39,17 @@ struct FeedControlView: View {
                     Text("Feeding \(formatDuration(feedDuration))")
                     Spacer()
 
-                    if let start = feed.start {
-                        VStack(alignment: .trailing) {
-                            DatePicker("", selection: Binding(get: { start }, set: { newValue in
-                                feed.start = newValue
-                                startDateUpdate()
-                                updatefeedDuration()
-                            }),
-                            displayedComponents: .hourAndMinute)
-                            if !start.isSameDateIgnoringTime(as: Date()) {
-                                Text(start.formatDateAsRelativeString())
-                                    .font(.footnote)
-                                    .foregroundStyle(Color.white.opacity(0.25))
-                            }
+                    VStack(alignment: .trailing) {
+                        DatePicker("", selection: Binding(get: { feed.start }, set: { newValue in
+                            feed.start = newValue
+                            startDateUpdate()
+                            updatefeedDuration()
+                        }),
+                        displayedComponents: .hourAndMinute)
+                        if !feed.start.isSameDateIgnoringTime(as: Date()) {
+                            Text(feed.start.formatDateAsRelativeString())
+                                .font(.footnote)
+                                .foregroundStyle(Color.white.opacity(0.25))
                         }
                     }
                 }
@@ -137,15 +135,16 @@ struct FeedControlView: View {
 
     private func startDateUpdate() {
         let endDate = Date()
-        if let feed = feed, let startDate = feed.start {
+        if let feed = feed {
+            let startDate = feed.start
             let later = endDate.isTimeLaterThan(date: startDate)
             let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
 
             if endDate < startDate, startDate.isSameDateIgnoringTime(as: endDate) {
-                feed.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)
+                feed.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)!
             }
             else if !later, !sameDay {
-                feed.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+                feed.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
             }
 
             model.updateAction(feed)
@@ -153,8 +152,8 @@ struct FeedControlView: View {
     }
 
     private func updatefeedDuration() {
-        if let startTime = feed?.start {
-            feedDuration = max(0, Int(Date().timeIntervalSince(startTime)))
+        if let feed = feed {
+            feedDuration = max(0, Int(Date().timeIntervalSince(feed.start)))
         }
     }
 

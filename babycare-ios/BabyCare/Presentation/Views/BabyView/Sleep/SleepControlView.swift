@@ -35,19 +35,17 @@ struct SleepControlView: View {
                     Text("Sleeping \(formatDuration(sleepDuration))")
                     Spacer()
 
-                    if let start = sleep.start {
-                        VStack(alignment: .trailing) {
-                            DatePicker("", selection: Binding(get: { start }, set: { newValue in
-                                sleep.start = newValue
-                                startDateUpdate()
-                                updateSleepDuration()
-                            }),
-                            displayedComponents: .hourAndMinute)
-                            if !start.isSameDateIgnoringTime(as: Date()) {
-                                Text(start.formatDateAsRelativeString())
-                                    .font(.footnote)
-                                    .foregroundStyle(Color.white.opacity(0.25))
-                            }
+                    VStack(alignment: .trailing) {
+                        DatePicker("", selection: Binding(get: { sleep.start }, set: { newValue in
+                            sleep.start = newValue
+                            startDateUpdate()
+                            updateSleepDuration()
+                        }),
+                        displayedComponents: .hourAndMinute)
+                        if !sleep.start.isSameDateIgnoringTime(as: Date()) {
+                            Text(sleep.start.formatDateAsRelativeString())
+                                .font(.footnote)
+                                .foregroundStyle(Color.white.opacity(0.25))
                         }
                     }
                 }
@@ -95,15 +93,16 @@ struct SleepControlView: View {
 
     private func startDateUpdate() {
         let endDate = Date()
-        if let sleep = sleep, let startDate = sleep.start {
+        if let sleep = sleep {
+            let startDate = sleep.start
             let later = endDate.isTimeLaterThan(date: startDate)
             let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
 
             if endDate < startDate, startDate.isSameDateIgnoringTime(as: endDate) {
-                sleep.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)
+                sleep.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)!
             }
             else if !later, !sameDay {
-                sleep.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+                sleep.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
             }
 
             model.updateAction(sleep)
@@ -111,8 +110,8 @@ struct SleepControlView: View {
     }
 
     private func updateSleepDuration() {
-        if let startTime = sleep?.start {
-            sleepDuration = max(0, Int(Date().timeIntervalSince(startTime)))
+        if let sleep = sleep{
+            sleepDuration = max(0, Int(Date().timeIntervalSince(sleep.start)))
         }
     }
 

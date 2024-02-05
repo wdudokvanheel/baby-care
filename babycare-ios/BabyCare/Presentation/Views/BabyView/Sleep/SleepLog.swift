@@ -8,21 +8,12 @@ struct SleepLog: View {
     @Query()
     var items: [BabyAction]
 
-    @State
-    private var selectedSleep: BabyAction?
-
-    private let gridColumns = [
-        GridItem(.flexible(), alignment: .leading),
-        GridItem(.flexible(), alignment: .leading),
-    ]
-
     init(_ model: BabyViewModel) {
         let type = BabyActionType.sleep.rawValue
         let babyId = model.baby.persistentModelID
 
         let filter = #Predicate<BabyAction> { action in
-            action.action ?? "" == type &&
-                action.start != nil &&
+            action.action == type &&
                 action.end != nil &&
                 action.deleted == false &&
                 action.baby?.persistentModelID == babyId
@@ -34,14 +25,30 @@ struct SleepLog: View {
     }
 
     var body: some View {
-        ForEach(items, id: \.self) { sleep in
+        SleepLogView(model: model, items: items)
+    }
+}
 
+struct SleepLogView: View {
+    var model: BabyViewModel
+    var items: [BabyAction]
+
+    @State
+    private var selectedSleep: BabyAction?
+
+    private let gridColumns = [
+        GridItem(.flexible(), alignment: .leading),
+        GridItem(.flexible(), alignment: .leading),
+    ]
+
+    var body: some View {
+        ForEach(items, id: \.self) { sleep in
             LazyVGrid(columns: gridColumns, spacing: 0) {
-                Text(formatdate(date: sleep.start!))
+                Text(formatdate(date: sleep.start))
                     .onTapGesture {
                         self.selectedSleep = sleep
                     }
-                Text(timeIntervalString(from: sleep.start!, to: sleep.end!))
+                Text(timeIntervalString(from: sleep.start, to: sleep.end!))
                     .onTapGesture {
                         self.selectedSleep = sleep
                     }
@@ -50,7 +57,7 @@ struct SleepLog: View {
             .font(.footnote)
         }
 
-        if let selected = self.selectedSleep {
+        if let selected = selectedSleep {
             let view = SleepView(sleep: selected, onChange: { sleep in
                 self.model.updateAction(sleep)
             }, onDelete: { sleep in

@@ -38,7 +38,7 @@ extension Action {
     }
 
     var duration: TimeInterval {
-        if let start = self.start, let end = self.end {
+        if let end = self.end {
             return end.timeIntervalSince(start)
         }
 
@@ -53,7 +53,7 @@ extension BabyAction: CustomDebugStringConvertible {
         BabyAction:
             ID: \(id?.uuidString ?? "nil"),
             Action: \(action ?? "nil"),
-            Start: \(start?.description ?? "nil"),
+            Start: \(start.description),
             End: \(end?.description ?? "nil"),
             Remote ID: \(remoteId ?? 0),
             Sync Required: \(syncRequired.map { $0 ? "Yes" : "No" } ?? "nil")

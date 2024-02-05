@@ -8,21 +8,12 @@ struct FeedLog: View {
     @Query()
     var items: [FeedAction]
 
-    @State
-    private var selectedFeed: FeedAction?
-
-    private let gridColumns = [
-        GridItem(.flexible(), alignment: .leading),
-        GridItem(.flexible(), alignment: .leading),
-    ]
-
     init(_ model: BabyViewModel) {
         let type = BabyActionType.feed.rawValue
         let babyId = model.baby.persistentModelID
 
         let filter = #Predicate<FeedAction> { action in
             action.action ?? "" == type &&
-                action.start != nil &&
                 action.end != nil &&
                 action.deleted == false &&
                 action.baby?.persistentModelID == babyId
@@ -34,15 +25,32 @@ struct FeedLog: View {
     }
 
     var body: some View {
+        FeedLogView(model: model, items: items)
+    }
+}
+
+struct FeedLogView: View {
+    var model: BabyViewModel
+    var items: [FeedAction]
+
+    @State
+    private var selectedFeed: FeedAction?
+
+    private let gridColumns = [
+        GridItem(.flexible(), alignment: .leading),
+        GridItem(.flexible(), alignment: .leading),
+    ]
+
+    var body: some View {
         ForEach(items, id: \.self) { feeding in
             LazyVGrid(columns: gridColumns, spacing: 0) {
-                Text(formatdate(date: feeding.start!))
+                Text(formatdate(date: feeding.start))
                     .onTapGesture {
                         self.selectedFeed = feeding
                     }
                 HStack {
                     Image(systemName: getSideIcon(feeding))
-                    Text(timeIntervalString(from: feeding.start!, to: feeding.end!))
+                    Text(timeIntervalString(from: feeding.start, to: feeding.end!))
                 }
                 .onTapGesture {
                     self.selectedFeed = feeding

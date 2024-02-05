@@ -47,19 +47,17 @@ struct BottleControlView: View {
                     Text("Feeding \(formatDuration(bottleDuration))")
                     Spacer()
 
-                    if let start = bottle.start {
-                        VStack(alignment: .trailing) {
-                            DatePicker("", selection: Binding(get: { start }, set: { newValue in
-                                bottle.start = newValue
-                                startDateUpdate()
-                                updateBottleDuration()
-                            }),
-                            displayedComponents: .hourAndMinute)
-                            if !start.isSameDateIgnoringTime(as: Date()) {
-                                Text(start.formatDateAsRelativeString())
-                                    .font(.footnote)
-                                    .foregroundStyle(Color.white.opacity(0.25))
-                            }
+                    VStack(alignment: .trailing) {
+                        DatePicker("", selection: Binding(get: { bottle.start }, set: { newValue in
+                            bottle.start = newValue
+                            startDateUpdate()
+                            updateBottleDuration()
+                        }),
+                        displayedComponents: .hourAndMinute)
+                        if !bottle.start.isSameDateIgnoringTime(as: Date()) {
+                            Text(bottle.start.formatDateAsRelativeString())
+                                .font(.footnote)
+                                .foregroundStyle(Color.white.opacity(0.25))
                         }
                     }
                 }
@@ -126,15 +124,16 @@ struct BottleControlView: View {
 
     private func startDateUpdate() {
         let endDate = Date()
-        if let bottle = bottle, let startDate = bottle.start {
+        if let bottle = bottle {
+            let startDate = bottle.start
             let later = endDate.isTimeLaterThan(date: startDate)
             let sameDay = startDate.isSameDateIgnoringTime(as: endDate)
 
             if endDate < startDate, startDate.isSameDateIgnoringTime(as: endDate) {
-                bottle.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)
+                bottle.start = Calendar.current.date(byAdding: .day, value: -1, to: startDate)!
             }
             else if !later, !sameDay {
-                bottle.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+                bottle.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
             }
 
             model.updateAction(bottle)
@@ -142,8 +141,8 @@ struct BottleControlView: View {
     }
 
     private func updateBottleDuration() {
-        if let startTime = bottle?.start {
-            bottleDuration = max(0, Int(Date().timeIntervalSince(startTime)))
+        if let bottle = bottle {
+            bottleDuration = max(0, Int(Date().timeIntervalSince(bottle.start)))
         }
     }
 
