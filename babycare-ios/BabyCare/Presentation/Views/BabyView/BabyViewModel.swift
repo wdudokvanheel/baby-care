@@ -5,10 +5,12 @@ import SwiftUI
 public class BabyViewModel: ObservableObject {
     @Published
     public var baby: Baby
+    public let services: ServiceContainer
     private let actionService: BabyActionService
 
-    init(services: BabyCareServiceContainer, baby: Baby) {
+    init(services: ServiceContainer, baby: Baby) {
         self.baby = baby
+        self.services = services
         self.actionService = services.actionService
     }
 

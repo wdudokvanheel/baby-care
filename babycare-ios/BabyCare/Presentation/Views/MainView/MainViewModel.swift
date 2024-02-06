@@ -5,12 +5,12 @@ import SwiftData
 import SwiftUI
 
 class MainViewModel: ObservableObject {
-    public let services: BabyCareServiceContainer
+    public let services: ServiceContainer
 
     @Published
     public var showLogin = false
 
-    public init(_ services: BabyCareServiceContainer) {
+    public init(_ services: ServiceContainer) {
         self.services = services
         services.syncService.syncWhenAuthenticated()
     }

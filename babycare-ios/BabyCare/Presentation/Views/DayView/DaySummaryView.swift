@@ -19,6 +19,9 @@ struct DaySummaryView: View {
     @Query()
     var bottleItems: [BottleAction]
 
+    @State
+    private var sleepDetails: DaySleepDetailsModel?
+
     init(_ model: BabyViewModel, _ date: Binding<Date>) {
         self.model = model
         self._date = date
@@ -31,7 +34,14 @@ struct DaySummaryView: View {
         VStack {
             if !sleepItems.isEmpty {
                 VStack {
-                    Text("Sleeping")
+                    HStack {
+                        Image(systemName: "moon.fill")
+                        Text("Sleep data")
+                        Spacer()
+                    }
+                    if let details = sleepDetails {
+                        SleepDetailsView(details: details)
+                    }
                     SleepLogView(model: model, items: sleepItems)
                 }
                 .foregroundColor(.white)
@@ -69,6 +79,11 @@ struct DaySummaryView: View {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(.brown.opacity(0.5))
                 )
+            }
+        }
+        .onAppear {
+            Task {
+                self.sleepDetails = await model.services.sleepService.getSleepDetails(date)
             }
         }
         .padding()

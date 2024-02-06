@@ -3,7 +3,7 @@ import SwiftUI
 
 struct ServiceInjection<Content: View>: View {
     private let content: Content
-    private let services: BabyCareServiceContainer
+    private let services: ServiceContainer
 
     init(delegate: BabyCareDelegate, @ViewBuilder content: () -> Content) {
         services = .init(container: Self.createModelContainer(), delegateData: delegate.data)

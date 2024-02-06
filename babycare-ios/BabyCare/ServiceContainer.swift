@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-public class BabyCareServiceContainer: ObservableObject {
+public class ServiceContainer: ObservableObject {
     var container: ModelContainer
     var delegateData: DelegateData
 
@@ -12,6 +12,7 @@ public class BabyCareServiceContainer: ObservableObject {
     lazy var actionService: BabyActionService = .init(container, apiService, babyService, actionMapperService)
     lazy var syncService: SyncService = .init(apiService, babyService, actionService, authService, container)
     lazy var notificationService = NotificationService(delegateData, actionService, apiService, actionMapperService)
+    lazy var sleepService = SleepService(container: container)
 
     init(container: ModelContainer, delegateData: DelegateData) {
         self.container = container

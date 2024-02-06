@@ -48,10 +48,15 @@ struct SleepLogView: View {
                     .onTapGesture {
                         self.selectedSleep = sleep
                     }
-                Text(timeIntervalString(from: sleep.start, to: sleep.end!))
-                    .onTapGesture {
-                        self.selectedSleep = sleep
+                HStack {
+                    if sleep.night != nil && sleep.night == true {
+                        Image(systemName: "moon")
                     }
+                    Text(timeIntervalString(from: sleep.start, to: sleep.end!))
+                }
+                .onTapGesture {
+                    self.selectedSleep = sleep
+                }
             }
             .padding(0)
             .font(.footnote)

@@ -5,9 +5,9 @@ import SwiftUI
 
 class BabyCareDelegate: NSObject, UIApplicationDelegate {
     var data: DelegateData = .init()
-    var services: BabyCareServiceContainer?
+    var services: ServiceContainer?
 
-    public func setServices(services: BabyCareServiceContainer) {
+    public func setServices(services: ServiceContainer) {
         self.services = services
     }
 

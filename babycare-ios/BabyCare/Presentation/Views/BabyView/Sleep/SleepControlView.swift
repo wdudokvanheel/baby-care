@@ -4,6 +4,8 @@ import SwiftUI
 struct SleepControlView: View {
     @EnvironmentObject
     private var model: BabyViewModel
+    @EnvironmentObject
+    private var services: ServiceContainer
 
     @Query()
     var sleepQuery: [SleepAction]
@@ -11,6 +13,9 @@ struct SleepControlView: View {
     @State
     private var sleepDuration = 0
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
+    @State
+    private var detailsModel: DaySleepDetailsModel?
 
     init(baby: Baby) {
         let type = BabyActionType.sleep.rawValue
@@ -31,8 +36,8 @@ struct SleepControlView: View {
         VStack {
             if let sleep = self.sleep {
                 HStack {
-                    Image(systemName: "moon")
-                    Text("Sleeping \(formatDuration(sleepDuration))")
+                    Image(systemName: "moon.fill")
+                    Text("Sleeping \(sleepDuration.formatAsDurationString())")
                     Spacer()
 
                     VStack(alignment: .trailing) {
@@ -75,7 +80,7 @@ struct SleepControlView: View {
             }
             else {
                 HStack {
-                    Image(systemName: "moon")
+                    Image(systemName: "moon.fill")
                     Text("Sleep")
                     Spacer()
                 }
@@ -87,6 +92,9 @@ struct SleepControlView: View {
                 .buttonStyle(.borderedProminent)
                 .tint(.indigo)
             }
+            if let details = detailsModel {
+                SleepDetailsView(details: details)
+            }
             SleepLog(model)
         }
         .foregroundColor(.white)
@@ -96,6 +104,16 @@ struct SleepControlView: View {
             RoundedRectangle(cornerRadius: 8)
                 .fill(.indigo.opacity(0.5))
         )
+        .onAppear {
+            getSleepDetails()
+        }
+    }
+
+    private func getSleepDetails() {
+        Task {
+            detailsModel = await services.sleepService.getSleepDetails(Date())
+            print(detailsModel!)
+        }
     }
 
     private func startDateUpdate() {
@@ -120,12 +138,5 @@ struct SleepControlView: View {
         if let sleep = sleep {
             sleepDuration = max(0, Int(Date().timeIntervalSince(sleep.start)))
         }
-    }
-
-    private func formatDuration(_ totalSeconds: Int) -> String {
-        let hours = totalSeconds / 3600
-        let minutes = (totalSeconds % 3600) / 60
-        let seconds = totalSeconds % 60
-        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
 }
