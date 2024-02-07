@@ -12,7 +12,6 @@ public class ServiceContainer: ObservableObject {
     lazy var actionService: BabyActionService = .init(container, apiService, babyService, actionMapperService)
     lazy var syncService: SyncService = .init(apiService, babyService, actionService, authService, container)
     lazy var notificationService = NotificationService(delegateData, actionService, apiService, actionMapperService)
-    lazy var sleepService = SleepService(container: container)
 
     init(container: ModelContainer, delegateData: DelegateData) {
         self.container = container

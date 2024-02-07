@@ -41,6 +41,9 @@ extension Action {
         if let end = self.end {
             return end.timeIntervalSince(start)
         }
+        else {
+            return Date().timeIntervalSince(start)
+        }
 
         return TimeInterval.zero
     }

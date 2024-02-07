@@ -23,7 +23,7 @@
 		2B1552F12B66819300AD95FE /* BottleActionCreateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552F02B66819300AD95FE /* BottleActionCreateDto.swift */; };
 		2B1552F32B66834500AD95FE /* BottleControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552F22B66834500AD95FE /* BottleControlView.swift */; };
 		2B1552F52B66DA3600AD95FE /* BottleActionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1552F42B66DA3600AD95FE /* BottleActionMapper.swift */; };
-		2B1A9A7B2B6BD7D4000FC5A3 /* DateIsSameIgnoringTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A9A7A2B6BD7D4000FC5A3 /* DateIsSameIgnoringTime.swift */; };
+		2B1A9A7B2B6BD7D4000FC5A3 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A9A7A2B6BD7D4000FC5A3 /* DateHelpers.swift */; };
 		2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F34B02B54865E004EA670 /* BabyCareApp.swift */; };
 		2B1F34B32B54865E004EA670 /* ServiceInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F34B22B54865E004EA670 /* ServiceInjection.swift */; };
 		2B1F34B52B548660004EA670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F34B42B548660004EA670 /* Assets.xcassets */; };
@@ -53,6 +53,10 @@
 		2B7A8DCA2B7125B600A72393 /* SleepActionCreateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DC92B7125B600A72393 /* SleepActionCreateDto.swift */; };
 		2B7A8DCC2B717BF300A72393 /* SleepService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DCB2B717BF300A72393 /* SleepService.swift */; };
 		2B7A8DCE2B726B5D00A72393 /* SleepDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DCD2B726B5D00A72393 /* SleepDetailsView.swift */; };
+		2B7A8DD02B726EC200A72393 /* IntFormatInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DCF2B726EC200A72393 /* IntFormatInterval.swift */; };
+		2B7A8DD22B726F2C00A72393 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD12B726F2C00A72393 /* FeedService.swift */; };
+		2B7A8DD42B72717300A72393 /* FeedDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD32B72717300A72393 /* FeedDetailsView.swift */; };
+		2B7A8DD62B7384AF00A72393 /* BabyServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD52B7384AF00A72393 /* BabyServiceContainer.swift */; };
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
 		2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA02B54905C00B91132 /* MainViewModel.swift */; };
@@ -107,7 +111,7 @@
 		2B1552F02B66819300AD95FE /* BottleActionCreateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleActionCreateDto.swift; sourceTree = "<group>"; };
 		2B1552F22B66834500AD95FE /* BottleControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleControlView.swift; sourceTree = "<group>"; };
 		2B1552F42B66DA3600AD95FE /* BottleActionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleActionMapper.swift; sourceTree = "<group>"; };
-		2B1A9A7A2B6BD7D4000FC5A3 /* DateIsSameIgnoringTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIsSameIgnoringTime.swift; sourceTree = "<group>"; };
+		2B1A9A7A2B6BD7D4000FC5A3 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
 		2B1F34AD2B54865E004EA670 /* BabyCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B1F34B02B54865E004EA670 /* BabyCareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyCareApp.swift; sourceTree = "<group>"; };
 		2B1F34B22B54865E004EA670 /* ServiceInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInjection.swift; sourceTree = "<group>"; };
@@ -140,6 +144,10 @@
 		2B7A8DC92B7125B600A72393 /* SleepActionCreateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepActionCreateDto.swift; sourceTree = "<group>"; };
 		2B7A8DCB2B717BF300A72393 /* SleepService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepService.swift; sourceTree = "<group>"; };
 		2B7A8DCD2B726B5D00A72393 /* SleepDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetailsView.swift; sourceTree = "<group>"; };
+		2B7A8DCF2B726EC200A72393 /* IntFormatInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntFormatInterval.swift; sourceTree = "<group>"; };
+		2B7A8DD12B726F2C00A72393 /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
+		2B7A8DD32B72717300A72393 /* FeedDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailsView.swift; sourceTree = "<group>"; };
+		2B7A8DD52B7384AF00A72393 /* BabyServiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyServiceContainer.swift; sourceTree = "<group>"; };
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		2B9FDAA02B54905C00B91132 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -309,6 +317,7 @@
 				2BF16EE12B618FCA00A84DE3 /* FeedControlView.swift */,
 				2B1552E62B66769600AD95FE /* FeedLog.swift */,
 				2BC0E4CD2B68456500E5A60A /* FeedView.swift */,
+				2B7A8DD32B72717300A72393 /* FeedDetailsView.swift */,
 			);
 			path = Feeding;
 			sourceTree = "<group>";
@@ -317,7 +326,8 @@
 			isa = PBXGroup;
 			children = (
 				2BC0E4D42B691DE700E5A60A /* UIApplicationHideKeyboard.swift */,
-				2B1A9A7A2B6BD7D4000FC5A3 /* DateIsSameIgnoringTime.swift */,
+				2B1A9A7A2B6BD7D4000FC5A3 /* DateHelpers.swift */,
+				2B7A8DCF2B726EC200A72393 /* IntFormatInterval.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -410,6 +420,7 @@
 				2B1552E32B6653F800AD95FE /* Bottle */,
 				2BF16ED42B613A5B00A84DE3 /* BabyViewModel.swift */,
 				2BF16EDB2B613B4F00A84DE3 /* BabyView.swift */,
+				2B7A8DD52B7384AF00A72393 /* BabyServiceContainer.swift */,
 			);
 			path = BabyView;
 			sourceTree = "<group>";
@@ -474,6 +485,7 @@
 				2B6D4D0B2B5E6E31000F6BFA /* NotificationService.swift */,
 				2B46AE452B5D3CFF0019D710 /* SyncService.swift */,
 				2B7A8DCB2B717BF300A72393 /* SleepService.swift */,
+				2B7A8DD12B726F2C00A72393 /* FeedService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -555,7 +567,7 @@
 				2BF16F082B62887700A84DE3 /* FeedActionUpdateDto.swift in Sources */,
 				2B1552F12B66819300AD95FE /* BottleActionCreateDto.swift in Sources */,
 				2B1552EB2B667FAC00AD95FE /* BottleActionExt.swift in Sources */,
-				2B1A9A7B2B6BD7D4000FC5A3 /* DateIsSameIgnoringTime.swift in Sources */,
+				2B1A9A7B2B6BD7D4000FC5A3 /* DateHelpers.swift in Sources */,
 				2B1552EF2B6680A900AD95FE /* BottleActionUpdateDto.swift in Sources */,
 				2B46AE362B5C73B70019D710 /* KeychainItem.swift in Sources */,
 				2B6D4D162B5E9281000F6BFA /* AuthButton.swift in Sources */,
@@ -565,10 +577,12 @@
 				2BF16F032B6285D600A84DE3 /* ActionUpdateDto.swift in Sources */,
 				2BF16EFF2B6281B000A84DE3 /* ActionMapperService.swift in Sources */,
 				2B46AE462B5D3CFF0019D710 /* SyncService.swift in Sources */,
+				2B7A8DD62B7384AF00A72393 /* BabyServiceContainer.swift in Sources */,
 				2BF16EE82B62631A00A84DE3 /* FeedActionDto.swift in Sources */,
 				2B51CBF02B6E6D24009A50F3 /* DeleteButton.swift in Sources */,
 				2B1552E72B66769600AD95FE /* FeedLog.swift in Sources */,
 				2B1552ED2B66801B00AD95FE /* BottleActionDto.swift in Sources */,
+				2B7A8DD22B726F2C00A72393 /* FeedService.swift in Sources */,
 				2BF16EC32B6010DE00A84DE3 /* BabyExt.swift in Sources */,
 				2B7A8DC42B71245900A72393 /* SleepActionUpdateDto.swift in Sources */,
 				2BC0E4D02B69144000E5A60A /* BottleLog.swift in Sources */,
@@ -579,6 +593,7 @@
 				2BF16EFD2B6280B900A84DE3 /* DefaultActionMapper.swift in Sources */,
 				2B7A8DCA2B7125B600A72393 /* SleepActionCreateDto.swift in Sources */,
 				2BF16EC12B60104000A84DE3 /* BabyDto.swift in Sources */,
+				2B7A8DD02B726EC200A72393 /* IntFormatInterval.swift in Sources */,
 				2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */,
 				2B51CBEE2B6D2363009A50F3 /* SettingsView.swift in Sources */,
 				2BF16EF82B62662900A84DE3 /* FeedActionExt.swift in Sources */,
@@ -603,6 +618,7 @@
 				2B9FDA902B5486F300B91132 /* MainView.swift in Sources */,
 				2BECD6802B710AD100BF174D /* SleepRepository.swift in Sources */,
 				2BF16EBF2B600FF400A84DE3 /* BabyService.swift in Sources */,
+				2B7A8DD42B72717300A72393 /* FeedDetailsView.swift in Sources */,
 				2B1552F32B66834500AD95FE /* BottleControlView.swift in Sources */,
 				2B11499F2B68387A0096E427 /* SleepView.swift in Sources */,
 				2B51CBF62B710655009A50F3 /* DaySummaryView.swift in Sources */,
@@ -783,7 +799,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -823,7 +839,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

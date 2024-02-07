@@ -3,6 +3,8 @@ import SwiftUI
 
 struct FeedControlView: View {
     @EnvironmentObject
+    private var services: ServiceContainer
+    @EnvironmentObject
     private var model: BabyViewModel
 
     @Query()
@@ -10,6 +12,9 @@ struct FeedControlView: View {
 
     @State
     private var feedDuration = 0
+    @State
+    private var detailsModel: DayFeedDetailsModel?
+
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     init(baby: Baby) {
@@ -122,6 +127,7 @@ struct FeedControlView: View {
                     .tint(.mint)
                 }
             }
+            TodayFeedDetailsView(service: model.babyServices.feedService)
             FeedLog(model)
         }
         .foregroundColor(.white)
@@ -162,5 +168,14 @@ struct FeedControlView: View {
         let minutes = (totalSeconds % 3600) / 60
         let seconds = totalSeconds % 60
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+}
+
+struct TodayFeedDetailsView: View {
+    @ObservedObject
+    var service: FeedService
+
+    var body: some View {
+        FeedDetailsView(details: service.detailsToday)
     }
 }

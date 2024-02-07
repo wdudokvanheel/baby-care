@@ -9,7 +9,7 @@ public struct SleepActionUpdateDto: ActionUpdateDto {
     public var night: Bool?
 
     init(from: SleepAction) {
-        self.start = from.start ?? Date()
+        self.start = from.start
         self.end = from.end
         self.night = from.night
     }

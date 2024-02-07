@@ -24,6 +24,8 @@ public class BabyActionService: ObservableObject {
     }
 
     public func persistAction(_ action: any Action) {
+        NotificationCenter.default.post(name: Notification.Name("update_\(action.action!)"), object: action)
+
         Task {
             apiService.syncActionRemote(action)
             await save(action)
@@ -46,6 +48,8 @@ public class BabyActionService: ObservableObject {
         action.end = Date()
         action.syncRequired = true
 
+        NotificationCenter.default.post(name: Notification.Name("update_\(action.action!)"), object: action)
+        
         let taskAction = action
         Task {
             apiService.syncActionRemote(taskAction)
@@ -56,6 +60,8 @@ public class BabyActionService: ObservableObject {
         action.deleted = true
         action.syncRequired = true
 
+        NotificationCenter.default.post(name: Notification.Name("update_\(action.action!)"), object: action)
+        
         apiService.deleteAction(action) { action in
             print("Deleted action: \(action)")
             Task {

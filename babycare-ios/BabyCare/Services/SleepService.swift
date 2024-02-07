@@ -1,13 +1,35 @@
-import Foundation
-import os
 import SwiftData
 import SwiftUI
 
-class SleepService {
-    private let container: ModelContainer
+class SleepService: ObservableObject {
+    @Published
+    public var detailsToday: DaySleepDetailsModel
 
-    init(container: ModelContainer) {
+    private let baby: Baby
+    private let container: ModelContainer
+    private var timer: Timer?
+
+    init(container: ModelContainer, baby: Baby) {
         self.container = container
+        self.baby = baby
+        detailsToday = DaySleepDetailsModel()
+
+        updateTodayDetails()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTodayDetails), name: Notification.Name("update_sleep"), object: nil)
+
+        timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+            self?.updateTodayDetails()
+        }
+    }
+
+    @objc func updateTodayDetails() {
+        Task {
+            let details = await getSleepDetails(Date())
+            DispatchQueue.main.async {
+                self.detailsToday = details
+            }
+        }
     }
 
     public func getSleepDetails(_ date: Date) async -> DaySleepDetailsModel {
@@ -74,8 +96,10 @@ class SleepService {
         let endDate = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
 
         return await MainActor.run {
+            let babyId = self.baby.persistentModelID
             let descriptor = FetchDescriptor<SleepAction>(predicate: #Predicate { sleep in
-                sleep.start >= startDate &&
+                sleep.baby?.persistentModelID == babyId &&
+                    sleep.start >= startDate &&
                     sleep.start <= endDate &&
                     sleep.deleted != true
             }, sortBy: [SortDescriptor<SleepAction>(\.start)])
@@ -91,11 +115,15 @@ class SleepService {
             return []
         }
     }
+
+    deinit {
+        timer?.invalidate()
+    }
 }
 
 struct DaySleepDetailsModel: CustomDebugStringConvertible {
-    var bedTime: Date = .init()
-    var wakeTime: Date = .init()
+    var bedTime: Date?
+    var wakeTime: Date?
     var naps: Int = 0
     var sleepTimeDay: Int = 0
     var sleepTimeNight: Int = 0
@@ -105,17 +133,16 @@ struct DaySleepDetailsModel: CustomDebugStringConvertible {
     }
 
     var debugDescription: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
+        let bedTimeStr = bedTime?.formatted() ?? "nil"
+        let wakeTimeStr = wakeTime?.formatted() ?? "nil"
         return """
         DaySleepDetailsModel:
-            Bed Time: \(dateFormatter.string(from: bedTime))
-            Wake Time: \(dateFormatter.string(from: wakeTime))
+            Bed Time: \(bedTimeStr)
+            Wake Time: \(wakeTimeStr)
             Naps: \(naps)
+            Sleep Time Day: \(sleepTimeDay) minutes
+            Sleep Time Night: \(sleepTimeNight) minutes
             Total Sleep Time: \(sleepTimeTotal) minutes
-            Day Sleep Time: \(sleepTimeDay) minutes
-            Night Sleep Time: \(sleepTimeNight) minutes
         """
     }
 }

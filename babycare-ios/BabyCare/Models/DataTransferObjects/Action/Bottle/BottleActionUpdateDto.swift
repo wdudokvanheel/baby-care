@@ -12,7 +12,7 @@ public struct BottleActionUpdateDto: ActionUpdateDto {
     public var quantity: Int?
 
     init(from: BottleAction) {
-        self.start = from.start ?? Date()
+        self.start = from.start
         self.end = from.end
         self.quantity = from.quantity != nil ? Int(from.quantity!) : nil
     }

@@ -8,7 +8,7 @@ public struct FeedActionUpdateDto: ActionUpdateDto {
     public var side: String?
 
     init(from: FeedAction) {
-        self.start = from.start ?? Date()
+        self.start = from.start
         self.end = from.end
         self.side = from.side
     }

@@ -10,7 +10,7 @@ public struct FeedActionCreateDto: ActionCreateDto {
 
     init(from: FeedAction) {
         self.type = from.action?.uppercased(with: .autoupdatingCurrent) ?? ""
-        self.start = from.start ?? Date()
+        self.start = from.start
         self.end = from.end
         self.side = from.side
     }

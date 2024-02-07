@@ -92,9 +92,7 @@ struct SleepControlView: View {
                 .buttonStyle(.borderedProminent)
                 .tint(.indigo)
             }
-            if let details = detailsModel {
-                SleepDetailsView(details: details)
-            }
+            TodaySleepDetailsView(service: model.babyServices.sleepService)
             SleepLog(model)
         }
         .foregroundColor(.white)
@@ -104,16 +102,6 @@ struct SleepControlView: View {
             RoundedRectangle(cornerRadius: 8)
                 .fill(.indigo.opacity(0.5))
         )
-        .onAppear {
-            getSleepDetails()
-        }
-    }
-
-    private func getSleepDetails() {
-        Task {
-            detailsModel = await services.sleepService.getSleepDetails(Date())
-            print(detailsModel!)
-        }
     }
 
     private func startDateUpdate() {

@@ -50,7 +50,7 @@ struct FeedLogView: View {
                     }
                 HStack {
                     Image(systemName: getSideIcon(feeding))
-                    Text(timeIntervalString(from: feeding.start, to: feeding.end!))
+                    Text(timeIntervalString(from: feeding.start, to: feeding.end ?? Date()))
                 }
                 .onTapGesture {
                     self.selectedFeed = feeding

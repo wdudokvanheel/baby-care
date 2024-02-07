@@ -11,7 +11,7 @@ public class BabyActionUpdateDto: ActionUpdateDto {
     }
 
     init(from: BabyAction) {
-        self.start = from.start ?? Date()
+        self.start = from.start
         self.end = from.end
     }
 }

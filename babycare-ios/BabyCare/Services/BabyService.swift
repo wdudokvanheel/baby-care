@@ -14,7 +14,7 @@ public class BabyService: ObservableObject {
 
     public func getAllBabies() async -> [Baby] {
         await MainActor.run {
-            var descriptor = FetchDescriptor<Baby>()
+            let descriptor = FetchDescriptor<Baby>()
 
             do {
                 let result = try container.mainContext.fetch(descriptor)

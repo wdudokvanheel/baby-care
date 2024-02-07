@@ -52,7 +52,7 @@ struct SleepLogView: View {
                     if sleep.night != nil && sleep.night == true {
                         Image(systemName: "moon")
                     }
-                    Text(timeIntervalString(from: sleep.start, to: sleep.end!))
+                    Text(timeIntervalString(from: sleep.start, to: sleep.end ?? Date()))
                 }
                 .onTapGesture {
                     self.selectedSleep = sleep

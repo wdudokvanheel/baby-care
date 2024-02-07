@@ -21,6 +21,8 @@ struct DaySummaryView: View {
 
     @State
     private var sleepDetails: DaySleepDetailsModel?
+    @State
+    private var feedDetails: DayFeedDetailsModel?
 
     init(_ model: BabyViewModel, _ date: Binding<Date>) {
         self.model = model
@@ -55,7 +57,14 @@ struct DaySummaryView: View {
 
             if !feedItems.isEmpty {
                 VStack {
-                    Text("Feeding")
+                    HStack {
+                        Image(systemName: "fork.knife.circle")
+                        Text("Feed data")
+                        Spacer()
+                    }
+                    if let details = feedDetails {
+                        FeedDetailsView(details: details)
+                    }
                     FeedLogView(model: model, items: feedItems)
                 }
                 .foregroundColor(.white)
@@ -81,11 +90,19 @@ struct DaySummaryView: View {
                 )
             }
         }
+        .onChange(of: date) {
+            updateDetails()
+        }
         .onAppear {
-            Task {
-                self.sleepDetails = await model.services.sleepService.getSleepDetails(date)
-            }
+            updateDetails()
         }
         .padding()
+    }
+
+    func updateDetails() {
+        Task {
+            self.sleepDetails = await model.babyServices.sleepService.getSleepDetails(date)
+            self.feedDetails = await model.babyServices.feedService.getFeedDetails(date)
+        }
     }
 }

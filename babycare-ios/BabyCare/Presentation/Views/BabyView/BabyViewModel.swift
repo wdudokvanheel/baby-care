@@ -5,15 +5,18 @@ import SwiftUI
 public class BabyViewModel: ObservableObject {
     @Published
     public var baby: Baby
-    public let services: ServiceContainer
+    public var services: ServiceContainer
+    public var babyServices: BabyServiceContainer
     private let actionService: BabyActionService
 
     init(services: ServiceContainer, baby: Baby) {
         self.baby = baby
         self.services = services
+        self.babyServices = BabyServiceContainer(services: services, baby: baby)
         self.actionService = services.actionService
     }
 
+    // TODO: Move these functions to services for each action
     func startSleep() {
         let action: SleepAction = actionService.createAction(baby: baby, type: .sleep)
 
