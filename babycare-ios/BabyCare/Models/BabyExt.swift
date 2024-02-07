@@ -18,3 +18,9 @@ public extension Baby {
         return name ?? "Unnamed Baby"
     }
 }
+
+extension Baby: Equatable {
+    public static func == (lhs: Baby, rhs: Baby) -> Bool {
+        return lhs.persistentModelID == rhs.persistentModelID
+    }
+}

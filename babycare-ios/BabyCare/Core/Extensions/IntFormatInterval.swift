@@ -10,4 +10,15 @@ public extension Int {
             return String(format: "%02d:%02d", hours, minutes)
         }
     }
+
+    func formatAsDurationString(excludeHours: Bool = true) -> String {
+        let hours = self / 3600
+        let minutes = (self % 3600) / 60
+        let seconds = self % 60
+
+        if hours == 0, excludeHours {
+            return String(format: "%02d:%02d", minutes, seconds)
+        }
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
 }

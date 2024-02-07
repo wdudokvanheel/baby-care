@@ -3,6 +3,10 @@ import SwiftUI
 
 struct BabyView: View {
     var model: BabyViewModel
+    
+    init(model: BabyViewModel) {
+        self.model = model
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {

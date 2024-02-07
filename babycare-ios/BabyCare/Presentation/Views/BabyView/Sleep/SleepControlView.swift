@@ -14,9 +14,6 @@ struct SleepControlView: View {
     private var sleepDuration = 0
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
-    @State
-    private var detailsModel: DaySleepDetailsModel?
-
     init(baby: Baby) {
         let type = BabyActionType.sleep.rawValue
         let babyId = baby.persistentModelID
@@ -34,26 +31,63 @@ struct SleepControlView: View {
 
     var body: some View {
         VStack {
-            if let sleep = self.sleep {
-                HStack {
-                    Image(systemName: "moon.fill")
-                    Text("Sleeping \(sleepDuration.formatAsDurationString())")
-                    Spacer()
+            HStack {
+                Spacer()
+                Image(systemName: "moon.fill")
+                Text("Sleep")
+                Spacer()
+            }
+            .font(.title3)
 
-                    VStack(alignment: .trailing) {
-                        DatePicker("", selection: Binding(get: { sleep.start }, set: { newValue in
-                            sleep.start = newValue
-                            startDateUpdate()
-                            updateSleepDuration()
-                        }),
-                        displayedComponents: .hourAndMinute)
-                        if !sleep.start.isSameDateIgnoringTime(as: Date()) {
-                            Text(sleep.start.formatDateAsRelativeString())
-                                .font(.footnote)
-                                .foregroundStyle(Color.white.opacity(0.25))
+            TodaySleepDetailsView(service: model.babyServices.sleepService)
+
+            if let sleep = self.sleep {
+                VStack {
+                    HStack {
+                        Text("Sleeping \(sleepDuration.formatAsDurationString(excludeHours: true))")
+                        Spacer()
+
+                        VStack(alignment: .trailing) {
+                            DatePicker("", selection: Binding(get: { sleep.start }, set: { newValue in
+                                sleep.start = newValue
+                                startDateUpdate()
+                                updateSleepDuration()
+                            }),
+                            displayedComponents: .hourAndMinute)
+                            if !sleep.start.isSameDateIgnoringTime(as: Date()) {
+                                Text(sleep.start.formatDateAsRelativeString())
+                                    .font(.footnote)
+                                    .foregroundStyle(Color.white.opacity(0.25))
+                            }
                         }
                     }
+
+                    Toggle(isOn: Binding(get: { sleep.night ?? false }, set: { newValue in
+                        sleep.night = newValue
+                        model.updateAction(sleep)
+                    })) {
+                        Text("Night")
+                    }
+
+                    Button(action: {
+                        model.stopSleep(sleep)
+                    }) {
+                        HStack {
+                            Image(systemName: "stop.circle")
+                            Text("Stop Sleep")
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.indigo.opacity(0.9))
                 }
+                .multilineTextAlignment(.center)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 12)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(.black.opacity(0.2))
+                )
                 .font(.body)
                 .onReceive(timer) { _ in
                     updateSleepDuration()
@@ -64,36 +98,20 @@ struct SleepControlView: View {
                 .onAppear {
                     updateSleepDuration()
                 }
-
-                Button("Stop sleeping") {
-                    model.stopSleep(sleep)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.indigo.opacity(0.9))
-
-                Toggle(isOn: Binding(get: { sleep.night ?? false }, set: { newValue in
-                    sleep.night = newValue
-                    model.updateAction(sleep)
-                })) {
-                    Text("Night")
-                }
             }
             else {
-                HStack {
-                    Image(systemName: "moon.fill")
-                    Text("Sleep")
-                    Spacer()
-                }
-                .font(.title3)
-
-                Button("Start sleeping") {
+                Button(action: {
                     model.startSleep()
+                }) {
+                    HStack {
+                        Image(systemName: "play.circle")
+                        Text("Start sleeping")
+                    }
+                    .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.indigo)
             }
-            TodaySleepDetailsView(service: model.babyServices.sleepService)
-            SleepLog(model)
         }
         .foregroundColor(.white)
         .padding()

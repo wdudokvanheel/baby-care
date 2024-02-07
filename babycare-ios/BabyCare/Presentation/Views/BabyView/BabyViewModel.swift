@@ -3,7 +3,6 @@ import os
 import SwiftUI
 
 public class BabyViewModel: ObservableObject {
-    @Published
     public var baby: Baby
     public var services: ServiceContainer
     public var babyServices: BabyServiceContainer
@@ -14,16 +13,18 @@ public class BabyViewModel: ObservableObject {
         self.services = services
         self.babyServices = BabyServiceContainer(services: services, baby: baby)
         self.actionService = services.actionService
+        
+        print("NEW BABYVIEWMODEL")
     }
 
     // TODO: Move these functions to services for each action
     func startSleep() {
         let action: SleepAction = actionService.createAction(baby: baby, type: .sleep)
 
-        let hour = Calendar.current.component(.hour, from: Date())
-        action.night = hour >= BabyCareApp.nightStartHour || hour < BabyCareApp.nightEndHour
-        
-        actionService.persistAction(action)
+//        let hour = Calendar.current.component(.hour, from: Date())
+//        action.night = hour >= BabyCareApp.nightStartHour || hour < BabyCareApp.nightEndHour
+//        
+//        actionService.persistAction(action)
     }
 
     func stopSleep(_ action: SleepAction) {

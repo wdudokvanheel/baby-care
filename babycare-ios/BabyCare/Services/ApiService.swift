@@ -101,6 +101,7 @@ public class ApiService {
     // TODO: Single callback
     // TODO: Auto decode JSON with generics
     public func performRequest<Dto: Encodable>(dto: Dto? = nil, path: String, method: String = "POST", onComplete: @escaping (Data) -> Void = { _ in }, onError: @escaping () -> Void = {}) {
+        return
         let url = URL(string: "\(BabyCareApp.API_URL)/\(path)")
         let session = URLSession.shared
         

@@ -11,6 +11,7 @@ public struct BabyServiceContainer {
     init(services: ServiceContainer, baby: Baby){
         self.baby = baby
         self.services = services
+        print("new baby service container for \(baby.displayName)")
     }
 }
 

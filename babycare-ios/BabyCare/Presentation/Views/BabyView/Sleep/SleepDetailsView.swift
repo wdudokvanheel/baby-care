@@ -5,12 +5,17 @@ import SwiftUI
 struct SleepDetailsView: View {
     var details: DaySleepDetailsModel
 
+    init(details: DaySleepDetailsModel) {
+        self.details = details
+        print("Init details: \(details)")
+    }
+    
     var body: some View {
         VStack {
             if details.bedTime != nil || details.wakeTime != nil{
                 HStack {
                     HStack(alignment: .top) {
-                        Image(systemName: "moon")
+                        Image(systemName: "sunset")
                         if let bedTime = details.bedTime{
                             Text("Bed time\n\(bedTime.formatTime())")
                         }
@@ -26,7 +31,7 @@ struct SleepDetailsView: View {
                     )
                     Spacer()
                     HStack(alignment: .top) {
-                        Image(systemName: "sun.max")
+                        Image(systemName: "sunrise")
                         if let wakeTime = details.wakeTime{
                             Text("Wake up\n\(wakeTime.formatTime())")
                         }
@@ -49,7 +54,7 @@ struct SleepDetailsView: View {
                 Spacer()
                 Text("Total sleep\n\(details.sleepTimeTotal.formatAsDurationString(false))")
                 Spacer()
-                Text("Naps\n\(details.sleepTimeDay.formatAsDurationString(false))")
+                Text("\(details.naps > 0 ? "\(details.naps) " : "")Naps\n\(details.sleepTimeDay.formatAsDurationString(false))")
             }
             .frame(maxWidth: .infinity)
 //            .font(.footnote)
@@ -68,6 +73,11 @@ struct TodaySleepDetailsView: View {
     @ObservedObject
     var service: SleepService
 
+    init(service: SleepService) {
+        self.service = service
+        print("New sleep today: \(service.detailsToday)")
+    }
+    
     var body: some View {
         SleepDetailsView(details: service.detailsToday)
     }

@@ -3,7 +3,7 @@ import SwiftUI
 
 class SleepService: ObservableObject {
     @Published
-    public var detailsToday: DaySleepDetailsModel
+    public var detailsToday: DaySleepDetailsModel = DaySleepDetailsModel()
 
     private let baby: Baby
     private let container: ModelContainer
@@ -12,8 +12,8 @@ class SleepService: ObservableObject {
     init(container: ModelContainer, baby: Baby) {
         self.container = container
         self.baby = baby
-        detailsToday = DaySleepDetailsModel()
 
+        print("Create SleepService")
         updateTodayDetails()
 
         NotificationCenter.default.addObserver(self, selector: #selector(updateTodayDetails), name: Notification.Name("update_sleep"), object: nil)
@@ -25,6 +25,7 @@ class SleepService: ObservableObject {
 
     @objc func updateTodayDetails() {
         Task {
+            print("updating details")
             let details = await getSleepDetails(Date())
             DispatchQueue.main.async {
                 self.detailsToday = details

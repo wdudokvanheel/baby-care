@@ -1,14 +1,14 @@
 import SwiftData
 import SwiftUI
 
-struct SleepLog: View {
+struct LatestSleepLog: View {
     @EnvironmentObject
     private var model: BabyViewModel
 
     @Query()
     var items: [SleepAction]
 
-    init(_ model: BabyViewModel) {
+    init(_ model: BabyViewModel, _ items : Int = 3) {
         let type = BabyActionType.sleep.rawValue
         let babyId = model.baby.persistentModelID
 
@@ -20,7 +20,7 @@ struct SleepLog: View {
         }
 
         var fetchDescriptor = FetchDescriptor<SleepAction>(predicate: filter, sortBy: [SortDescriptor<SleepAction>(\.end, order: .reverse)])
-        fetchDescriptor.fetchLimit = 3
+        fetchDescriptor.fetchLimit = items
         _items = Query(fetchDescriptor)
     }
 
