@@ -2,6 +2,22 @@ import Foundation
 import SwiftData
 
 public class DefaultActionMapper: ActionMapper {
+    public required init(_ services: ServiceContainer) {}
+
+//    private let service: SleepService
+//
+//    public required init(services: ServiceContainer) {
+//        self.service = SleepService(services: services)
+//    }
+//
+//    public func getService() -> any ActionService {
+//        service
+//    }
+
+    public func getService() -> (any ActionService)? {
+        nil
+    }
+    
     public func createFromDto(_ dto: ActionDto) -> BabyAction {
         BabyAction(from: dto as! BabyActionDto)
     }

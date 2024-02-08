@@ -5,10 +5,13 @@ struct LatestSleepLog: View {
     @EnvironmentObject
     private var model: BabyViewModel
 
+    private let sleepService: SleepService
+
     @Query()
     var items: [SleepAction]
 
-    init(_ model: BabyViewModel, _ items : Int = 3) {
+    init(_ model: BabyViewModel, _ items: Int = 3) {
+        self.sleepService = model.services.actionMapperService.getService(type: .sleep)
         let type = BabyActionType.sleep.rawValue
         let babyId = model.baby.persistentModelID
 
@@ -25,12 +28,12 @@ struct LatestSleepLog: View {
     }
 
     var body: some View {
-        SleepLogView(model: model, items: items)
+        SleepLogView(sleepService: sleepService, items: items)
     }
 }
 
 struct SleepLogView: View {
-    var model: BabyViewModel
+    let sleepService: SleepService
     var items: [SleepAction]
 
     @State
@@ -64,9 +67,9 @@ struct SleepLogView: View {
 
         if let selected = selectedSleep {
             let view = SleepView(sleep: selected, onChange: { sleep in
-                self.model.updateAction(sleep)
+                sleepService.update(sleep)
             }, onDelete: { sleep in
-                self.model.deleteAction(sleep)
+                sleepService.delete(sleep)
             })
 
             NavigationLink(destination: view, isActive: Binding<Bool>(

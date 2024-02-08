@@ -44,8 +44,6 @@ extension Action {
         else {
             return Date().timeIntervalSince(start)
         }
-
-        return TimeInterval.zero
     }
 }
 

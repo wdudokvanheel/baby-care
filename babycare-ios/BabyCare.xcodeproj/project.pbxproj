@@ -57,6 +57,9 @@
 		2B7A8DD22B726F2C00A72393 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD12B726F2C00A72393 /* FeedService.swift */; };
 		2B7A8DD42B72717300A72393 /* FeedDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD32B72717300A72393 /* FeedDetailsView.swift */; };
 		2B7A8DD62B7384AF00A72393 /* BabyServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD52B7384AF00A72393 /* BabyServiceContainer.swift */; };
+		2B7A8DD82B73B8DE00A72393 /* SleepDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD72B73B8DE00A72393 /* SleepDetails.swift */; };
+		2B7A8DDA2B73C07800A72393 /* DailySleepDetailsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */; };
+		2B7A8DDC2B7503FB00A72393 /* ActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DDB2B7503FB00A72393 /* ActionService.swift */; };
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
 		2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA02B54905C00B91132 /* MainViewModel.swift */; };
@@ -64,7 +67,6 @@
 		2BC0E4D02B69144000E5A60A /* BottleLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E4CF2B69144000E5A60A /* BottleLog.swift */; };
 		2BC0E4D22B69147100E5A60A /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E4D12B69147100E5A60A /* BottleView.swift */; };
 		2BC0E4D52B691DE700E5A60A /* UIApplicationHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E4D42B691DE700E5A60A /* UIApplicationHideKeyboard.swift */; };
-		2BECD6802B710AD100BF174D /* SleepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BECD67F2B710AD100BF174D /* SleepRepository.swift */; };
 		2BECD6822B711A4600BF174D /* FeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BECD6812B711A4600BF174D /* FeedRepository.swift */; };
 		2BECD6842B711CA800BF174D /* BottleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BECD6832B711CA800BF174D /* BottleRepository.swift */; };
 		2BECD6862B71237800BF174D /* SleepActionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BECD6852B71237800BF174D /* SleepActionMapper.swift */; };
@@ -148,6 +150,9 @@
 		2B7A8DD12B726F2C00A72393 /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
 		2B7A8DD32B72717300A72393 /* FeedDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailsView.swift; sourceTree = "<group>"; };
 		2B7A8DD52B7384AF00A72393 /* BabyServiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyServiceContainer.swift; sourceTree = "<group>"; };
+		2B7A8DD72B73B8DE00A72393 /* SleepDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetails.swift; sourceTree = "<group>"; };
+		2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySleepDetailsExt.swift; sourceTree = "<group>"; };
+		2B7A8DDB2B7503FB00A72393 /* ActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionService.swift; sourceTree = "<group>"; };
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		2B9FDAA02B54905C00B91132 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -155,7 +160,6 @@
 		2BC0E4CF2B69144000E5A60A /* BottleLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleLog.swift; sourceTree = "<group>"; };
 		2BC0E4D12B69147100E5A60A /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
 		2BC0E4D42B691DE700E5A60A /* UIApplicationHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationHideKeyboard.swift; sourceTree = "<group>"; };
-		2BECD67F2B710AD100BF174D /* SleepRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepository.swift; sourceTree = "<group>"; };
 		2BECD6812B711A4600BF174D /* FeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRepository.swift; sourceTree = "<group>"; };
 		2BECD6832B711CA800BF174D /* BottleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleRepository.swift; sourceTree = "<group>"; };
 		2BECD6852B71237800BF174D /* SleepActionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepActionMapper.swift; sourceTree = "<group>"; };
@@ -335,7 +339,6 @@
 		2BECD67E2B710AC200BF174D /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				2BECD67F2B710AD100BF174D /* SleepRepository.swift */,
 				2BECD6812B711A4600BF174D /* FeedRepository.swift */,
 				2BECD6832B711CA800BF174D /* BottleRepository.swift */,
 			);
@@ -430,10 +433,12 @@
 			children = (
 				2BF16EFA2B627F5300A84DE3 /* ActionMapper.swift */,
 				2BF16EFE2B6281B000A84DE3 /* ActionMapperService.swift */,
+				2B7A8DDB2B7503FB00A72393 /* ActionService.swift */,
 				2B1552F42B66DA3600AD95FE /* BottleActionMapper.swift */,
-				2BECD6852B71237800BF174D /* SleepActionMapper.swift */,
 				2BF16EFC2B6280B900A84DE3 /* DefaultActionMapper.swift */,
 				2BF16F002B62824900A84DE3 /* FeedActionMapper.swift */,
+				2BECD6852B71237800BF174D /* SleepActionMapper.swift */,
+				2B7A8DCB2B717BF300A72393 /* SleepService.swift */,
 			);
 			path = ActionMapper;
 			sourceTree = "<group>";
@@ -469,6 +474,8 @@
 				2BF16EF72B62662900A84DE3 /* FeedActionExt.swift */,
 				2B7A8DC52B71249800A72393 /* SleepAction.swift */,
 				2B7A8DC72B7124AF00A72393 /* SleepActionExt.swift */,
+				2B7A8DD72B73B8DE00A72393 /* SleepDetails.swift */,
+				2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -484,7 +491,6 @@
 				2BF16EBE2B600FF400A84DE3 /* BabyService.swift */,
 				2B6D4D0B2B5E6E31000F6BFA /* NotificationService.swift */,
 				2B46AE452B5D3CFF0019D710 /* SyncService.swift */,
-				2B7A8DCB2B717BF300A72393 /* SleepService.swift */,
 				2B7A8DD12B726F2C00A72393 /* FeedService.swift */,
 			);
 			path = Services;
@@ -566,6 +572,7 @@
 			files = (
 				2BF16F082B62887700A84DE3 /* FeedActionUpdateDto.swift in Sources */,
 				2B1552F12B66819300AD95FE /* BottleActionCreateDto.swift in Sources */,
+				2B7A8DDA2B73C07800A72393 /* DailySleepDetailsExt.swift in Sources */,
 				2B1552EB2B667FAC00AD95FE /* BottleActionExt.swift in Sources */,
 				2B1A9A7B2B6BD7D4000FC5A3 /* DateHelpers.swift in Sources */,
 				2B1552EF2B6680A900AD95FE /* BottleActionUpdateDto.swift in Sources */,
@@ -616,7 +623,6 @@
 				2B51CBF42B7105C9009A50F3 /* DayView.swift in Sources */,
 				2BF16EF02B62650D00A84DE3 /* Baby.swift in Sources */,
 				2B9FDA902B5486F300B91132 /* MainView.swift in Sources */,
-				2BECD6802B710AD100BF174D /* SleepRepository.swift in Sources */,
 				2BF16EBF2B600FF400A84DE3 /* BabyService.swift in Sources */,
 				2B7A8DD42B72717300A72393 /* FeedDetailsView.swift in Sources */,
 				2B1552F32B66834500AD95FE /* BottleControlView.swift in Sources */,
@@ -640,10 +646,12 @@
 				2B46AE3A2B5C81120019D710 /* BabyActionExt.swift in Sources */,
 				2B6D4D182B5E952C000F6BFA /* AuthGuard.swift in Sources */,
 				2BF16EFB2B627F5300A84DE3 /* ActionMapper.swift in Sources */,
+				2B7A8DDC2B7503FB00A72393 /* ActionService.swift in Sources */,
 				2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */,
 				2B46AE4B2B5D9D5E0019D710 /* ServiceContainer.swift in Sources */,
 				2BF16EEA2B62634A00A84DE3 /* ActionDto.swift in Sources */,
 				2BECD6842B711CA800BF174D /* BottleRepository.swift in Sources */,
+				2B7A8DD82B73B8DE00A72393 /* SleepDetails.swift in Sources */,
 				2B6D4D122B5E8488000F6BFA /* AuthenticationResponse.swift in Sources */,
 				2B7A8DC22B71243200A72393 /* SleepActionDto.swift in Sources */,
 				2B0FFD622B5B0BB700C20C9A /* LatestActionsView.swift in Sources */,
@@ -780,7 +788,7 @@
 				CODE_SIGN_ENTITLEMENTS = BabyCare/BabyCare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
 				DEVELOPMENT_TEAM = L23NTUN6KV;
 				ENABLE_PREVIEWS = YES;
@@ -820,7 +828,7 @@
 				CODE_SIGN_ENTITLEMENTS = BabyCare/BabyCare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
 				DEVELOPMENT_TEAM = L23NTUN6KV;
 				ENABLE_PREVIEWS = YES;

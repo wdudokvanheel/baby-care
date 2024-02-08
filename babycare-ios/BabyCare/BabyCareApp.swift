@@ -26,6 +26,7 @@ struct BabyCareApp: App {
     }
 
     private func setDebugValues() {
+        print("Starting in debug mode")
         BabyCareApp.DEBUG_MODE = true
         BabyCareApp.API_URL = "http://10.0.0.21:6000/api"
     }

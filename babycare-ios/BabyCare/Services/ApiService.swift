@@ -101,7 +101,6 @@ public class ApiService {
     // TODO: Single callback
     // TODO: Auto decode JSON with generics
     public func performRequest<Dto: Encodable>(dto: Dto? = nil, path: String, method: String = "POST", onComplete: @escaping (Data) -> Void = { _ in }, onError: @escaping () -> Void = {}) {
-        return
         let url = URL(string: "\(BabyCareApp.API_URL)/\(path)")
         let session = URLSession.shared
         
@@ -201,12 +200,11 @@ public class ApiService {
         }
     }
     
-    public func parseJson<ResultType: Decodable>(responseData: Data) -> ResultType? {
+    public func parseJson<ResultType: Decodable>(responseData: Data, _ decoder: JSONDecoder = JSONDecoder()) -> ResultType? {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
-        let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
 
         do {

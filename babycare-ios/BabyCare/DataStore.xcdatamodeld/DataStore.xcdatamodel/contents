@@ -28,6 +28,16 @@
         <attribute name="syncRequired" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="baby" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Baby"/>
     </entity>
+    <entity name="DailySleepDetails" representedClassName="DailySleepDetails" syncable="YES">
+        <attribute name="bedTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="naps" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sleepTimeDay" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sleepTimeNight" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="wakeTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="baby" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Baby"/>
+    </entity>
     <entity name="FeedAction" representedClassName="BabyAction" syncable="YES">
         <attribute name="action" optional="YES" attributeType="String"/>
         <attribute name="deleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

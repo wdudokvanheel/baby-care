@@ -3,7 +3,7 @@ import SwiftUI
 
 struct DaySummaryView: View {
     // TODO: Move this to the viewmodel
-    let sleepRepo = SleepRepository()
+    let sleepRepo: SleepService
     let feedRepo = FeedRepository()
     let bottleRepo = BottleRepository()
 
@@ -20,13 +20,13 @@ struct DaySummaryView: View {
     var bottleItems: [BottleAction]
 
     @State
-    private var sleepDetails: DaySleepDetailsModel?
-    @State
     private var feedDetails: DayFeedDetailsModel?
 
     init(_ model: BabyViewModel, _ date: Binding<Date>) {
         self.model = model
         self._date = date
+        self.sleepRepo = model.services.actionMapperService.getService(type: .sleep)
+        
         _sleepItems = sleepRepo.createQueryByDate(model.baby, date.wrappedValue)
         _feedItems = feedRepo.createQueryByDate(model.baby, date.wrappedValue)
         _bottleItems = bottleRepo.createQueryByDate(model.baby, date.wrappedValue)
@@ -41,10 +41,8 @@ struct DaySummaryView: View {
                         Text("Sleep data")
                         Spacer()
                     }
-                    if let details = sleepDetails {
-                        SleepDetailsView(details: details)
-                    }
-                    SleepLogView(model: model, items: sleepItems)
+                    SleepDetailsView(date, model.baby)
+                    SleepLogView(sleepService: model.services.actionMapperService.getService(type: .sleep), items: sleepItems)
                 }
                 .foregroundColor(.white)
                 .padding()
@@ -91,6 +89,7 @@ struct DaySummaryView: View {
             }
         }
         .onChange(of: date) {
+            self.sleepRepo.createDetailsIfUnavailable(date, baby: model.baby)
             updateDetails()
         }
         .onAppear {
@@ -101,7 +100,7 @@ struct DaySummaryView: View {
 
     func updateDetails() {
         Task {
-            self.sleepDetails = await model.babyServices.sleepService.getSleepDetails(date)
+//            self.sleepDetails = await model.babyServices.sleepService.getNewSleepDetails(date, model.baby)
             self.feedDetails = await model.babyServices.feedService.getFeedDetails(date)
         }
     }

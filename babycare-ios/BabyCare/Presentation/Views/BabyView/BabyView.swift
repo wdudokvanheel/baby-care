@@ -14,7 +14,7 @@ struct BabyView: View {
                 Text("More data")
             }
             .buttonStyle(BorderedProminentButtonStyle())
-            SleepControlView(baby: model.baby)
+            SleepControlView(services: model.services, baby: model.baby)
             FeedControlView(baby: model.baby)
             BottleControlView(baby: model.baby)
         }

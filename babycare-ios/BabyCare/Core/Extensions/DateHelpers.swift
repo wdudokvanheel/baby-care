@@ -83,3 +83,11 @@ extension Date {
         return false
     }
 }
+
+extension Calendar {
+    static let utc: Calendar = {
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
+        return calendar
+    }()
+}

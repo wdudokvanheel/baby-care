@@ -2,6 +2,15 @@ import Foundation
 import SwiftData
 
 public class BottleActionMapper: ActionMapper {
+    public required init(_ services: ServiceContainer) {}
+
+//
+//    public func getService() -> any ActionService {
+//        service
+//    }
+    public func getService() -> (any ActionService)? {
+        nil
+    }
     public func createFromDto(_ dto: ActionDto) -> BottleAction {
         return BottleAction(from: dto as! BottleActionDto)
     }

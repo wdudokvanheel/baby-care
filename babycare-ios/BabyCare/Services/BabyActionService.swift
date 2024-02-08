@@ -24,8 +24,6 @@ public class BabyActionService: ObservableObject {
     }
 
     public func persistAction(_ action: any Action) {
-        NotificationCenter.default.post(name: Notification.Name("update_\(action.action!)"), object: action)
-
         Task {
             apiService.syncActionRemote(action)
             await save(action)
@@ -48,8 +46,6 @@ public class BabyActionService: ObservableObject {
         action.end = Date()
         action.syncRequired = true
 
-        NotificationCenter.default.post(name: Notification.Name("update_\(action.action!)"), object: action)
-        
         let taskAction = action
         Task {
             apiService.syncActionRemote(taskAction)
@@ -61,7 +57,7 @@ public class BabyActionService: ObservableObject {
         action.syncRequired = true
 
         NotificationCenter.default.post(name: Notification.Name("update_\(action.action!)"), object: action)
-        
+
         apiService.deleteAction(action) { action in
             print("Deleted action: \(action)")
             Task {
@@ -77,12 +73,15 @@ public class BabyActionService: ObservableObject {
             return UpdateStatus(.ERROR)
         }
 
+        let mapper = mappers.getMapper(type: actionType)
+
         let action = await getByRemoteId(type: actionType, dto.id)
 
         if let deleted = dto.deleted, deleted {
             print("Action is already deleted; deleting local action if available (#\(dto.id))")
             if let action = action {
                 print("Deleting action: \(action)")
+                mapper.getService()?.onActionUpdate(action: action)
                 await delete(action)
             }
 
@@ -99,7 +98,10 @@ public class BabyActionService: ObservableObject {
         guard let baby = forBaby else {
             return UpdateStatus(.ERROR)
         }
+
         var updateType: ACTION_SYNC_STATUS = .UPDATED
+
+        NotificationCenter.default.post(name: Notification.Name("update_\(actionType)"), object: action)
 
         if let action = action {
             if action.end == nil, dto.end != nil {
@@ -112,9 +114,8 @@ public class BabyActionService: ObservableObject {
                 action.deleted = false
                 action.syncRequired = false
                 action.update(source: dto)
-//                Task {
-//                    await save(action)
-//                }
+
+                mapper.getService()?.onActionUpdate(action: action)
             }
             return UpdateStatus(updateType, action)
         } else {
@@ -125,6 +126,9 @@ public class BabyActionService: ObservableObject {
             newAction.syncRequired = false
             newAction.baby = baby
             await save(newAction)
+
+            mapper.getService()?.onActionUpdate(action: newAction)
+
             return UpdateStatus(updateType, newAction)
         }
     }

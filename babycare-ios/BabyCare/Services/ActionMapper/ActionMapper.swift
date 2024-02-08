@@ -5,6 +5,9 @@ public protocol ActionMapper {
     associatedtype ActionType: Action
     associatedtype ActionDtoType: ActionDto
     
+    init(_ services: ServiceContainer)
+    
+    func getService() -> (any ActionService)?
     func getDtoType() -> ActionDtoType.Type
     
     func create() -> ActionType

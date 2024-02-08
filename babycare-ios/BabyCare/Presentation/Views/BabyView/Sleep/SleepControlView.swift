@@ -4,8 +4,7 @@ import SwiftUI
 struct SleepControlView: View {
     @EnvironmentObject
     private var model: BabyViewModel
-    @EnvironmentObject
-    private var services: ServiceContainer
+    private var sleepService: SleepService
 
     @Query()
     var sleepQuery: [SleepAction]
@@ -14,7 +13,9 @@ struct SleepControlView: View {
     private var sleepDuration = 0
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
-    init(baby: Baby) {
+    init(services: ServiceContainer, baby: Baby) {
+        self.sleepService = services.actionMapperService.getService(type: .sleep)
+        
         let type = BabyActionType.sleep.rawValue
         let babyId = baby.persistentModelID
         let filter = #Predicate<SleepAction> { action in
@@ -39,7 +40,7 @@ struct SleepControlView: View {
             }
             .font(.title3)
 
-            TodaySleepDetailsView(service: model.babyServices.sleepService)
+            SleepDetailsView(Date(), model.baby)
 
             if let sleep = self.sleep {
                 VStack {
@@ -64,13 +65,13 @@ struct SleepControlView: View {
 
                     Toggle(isOn: Binding(get: { sleep.night ?? false }, set: { newValue in
                         sleep.night = newValue
-                        model.updateAction(sleep)
+                        self.sleepService.update(sleep)
                     })) {
                         Text("Night")
                     }
 
                     Button(action: {
-                        model.stopSleep(sleep)
+                        sleepService.stop(sleep)
                     }) {
                         HStack {
                             Image(systemName: "stop.circle")
@@ -101,7 +102,7 @@ struct SleepControlView: View {
             }
             else {
                 Button(action: {
-                    model.startSleep()
+                    sleepService.start(model.baby)
                 }) {
                     HStack {
                         Image(systemName: "play.circle")
@@ -136,7 +137,7 @@ struct SleepControlView: View {
                 sleep.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
             }
 
-            model.updateAction(sleep)
+            sleepService.update(sleep)
         }
     }
 

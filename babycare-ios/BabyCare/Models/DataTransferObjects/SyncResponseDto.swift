@@ -18,8 +18,11 @@ extension ActionSyncResponse: Decodable {
     }
 
     public init(from decoder: Decoder) throws {
-        // TODO: Create customer decoder and inject ActionMapperService instead of creating a new one here
-        let mappers = ActionMapperService()
+        guard let services = decoder.userInfo[.serviceContainer] as? ServiceContainer else {
+            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Missing service"))
+        }
+
+        let mappers = services.actionMapperService
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.syncedDate = try container.decode(Int.self, forKey: .syncedDate)
@@ -50,3 +53,34 @@ private struct DynamicCodingKeys: CodingKey {
         return nil
     }
 }
+
+extension CodingUserInfoKey {
+    // Define a key for your service
+    static let serviceContainer = CodingUserInfoKey(rawValue: "serviceContainer")!
+}
+
+// class CustomDecoder: Decoder {
+//    func unkeyedContainer() throws -> UnkeyedDecodingContainer {
+//        try underlyingDecoder.unkeyedContainer()
+//    }
+//
+//    func singleValueContainer() throws -> SingleValueDecodingContainer {
+//        try underlyingDecoder.singleValueContainer()
+//    }
+//
+//    let service: ServiceContainer
+//    private let underlyingDecoder: Decoder
+//
+//    init(service: ServiceContainer, underlyingDecoder: Decoder) {
+//        self.service = service
+//        self.underlyingDecoder = underlyingDecoder
+//    }
+//
+//    // Implement all required properties and methods by forwarding them to the underlyingDecoder
+//    var codingPath: [CodingKey] { underlyingDecoder.codingPath }
+//    var userInfo: [CodingUserInfoKey: Any] { underlyingDecoder.userInfo }
+//
+//    func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key> where Key: CodingKey {
+//        try underlyingDecoder.container(keyedBy: type)
+//    }
+// }

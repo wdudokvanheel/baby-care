@@ -12,11 +12,13 @@ public class SyncService: ObservableObject {
     private let babyService: BabyService
     private let actionService: BabyActionService
     private let authService: AuthenticationService
+    private let services: ServiceContainer
     private let container: ModelContainer
 
     private var cancellable: Set<AnyCancellable> = .init()
 
-    init(_ apiService: ApiService, _ babyService: BabyService, _ babyActionService: BabyActionService, _ authService: AuthenticationService, _ container: ModelContainer) {
+    init(_  services: ServiceContainer, _ apiService: ApiService, _ babyService: BabyService, _ babyActionService: BabyActionService, _ authService: AuthenticationService, _ container: ModelContainer) {
+        self.services = services
         self.apiService = apiService
         self.babyService = babyService
         self.actionService = babyActionService
@@ -78,6 +80,9 @@ public class SyncService: ObservableObject {
         print("Retrieving new actions, synced until: \(baby.lastSync ?? 0)")
         let dto = SyncRequestDto(Int(baby.lastSync ?? 0))
 
+        let decoder = JSONDecoder()
+        decoder.userInfo[.serviceContainer] = services
+        
         let actionsUpdated = await withCheckedContinuation { continuation in
             guard let babyId = baby.remoteId else {
                 print("Baby \(baby.name ?? "Unnamed") has no remoteId")
@@ -85,7 +90,7 @@ public class SyncService: ObservableObject {
                 return
             }
             apiService.performRequest(dto: dto, path: "baby/\(babyId)/sync", method: "POST") { data in
-                if let response: ActionSyncResponse = (self.apiService.parseJson(responseData: data) as ActionSyncResponse?) {
+                if let response: ActionSyncResponse = (self.apiService.parseJson(responseData: data, decoder) as ActionSyncResponse?) {
                     if response.items.count > 0 {
                         Task {
                             print("Syncing \(response.items.count) actions:")
@@ -150,7 +155,6 @@ public class SyncService: ObservableObject {
                 continuation.resume(returning: -1)
             }
         }
-
         if actionsUpdated == -1 {
             print("Failed to sync")
         } else if actionsUpdated > 0 {
