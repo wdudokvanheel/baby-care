@@ -10,6 +10,6 @@ public protocol ActionService {
     func stop(_ action: any Action)
     func update(_ action: any Action)
     func delete(_ action: any Action)
-    func onActionUpdate(action: any Action)
+    func onActionUpdate(_ action: any Action)
     func createQueryByDate(_ baby: Baby, _ date: Date)-> Query<ActionType, [ActionType]>
 }

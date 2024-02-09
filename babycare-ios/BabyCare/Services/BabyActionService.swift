@@ -81,7 +81,7 @@ public class BabyActionService: ObservableObject {
             print("Action is already deleted; deleting local action if available (#\(dto.id))")
             if let action = action {
                 print("Deleting action: \(action)")
-                mapper.getService()?.onActionUpdate(action: action)
+                mapper.getService()?.onActionUpdate(action)
                 await delete(action)
             }
 
@@ -115,7 +115,7 @@ public class BabyActionService: ObservableObject {
                 action.syncRequired = false
                 action.update(source: dto)
 
-                mapper.getService()?.onActionUpdate(action: action)
+                mapper.getService()?.onActionUpdate(action)
             }
             return UpdateStatus(updateType, action)
         } else {
@@ -127,7 +127,7 @@ public class BabyActionService: ObservableObject {
             newAction.baby = baby
             await save(newAction)
 
-            mapper.getService()?.onActionUpdate(action: newAction)
+            mapper.getService()?.onActionUpdate(newAction)
 
             return UpdateStatus(updateType, newAction)
         }

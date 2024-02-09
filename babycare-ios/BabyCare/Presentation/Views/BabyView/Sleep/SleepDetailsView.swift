@@ -90,8 +90,5 @@ struct SleepDetailsView: View {
                     .fill(.black.opacity(0.2))
             )
         }
-        .onChange(of: details) {
-            print("DETAILS: \(details)")
-        }
     }
 }

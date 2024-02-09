@@ -7,12 +7,16 @@ struct DayView: View {
     @State
     private var date = Date()
 
+    init(model: BabyViewModel) {
+        self.model = model
+    }
+
     var body: some View {
         VStack(alignment: .center) {
             DatePicker("", selection: $date, displayedComponents: .date)
                 .labelsHidden()
             ScrollView {
-                DaySummaryView(model, $date)
+                DaySummaryView(model, date)
             }
         }
         .navigationTitle("Summary for \(date.formatDateAsRelativeString())")

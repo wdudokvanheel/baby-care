@@ -1,5 +1,9 @@
 public extension Int {
-    func formatAsDurationString(_ includeSeconds: Bool = true) -> String {
+    func formatAsDurationString() -> String{
+        return formatAsDurationString(true)
+    }
+    
+    func formatAsDurationString(_ includeSeconds: Bool) -> String {
         let hours = self / 3600
         let minutes = (self % 3600) / 60
 

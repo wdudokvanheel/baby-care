@@ -25,6 +25,13 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 
+    func toLocaleDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMdd", options: 0, locale: Locale.current)
+        return formatter.string(from: self)
+    }
+
     func formatDateTimeAsRelativeString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long

@@ -15,7 +15,7 @@ struct SleepControlView: View {
 
     init(services: ServiceContainer, baby: Baby) {
         self.sleepService = services.actionMapperService.getService(type: .sleep)
-        
+
         let type = BabyActionType.sleep.rawValue
         let babyId = baby.persistentModelID
         let filter = #Predicate<SleepAction> { action in
@@ -37,6 +37,9 @@ struct SleepControlView: View {
                 Image(systemName: "moon.fill")
                 Text("Sleep")
                 Spacer()
+                NavigationLink(destination: SleepWeekGraph(Date(), model.baby, sleepService: sleepService)) {
+                    Image(systemName: "chart.bar.fill")
+                }
             }
             .font(.title3)
 
@@ -45,7 +48,7 @@ struct SleepControlView: View {
             if let sleep = self.sleep {
                 VStack {
                     HStack {
-                        Text("Sleeping \(sleepDuration.formatAsDurationString(excludeHours: true))")
+                        RefreshingInterval(date: sleep.start)
                         Spacer()
 
                         VStack(alignment: .trailing) {
@@ -145,5 +148,25 @@ struct SleepControlView: View {
         if let sleep = sleep {
             sleepDuration = max(0, Int(Date().timeIntervalSince(sleep.start)))
         }
+    }
+}
+
+struct RefreshingInterval: View {
+    let date: Date
+
+    @State
+    private var sleepDuration = 0
+
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
+    var body: some View {
+        Text("Sleeping \(sleepDuration.formatAsDurationString(excludeHours: true))")
+            .onReceive(timer) { _ in
+                updateSleepDuration()
+            }
+    }
+
+    private func updateSleepDuration() {
+        sleepDuration = max(0, Int(Date().timeIntervalSince(date)))
     }
 }

@@ -3,7 +3,7 @@ import SwiftUI
 
 struct BabyView: View {
     var model: BabyViewModel
-    
+
     init(model: BabyViewModel) {
         self.model = model
     }
@@ -13,7 +13,9 @@ struct BabyView: View {
             NavigationLink(destination: DayView(model: model)) {
                 Text("More data")
             }
+            .isDetailLink(false)
             .buttonStyle(BorderedProminentButtonStyle())
+
             SleepControlView(services: model.services, baby: model.baby)
             FeedControlView(baby: model.baby)
             BottleControlView(baby: model.baby)

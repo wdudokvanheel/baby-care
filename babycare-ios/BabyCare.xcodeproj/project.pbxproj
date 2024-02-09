@@ -57,9 +57,10 @@
 		2B7A8DD22B726F2C00A72393 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD12B726F2C00A72393 /* FeedService.swift */; };
 		2B7A8DD42B72717300A72393 /* FeedDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD32B72717300A72393 /* FeedDetailsView.swift */; };
 		2B7A8DD62B7384AF00A72393 /* BabyServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD52B7384AF00A72393 /* BabyServiceContainer.swift */; };
-		2B7A8DD82B73B8DE00A72393 /* SleepDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD72B73B8DE00A72393 /* SleepDetails.swift */; };
+		2B7A8DD82B73B8DE00A72393 /* DailySleepDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD72B73B8DE00A72393 /* DailySleepDetails.swift */; };
 		2B7A8DDA2B73C07800A72393 /* DailySleepDetailsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */; };
 		2B7A8DDC2B7503FB00A72393 /* ActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DDB2B7503FB00A72393 /* ActionService.swift */; };
+		2B97B7D22B75806E0050B8DC /* SleepWeekGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97B7D12B75806E0050B8DC /* SleepWeekGraph.swift */; };
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
 		2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA02B54905C00B91132 /* MainViewModel.swift */; };
@@ -150,9 +151,10 @@
 		2B7A8DD12B726F2C00A72393 /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
 		2B7A8DD32B72717300A72393 /* FeedDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailsView.swift; sourceTree = "<group>"; };
 		2B7A8DD52B7384AF00A72393 /* BabyServiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyServiceContainer.swift; sourceTree = "<group>"; };
-		2B7A8DD72B73B8DE00A72393 /* SleepDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetails.swift; sourceTree = "<group>"; };
+		2B7A8DD72B73B8DE00A72393 /* DailySleepDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySleepDetails.swift; sourceTree = "<group>"; };
 		2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySleepDetailsExt.swift; sourceTree = "<group>"; };
 		2B7A8DDB2B7503FB00A72393 /* ActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionService.swift; sourceTree = "<group>"; };
+		2B97B7D12B75806E0050B8DC /* SleepWeekGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWeekGraph.swift; sourceTree = "<group>"; };
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		2B9FDAA02B54905C00B91132 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				2B1552E42B66540C00AD95FE /* SleepLog.swift */,
 				2B11499E2B68387A0096E427 /* SleepView.swift */,
 				2B7A8DCD2B726B5D00A72393 /* SleepDetailsView.swift */,
+				2B97B7D12B75806E0050B8DC /* SleepWeekGraph.swift */,
 			);
 			path = Sleep;
 			sourceTree = "<group>";
@@ -462,7 +465,6 @@
 		2BF567F92B56AFF6004B3936 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2B0FFD582B59520600C20C9A /* DataTransferObjects */,
 				2BF16EF32B62654F00A84DE3 /* Action.swift */,
 				2BF16EED2B62650D00A84DE3 /* Baby.swift */,
 				2BF16EF52B6265AE00A84DE3 /* BabyAction.swift */,
@@ -470,12 +472,13 @@
 				2BF16EC22B6010DE00A84DE3 /* BabyExt.swift */,
 				2B1552E82B667F9900AD95FE /* BottleAction.swift */,
 				2B1552EA2B667FAC00AD95FE /* BottleActionExt.swift */,
+				2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */,
+				2B0FFD582B59520600C20C9A /* DataTransferObjects */,
 				2BF16EEE2B62650D00A84DE3 /* FeedAction.swift */,
 				2BF16EF72B62662900A84DE3 /* FeedActionExt.swift */,
 				2B7A8DC52B71249800A72393 /* SleepAction.swift */,
 				2B7A8DC72B7124AF00A72393 /* SleepActionExt.swift */,
-				2B7A8DD72B73B8DE00A72393 /* SleepDetails.swift */,
-				2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */,
+				2B7A8DD72B73B8DE00A72393 /* DailySleepDetails.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				2BF16EF62B6265AE00A84DE3 /* BabyAction.swift in Sources */,
 				2B7A8DC82B7124AF00A72393 /* SleepActionExt.swift in Sources */,
 				2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */,
+				2B97B7D22B75806E0050B8DC /* SleepWeekGraph.swift in Sources */,
 				2B46AE482B5D781B0019D710 /* BabyCareDelegate.swift in Sources */,
 				2B0FFD5A2B59521A00C20C9A /* BabyActionCreateDto.swift in Sources */,
 				2BF16F012B62824900A84DE3 /* FeedActionMapper.swift in Sources */,
@@ -651,7 +655,7 @@
 				2B46AE4B2B5D9D5E0019D710 /* ServiceContainer.swift in Sources */,
 				2BF16EEA2B62634A00A84DE3 /* ActionDto.swift in Sources */,
 				2BECD6842B711CA800BF174D /* BottleRepository.swift in Sources */,
-				2B7A8DD82B73B8DE00A72393 /* SleepDetails.swift in Sources */,
+				2B7A8DD82B73B8DE00A72393 /* DailySleepDetails.swift in Sources */,
 				2B6D4D122B5E8488000F6BFA /* AuthenticationResponse.swift in Sources */,
 				2B7A8DC22B71243200A72393 /* SleepActionDto.swift in Sources */,
 				2B0FFD622B5B0BB700C20C9A /* LatestActionsView.swift in Sources */,
@@ -807,7 +811,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -847,7 +851,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

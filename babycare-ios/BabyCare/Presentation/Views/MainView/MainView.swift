@@ -27,15 +27,6 @@ struct MainView: View {
                     })
                 }
 
-//                AuthGuard(model.services.authService) {
-//                    BabySelector { baby in
-//                        BabyView(model: BabyViewModel(services: model.services, baby: baby))
-//                    }
-//                    .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) {
-//                        Image(systemName: "gear")
-//                            .imageScale(.large)
-//                    })
-//                }
                 UnAuthGuard(model.services.authService) {
                     Button("Login") {
                         model.login()
@@ -50,6 +41,7 @@ struct MainView: View {
             .onTapGesture {
                 UIApplication.shared.endEditing()
             }
+            .navigationViewStyle(.stack)
             .onAppear {
                 Task {
                     self.baby = await self.model.services.babyService.getAllBabies().first

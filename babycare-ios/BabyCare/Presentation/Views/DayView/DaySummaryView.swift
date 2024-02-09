@@ -9,7 +9,7 @@ struct DaySummaryView: View {
 
     @ObservedObject
     var model: BabyViewModel
-    @Binding
+
     var date: Date
 
     @Query()
@@ -22,14 +22,16 @@ struct DaySummaryView: View {
     @State
     private var feedDetails: DayFeedDetailsModel?
 
-    init(_ model: BabyViewModel, _ date: Binding<Date>) {
+    init(_ model: BabyViewModel, _ date: Date) {
         self.model = model
-        self._date = date
+        self.date = date
         self.sleepRepo = model.services.actionMapperService.getService(type: .sleep)
-        
-        _sleepItems = sleepRepo.createQueryByDate(model.baby, date.wrappedValue)
-        _feedItems = feedRepo.createQueryByDate(model.baby, date.wrappedValue)
-        _bottleItems = bottleRepo.createQueryByDate(model.baby, date.wrappedValue)
+
+        _sleepItems = sleepRepo.createQueryByDate(model.baby, date)
+        _feedItems = feedRepo.createQueryByDate(model.baby, date)
+        _bottleItems = bottleRepo.createQueryByDate(model.baby, date)
+
+        sleepRepo.createDetailsIfUnavailable(date, baby: model.baby)
     }
 
     var body: some View {
@@ -88,20 +90,13 @@ struct DaySummaryView: View {
                 )
             }
         }
-        .onChange(of: date) {
-            self.sleepRepo.createDetailsIfUnavailable(date, baby: model.baby)
-            updateDetails()
-        }
-        .onAppear {
-            updateDetails()
-        }
         .padding()
     }
 
     func updateDetails() {
         Task {
 //            self.sleepDetails = await model.babyServices.sleepService.getNewSleepDetails(date, model.baby)
-            self.feedDetails = await model.babyServices.feedService.getFeedDetails(date)
+//            self.feedDetails = await model.babyServices.feedService.getFeedDetails(date)
         }
     }
 }

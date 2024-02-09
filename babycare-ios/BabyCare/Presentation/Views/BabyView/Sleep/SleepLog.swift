@@ -78,6 +78,7 @@ struct SleepLogView: View {
             )) {
                 EmptyView()
             }
+            .isDetailLink(false)
         }
     }
 
