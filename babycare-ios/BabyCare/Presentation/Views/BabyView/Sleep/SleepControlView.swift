@@ -33,10 +33,16 @@ struct SleepControlView: View {
     var body: some View {
         VStack {
             HStack {
+                NavigationLink(destination: DayView(model: model)) {
+                    Image(systemName: "list.bullet.rectangle.portrait.fill")
+                }
+                .isDetailLink(false)
+
                 Spacer()
                 Image(systemName: "moon.fill")
                 Text("Sleep")
                 Spacer()
+                
                 NavigationLink(destination: SleepWeekGraph(Date(), model.baby, sleepService: sleepService)) {
                     Image(systemName: "chart.bar.fill")
                 }

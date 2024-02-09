@@ -31,7 +31,7 @@ struct SleepWeekGraph: View {
                 details.date <= date
         }
 
-        var fetchDescriptor = FetchDescriptor<DailySleepDetails>(predicate: filter, sortBy: [SortDescriptor<DailySleepDetails>(\.date, order: .reverse)])
+        var fetchDescriptor = FetchDescriptor<DailySleepDetails>(predicate: filter, sortBy: [SortDescriptor<DailySleepDetails>(\.date)])
         fetchDescriptor.fetchLimit = 7
         _query = Query(fetchDescriptor)
     }
@@ -47,15 +47,16 @@ struct SleepWeekGraph: View {
 
                 BarMark(
                     x: .value("Date", day.date.toLocaleDateString()),
-                    y: .value("Day", Double(day.sleepTimeDayInt) / 3600)
+                    y: .value("Naps", Double(day.sleepTimeDayInt) / 3600)
                 )
-                .foregroundStyle(by: .value("Day", "Day"))
+                .foregroundStyle(by: .value("Naps", "Naps"))
             }
             .chartForegroundStyleScale([
-                "Night": .blue, "Day": .indigo
+                "Night": .blue, "Naps": .orange
             ])
-
+            .containerRelativeFrame(.vertical, count: 2, span: 1, spacing: 0)
             Spacer()
+
         }
         .navigationTitle("Sleep data past week")
         .navigationBarTitleDisplayMode(.large)

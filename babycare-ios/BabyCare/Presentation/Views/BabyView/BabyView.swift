@@ -10,12 +10,6 @@ struct BabyView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            NavigationLink(destination: DayView(model: model)) {
-                Text("More data")
-            }
-            .isDetailLink(false)
-            .buttonStyle(BorderedProminentButtonStyle())
-
             SleepControlView(services: model.services, baby: model.baby)
             FeedControlView(baby: model.baby)
             BottleControlView(baby: model.baby)
