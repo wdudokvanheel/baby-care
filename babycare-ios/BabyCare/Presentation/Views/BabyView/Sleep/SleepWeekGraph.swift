@@ -8,20 +8,17 @@ struct SleepWeekGraph: View {
     @Query
     var query: [DailySleepDetails]
 
+    let sleepService: SleepService
     let date: Date
     let baby: Baby
 
     init(_ date: Date, _ baby: Baby, sleepService: SleepService) {
         self.date = date
         self.baby = baby
+        self.sleepService = sleepService
 
         let date = Calendar.current.startOfDay(for: date)
-        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: date)!
-
-        for i in 0 ... 7 {
-            let testDate = Calendar.current.date(byAdding: .day, value: i, to: startDate)!
-            sleepService.createDetailsIfUnavailable(testDate, baby: baby)
-        }
+        let startDate = Calendar.current.date(byAdding: .day, value: -6, to: date)!
 
         let babyId = baby.persistentModelID
 
@@ -55,11 +52,20 @@ struct SleepWeekGraph: View {
                 "Night": .blue, "Naps": .orange
             ])
             .containerRelativeFrame(.vertical, count: 2, span: 1, spacing: 0)
-            Spacer()
 
+            Spacer()
         }
         .navigationTitle("Sleep data past week")
         .navigationBarTitleDisplayMode(.large)
         .padding()
+        .onAppear {
+            let date = Calendar.current.startOfDay(for: date)
+            let startDate = Calendar.current.date(byAdding: .day, value: -7, to: date)!
+
+            for i in 0 ... 7 {
+                let testDate = Calendar.current.date(byAdding: .day, value: i, to: startDate)!
+                self.sleepService.createDetailsIfUnavailable(testDate, baby: baby)
+            }
+        }
     }
 }

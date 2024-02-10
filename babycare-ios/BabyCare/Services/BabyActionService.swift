@@ -122,9 +122,12 @@ public class BabyActionService: ObservableObject {
             print("Adding action #\(dto.id)")
             updateType = .STARTED
             let newAction = mappers.getMapper(type: actionType).createFromDto(dto)
-            newAction.deleted = false
-            newAction.syncRequired = false
-            newAction.baby = baby
+            
+            await MainActor.run {
+                newAction.deleted = false
+                newAction.syncRequired = false
+                newAction.baby = baby
+            }
             await save(newAction)
 
             mapper.getService()?.onActionUpdate(newAction)

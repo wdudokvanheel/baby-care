@@ -34,7 +34,7 @@ class SleepService: ActionService {
     }
 
     func onActionUpdate(_ action: any Action) {
-        print("Update action #\(action.remoteId ?? 0)")
+        print("Update details for sleep action #\(action.remoteId ?? 0)")
 
         if let baby = action.baby {
             Task {
@@ -67,7 +67,6 @@ class SleepService: ActionService {
 
     func delete(_ action: any Action) {
         actionService.deleteAction(action)
-
         onActionUpdate(action)
     }
 
@@ -103,7 +102,10 @@ class SleepService: ActionService {
         } else {
             insert = true
             model = DailySleepDetails(date: date)
-            model.baby = baby
+            let m = model
+            await MainActor.run {
+                m.baby = baby
+            }
         }
 
         await updateSleepModel(model)
@@ -126,6 +128,12 @@ class SleepService: ActionService {
         let night = getNightActions(date, actions)
 
         await MainActor.run {
+//            print("Updating details for \(date)")
+//
+//            for x in actions {
+//                print("\t#\(x.remoteId ?? 0) \(x.start.formatted()) \(x.duration) Night: \(x.night)")
+//            }
+
             if !night.isEmpty {
                 if let first = night.first {
                     model.bedTime = first.start
@@ -138,6 +146,9 @@ class SleepService: ActionService {
 
             model.sleepTimeDay = Int32(actions.filter { $0.start.isSameDateIgnoringTime(as: date) && $0.night == false }.reduce(0) { $0 + $1.duration })
             model.sleepTimeNight = Int32(night.reduce(0) { $0 + $1.duration })
+
+            let total = actions.map { $0.duration }.reduce(0) { $0 + $1 }
+//            print("actions: \(actions.count) day: \(model.sleepTimeDayInt) night:  \(model.sleepTimeNightInt) total: \(total)")
         }
     }
 
