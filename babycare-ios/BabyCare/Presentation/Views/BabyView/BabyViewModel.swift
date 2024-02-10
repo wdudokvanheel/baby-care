@@ -16,11 +16,11 @@ public class BabyViewModel: ObservableObject {
     }
 
     // TODO: Move these functions to services for each action
-    func startFeed(_ side: FeedSide? = nil) {
-        let action: FeedAction = actionService.createAction(baby: baby, type: .feed)
-        action.feedSide = side
-        actionService.persistAction(action)
-    }
+//    func startFeed(_ side: FeedSide? = nil) {
+//        let action: FeedAction = actionService.createAction(baby: baby, type: .feed)
+//        action.feedSide = side
+//        actionService.persistAction(action)
+//    }
 
     func startBottle(_ quantity: Int64? = nil) {
         let action: BottleAction = actionService.createAction(baby: baby, type: .bottle)
@@ -34,14 +34,14 @@ public class BabyViewModel: ObservableObject {
         actionService.endAction(action)
     }
 
-    func setFeedSide(_ action: FeedAction, _ side: FeedSide? = nil) {
-        action.feedSide = side
-        actionService.persistAction(action)
-    }
-
-    func stopFeed(_ action: FeedAction) {
-        actionService.endAction(action)
-    }
+//    func setFeedSide(_ action: FeedAction, _ side: FeedSide? = nil) {
+//        action.feedSide = side
+//        actionService.persistAction(action)
+//    }
+//
+//    func stopFeed(_ action: FeedAction) {
+//        actionService.endAction(action)
+//    }
 
     func updateAction(_ action: any Action) {
         action.syncRequired = true

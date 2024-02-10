@@ -32,6 +32,7 @@ class MainViewModel: ObservableObject {
                     try services.container.mainContext.delete(model: FeedAction.self)
                     try services.container.mainContext.delete(model: BottleAction.self)
                     try services.container.mainContext.delete(model: DailySleepDetails.self)
+                    try services.container.mainContext.delete(model: DailyFeedDetails.self)
                     try services.container.mainContext.save()
                 }
                 catch {}

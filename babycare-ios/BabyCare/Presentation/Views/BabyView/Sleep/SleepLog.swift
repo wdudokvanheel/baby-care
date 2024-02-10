@@ -66,11 +66,7 @@ struct SleepLogView: View {
         }
 
         if let selected = selectedSleep {
-            let view = SleepView(sleep: selected, onChange: { sleep in
-                sleepService.update(sleep)
-            }, onDelete: { sleep in
-                sleepService.delete(sleep)
-            })
+            let view = SleepView(sleep: selected, onChange: sleepService.update, onDelete: sleepService.delete)
 
             NavigationLink(destination: view, isActive: Binding<Bool>(
                 get: { self.selectedSleep != nil },

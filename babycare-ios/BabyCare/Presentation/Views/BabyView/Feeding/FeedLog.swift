@@ -5,10 +5,14 @@ struct FeedLog: View {
     @EnvironmentObject
     private var model: BabyViewModel
 
+    private let feedService: FeedService
+
     @Query()
     var items: [FeedAction]
 
     init(_ model: BabyViewModel) {
+        self.feedService = model.services.actionMapperService.getService(type: .feed)
+
         let type = BabyActionType.feed.rawValue
         let babyId = model.baby.persistentModelID
 
@@ -25,12 +29,12 @@ struct FeedLog: View {
     }
 
     var body: some View {
-        FeedLogView(model: model, items: items)
+        FeedLogView(feedService: feedService, items: items)
     }
 }
 
 struct FeedLogView: View {
-    var model: BabyViewModel
+    let feedService: FeedService
     var items: [FeedAction]
 
     @State
@@ -61,7 +65,7 @@ struct FeedLogView: View {
         }
 
         if let selected = self.selectedFeed {
-            let view = FeedView(feeding: selected, onChange: model.updateAction, onDelete: self.model.deleteAction)
+            let view = FeedView(feeding: selected, onChange: feedService.update, onDelete: feedService.delete)
 
             NavigationLink(destination: view, isActive: Binding<Bool>(
                 get: { self.selectedFeed != nil },

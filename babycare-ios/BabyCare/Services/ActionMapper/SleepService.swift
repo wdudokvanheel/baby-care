@@ -147,7 +147,7 @@ class SleepService: ActionService {
             model.sleepTimeDay = Int32(actions.filter { $0.start.isSameDateIgnoringTime(as: date) && $0.night == false }.reduce(0) { $0 + $1.duration })
             model.sleepTimeNight = Int32(night.reduce(0) { $0 + $1.duration })
 
-            let total = actions.map { $0.duration }.reduce(0) { $0 + $1 }
+//            let total = actions.map { $0.duration }.reduce(0) { $0 + $1 }
 //            print("actions: \(actions.count) day: \(model.sleepTimeDayInt) night:  \(model.sleepTimeNightInt) total: \(total)")
         }
     }
@@ -235,31 +235,5 @@ class SleepService: ActionService {
 
             return []
         }
-    }
-}
-
-struct DaySleepDetailsModel: CustomDebugStringConvertible {
-    var bedTime: Date?
-    var wakeTime: Date?
-    var naps: Int = 0
-    var sleepTimeDay: Int = 0
-    var sleepTimeNight: Int = 0
-
-    var sleepTimeTotal: Int {
-        return sleepTimeDay + sleepTimeNight
-    }
-
-    var debugDescription: String {
-        let bedTimeStr = bedTime?.formatted() ?? "nil"
-        let wakeTimeStr = wakeTime?.formatted() ?? "nil"
-        return """
-        DaySleepDetailsModel:
-            Bed Time: \(bedTimeStr)
-            Wake Time: \(wakeTimeStr)
-            Naps: \(naps)
-            Sleep Time Day: \(sleepTimeDay) minutes
-            Sleep Time Night: \(sleepTimeNight) minutes
-            Total Sleep Time: \(sleepTimeTotal) minutes
-        """
     }
 }

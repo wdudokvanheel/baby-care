@@ -11,7 +11,7 @@ struct BabyView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             SleepControlView(services: model.services, baby: model.baby)
-            FeedControlView(baby: model.baby)
+            FeedControlView(services: model.services, baby: model.baby)
             BottleControlView(baby: model.baby)
         }
         .navigationBarTitle("\(model.baby.displayName)")

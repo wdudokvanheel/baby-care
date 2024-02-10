@@ -4,7 +4,7 @@ import SwiftUI
 struct DaySummaryView: View {
     // TODO: Move this to the viewmodel
     let sleepRepo: SleepService
-    let feedRepo = FeedRepository()
+    let feedRepo: FeedService
     let bottleRepo = BottleRepository()
 
     @ObservedObject
@@ -19,19 +19,18 @@ struct DaySummaryView: View {
     @Query()
     var bottleItems: [BottleAction]
 
-    @State
-    private var feedDetails: DayFeedDetailsModel?
-
     init(_ model: BabyViewModel, _ date: Date) {
         self.model = model
         self.date = date
         self.sleepRepo = model.services.actionMapperService.getService(type: .sleep)
+        self.feedRepo = model.services.actionMapperService.getService(type: .feed)
 
         _sleepItems = sleepRepo.createQueryByDate(model.baby, date)
         _feedItems = feedRepo.createQueryByDate(model.baby, date)
         _bottleItems = bottleRepo.createQueryByDate(model.baby, date)
 
         sleepRepo.createDetailsIfUnavailable(date, baby: model.baby)
+        feedRepo.createDetailsIfUnavailable(date, baby: model.baby)
     }
 
     var body: some View {
@@ -62,10 +61,10 @@ struct DaySummaryView: View {
                         Text("Feed data")
                         Spacer()
                     }
-                    if let details = feedDetails {
-                        FeedDetailsView(details: details)
-                    }
-                    FeedLogView(model: model, items: feedItems)
+                    FeedDetailsView(date, model.baby)
+                    FeedLogView(
+                        feedService: model.services.actionMapperService.getService(type: .feed), items: feedItems
+                    )
                 }
                 .foregroundColor(.white)
                 .padding()

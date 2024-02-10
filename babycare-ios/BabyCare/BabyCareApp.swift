@@ -7,7 +7,7 @@ struct BabyCareApp: App {
 
     public static var DEBUG_MODE = false
     public static var API_URL = "https://baby.ducknugget.com/api"
-    
+
     public static let nightStartHour = 19
     public static let nightEndHour = 9
 

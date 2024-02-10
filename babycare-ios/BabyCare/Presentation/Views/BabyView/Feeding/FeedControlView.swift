@@ -3,21 +3,20 @@ import SwiftUI
 
 struct FeedControlView: View {
     @EnvironmentObject
-    private var services: ServiceContainer
-    @EnvironmentObject
     private var model: BabyViewModel
+    private var feedService: FeedService
 
     @Query()
     var feedQuery: [FeedAction]
 
     @State
     private var feedDuration = 0
-    @State
-    private var detailsModel: DayFeedDetailsModel?
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
-    init(baby: Baby) {
+    init(services: ServiceContainer, baby: Baby) {
+        self.feedService = services.actionMapperService.getService(type: .feed)
+
         let type = BabyActionType.feed.rawValue
 
         let babyId = baby.persistentModelID
@@ -71,7 +70,7 @@ struct FeedControlView: View {
 
                 HStack {
                     Button("L") {
-                        model.setFeedSide(feed, .left)
+                        feedService.setFeedSide(feed, .left)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(feed.feedSide == .left ? .mint : .mint.opacity(0.3))
@@ -79,7 +78,7 @@ struct FeedControlView: View {
                     Spacer()
 
                     Button("Stop feeding") {
-                        model.stopFeed(feed)
+                        feedService.stop(feed)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.mint.opacity(0.9))
@@ -87,7 +86,7 @@ struct FeedControlView: View {
                     Spacer()
 
                     Button("R") {
-                        model.setFeedSide(feed, .right)
+                        feedService.setFeedSide(feed, .right)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(feed.feedSide == .right ? .mint : .mint.opacity(0.3))
@@ -105,7 +104,7 @@ struct FeedControlView: View {
 
                 HStack {
                     Button("L") {
-                        model.startFeed(.left)
+                        feedService.start(model.baby, .left)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.mint)
@@ -113,7 +112,7 @@ struct FeedControlView: View {
                     Spacer()
 
                     Button("Start feeding") {
-                        model.startFeed()
+                        feedService.start(model.baby)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.mint)
@@ -121,13 +120,13 @@ struct FeedControlView: View {
                     Spacer()
 
                     Button("R") {
-                        model.startFeed(.right)
+                        feedService.start(model.baby, .right)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.mint)
                 }
             }
-            TodayFeedDetailsView(service: model.babyServices.feedService)
+            FeedDetailsView(Date(), model.baby)
             FeedLog(model)
         }
         .foregroundColor(.white)
@@ -153,7 +152,7 @@ struct FeedControlView: View {
                 feed.start = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
             }
 
-            model.updateAction(feed)
+            feedService.update(feed)
         }
     }
 
@@ -168,14 +167,5 @@ struct FeedControlView: View {
         let minutes = (totalSeconds % 3600) / 60
         let seconds = totalSeconds % 60
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-    }
-}
-
-struct TodayFeedDetailsView: View {
-    @ObservedObject
-    var service: FeedService
-
-    var body: some View {
-        FeedDetailsView(details: service.detailsToday)
     }
 }
