@@ -13,12 +13,14 @@ class FeedService: ActionService {
         self.actionService = services.actionService
     }
 
+    @discardableResult
     func start(_ baby: Baby) -> any Action {
         let action: FeedAction = actionService.createAction(baby: baby, type: .feed)
         actionService.persistAction(action)
         return action
     }
 
+    @discardableResult
     func start(_ baby: Baby, _ side: FeedSide?) -> FeedAction {
         let action: FeedAction = actionService.createAction(baby: baby, type: .feed)
         action.feedSide = side
@@ -44,19 +46,17 @@ class FeedService: ActionService {
 
     func onActionUpdate(_ action: any Action) {
         print("Update details for feed action #\(action.remoteId ?? 0)")
-
+        let date = action.start
         if let baby = action.baby {
             Task {
-                await updateDetails(action.start, baby)
+                await updateDetails(date, baby)
             }
-//                await updateSleepDetails(Calendar.current.date(byAdding: .day, value: 1, to: action.start)!, baby)
-//            }
         }
     }
 
     func delete(_ action: any Action) {
-        actionService.deleteAction(action)
         onActionUpdate(action)
+        actionService.deleteAction(action)
     }
 
     func createQueryByDate(_ baby: Baby, _ date: Date) -> Query<FeedAction, [FeedAction]> {
@@ -79,6 +79,20 @@ class FeedService: ActionService {
         return Query(fetchDescriptor)
     }
 
+    static func createQueryDetailsByDate(_ date: Date, _ baby: Baby) -> Query<DailyFeedDetails, [DailyFeedDetails]> {
+        let date = Calendar.current.startOfDay(for: date)
+        let babyId = baby.persistentModelID
+
+        let filter = #Predicate<DailyFeedDetails> { details in
+            details.baby?.persistentModelID == babyId &&
+                details.date == date
+        }
+
+        var fetchDescriptor = FetchDescriptor<DailyFeedDetails>(predicate: filter)
+        fetchDescriptor.fetchLimit = 1
+        return Query(fetchDescriptor)
+    }
+
     public func updateDetails(_ date: Date, _ baby: Baby) async {
         let date = Calendar.current.startOfDay(for: date)
 
@@ -89,7 +103,6 @@ class FeedService: ActionService {
             model = details
         } else {
             insert = true
-            print("Creating new details")
             model = DailyFeedDetails(date: date)
             let m = model
             await MainActor.run {
@@ -113,9 +126,10 @@ class FeedService: ActionService {
         }
         let date = model.date
         let actions = await getActionsForDate(date, baby)
-        let actionsWithSide = actions.filter { $0.feedSide != nil }
-
+        
         await MainActor.run {
+            let actionsWithSide = actions.filter { $0.feedSide != nil }
+
             model.left = Int32(actionsWithSide.filter { $0.feedSide == .left }.duration)
             model.right = Int32(actionsWithSide.filter { $0.feedSide == .right }.duration)
             model.total = Int32(actions.duration)

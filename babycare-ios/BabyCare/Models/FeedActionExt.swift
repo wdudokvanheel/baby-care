@@ -19,7 +19,7 @@ public extension FeedAction {
     }
 }
 
-public enum FeedSide: String, Codable, CaseIterable, Identifiable, Comparable {
+public enum FeedSide: String, Codable, CaseIterable, Identifiable, Comparable, CustomDebugStringConvertible {
     case left
     case right
 
@@ -29,6 +29,15 @@ public enum FeedSide: String, Codable, CaseIterable, Identifiable, Comparable {
 
     public var id: Self {
         return self
+    }
+
+    public var debugDescription: String {
+        switch self {
+        case .left:
+            return "left"
+        case .right:
+            return "right"
+        }
     }
 }
 

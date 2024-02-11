@@ -31,6 +31,7 @@
 		2B220AC32B77A4DB00B183B7 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B220AC22B77A4DB00B183B7 /* FeedService.swift */; };
 		2B220AC52B77A6D500B183B7 /* DailyFeedDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B220AC42B77A6D500B183B7 /* DailyFeedDetails.swift */; };
 		2B220AC72B77A73700B183B7 /* DailyFeedDetailsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B220AC62B77A73700B183B7 /* DailyFeedDetailsExt.swift */; };
+		2B220AC92B78F25700B183B7 /* FeedDetailsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B220AC82B78F25700B183B7 /* FeedDetailsContainer.swift */; };
 		2B46AE362B5C73B70019D710 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE352B5C73B70019D710 /* KeychainItem.swift */; };
 		2B46AE3A2B5C81120019D710 /* BabyActionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE392B5C81120019D710 /* BabyActionExt.swift */; };
 		2B46AE422B5D3C3A0019D710 /* SyncRequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE412B5D3C3A0019D710 /* SyncRequestDto.swift */; };
@@ -126,6 +127,7 @@
 		2B220AC22B77A4DB00B183B7 /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
 		2B220AC42B77A6D500B183B7 /* DailyFeedDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFeedDetails.swift; sourceTree = "<group>"; };
 		2B220AC62B77A73700B183B7 /* DailyFeedDetailsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFeedDetailsExt.swift; sourceTree = "<group>"; };
+		2B220AC82B78F25700B183B7 /* FeedDetailsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailsContainer.swift; sourceTree = "<group>"; };
 		2B46AE352B5C73B70019D710 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		2B46AE392B5C81120019D710 /* BabyActionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionExt.swift; sourceTree = "<group>"; };
 		2B46AE412B5D3C3A0019D710 /* SyncRequestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncRequestDto.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				2B1552E62B66769600AD95FE /* FeedLog.swift */,
 				2BC0E4CD2B68456500E5A60A /* FeedView.swift */,
 				2B7A8DD32B72717300A72393 /* FeedDetailsView.swift */,
+				2B220AC82B78F25700B183B7 /* FeedDetailsContainer.swift */,
 			);
 			path = Feeding;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				2B1552ED2B66801B00AD95FE /* BottleActionDto.swift in Sources */,
 				2B7A8DD22B726F2C00A72393 /* FeedService.old.swift in Sources */,
 				2BF16EC32B6010DE00A84DE3 /* BabyExt.swift in Sources */,
+				2B220AC92B78F25700B183B7 /* FeedDetailsContainer.swift in Sources */,
 				2B7A8DC42B71245900A72393 /* SleepActionUpdateDto.swift in Sources */,
 				2BC0E4D02B69144000E5A60A /* BottleLog.swift in Sources */,
 				2BF16EF42B62654F00A84DE3 /* Action.swift in Sources */,
@@ -823,7 +827,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -863,7 +867,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
