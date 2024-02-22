@@ -44,7 +44,9 @@ struct MainView: View {
             .navigationViewStyle(.stack)
             .onAppear {
                 Task {
-                    self.baby = await self.model.services.babyService.getAllBabies().first
+                    if self.baby == nil {
+                        self.baby = await self.model.services.babyService.getAllBabies().first
+                    }
                 }
             }
         }

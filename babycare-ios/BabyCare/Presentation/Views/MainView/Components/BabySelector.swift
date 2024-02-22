@@ -6,13 +6,13 @@ public struct BabySelector: View {
         let descriptor = FetchDescriptor<Baby>(sortBy: [SortDescriptor(\.birthDate)])
         return descriptor
     }
-    
+
     @Query(babiesQuery)
     var babies: [Baby]
-    
+
     @Binding
     public var selected: Baby?
-    
+
     public var body: some View {
         HStack {
             ForEach(babies, id: \.self) { baby in
@@ -23,18 +23,6 @@ public struct BabySelector: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .foregroundColor(baby == selected ? .white : .white.opacity(0.5))
             }
-        }
-        .onChange(of: babies) {
-            setDefaultBaby()
-        }
-        .onAppear {
-            setDefaultBaby()
-        }
-    }
-    
-    private func setDefaultBaby() {
-        if babies.count > 0, selected == nil {
-            selected = babies[0]
         }
     }
 }
