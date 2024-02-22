@@ -5,6 +5,7 @@ public class ServiceContainer: ObservableObject {
     var container: ModelContainer
     var delegateData: DelegateData
 
+    lazy var prefService = UserPreferencesService()
     lazy var authService = AuthenticationService()
     lazy var apiService = ApiService(authService, actionMapperService)
     lazy var babyService: BabyService = .init(container, apiService)

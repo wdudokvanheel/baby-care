@@ -44,8 +44,15 @@ struct MainView: View {
             .navigationViewStyle(.stack)
             .onAppear {
                 Task {
+                    let babies = await self.model.services.babyService.getAllBabies()
+                    let prefId = self.model.services.prefService.getInt(forKey: "baby.default")
+
                     if self.baby == nil {
-                        self.baby = await self.model.services.babyService.getAllBabies().first
+                        if let id = prefId {
+                            self.baby = babies.filter { $0.remoteId != nil && $0.remoteId! == id }.first ?? babies.first
+                        } else {
+                            self.baby = babies.first
+                        }
                     }
                 }
             }

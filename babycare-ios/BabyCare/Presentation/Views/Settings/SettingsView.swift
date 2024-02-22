@@ -1,16 +1,32 @@
 import Foundation
 import os
+import SwiftData
 import SwiftUI
 
 public struct SettingsView: View {
     @EnvironmentObject
     var model: MainViewModel
 
+    static var babiesQuery: FetchDescriptor<Baby> {
+        let descriptor = FetchDescriptor<Baby>(sortBy: [SortDescriptor(\.birthDate)])
+        return descriptor
+    }
+
+    @Query(babiesQuery)
+    var babies: [Baby]
+
+    init() {}
+
     public var body: some View {
         VStack {
-            Text("Settings")
+            Form {
+                Section {
+                    DefaultBabySetting(babies: babies, services: model.services)
+                }
+            }
+
             Spacer()
-            HStack{
+            HStack {
                 Spacer()
                 Text(model.services.authService.token ?? "")
                     .foregroundStyle(.gray.opacity(0.5))
@@ -22,5 +38,7 @@ public struct SettingsView: View {
             .font(.footnote)
             .foregroundColor(.white)
         }
+        .navigationTitle("Settings")
+        .navigationBarTitleDisplayMode(.large)
     }
 }

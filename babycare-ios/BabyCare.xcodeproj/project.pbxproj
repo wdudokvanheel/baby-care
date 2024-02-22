@@ -44,6 +44,8 @@
 		2B51CBF02B6E6D24009A50F3 /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B51CBEF2B6E6D24009A50F3 /* DeleteButton.swift */; };
 		2B51CBF42B7105C9009A50F3 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B51CBF32B7105C9009A50F3 /* DayView.swift */; };
 		2B51CBF62B710655009A50F3 /* DaySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B51CBF52B710655009A50F3 /* DaySummaryView.swift */; };
+		2B54800A2B872815002D7835 /* UserPreferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5480092B872815002D7835 /* UserPreferenceService.swift */; };
+		2B54800C2B872889002D7835 /* DefaultBabySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54800B2B872889002D7835 /* DefaultBabySetting.swift */; };
 		2B6D4D0C2B5E6E31000F6BFA /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D0B2B5E6E31000F6BFA /* NotificationService.swift */; };
 		2B6D4D0E2B5E825E000F6BFA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D0D2B5E825E000F6BFA /* LoginView.swift */; };
 		2B6D4D102B5E8464000F6BFA /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D0F2B5E8464000F6BFA /* AuthenticationRequest.swift */; };
@@ -143,6 +145,8 @@
 		2B51CBEF2B6E6D24009A50F3 /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
 		2B51CBF32B7105C9009A50F3 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		2B51CBF52B710655009A50F3 /* DaySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryView.swift; sourceTree = "<group>"; };
+		2B5480092B872815002D7835 /* UserPreferenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferenceService.swift; sourceTree = "<group>"; };
+		2B54800B2B872889002D7835 /* DefaultBabySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBabySetting.swift; sourceTree = "<group>"; };
 		2B6D4D0B2B5E6E31000F6BFA /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		2B6D4D0D2B5E825E000F6BFA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2B6D4D0F2B5E8464000F6BFA /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				2B51CBED2B6D2363009A50F3 /* SettingsView.swift */,
+				2B54800B2B872889002D7835 /* DefaultBabySetting.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -510,6 +515,7 @@
 				2B6D4D0B2B5E6E31000F6BFA /* NotificationService.swift */,
 				2B46AE452B5D3CFF0019D710 /* SyncService.swift */,
 				2B7A8DD12B726F2C00A72393 /* FeedService.old.swift */,
+				2B5480092B872815002D7835 /* UserPreferenceService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -633,6 +639,7 @@
 				2B1552E92B667F9900AD95FE /* BottleAction.swift in Sources */,
 				2BECD6822B711A4600BF174D /* FeedRepository.swift in Sources */,
 				2B6D4D0E2B5E825E000F6BFA /* LoginView.swift in Sources */,
+				2B54800A2B872815002D7835 /* UserPreferenceService.swift in Sources */,
 				2B7A8DC62B71249800A72393 /* SleepAction.swift in Sources */,
 				2BF16EF12B62650D00A84DE3 /* FeedAction.swift in Sources */,
 				2B1552E52B66540C00AD95FE /* SleepLog.swift in Sources */,
@@ -642,6 +649,7 @@
 				2B0FFD5E2B5AFDD800C20C9A /* AuthenticationService.swift in Sources */,
 				2B46AE442B5D3C710019D710 /* SyncResponseDto.swift in Sources */,
 				2B51CBF42B7105C9009A50F3 /* DayView.swift in Sources */,
+				2B54800C2B872889002D7835 /* DefaultBabySetting.swift in Sources */,
 				2BF16EF02B62650D00A84DE3 /* Baby.swift in Sources */,
 				2B9FDA902B5486F300B91132 /* MainView.swift in Sources */,
 				2BF16EBF2B600FF400A84DE3 /* BabyService.swift in Sources */,
@@ -812,7 +820,7 @@
 				CODE_SIGN_ENTITLEMENTS = BabyCare/BabyCare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
 				DEVELOPMENT_TEAM = L23NTUN6KV;
 				ENABLE_PREVIEWS = YES;
@@ -831,7 +839,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -852,7 +860,7 @@
 				CODE_SIGN_ENTITLEMENTS = BabyCare/BabyCare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
 				DEVELOPMENT_TEAM = L23NTUN6KV;
 				ENABLE_PREVIEWS = YES;
@@ -871,7 +879,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

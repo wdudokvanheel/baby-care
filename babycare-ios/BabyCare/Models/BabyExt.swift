@@ -24,3 +24,15 @@ extension Baby: Equatable {
         return lhs.persistentModelID == rhs.persistentModelID
     }
 }
+
+extension Baby: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        var description = "Baby: \n"
+        description += "id: \(id?.uuidString ?? "nil"), \n"
+        description += "name: \(name ?? "nil"), \n"
+        description += "birthDate: \(birthDate), \n"
+        description += "remoteId: \(String(describing: remoteId)), \n"
+        description += "lastSync: \(String(describing: lastSync))\n"
+        return description
+    }
+}
