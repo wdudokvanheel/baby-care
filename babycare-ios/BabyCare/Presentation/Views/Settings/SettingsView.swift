@@ -23,6 +23,10 @@ public struct SettingsView: View {
                 Section {
                     DefaultBabySetting(babies: babies, services: model.services)
                 }
+
+                ForEach(babies, id: \.self) { baby in
+                    BabyPanelSettings(baby: baby, prefService: model.services.prefService).tag(baby as Baby)
+                }
             }
 
             Spacer()

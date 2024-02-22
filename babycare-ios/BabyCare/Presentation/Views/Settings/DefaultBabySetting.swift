@@ -25,6 +25,12 @@ struct DefaultBabySetting: View {
                         self.loading = false
                     }
                 }
+                else {
+                    self.loading = false
+                }
+            }
+            else {
+                self.loading = false
             }
         }
     }
