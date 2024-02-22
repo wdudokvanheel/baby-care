@@ -61,7 +61,9 @@ struct DaySummaryView: View {
                         Text("Feed data")
                         Spacer()
                     }
-                    FeedDetailsView(date, model.baby)
+                    FeedDetailsContainer(date, model.baby) { details in
+                        FeedDetailsView(details: details)
+                    }
                     FeedLogView(
                         feedService: model.services.actionMapperService.getService(type: .feed), items: feedItems
                     )
@@ -71,7 +73,7 @@ struct DaySummaryView: View {
                 .frame(maxWidth: .infinity)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(.mint.opacity(0.5))
+                        .fill(.orange.opacity(0.5))
                 )
             }
 

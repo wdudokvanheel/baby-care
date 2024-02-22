@@ -17,13 +17,15 @@ public class SyncService: ObservableObject {
 
     private var cancellable: Set<AnyCancellable> = .init()
 
-    init(_  services: ServiceContainer, _ apiService: ApiService, _ babyService: BabyService, _ babyActionService: BabyActionService, _ authService: AuthenticationService, _ container: ModelContainer) {
+    init(_ services: ServiceContainer, _ apiService: ApiService, _ babyService: BabyService, _ babyActionService: BabyActionService, _ authService: AuthenticationService, _ container: ModelContainer) {
         self.services = services
         self.apiService = apiService
         self.babyService = babyService
         self.actionService = babyActionService
         self.authService = authService
         self.container = container
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: setupSyncOnForeground)
     }
 
     public func syncWhenAuthenticated() {
@@ -49,6 +51,12 @@ public class SyncService: ObservableObject {
     private func stopSync() {
         print("Stopping sync")
         syncedBabiesUntilTimestamp = 0
+    }
+
+    private func setupSyncOnForeground() {
+        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { _ in
+            self.syncBabyData()
+        }
     }
 
     public func syncBabyData() {
@@ -82,7 +90,7 @@ public class SyncService: ObservableObject {
 
         let decoder = JSONDecoder()
         decoder.userInfo[.serviceContainer] = services
-        
+
         let actionsUpdated = await withCheckedContinuation { continuation in
             guard let babyId = baby.remoteId else {
                 print("Baby \(baby.name ?? "Unnamed") has no remoteId")

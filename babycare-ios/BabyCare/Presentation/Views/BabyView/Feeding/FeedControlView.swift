@@ -26,11 +26,17 @@ struct FeedControlView: View {
         previousFeed?.feedSide ?? nil
     }
 
-    var mostFeedSide: FeedSide? {
+    var details: DailyFeedDetails? {
         guard !detailsQuery.isEmpty else {
             return nil
         }
-        let details = detailsQuery[0]
+        return detailsQuery[0]
+    }
+
+    var mostFeedSide: FeedSide? {
+        guard let details = details else {
+            return nil
+        }
 
         if details.leftInt == details.rightInt {
             return nil
@@ -83,8 +89,30 @@ struct FeedControlView: View {
         return Query(fetchDescriptor)
     }
 
+    // TODO: Clean up this view
     var body: some View {
         VStack {
+            HStack {
+                NavigationLink(destination: DayView(model: model)) {
+                    Image(systemName: "list.bullet.rectangle.portrait.fill")
+                }
+                .isDetailLink(false)
+
+                Spacer()
+                Image(systemName: "fork.knife.circle")
+                    .font(.title2)
+                Text("Feed")
+                Spacer()
+                NavigationLink(destination: FeedWeekGraph(Date(), model.baby, feedService: feedService)) {
+                    Image(systemName: "chart.bar.fill")
+                }
+            }
+            .font(.title3)
+
+            if let details = details {
+                FeedDetailsView(details: details)
+            }
+
             if let feed = self.currentFeed {
                 HStack {
                     Image(systemName: "fork.knife.circle")
@@ -163,17 +191,8 @@ struct FeedControlView: View {
             }
             else {
                 HStack {
-                    Image(systemName: "fork.knife.circle")
-                        .font(.title2)
-
-                    Text("Feed")
-                    Spacer()
-                }
-                .font(.title3)
-
-                HStack {
                     Button {
-                        feedService.start(model.baby, .right)
+                        feedService.start(model.baby, .left)
                     } label: {
                         HStack {
                             Image(systemName: "l.circle.fill")
@@ -233,8 +252,6 @@ struct FeedControlView: View {
                     .tint(.orange)
                 }
             }
-            FeedDetailsView(Date(), model.baby)
-            FeedLog(model)
         }
         .foregroundColor(.white)
         .padding()
