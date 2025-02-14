@@ -14,10 +14,9 @@ import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -33,6 +32,8 @@ public class PushNotificationService {
     private Boolean enabled;
     @Value("${babycare.notifications.push.production}")
     private Boolean production;
+    @Value("${babycare.notifications.keyfile}")
+    private String keyFilePath;
 
     private AuthSessionService authService;
     private ApnsClient apnsClient;
@@ -48,13 +49,18 @@ public class PushNotificationService {
         if (!enabled) {
             logger.warn("Push notifications disabled");
         } else {
-            logger.info("Starting Push notifications to " + (production ? "production" : "development") + " APNS host");
-            Resource keyFile = new ClassPathResource("key.p8");
+            logger.info("Starting Push notifications to {} APNS host", production ? "production" : "development");
             String host = production ? ApnsClientBuilder.PRODUCTION_APNS_HOST : ApnsClientBuilder.DEVELOPMENT_APNS_HOST;
+
+            File keyFile = new File(keyFilePath);
+            if (!keyFile.exists() || !keyFile.canRead()) {
+                logger.error("Failed to open key file @ {}", keyFile.getAbsolutePath());
+                enabled = false;
+            }
 
             apnsClient = new ApnsClientBuilder()
                     .setApnsServer(host)
-                    .setSigningKey(ApnsSigningKey.loadFromInputStream(keyFile.getInputStream(), "L23NTUN6KV", "2RBVXWR25Z"))
+                    .setSigningKey(ApnsSigningKey.loadFromPkcs8File(keyFile, "L23NTUN6KV", "2RBVXWR25Z"))
                     .build();
         }
     }
@@ -65,7 +71,7 @@ public class PushNotificationService {
         }
 
         List<String> ids = authService.getNotificationIdsForUpdate(sender);
-        if(ids.size() == 0){
+        if (ids.size() == 0) {
             return;
         }
 
@@ -101,8 +107,7 @@ public class PushNotificationService {
                 if (!response.isAccepted()) {
                     logger.error("Notification denied: {}", response.getRejectionReason().orElse(""));
                     authService.invalidateNotificationId(to);
-                }
-                else{
+                } else {
                     logger.info("Send notification successful to {}: {}", to, response);
                 }
             } else {
