@@ -252,6 +252,15 @@ struct FeedControlView: View {
                     .tint(.orange)
                 }
             }
+
+            if let lastFeed = self.previousFeed, let date = lastFeed.end {
+                HStack {
+                    Spacer()
+                    ElapsedTimeText(startDate: date)
+                        .opacity(0.75)
+                    Spacer()
+                }
+            }
         }
         .foregroundColor(.white)
         .padding()

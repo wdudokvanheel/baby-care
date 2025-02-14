@@ -72,6 +72,7 @@
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
 		2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDAA02B54905C00B91132 /* MainViewModel.swift */; };
+		2BB200442B91125B001E3EF3 /* ElapsedTimeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB200432B91125B001E3EF3 /* ElapsedTimeText.swift */; };
 		2BC0E4CE2B68456500E5A60A /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E4CD2B68456500E5A60A /* FeedView.swift */; };
 		2BC0E4D02B69144000E5A60A /* BottleLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E4CF2B69144000E5A60A /* BottleLog.swift */; };
 		2BC0E4D22B69147100E5A60A /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E4D12B69147100E5A60A /* BottleView.swift */; };
@@ -174,6 +175,7 @@
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		2B9FDAA02B54905C00B91132 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		2BB200432B91125B001E3EF3 /* ElapsedTimeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeText.swift; sourceTree = "<group>"; };
 		2BC0E4CD2B68456500E5A60A /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		2BC0E4CF2B69144000E5A60A /* BottleLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleLog.swift; sourceTree = "<group>"; };
 		2BC0E4D12B69147100E5A60A /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 			children = (
 				2B6D4D172B5E952C000F6BFA /* AuthGuard.swift */,
 				2B51CBEF2B6E6D24009A50F3 /* DeleteButton.swift */,
+				2BB200432B91125B001E3EF3 /* ElapsedTimeText.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				2BECD6842B711CA800BF174D /* BottleRepository.swift in Sources */,
 				2B7A8DD82B73B8DE00A72393 /* DailySleepDetails.swift in Sources */,
 				2B6D4D122B5E8488000F6BFA /* AuthenticationResponse.swift in Sources */,
+				2BB200442B91125B001E3EF3 /* ElapsedTimeText.swift in Sources */,
 				2B7A8DC22B71243200A72393 /* SleepActionDto.swift in Sources */,
 				2B0FFD622B5B0BB700C20C9A /* LatestActionsView.swift in Sources */,
 			);
@@ -824,7 +828,7 @@
 				CODE_SIGN_ENTITLEMENTS = BabyCare/BabyCare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
 				DEVELOPMENT_TEAM = L23NTUN6KV;
 				ENABLE_PREVIEWS = YES;
@@ -864,7 +868,7 @@
 				CODE_SIGN_ENTITLEMENTS = BabyCare/BabyCare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
 				DEVELOPMENT_TEAM = L23NTUN6KV;
 				ENABLE_PREVIEWS = YES;
