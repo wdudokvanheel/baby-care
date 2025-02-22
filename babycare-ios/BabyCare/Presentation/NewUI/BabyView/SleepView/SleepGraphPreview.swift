@@ -12,7 +12,7 @@ struct SleepGraphPreview: View {
     let date: Date
     let baby: Baby
 
-    init(_ date: Date, _ baby: Baby, sleepService: SleepService) {
+    init(_ date: Date, _ baby: Baby, _ sleepService: SleepService) {
         self.date = date
         self.baby = baby
         self.sleepService = sleepService

@@ -14,7 +14,7 @@ struct MainView: View {
                     FullscreenPanel {
                         VStack(alignment: .center, spacing: 8) {
                             if let baby = baby {
-                                BabyView(model: BabyViewModel(services: model.services, baby: baby))
+                                BabyView(baby: baby)
                             } else {
                                 Text("No babies found")
                             }
@@ -23,26 +23,6 @@ struct MainView: View {
                     .padding(0)
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationBarHidden(true)
-//                    .navigationBarItems(leading: NavigationLink(destination: SettingsView()) {
-//                        Image(systemName: "line.3.horizontal")
-//                            .imageScale(.large)
-//                            .foregroundStyle(Color("TextDark"))
-//                    })
-
-//                    VStack {
-//                        ScrollView {
-//                            if let baby = baby {
-//                                BabyView(model: BabyViewModel(services: model.services, baby: baby))
-//                            }
-//                        }
-//                        BabySelector(selected: self.$baby)
-//                    }
-//                    .padding(0)
-//                    .navigationBarTitleDisplayMode(.inline)
-//                    .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) {
-//                        Image(systemName: "gear")
-//                            .imageScale(.large)
-//                    })
                 }
 
                 UnAuthGuard(model.services.authService) {

@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 public class SleepCareViewModel: ObservableObject {
     @Published
@@ -43,7 +43,7 @@ public class SleepCareViewModel: ObservableObject {
         services.sleepService.update(action)
     }
 
-    func createActiveSleepQuery() -> Query<SleepAction, [SleepAction]> {
+    func activeSleepQuery() -> Query<SleepAction, [SleepAction]> {
         let type = BabyActionType.sleep.rawValue
         let babyId = baby.persistentModelID
         let filter = #Predicate<SleepAction> { action in
@@ -53,6 +53,37 @@ public class SleepCareViewModel: ObservableObject {
         }
         var fetchDescriptor = FetchDescriptor<SleepAction>(predicate: filter)
         fetchDescriptor.fetchLimit = 1
+        return Query(fetchDescriptor)
+    }
+
+    static func sleepDetailsQuery(_ date: Date, _ baby: Baby) -> Query<DailySleepDetails, [DailySleepDetails]> {
+        let date = Calendar.current.startOfDay(for: date)
+        let babyId = baby.persistentModelID
+
+        let filter = #Predicate<DailySleepDetails> { details in
+            details.baby?.persistentModelID == babyId &&
+                details.date == date
+        }
+
+        var fetchDescriptor = FetchDescriptor<DailySleepDetails>(predicate: filter)
+        fetchDescriptor.fetchLimit = 1
+        return Query(fetchDescriptor)
+    }
+
+    static func sleepDetailsPastWeekQuery(_ date: Date, _ baby: Baby) -> Query<DailySleepDetails, [DailySleepDetails]> {
+        let date = Calendar.current.startOfDay(for: date)
+        let startDate = Calendar.current.date(byAdding: .day, value: -6, to: date)!
+
+        let babyId = baby.persistentModelID
+
+        let filter = #Predicate<DailySleepDetails> { details in
+            details.baby?.persistentModelID == babyId &&
+                details.date >= startDate &&
+                details.date <= date
+        }
+
+        var fetchDescriptor = FetchDescriptor<DailySleepDetails>(predicate: filter, sortBy: [SortDescriptor<DailySleepDetails>(\.date)])
+        fetchDescriptor.fetchLimit = 7
         return Query(fetchDescriptor)
     }
 }

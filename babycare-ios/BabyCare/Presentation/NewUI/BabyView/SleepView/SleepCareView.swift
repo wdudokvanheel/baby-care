@@ -17,7 +17,7 @@ public struct SleepCareView: View {
 
     init(model: SleepCareViewModel) {
         self.model = model
-        _sleepQuery = model.createActiveSleepQuery()
+        _sleepQuery = model.activeSleepQuery()
     }
 
     public var body: some View {
@@ -41,14 +41,13 @@ public struct SleepCareView: View {
 
             Panel {
                 VStack {
-                    SleepGraphPreview(Date(), model.baby, sleepService: model.services.sleepService)
+                    SleepGraphPreview(Date(), model.baby, model.services.sleepService)
                         .frame(height: 125)
                         .frame(maxWidth: .infinity)
                 }
                 .padding(0)
                 .frame(maxWidth: .infinity, maxHeight: 200)
             }
-            Spacer()
         }
         .padding(0)
         .environmentObject(model)

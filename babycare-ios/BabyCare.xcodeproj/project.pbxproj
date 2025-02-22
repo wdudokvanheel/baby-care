@@ -47,6 +47,17 @@
 		2B54800A2B872815002D7835 /* UserPreferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5480092B872815002D7835 /* UserPreferenceService.swift */; };
 		2B54800C2B872889002D7835 /* DefaultBabySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54800B2B872889002D7835 /* DefaultBabySetting.swift */; };
 		2B54800E2B8773EA002D7835 /* BabyPanelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54800D2B8773EA002D7835 /* BabyPanelSettings.swift */; };
+		2B5E46AB2D69FB84003649A8 /* ExpandingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46AA2D69FB84003649A8 /* ExpandingButton.swift */; };
+		2B5E46AE2D69FBBB003649A8 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46AD2D69FBBB003649A8 /* ActionButton.swift */; };
+		2B5E46B02D69FBE2003649A8 /* InfoTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46AF2D69FBE2003649A8 /* InfoTile.swift */; };
+		2B5E46B32D69FC27003649A8 /* BackgroundPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46B22D69FC27003649A8 /* BackgroundPanel.swift */; };
+		2B5E46B62D69FC6A003649A8 /* Well.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46B52D69FC6A003649A8 /* Well.swift */; };
+		2B5E46B82D69FC77003649A8 /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46B72D69FC77003649A8 /* Panel.swift */; };
+		2B5E46BB2D6A0D22003649A8 /* FeedingCareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46BA2D6A0D22003649A8 /* FeedingCareView.swift */; };
+		2B5E46BD2D6A10D2003649A8 /* FeedingCareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46BC2D6A10D2003649A8 /* FeedingCareViewModel.swift */; };
+		2B5E46BF2D6A11CE003649A8 /* FeedingCareDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46BE2D6A11CE003649A8 /* FeedingCareDetailsView.swift */; };
+		2B5E46C12D6A14B5003649A8 /* ActiveFeedingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46C02D6A14B5003649A8 /* ActiveFeedingView.swift */; };
+		2B5E46C42D6A1B6E003649A8 /* FeedingGraphPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46C32D6A1B6E003649A8 /* FeedingGraphPreview.swift */; };
 		2B6D4D0C2B5E6E31000F6BFA /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D0B2B5E6E31000F6BFA /* NotificationService.swift */; };
 		2B6D4D0E2B5E825E000F6BFA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D0D2B5E825E000F6BFA /* LoginView.swift */; };
 		2B6D4D102B5E8464000F6BFA /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D4D0F2B5E8464000F6BFA /* AuthenticationRequest.swift */; };
@@ -68,7 +79,6 @@
 		2B7A8DD82B73B8DE00A72393 /* DailySleepDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD72B73B8DE00A72393 /* DailySleepDetails.swift */; };
 		2B7A8DDA2B73C07800A72393 /* DailySleepDetailsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */; };
 		2B7A8DDC2B7503FB00A72393 /* ActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DDB2B7503FB00A72393 /* ActionService.swift */; };
-		2B8B458F2D66103A00F51D21 /* MainView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B458E2D66103A00F51D21 /* MainView2.swift */; };
 		2B8B45922D6611A200F51D21 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B45912D6611A200F51D21 /* Logger.swift */; };
 		2B8B45962D67655000F51D21 /* SleepCareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B45952D67655000F51D21 /* SleepCareView.swift */; };
 		2B8B45982D6779F800F51D21 /* SleepCareDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B45972D6779F800F51D21 /* SleepCareDetailsView.swift */; };
@@ -158,6 +168,17 @@
 		2B5480092B872815002D7835 /* UserPreferenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferenceService.swift; sourceTree = "<group>"; };
 		2B54800B2B872889002D7835 /* DefaultBabySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBabySetting.swift; sourceTree = "<group>"; };
 		2B54800D2B8773EA002D7835 /* BabyPanelSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyPanelSettings.swift; sourceTree = "<group>"; };
+		2B5E46AA2D69FB84003649A8 /* ExpandingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingButton.swift; sourceTree = "<group>"; };
+		2B5E46AD2D69FBBB003649A8 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		2B5E46AF2D69FBE2003649A8 /* InfoTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTile.swift; sourceTree = "<group>"; };
+		2B5E46B22D69FC27003649A8 /* BackgroundPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPanel.swift; sourceTree = "<group>"; };
+		2B5E46B52D69FC6A003649A8 /* Well.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Well.swift; sourceTree = "<group>"; };
+		2B5E46B72D69FC77003649A8 /* Panel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
+		2B5E46BA2D6A0D22003649A8 /* FeedingCareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingCareView.swift; sourceTree = "<group>"; };
+		2B5E46BC2D6A10D2003649A8 /* FeedingCareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingCareViewModel.swift; sourceTree = "<group>"; };
+		2B5E46BE2D6A11CE003649A8 /* FeedingCareDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingCareDetailsView.swift; sourceTree = "<group>"; };
+		2B5E46C02D6A14B5003649A8 /* ActiveFeedingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveFeedingView.swift; sourceTree = "<group>"; };
+		2B5E46C32D6A1B6E003649A8 /* FeedingGraphPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingGraphPreview.swift; sourceTree = "<group>"; };
 		2B6D4D0B2B5E6E31000F6BFA /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		2B6D4D0D2B5E825E000F6BFA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2B6D4D0F2B5E8464000F6BFA /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
@@ -179,7 +200,6 @@
 		2B7A8DD72B73B8DE00A72393 /* DailySleepDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySleepDetails.swift; sourceTree = "<group>"; };
 		2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySleepDetailsExt.swift; sourceTree = "<group>"; };
 		2B7A8DDB2B7503FB00A72393 /* ActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionService.swift; sourceTree = "<group>"; };
-		2B8B458E2D66103A00F51D21 /* MainView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView2.swift; sourceTree = "<group>"; };
 		2B8B45912D6611A200F51D21 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2B8B45952D67655000F51D21 /* SleepCareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCareView.swift; sourceTree = "<group>"; };
 		2B8B45972D6779F800F51D21 /* SleepCareDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCareDetailsView.swift; sourceTree = "<group>"; };
@@ -333,16 +353,54 @@
 			path = DayView;
 			sourceTree = "<group>";
 		};
-		2B8B458D2D66101A00F51D21 /* NewUI */ = {
+		2B5E46A82D69FB0C003649A8 /* BabyView */ = {
 			isa = PBXGroup;
 			children = (
-				2B8B458E2D66103A00F51D21 /* MainView2.swift */,
+				2BF16EDB2B613B4F00A84DE3 /* BabyView.swift */,
+				2B5E46AF2D69FBE2003649A8 /* InfoTile.swift */,
+				2B5E46B92D6A0CED003649A8 /* Feeding */,
+				2B5E46A92D69FB36003649A8 /* SleepView */,
+			);
+			path = BabyView;
+			sourceTree = "<group>";
+		};
+		2B5E46A92D69FB36003649A8 /* SleepView */ = {
+			isa = PBXGroup;
+			children = (
+				2B8B459F2D68B51000F51D21 /* SleepCareViewModel.swift */,
 				2B8B45952D67655000F51D21 /* SleepCareView.swift */,
 				2B8B45972D6779F800F51D21 /* SleepCareDetailsView.swift */,
 				2B8B45992D68B47400F51D21 /* SleepGraphPreview.swift */,
 				2B8B459B2D68B4CF00F51D21 /* ActiveSleepView.swift */,
-				2B8B459D2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift */,
-				2B8B459F2D68B51000F51D21 /* SleepCareViewModel.swift */,
+			);
+			path = SleepView;
+			sourceTree = "<group>";
+		};
+		2B5E46B12D69FC1A003649A8 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				2B5E46B22D69FC27003649A8 /* BackgroundPanel.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		2B5E46B92D6A0CED003649A8 /* Feeding */ = {
+			isa = PBXGroup;
+			children = (
+				2B5E46BA2D6A0D22003649A8 /* FeedingCareView.swift */,
+				2B5E46BC2D6A10D2003649A8 /* FeedingCareViewModel.swift */,
+				2B5E46BE2D6A11CE003649A8 /* FeedingCareDetailsView.swift */,
+				2B5E46C02D6A14B5003649A8 /* ActiveFeedingView.swift */,
+				2B5E46C32D6A1B6E003649A8 /* FeedingGraphPreview.swift */,
+			);
+			path = Feeding;
+			sourceTree = "<group>";
+		};
+		2B8B458D2D66101A00F51D21 /* NewUI */ = {
+			isa = PBXGroup;
+			children = (
+				2B5E46B12D69FC1A003649A8 /* MainView */,
+				2B5E46A82D69FB0C003649A8 /* BabyView */,
 			);
 			path = NewUI;
 			sourceTree = "<group>";
@@ -454,9 +512,14 @@
 		2BF16ED72B613B1200A84DE3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2B5E46AD2D69FBBB003649A8 /* ActionButton.swift */,
 				2B6D4D172B5E952C000F6BFA /* AuthGuard.swift */,
 				2B51CBEF2B6E6D24009A50F3 /* DeleteButton.swift */,
 				2BB200432B91125B001E3EF3 /* ElapsedTimeText.swift */,
+				2B5E46AA2D69FB84003649A8 /* ExpandingButton.swift */,
+				2B8B459D2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift */,
+				2B5E46B52D69FC6A003649A8 /* Well.swift */,
+				2B5E46B72D69FC77003649A8 /* Panel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -488,7 +551,6 @@
 				2BC0E4CB2B68452B00E5A60A /* Sleep */,
 				2B1552E32B6653F800AD95FE /* Bottle */,
 				2BF16ED42B613A5B00A84DE3 /* BabyViewModel.swift */,
-				2BF16EDB2B613B4F00A84DE3 /* BabyView.swift */,
 				2B7A8DD52B7384AF00A72393 /* BabyServiceContainer.swift */,
 			);
 			path = BabyView;
@@ -640,6 +702,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B5E46C42D6A1B6E003649A8 /* FeedingGraphPreview.swift in Sources */,
 				2BF16F082B62887700A84DE3 /* FeedActionUpdateDto.swift in Sources */,
 				2B1552F12B66819300AD95FE /* BottleActionCreateDto.swift in Sources */,
 				2B7A8DDA2B73C07800A72393 /* DailySleepDetailsExt.swift in Sources */,
@@ -651,6 +714,7 @@
 				2BC0E4D22B69147100E5A60A /* BottleView.swift in Sources */,
 				2B1F34B32B54865E004EA670 /* ServiceInjection.swift in Sources */,
 				2BF16EDF2B613E0A00A84DE3 /* SleepControlView.swift in Sources */,
+				2B5E46C12D6A14B5003649A8 /* ActiveFeedingView.swift in Sources */,
 				2B8B45982D6779F800F51D21 /* SleepCareDetailsView.swift in Sources */,
 				2B220AC32B77A4DB00B183B7 /* FeedService.swift in Sources */,
 				2BF16F032B6285D600A84DE3 /* ActionUpdateDto.swift in Sources */,
@@ -658,6 +722,7 @@
 				2B46AE462B5D3CFF0019D710 /* SyncService.swift in Sources */,
 				2B7A8DD62B7384AF00A72393 /* BabyServiceContainer.swift in Sources */,
 				2BF16EE82B62631A00A84DE3 /* FeedActionDto.swift in Sources */,
+				2B5E46B32D69FC27003649A8 /* BackgroundPanel.swift in Sources */,
 				2B51CBF02B6E6D24009A50F3 /* DeleteButton.swift in Sources */,
 				2B1552E72B66769600AD95FE /* FeedLog.swift in Sources */,
 				2B1552ED2B66801B00AD95FE /* BottleActionDto.swift in Sources */,
@@ -667,6 +732,7 @@
 				2BF16EC32B6010DE00A84DE3 /* BabyExt.swift in Sources */,
 				2B220AC92B78F25700B183B7 /* FeedDetailsContainer.swift in Sources */,
 				2B7A8DC42B71245900A72393 /* SleepActionUpdateDto.swift in Sources */,
+				2B5E46BB2D6A0D22003649A8 /* FeedingCareView.swift in Sources */,
 				2BC0E4D02B69144000E5A60A /* BottleLog.swift in Sources */,
 				2BF16EF42B62654F00A84DE3 /* Action.swift in Sources */,
 				2B46AE422B5D3C3A0019D710 /* SyncRequestDto.swift in Sources */,
@@ -700,6 +766,7 @@
 				2B51CBF42B7105C9009A50F3 /* DayView.swift in Sources */,
 				2B54800C2B872889002D7835 /* DefaultBabySetting.swift in Sources */,
 				2BF16EF02B62650D00A84DE3 /* Baby.swift in Sources */,
+				2B5E46B62D69FC6A003649A8 /* Well.swift in Sources */,
 				2B9FDA902B5486F300B91132 /* MainView.swift in Sources */,
 				2BF16EBF2B600FF400A84DE3 /* BabyService.swift in Sources */,
 				2B7A8DD42B72717300A72393 /* FeedDetailsView.swift in Sources */,
@@ -714,10 +781,10 @@
 				2B220AC52B77A6D500B183B7 /* DailyFeedDetails.swift in Sources */,
 				2BF16EF62B6265AE00A84DE3 /* BabyAction.swift in Sources */,
 				2B7A8DC82B7124AF00A72393 /* SleepActionExt.swift in Sources */,
+				2B5E46AB2D69FB84003649A8 /* ExpandingButton.swift in Sources */,
 				2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */,
 				2B97B7D22B75806E0050B8DC /* SleepWeekGraph.swift in Sources */,
 				2B46AE482B5D781B0019D710 /* BabyCareDelegate.swift in Sources */,
-				2B8B458F2D66103A00F51D21 /* MainView2.swift in Sources */,
 				2B0FFD5A2B59521A00C20C9A /* BabyActionCreateDto.swift in Sources */,
 				2BF16F012B62824900A84DE3 /* FeedActionMapper.swift in Sources */,
 				2B0FFD572B5951FB00C20C9A /* ApiService.swift in Sources */,
@@ -725,12 +792,16 @@
 				2B0FFD602B5B06CE00C20C9A /* BabyActionUpdateDto.swift in Sources */,
 				2B6D4D142B5E89A8000F6BFA /* NotificationRegistrationDto.swift in Sources */,
 				2BF16EDC2B613B4F00A84DE3 /* BabyView.swift in Sources */,
+				2B5E46BD2D6A10D2003649A8 /* FeedingCareViewModel.swift in Sources */,
 				2B220AC72B77A73700B183B7 /* DailyFeedDetailsExt.swift in Sources */,
+				2B5E46B02D69FBE2003649A8 /* InfoTile.swift in Sources */,
 				2BF16EE22B618FCA00A84DE3 /* FeedControlView.swift in Sources */,
 				2B6D4D0C2B5E6E31000F6BFA /* NotificationService.swift in Sources */,
+				2B5E46BF2D6A11CE003649A8 /* FeedingCareDetailsView.swift in Sources */,
 				2B46AE3A2B5C81120019D710 /* BabyActionExt.swift in Sources */,
 				2B6D4D182B5E952C000F6BFA /* AuthGuard.swift in Sources */,
 				2BF16EFB2B627F5300A84DE3 /* ActionMapper.swift in Sources */,
+				2B5E46B82D69FC77003649A8 /* Panel.swift in Sources */,
 				2B7A8DDC2B7503FB00A72393 /* ActionService.swift in Sources */,
 				2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */,
 				2B46AE4B2B5D9D5E0019D710 /* ServiceContainer.swift in Sources */,
@@ -743,6 +814,7 @@
 				2BB200442B91125B001E3EF3 /* ElapsedTimeText.swift in Sources */,
 				2B7A8DC22B71243200A72393 /* SleepActionDto.swift in Sources */,
 				2B0FFD622B5B0BB700C20C9A /* LatestActionsView.swift in Sources */,
+				2B5E46AE2D69FBBB003649A8 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,7 +948,7 @@
 				CODE_SIGN_ENTITLEMENTS = BabyCare/BabyCare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
 				DEVELOPMENT_TEAM = L23NTUN6KV;
 				ENABLE_PREVIEWS = YES;
@@ -894,7 +966,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -915,7 +987,7 @@
 				CODE_SIGN_ENTITLEMENTS = BabyCare/BabyCare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyCare/Preview Content\"";
 				DEVELOPMENT_TEAM = L23NTUN6KV;
 				ENABLE_PREVIEWS = YES;
@@ -933,7 +1005,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

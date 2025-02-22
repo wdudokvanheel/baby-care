@@ -19,17 +19,7 @@ public struct SleepCareDetailView: View {
         self.date = date
         self.baby = baby
 
-        let date = Calendar.current.startOfDay(for: date)
-        let babyId = baby.persistentModelID
-
-        let filter = #Predicate<DailySleepDetails> { details in
-            details.baby?.persistentModelID == babyId &&
-                details.date == date
-        }
-
-        var fetchDescriptor = FetchDescriptor<DailySleepDetails>(predicate: filter)
-        fetchDescriptor.fetchLimit = 1
-        _query = Query(fetchDescriptor)
+        _query = SleepCareViewModel.sleepDetailsQuery(date, baby)
     }
 
     public var body: some View {

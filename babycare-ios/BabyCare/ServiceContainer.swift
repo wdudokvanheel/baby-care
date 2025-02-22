@@ -18,6 +18,10 @@ public class ServiceContainer: ObservableObject {
     var sleepService: SleepService {
         actionMapperService.getService(type: .sleep)
     }
+    
+    var feedService: FeedService {
+        actionMapperService.getService(type: .feed)
+    }
 
     init(container: ModelContainer, delegateData: DelegateData) {
         self.container = container

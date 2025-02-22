@@ -17,20 +17,7 @@ struct SleepWeekGraph: View {
         self.baby = baby
         self.sleepService = sleepService
 
-        let date = Calendar.current.startOfDay(for: date)
-        let startDate = Calendar.current.date(byAdding: .day, value: -6, to: date)!
-
-        let babyId = baby.persistentModelID
-
-        let filter = #Predicate<DailySleepDetails> { details in
-            details.baby?.persistentModelID == babyId &&
-                details.date >= startDate &&
-                details.date <= date
-        }
-
-        var fetchDescriptor = FetchDescriptor<DailySleepDetails>(predicate: filter, sortBy: [SortDescriptor<DailySleepDetails>(\.date)])
-        fetchDescriptor.fetchLimit = 7
-        _query = Query(fetchDescriptor)
+        _query = SleepCareViewModel.sleepDetailsPastWeekQuery(date, baby)
     }
 
     var body: some View {
