@@ -68,6 +68,14 @@
 		2B7A8DD82B73B8DE00A72393 /* DailySleepDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD72B73B8DE00A72393 /* DailySleepDetails.swift */; };
 		2B7A8DDA2B73C07800A72393 /* DailySleepDetailsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */; };
 		2B7A8DDC2B7503FB00A72393 /* ActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DDB2B7503FB00A72393 /* ActionService.swift */; };
+		2B8B458F2D66103A00F51D21 /* MainView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B458E2D66103A00F51D21 /* MainView2.swift */; };
+		2B8B45922D6611A200F51D21 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B45912D6611A200F51D21 /* Logger.swift */; };
+		2B8B45962D67655000F51D21 /* SleepCareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B45952D67655000F51D21 /* SleepCareView.swift */; };
+		2B8B45982D6779F800F51D21 /* SleepCareDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B45972D6779F800F51D21 /* SleepCareDetailsView.swift */; };
+		2B8B459A2D68B47400F51D21 /* SleepGraphPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B45992D68B47400F51D21 /* SleepGraphPreview.swift */; };
+		2B8B459C2D68B4CF00F51D21 /* ActiveSleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B459B2D68B4CF00F51D21 /* ActiveSleepView.swift */; };
+		2B8B459E2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B459D2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift */; };
+		2B8B45A02D68B51000F51D21 /* SleepCareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B459F2D68B51000F51D21 /* SleepCareViewModel.swift */; };
 		2B97B7D22B75806E0050B8DC /* SleepWeekGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97B7D12B75806E0050B8DC /* SleepWeekGraph.swift */; };
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
@@ -171,6 +179,14 @@
 		2B7A8DD72B73B8DE00A72393 /* DailySleepDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySleepDetails.swift; sourceTree = "<group>"; };
 		2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySleepDetailsExt.swift; sourceTree = "<group>"; };
 		2B7A8DDB2B7503FB00A72393 /* ActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionService.swift; sourceTree = "<group>"; };
+		2B8B458E2D66103A00F51D21 /* MainView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView2.swift; sourceTree = "<group>"; };
+		2B8B45912D6611A200F51D21 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		2B8B45952D67655000F51D21 /* SleepCareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCareView.swift; sourceTree = "<group>"; };
+		2B8B45972D6779F800F51D21 /* SleepCareDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCareDetailsView.swift; sourceTree = "<group>"; };
+		2B8B45992D68B47400F51D21 /* SleepGraphPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepGraphPreview.swift; sourceTree = "<group>"; };
+		2B8B459B2D68B4CF00F51D21 /* ActiveSleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSleepView.swift; sourceTree = "<group>"; };
+		2B8B459D2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshingElapsedTimeText.swift; sourceTree = "<group>"; };
+		2B8B459F2D68B51000F51D21 /* SleepCareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCareViewModel.swift; sourceTree = "<group>"; };
 		2B97B7D12B75806E0050B8DC /* SleepWeekGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWeekGraph.swift; sourceTree = "<group>"; };
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
@@ -263,6 +279,7 @@
 		2B1F34AF2B54865E004EA670 /* BabyCare */ = {
 			isa = PBXGroup;
 			children = (
+				2B8B45902D66119000F51D21 /* Extension */,
 				2B46AE4C2B5DB8CE0019D710 /* Info.plist */,
 				2B46AE342B5C73A90019D710 /* Core */,
 				2BF567F92B56AFF6004B3936 /* Models */,
@@ -316,9 +333,32 @@
 			path = DayView;
 			sourceTree = "<group>";
 		};
+		2B8B458D2D66101A00F51D21 /* NewUI */ = {
+			isa = PBXGroup;
+			children = (
+				2B8B458E2D66103A00F51D21 /* MainView2.swift */,
+				2B8B45952D67655000F51D21 /* SleepCareView.swift */,
+				2B8B45972D6779F800F51D21 /* SleepCareDetailsView.swift */,
+				2B8B45992D68B47400F51D21 /* SleepGraphPreview.swift */,
+				2B8B459B2D68B4CF00F51D21 /* ActiveSleepView.swift */,
+				2B8B459D2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift */,
+				2B8B459F2D68B51000F51D21 /* SleepCareViewModel.swift */,
+			);
+			path = NewUI;
+			sourceTree = "<group>";
+		};
+		2B8B45902D66119000F51D21 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2B8B45912D6611A200F51D21 /* Logger.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		2B9FDA8E2B5486D400B91132 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				2B8B458D2D66101A00F51D21 /* NewUI */,
 				2BF16ED72B613B1200A84DE3 /* Components */,
 				2BF16ED62B613AF200A84DE3 /* Views */,
 				2B0FFD612B5B0BB700C20C9A /* LatestActionsView.swift */,
@@ -611,6 +651,7 @@
 				2BC0E4D22B69147100E5A60A /* BottleView.swift in Sources */,
 				2B1F34B32B54865E004EA670 /* ServiceInjection.swift in Sources */,
 				2BF16EDF2B613E0A00A84DE3 /* SleepControlView.swift in Sources */,
+				2B8B45982D6779F800F51D21 /* SleepCareDetailsView.swift in Sources */,
 				2B220AC32B77A4DB00B183B7 /* FeedService.swift in Sources */,
 				2BF16F032B6285D600A84DE3 /* ActionUpdateDto.swift in Sources */,
 				2BF16EFF2B6281B000A84DE3 /* ActionMapperService.swift in Sources */,
@@ -634,6 +675,7 @@
 				2BF16EFD2B6280B900A84DE3 /* DefaultActionMapper.swift in Sources */,
 				2B7A8DCA2B7125B600A72393 /* SleepActionCreateDto.swift in Sources */,
 				2BF16EC12B60104000A84DE3 /* BabyDto.swift in Sources */,
+				2B8B459A2D68B47400F51D21 /* SleepGraphPreview.swift in Sources */,
 				2B7A8DD02B726EC200A72393 /* IntFormatInterval.swift in Sources */,
 				2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */,
 				2B51CBEE2B6D2363009A50F3 /* SettingsView.swift in Sources */,
@@ -661,21 +703,25 @@
 				2B9FDA902B5486F300B91132 /* MainView.swift in Sources */,
 				2BF16EBF2B600FF400A84DE3 /* BabyService.swift in Sources */,
 				2B7A8DD42B72717300A72393 /* FeedDetailsView.swift in Sources */,
+				2B8B45962D67655000F51D21 /* SleepCareView.swift in Sources */,
 				2B1552F32B66834500AD95FE /* BottleControlView.swift in Sources */,
 				2B11499F2B68387A0096E427 /* SleepView.swift in Sources */,
 				2B51CBF62B710655009A50F3 /* DaySummaryView.swift in Sources */,
 				2B6D4D102B5E8464000F6BFA /* AuthenticationRequest.swift in Sources */,
 				2BC0E4CE2B68456500E5A60A /* FeedView.swift in Sources */,
 				2B7A8DCC2B717BF300A72393 /* SleepService.swift in Sources */,
+				2B8B45922D6611A200F51D21 /* Logger.swift in Sources */,
 				2B220AC52B77A6D500B183B7 /* DailyFeedDetails.swift in Sources */,
 				2BF16EF62B6265AE00A84DE3 /* BabyAction.swift in Sources */,
 				2B7A8DC82B7124AF00A72393 /* SleepActionExt.swift in Sources */,
 				2B1F34B12B54865E004EA670 /* BabyCareApp.swift in Sources */,
 				2B97B7D22B75806E0050B8DC /* SleepWeekGraph.swift in Sources */,
 				2B46AE482B5D781B0019D710 /* BabyCareDelegate.swift in Sources */,
+				2B8B458F2D66103A00F51D21 /* MainView2.swift in Sources */,
 				2B0FFD5A2B59521A00C20C9A /* BabyActionCreateDto.swift in Sources */,
 				2BF16F012B62824900A84DE3 /* FeedActionMapper.swift in Sources */,
 				2B0FFD572B5951FB00C20C9A /* ApiService.swift in Sources */,
+				2B8B459E2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift in Sources */,
 				2B0FFD602B5B06CE00C20C9A /* BabyActionUpdateDto.swift in Sources */,
 				2B6D4D142B5E89A8000F6BFA /* NotificationRegistrationDto.swift in Sources */,
 				2BF16EDC2B613B4F00A84DE3 /* BabyView.swift in Sources */,
@@ -688,8 +734,10 @@
 				2B7A8DDC2B7503FB00A72393 /* ActionService.swift in Sources */,
 				2B9FDAA12B54905C00B91132 /* MainViewModel.swift in Sources */,
 				2B46AE4B2B5D9D5E0019D710 /* ServiceContainer.swift in Sources */,
+				2B8B45A02D68B51000F51D21 /* SleepCareViewModel.swift in Sources */,
 				2BF16EEA2B62634A00A84DE3 /* ActionDto.swift in Sources */,
 				2BECD6842B711CA800BF174D /* BottleRepository.swift in Sources */,
+				2B8B459C2D68B4CF00F51D21 /* ActiveSleepView.swift in Sources */,
 				2B7A8DD82B73B8DE00A72393 /* DailySleepDetails.swift in Sources */,
 				2B6D4D122B5E8488000F6BFA /* AuthenticationResponse.swift in Sources */,
 				2BB200442B91125B001E3EF3 /* ElapsedTimeText.swift in Sources */,
@@ -841,7 +889,6 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -881,7 +928,6 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

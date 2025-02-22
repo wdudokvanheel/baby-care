@@ -152,8 +152,9 @@ class SleepService: ActionService {
         }
     }
 
-    private func getSleepDetailsStorage(_ date: Date, _ baby: Baby) async -> DailySleepDetails? {
+    public func getSleepDetailsStorage(_ date: Date, _ baby: Baby) async -> DailySleepDetails? {
         await MainActor.run {
+            let date = Calendar.current.startOfDay(for: date)
             let babyId = baby.persistentModelID
 
             let descriptor = FetchDescriptor<DailySleepDetails>(predicate: #Predicate { day in

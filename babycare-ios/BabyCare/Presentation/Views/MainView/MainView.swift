@@ -11,20 +11,38 @@ struct MainView: View {
         NavigationView {
             VStack(spacing: 20) {
                 AuthGuard(model.services.authService) {
-                    VStack {
-                        ScrollView {
+                    FullscreenPanel {
+                        VStack(alignment: .center, spacing: 8) {
                             if let baby = baby {
                                 BabyView(model: BabyViewModel(services: model.services, baby: baby))
+                            } else {
+                                Text("No babies found")
                             }
                         }
-                        BabySelector(selected: self.$baby)
                     }
                     .padding(0)
                     .navigationBarTitleDisplayMode(.inline)
-                    .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) {
-                        Image(systemName: "gear")
-                            .imageScale(.large)
-                    })
+                    .navigationBarHidden(true)
+//                    .navigationBarItems(leading: NavigationLink(destination: SettingsView()) {
+//                        Image(systemName: "line.3.horizontal")
+//                            .imageScale(.large)
+//                            .foregroundStyle(Color("TextDark"))
+//                    })
+
+//                    VStack {
+//                        ScrollView {
+//                            if let baby = baby {
+//                                BabyView(model: BabyViewModel(services: model.services, baby: baby))
+//                            }
+//                        }
+//                        BabySelector(selected: self.$baby)
+//                    }
+//                    .padding(0)
+//                    .navigationBarTitleDisplayMode(.inline)
+//                    .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) {
+//                        Image(systemName: "gear")
+//                            .imageScale(.large)
+//                    })
                 }
 
                 UnAuthGuard(model.services.authService) {
@@ -35,8 +53,7 @@ struct MainView: View {
                     .foregroundColor(.white)
                 }
             }
-
-            .padding()
+            .padding(0)
             .sheet(isPresented: $model.showLogin, content: LoginView.init)
             .onTapGesture {
                 UIApplication.shared.endEditing()
