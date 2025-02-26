@@ -50,7 +50,7 @@
 		2B5E46AB2D69FB84003649A8 /* ExpandingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46AA2D69FB84003649A8 /* ExpandingButton.swift */; };
 		2B5E46AE2D69FBBB003649A8 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46AD2D69FBBB003649A8 /* ActionButton.swift */; };
 		2B5E46B02D69FBE2003649A8 /* InfoTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46AF2D69FBE2003649A8 /* InfoTile.swift */; };
-		2B5E46B32D69FC27003649A8 /* BackgroundPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46B22D69FC27003649A8 /* BackgroundPanel.swift */; };
+		2B5E46B32D69FC27003649A8 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46B22D69FC27003649A8 /* BackgroundView.swift */; };
 		2B5E46B62D69FC6A003649A8 /* Well.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46B52D69FC6A003649A8 /* Well.swift */; };
 		2B5E46B82D69FC77003649A8 /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46B72D69FC77003649A8 /* Panel.swift */; };
 		2B5E46BB2D6A0D22003649A8 /* FeedingCareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E46BA2D6A0D22003649A8 /* FeedingCareView.swift */; };
@@ -121,6 +121,12 @@
 		2BF16F052B6285FE00A84DE3 /* ActionCreateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16F042B6285FE00A84DE3 /* ActionCreateDto.swift */; };
 		2BF16F082B62887700A84DE3 /* FeedActionUpdateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16F072B62887700A84DE3 /* FeedActionUpdateDto.swift */; };
 		2BF16F0A2B62889000A84DE3 /* FeedActionCreateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16F092B62889000A84DE3 /* FeedActionCreateDto.swift */; };
+		2BF44F5A2D6F26D100E72A72 /* PopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF44F592D6F26D100E72A72 /* PopOver.swift */; };
+		2BF44F5F2D6F358400E72A72 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF44F5E2D6F358400E72A72 /* SwiftUIIntrospect */; };
+		2BF44F612D6F358400E72A72 /* SwiftUIIntrospect-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF44F602D6F358400E72A72 /* SwiftUIIntrospect-Dynamic */; };
+		2BF44F632D6F358400E72A72 /* SwiftUIIntrospect-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF44F622D6F358400E72A72 /* SwiftUIIntrospect-Static */; };
+		2BF44F662D6F3C3D00E72A72 /* NavigationTransitions in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF44F652D6F3C3D00E72A72 /* NavigationTransitions */; };
+		2BF44F682D6F3EBD00E72A72 /* NavigationTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF44F672D6F3EBD00E72A72 /* NavigationTransitions.swift */; };
 		2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF568012B56B037004B3936 /* BabyActionService.swift */; };
 /* End PBXBuildFile section */
 
@@ -171,7 +177,7 @@
 		2B5E46AA2D69FB84003649A8 /* ExpandingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingButton.swift; sourceTree = "<group>"; };
 		2B5E46AD2D69FBBB003649A8 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		2B5E46AF2D69FBE2003649A8 /* InfoTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTile.swift; sourceTree = "<group>"; };
-		2B5E46B22D69FC27003649A8 /* BackgroundPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPanel.swift; sourceTree = "<group>"; };
+		2B5E46B22D69FC27003649A8 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		2B5E46B52D69FC6A003649A8 /* Well.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Well.swift; sourceTree = "<group>"; };
 		2B5E46B72D69FC77003649A8 /* Panel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		2B5E46BA2D6A0D22003649A8 /* FeedingCareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingCareView.swift; sourceTree = "<group>"; };
@@ -242,6 +248,8 @@
 		2BF16F042B6285FE00A84DE3 /* ActionCreateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCreateDto.swift; sourceTree = "<group>"; };
 		2BF16F072B62887700A84DE3 /* FeedActionUpdateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedActionUpdateDto.swift; sourceTree = "<group>"; };
 		2BF16F092B62889000A84DE3 /* FeedActionCreateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedActionCreateDto.swift; sourceTree = "<group>"; };
+		2BF44F592D6F26D100E72A72 /* PopOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOver.swift; sourceTree = "<group>"; };
+		2BF44F672D6F3EBD00E72A72 /* NavigationTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitions.swift; sourceTree = "<group>"; };
 		2BF568012B56B037004B3936 /* BabyActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,6 +258,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BF44F5F2D6F358400E72A72 /* SwiftUIIntrospect in Frameworks */,
+				2BF44F612D6F358400E72A72 /* SwiftUIIntrospect-Dynamic in Frameworks */,
+				2BF44F632D6F358400E72A72 /* SwiftUIIntrospect-Static in Frameworks */,
+				2BF44F662D6F3C3D00E72A72 /* NavigationTransitions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +391,7 @@
 		2B5E46B12D69FC1A003649A8 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				2B5E46B22D69FC27003649A8 /* BackgroundPanel.swift */,
+				2B5E46B22D69FC27003649A8 /* BackgroundView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -399,8 +411,9 @@
 		2B8B458D2D66101A00F51D21 /* NewUI */ = {
 			isa = PBXGroup;
 			children = (
-				2B5E46B12D69FC1A003649A8 /* MainView */,
 				2B5E46A82D69FB0C003649A8 /* BabyView */,
+				2B5E46B12D69FC1A003649A8 /* MainView */,
+				2B51CBEC2B6D2359009A50F3 /* Settings */,
 			);
 			path = NewUI;
 			sourceTree = "<group>";
@@ -409,6 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				2B8B45912D6611A200F51D21 /* Logger.swift */,
+				2BF44F672D6F3EBD00E72A72 /* NavigationTransitions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -502,7 +516,6 @@
 			isa = PBXGroup;
 			children = (
 				2B51CBF22B7105BC009A50F3 /* DayView */,
-				2B51CBEC2B6D2359009A50F3 /* Settings */,
 				2BF16EDA2B613B3B00A84DE3 /* BabyView */,
 				2BF16ED82B613B1D00A84DE3 /* MainView */,
 			);
@@ -520,6 +533,7 @@
 				2B8B459D2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift */,
 				2B5E46B52D69FC6A003649A8 /* Well.swift */,
 				2B5E46B72D69FC77003649A8 /* Panel.swift */,
+				2BF44F592D6F26D100E72A72 /* PopOver.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -645,6 +659,10 @@
 			);
 			name = BabyCare;
 			packageProductDependencies = (
+				2BF44F5E2D6F358400E72A72 /* SwiftUIIntrospect */,
+				2BF44F602D6F358400E72A72 /* SwiftUIIntrospect-Dynamic */,
+				2BF44F622D6F358400E72A72 /* SwiftUIIntrospect-Static */,
+				2BF44F652D6F3C3D00E72A72 /* NavigationTransitions */,
 			);
 			productName = BabyCare;
 			productReference = 2B1F34AD2B54865E004EA670 /* BabyCare.app */;
@@ -675,6 +693,8 @@
 			);
 			mainGroup = 2B1F34A42B54865E004EA670;
 			packageReferences = (
+				2BF44F5D2D6F358400E72A72 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				2BF44F642D6F3C3D00E72A72 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */,
 			);
 			productRefGroup = 2B1F34AE2B54865E004EA670 /* Products */;
 			projectDirPath = "";
@@ -702,6 +722,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BF44F682D6F3EBD00E72A72 /* NavigationTransitions.swift in Sources */,
 				2B5E46C42D6A1B6E003649A8 /* FeedingGraphPreview.swift in Sources */,
 				2BF16F082B62887700A84DE3 /* FeedActionUpdateDto.swift in Sources */,
 				2B1552F12B66819300AD95FE /* BottleActionCreateDto.swift in Sources */,
@@ -722,7 +743,7 @@
 				2B46AE462B5D3CFF0019D710 /* SyncService.swift in Sources */,
 				2B7A8DD62B7384AF00A72393 /* BabyServiceContainer.swift in Sources */,
 				2BF16EE82B62631A00A84DE3 /* FeedActionDto.swift in Sources */,
-				2B5E46B32D69FC27003649A8 /* BackgroundPanel.swift in Sources */,
+				2B5E46B32D69FC27003649A8 /* BackgroundView.swift in Sources */,
 				2B51CBF02B6E6D24009A50F3 /* DeleteButton.swift in Sources */,
 				2B1552E72B66769600AD95FE /* FeedLog.swift in Sources */,
 				2B1552ED2B66801B00AD95FE /* BottleActionDto.swift in Sources */,
@@ -745,6 +766,7 @@
 				2B7A8DD02B726EC200A72393 /* IntFormatInterval.swift in Sources */,
 				2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */,
 				2B51CBEE2B6D2363009A50F3 /* SettingsView.swift in Sources */,
+				2BF44F5A2D6F26D100E72A72 /* PopOver.swift in Sources */,
 				2BF16EF82B62662900A84DE3 /* FeedActionExt.swift in Sources */,
 				2B0FFD5C2B595D9100C20C9A /* BabyActionDto.swift in Sources */,
 				2BC0E4D52B691DE700E5A60A /* UIApplicationHideKeyboard.swift in Sources */,
@@ -1040,6 +1062,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2BF44F5D2D6F358400E72A72 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
+		2BF44F642D6F3C3D00E72A72 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/davdroman/swiftui-navigation-transitions";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2BF44F5E2D6F358400E72A72 /* SwiftUIIntrospect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BF44F5D2D6F358400E72A72 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = SwiftUIIntrospect;
+		};
+		2BF44F602D6F358400E72A72 /* SwiftUIIntrospect-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BF44F5D2D6F358400E72A72 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = "SwiftUIIntrospect-Dynamic";
+		};
+		2BF44F622D6F358400E72A72 /* SwiftUIIntrospect-Static */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BF44F5D2D6F358400E72A72 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = "SwiftUIIntrospect-Static";
+		};
+		2BF44F652D6F3C3D00E72A72 /* NavigationTransitions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BF44F642D6F3C3D00E72A72 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */;
+			productName = NavigationTransitions;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */ = {

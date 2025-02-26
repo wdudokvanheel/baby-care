@@ -1,6 +1,8 @@
+import NavigationTransitions
 import SwiftUI
+import SwiftUIIntrospect
 
-public struct FullscreenPanel<Content: View>: View {
+public struct BackgroundView<Content: View>: View {
     let content: Content
 
     public init(@ViewBuilder content: () -> Content) {
@@ -9,19 +11,9 @@ public struct FullscreenPanel<Content: View>: View {
 
     public var body: some View {
         ZStack {
-            Color(.black)
-                .ignoresSafeArea()
-
             VStack {
-                ScrollView {
-                    self.content
-                        .padding(.top, 12)
-                        .padding(.bottom, 16)
-                        .padding(.horizontal, 24)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
+                self.content
             }
-
             .background(
                 RoundedRectangle(cornerRadius: 46)
                     .fill(

@@ -36,20 +36,27 @@ struct DefaultBabySetting: View {
     }
 
     var body: some View {
-        VStack {
-            if !loading {
-                Picker("Default baby", selection: $selected) {
-                    ForEach(babies, id: \.self) { baby in
-                        Text(baby.displayName).tag(baby as Baby?)
+        Panel{
+            HStack {
+                Text("Default baby")
+                    .foregroundColor(Color("TextDark"))
+                    .font(.body)
+                Spacer()
+                if !loading {
+                    Picker("Default baby", selection: $selected) {
+                        ForEach(babies, id: \.self) { baby in
+                            Text(baby.displayName).tag(baby as Baby?)
+                        }
                     }
-                }
-                .pickerStyle(.menu)
-                .onChange(of: selected) {
-                    if let baby = selected, let id = baby.remoteId {
-                        services.prefService.save("\(id)", forKey: "baby.default")
+                    .pickerStyle(.menu)
+                    .onChange(of: selected) {
+                        if let baby = selected, let id = baby.remoteId {
+                            services.prefService.save("\(id)", forKey: "baby.default")
+                        }
                     }
                 }
             }
+            .padding(4)
         }
         .onAppear {
             getSelectedBaby()
