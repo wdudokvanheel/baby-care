@@ -8,7 +8,7 @@ struct SleepGraphView: View {
 
     @Query var query: [DailySleepDetails]
     @State var date: Date = .init()
-    @State var scrollPosition: String = .init()
+    @State var scrollPosition: String = Date().formatted(.dateTime.month().day())
 
     init(_ baby: Baby, _ sleepService: SleepService) {
         self.baby = baby
@@ -63,10 +63,6 @@ struct SleepGraphView: View {
             .padding()
         }
         .onAppear {
-            if let last = query.last {
-                self.scrollPosition = last.date.formatted(.dateTime.month().day())
-            }
-
             // Make sure a detail view exists for these days
             let date = Calendar.current.startOfDay(for: date)
             let startDate = Calendar.current.date(byAdding: .day, value: -31, to: date)!

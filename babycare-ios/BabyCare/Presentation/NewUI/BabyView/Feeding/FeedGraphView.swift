@@ -8,7 +8,7 @@ struct FeedGraphView: View {
 
     @Query var query: [DailyFeedDetails]
     @State var date: Date = .init()
-    @State var scrollPosition: String = .init()
+    @State var scrollPosition: String = Date().formatted(.dateTime.month().day())
 
     init(_ baby: Baby, _ sleepService: FeedService) {
         self.baby = baby
