@@ -40,23 +40,21 @@ public struct FeedingCare: View {
                 }
             })
 
-            Panel {
-                VStack {
-                    FeedingGraphPreview(Date(), model.baby, model.services.feedService)
-                        .frame(height: 125)
-                        .frame(maxWidth: .infinity)
+            NavigationLink(destination: FeedGraphView(model.baby, model.services.feedService)){
+                Panel {
+                    VStack {
+                        FeedingGraphPreview(Date(), model.baby, model.services.feedService)
+                            .frame(height: 125)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .padding(0)
+                    .frame(maxWidth: .infinity, maxHeight: 200)
                 }
-                .padding(0)
-                .frame(maxWidth: .infinity, maxHeight: 200)
             }
             
             Spacer()
         }
         .padding(0)
         .environmentObject(model)
-    }
-
-    public static func get() -> String {
-        return "x"
     }
 }

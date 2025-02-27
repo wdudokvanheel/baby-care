@@ -87,6 +87,7 @@
 		2B8B459E2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B459D2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift */; };
 		2B8B45A02D68B51000F51D21 /* SleepCareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B459F2D68B51000F51D21 /* SleepCareViewModel.swift */; };
 		2B8C18542D706269006FE7EC /* SleepGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8C18532D706269006FE7EC /* SleepGraphView.swift */; };
+		2B8C18562D709A8D006FE7EC /* FeedGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8C18552D709A8D006FE7EC /* FeedGraphView.swift */; };
 		2B97B7D22B75806E0050B8DC /* SleepWeekGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97B7D12B75806E0050B8DC /* SleepWeekGraph.swift */; };
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
@@ -215,6 +216,7 @@
 		2B8B459D2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshingElapsedTimeText.swift; sourceTree = "<group>"; };
 		2B8B459F2D68B51000F51D21 /* SleepCareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCareViewModel.swift; sourceTree = "<group>"; };
 		2B8C18532D706269006FE7EC /* SleepGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepGraphView.swift; sourceTree = "<group>"; };
+		2B8C18552D709A8D006FE7EC /* FeedGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedGraphView.swift; sourceTree = "<group>"; };
 		2B97B7D12B75806E0050B8DC /* SleepWeekGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWeekGraph.swift; sourceTree = "<group>"; };
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 				2B5E46BE2D6A11CE003649A8 /* FeedingCareDetailsView.swift */,
 				2B5E46C02D6A14B5003649A8 /* ActiveFeedingView.swift */,
 				2B5E46C32D6A1B6E003649A8 /* FeedingGraphPreview.swift */,
+				2B8C18552D709A8D006FE7EC /* FeedGraphView.swift */,
 			);
 			path = Feeding;
 			sourceTree = "<group>";
@@ -762,6 +765,7 @@
 				2B46AE422B5D3C3A0019D710 /* SyncRequestDto.swift in Sources */,
 				2BF16F052B6285FE00A84DE3 /* ActionCreateDto.swift in Sources */,
 				2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */,
+				2B8C18562D709A8D006FE7EC /* FeedGraphView.swift in Sources */,
 				2BF16EFD2B6280B900A84DE3 /* DefaultActionMapper.swift in Sources */,
 				2B7A8DCA2B7125B600A72393 /* SleepActionCreateDto.swift in Sources */,
 				2BF16EC12B60104000A84DE3 /* BabyDto.swift in Sources */,

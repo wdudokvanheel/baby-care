@@ -65,9 +65,9 @@ public class FeedingCareViewModel: ObservableObject {
         return Query(fetchDescriptor)
     }
 
-    static func feedDetailsPastWeekQuery(_ date: Date, _ baby: Baby) -> Query<DailyFeedDetails, [DailyFeedDetails]> {
+    static func feedDetailsPastDays(_ date: Date, _ baby: Baby, _ days: Int) -> Query<DailyFeedDetails, [DailyFeedDetails]> {
         let date = Calendar.current.startOfDay(for: date)
-        let startDate = Calendar.current.date(byAdding: .day, value: -6, to: date)!
+        let startDate = Calendar.current.date(byAdding: .day, value: -days + 1, to: date)!
 
         let babyId = baby.persistentModelID
 
@@ -78,7 +78,15 @@ public class FeedingCareViewModel: ObservableObject {
         }
 
         var fetchDescriptor = FetchDescriptor<DailyFeedDetails>(predicate: filter, sortBy: [SortDescriptor<DailyFeedDetails>(\.date)])
-        fetchDescriptor.fetchLimit = 7
+        fetchDescriptor.fetchLimit = days
         return Query(fetchDescriptor)
+    }
+
+    static func feedDetailsPastWeekQuery(_ date: Date, _ baby: Baby) -> Query<DailyFeedDetails, [DailyFeedDetails]> {
+        return feedDetailsPastDays(date, baby, 7)
+    }
+    
+    static func feedDetailsPastMonthQuery(_ date: Date, _ baby: Baby) -> Query<DailyFeedDetails, [DailyFeedDetails]> {
+        return feedDetailsPastDays(date, baby, 31)
     }
 }
