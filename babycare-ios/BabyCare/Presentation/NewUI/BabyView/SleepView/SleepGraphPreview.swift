@@ -50,6 +50,7 @@ struct SleepGraphPreview: View {
             .cornerRadius(8)
 
         }
+        .padding(0)
         .chartLegend(.hidden)
         .chartXAxis {
             AxisMarks { _ in

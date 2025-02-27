@@ -86,6 +86,7 @@
 		2B8B459C2D68B4CF00F51D21 /* ActiveSleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B459B2D68B4CF00F51D21 /* ActiveSleepView.swift */; };
 		2B8B459E2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B459D2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift */; };
 		2B8B45A02D68B51000F51D21 /* SleepCareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B459F2D68B51000F51D21 /* SleepCareViewModel.swift */; };
+		2B8C18542D706269006FE7EC /* SleepGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8C18532D706269006FE7EC /* SleepGraphView.swift */; };
 		2B97B7D22B75806E0050B8DC /* SleepWeekGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97B7D12B75806E0050B8DC /* SleepWeekGraph.swift */; };
 		2B9FDA902B5486F300B91132 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA8F2B5486F300B91132 /* MainView.swift */; };
 		2B9FDA932B548AC500B91132 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FDA912B548AC500B91132 /* DataStore.xcdatamodeld */; };
@@ -213,6 +214,7 @@
 		2B8B459B2D68B4CF00F51D21 /* ActiveSleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSleepView.swift; sourceTree = "<group>"; };
 		2B8B459D2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshingElapsedTimeText.swift; sourceTree = "<group>"; };
 		2B8B459F2D68B51000F51D21 /* SleepCareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCareViewModel.swift; sourceTree = "<group>"; };
+		2B8C18532D706269006FE7EC /* SleepGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepGraphView.swift; sourceTree = "<group>"; };
 		2B97B7D12B75806E0050B8DC /* SleepWeekGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWeekGraph.swift; sourceTree = "<group>"; };
 		2B9FDA8F2B5486F300B91132 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B9FDA922B548AC500B91132 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 				2B8B45972D6779F800F51D21 /* SleepCareDetailsView.swift */,
 				2B8B45992D68B47400F51D21 /* SleepGraphPreview.swift */,
 				2B8B459B2D68B4CF00F51D21 /* ActiveSleepView.swift */,
+				2B8C18532D706269006FE7EC /* SleepGraphView.swift */,
 			);
 			path = SleepView;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				2BF16EDC2B613B4F00A84DE3 /* BabyView.swift in Sources */,
 				2B5E46BD2D6A10D2003649A8 /* FeedingCareViewModel.swift in Sources */,
 				2B220AC72B77A73700B183B7 /* DailyFeedDetailsExt.swift in Sources */,
+				2B8C18542D706269006FE7EC /* SleepGraphView.swift in Sources */,
 				2B5E46B02D69FBE2003649A8 /* InfoTile.swift in Sources */,
 				2BF16EE22B618FCA00A84DE3 /* FeedControlView.swift in Sources */,
 				2B6D4D0C2B5E6E31000F6BFA /* NotificationService.swift in Sources */,

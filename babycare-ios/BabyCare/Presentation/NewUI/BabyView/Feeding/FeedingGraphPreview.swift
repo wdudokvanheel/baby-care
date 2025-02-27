@@ -1,12 +1,10 @@
-import Foundation
-import SwiftUI
-import SwiftData
 import Charts
-
+import Foundation
+import SwiftData
+import SwiftUI
 
 struct FeedingGraphPreview: View {
-    @Query
-    var query: [DailyFeedDetails]
+    @Query var query: [DailyFeedDetails]
 
     let feedService: FeedService
     let date: Date
@@ -28,7 +26,6 @@ struct FeedingGraphPreview: View {
             )
             .foregroundStyle(by: .value("Feed time", "Feed time"))
             .cornerRadius(8)
-
         }
         .chartLegend(.hidden)
         .chartXAxis {

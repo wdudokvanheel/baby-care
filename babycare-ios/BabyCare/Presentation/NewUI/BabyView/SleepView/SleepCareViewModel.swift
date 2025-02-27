@@ -70,9 +70,9 @@ public class SleepCareViewModel: ObservableObject {
         return Query(fetchDescriptor)
     }
 
-    static func sleepDetailsPastWeekQuery(_ date: Date, _ baby: Baby) -> Query<DailySleepDetails, [DailySleepDetails]> {
+    static func sleepDetailsPastMonthQuery(_ date: Date, _ baby: Baby) -> Query<DailySleepDetails, [DailySleepDetails]> {
         let date = Calendar.current.startOfDay(for: date)
-        let startDate = Calendar.current.date(byAdding: .day, value: -6, to: date)!
+        let startDate = Calendar.current.date(byAdding: .day, value: -30, to: date)!
 
         let babyId = baby.persistentModelID
 
@@ -83,7 +83,7 @@ public class SleepCareViewModel: ObservableObject {
         }
 
         var fetchDescriptor = FetchDescriptor<DailySleepDetails>(predicate: filter, sortBy: [SortDescriptor<DailySleepDetails>(\.date)])
-        fetchDescriptor.fetchLimit = 7
+        fetchDescriptor.fetchLimit = 31
         return Query(fetchDescriptor)
     }
 }

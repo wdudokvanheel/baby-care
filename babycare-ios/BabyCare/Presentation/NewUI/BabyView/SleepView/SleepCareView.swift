@@ -39,14 +39,16 @@ public struct SleepCareView: View {
                 }
             })
 
-            Panel {
-                VStack {
-                    SleepGraphPreview(Date(), model.baby, model.services.sleepService)
-                        .frame(height: 125)
-                        .frame(maxWidth: .infinity)
+            NavigationLink(destination: SleepGraphView(model.baby, model.services.sleepService)){
+                Panel {
+                    VStack {
+                        SleepGraphPreview(Date(), model.baby, model.services.sleepService)
+                            .frame(height: 125)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .padding(0)
+                    .frame(maxWidth: .infinity, maxHeight: 200)
                 }
-                .padding(0)
-                .frame(maxWidth: .infinity, maxHeight: 200)
             }
         }
         .padding(0)

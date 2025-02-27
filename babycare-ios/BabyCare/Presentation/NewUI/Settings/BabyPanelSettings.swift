@@ -27,8 +27,6 @@ struct BabyPanelSettings: View {
     }
 
     var body: some View {
-        //        Section(header: Text("\(baby.displayName)'s panels")) {
-
         VStack(alignment: .leading, spacing: 16) {
             Text("\(baby.displayName)'s panels")
                 .foregroundStyle(Color("TextDark"))
@@ -38,7 +36,7 @@ struct BabyPanelSettings: View {
             Panel {
                 VStack(spacing: 4) {
                     Toggle(isOn: $sleepEnabled) {
-                        Text("Sleep panel")
+                        Text("Show sleep panel")
                     }
                     .onChange(of: sleepEnabled) {
                         if let id = baby.remoteId {
@@ -47,7 +45,7 @@ struct BabyPanelSettings: View {
                     }
 
                     Toggle(isOn: $feedEnabled) {
-                        Text("Feed panel")
+                        Text("Show breast feed panel")
                     }
                     .onChange(of: feedEnabled) {
                         if let id = baby.remoteId {
@@ -56,7 +54,7 @@ struct BabyPanelSettings: View {
                     }
 
                     Toggle(isOn: $bottleEnabled) {
-                        Text("Bottle panel")
+                        Text("Show bottle panel")
                     }
                     .onChange(of: bottleEnabled) {
                         if let id = baby.remoteId {

@@ -19,7 +19,6 @@ struct BabyCareApp: App {
 
     var body: some Scene {
         WindowGroup {
-//            MainView2()
             ServiceInjection(delegate: self.appDelegate) {
                 MainView()
             }

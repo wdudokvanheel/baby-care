@@ -5,8 +5,7 @@ import SwiftData
 import SwiftUI
 
 struct SleepWeekGraph: View {
-    @Query
-    var query: [DailySleepDetails]
+    @Query var query: [DailySleepDetails]
 
     let sleepService: SleepService
     let date: Date
@@ -17,11 +16,11 @@ struct SleepWeekGraph: View {
         self.baby = baby
         self.sleepService = sleepService
 
-        _query = SleepCareViewModel.sleepDetailsPastWeekQuery(date, baby)
+        _query = SleepCareViewModel.sleepDetailsPastMonthQuery(date, baby)
     }
 
     var body: some View {
-        VStack {
+        BackgroundView {
             Chart(query, id: \.persistentModelID) { day in
                 BarMark(
                     x: .value("Day", day.date.toLocaleDateString()),
@@ -36,7 +35,7 @@ struct SleepWeekGraph: View {
                 .foregroundStyle(by: .value("Naps", "Naps"))
             }
             .chartForegroundStyleScale([
-                "Night": .blue, "Naps": .orange
+                "Night": Color("SleepColor"), "Naps": Color("FeedingColor")
             ])
             .containerRelativeFrame(.vertical, count: 2, span: 1, spacing: 0)
 
