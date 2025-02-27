@@ -6,31 +6,22 @@ struct MainView: View {
     var body: some View {
         BackgroundView {
             NavigationStack {
-                ScrollView {
-                    VStack(spacing: 20) {
-                        AuthGuard(model.services.authService) {
-                            VStack(alignment: .center, spacing: 8) {
-                                BabyView()
-                            }
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                AuthGuard(model.services.authService) {
+                    ScrollView {
+                        VStack(alignment: .center) {
+                            BabyView()
                         }
-                        .padding(0)
-                        .navigationBarTitleDisplayMode(.inline)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding(.top, 12)
+                        .padding(.bottom, 16)
+                        .padding(.horizontal, 24)
                         .navigationBarHidden(true)
                     }
-                    .padding(.top, 12)
-                    .padding(.bottom, 16)
-                    .padding(.horizontal, 24)
-                    
-                    UnAuthGuard(model.services.authService) {
-                        Button("Login") {
-                            model.login()
-                        }
-                        .font(.footnote)
-                        .foregroundColor(.white)
-                    }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+                UnAuthGuard(model.services.authService) {
+                    AuthenticationView()
+                }
             }
             .introspect(.navigationStack, on: .iOS(.v16, .v17)) {
                 $0.viewControllers.forEach { controller in
@@ -41,6 +32,5 @@ struct MainView: View {
             .navigationTransition(.flip(axis: .vertical))
         }
         .padding(0)
-        .sheet(isPresented: $model.showLogin, content: LoginView.init)
     }
 }

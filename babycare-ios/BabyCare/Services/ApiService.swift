@@ -188,15 +188,19 @@ public class ApiService {
         task.resume()
     }
     
-    public func authenticate(_ email: String, _ password: String, callback: @escaping () -> Void = {}) {
+    public func authenticate(_ email: String, _ password: String, callback: @escaping (Bool) -> Void = { _ in }) {
         let deviceId = UIDevice.current.identifierForVendor?.uuidString ?? ""
         let request = AuthenticationRequest(email: email, password: password, deviceId: deviceId)
         
         performRequest(dto: request, path: "auth/", method: "POST") { data in
             if let result: AuthenticationResponse = (self.parseJson(responseData: data) as AuthenticationResponse?) {
                 self.authService.setAuthDetails(email: result.email, token: result.token)
-                callback()
+                callback(true)
+            } else {
+                callback(false)
             }
+        } onError: {
+            callback(false)
         }
     }
     

@@ -42,9 +42,14 @@ class MainViewModel: ObservableObject {
         services.authService.logout()
     }
 
-    public func authenticate(_ email: String, _ password: String) {
-        services.apiService.authenticate(email, password) {
-            self.services.notificationService.registerForNotifications()
+    public func authenticate(_ email: String, _ password: String, failed: @escaping () -> Void) {
+        services.apiService.authenticate(email, password) { success in
+            if success {
+                self.services.notificationService.registerForNotifications()
+            }
+            else {
+                failed()
+            }
         }
     }
 }

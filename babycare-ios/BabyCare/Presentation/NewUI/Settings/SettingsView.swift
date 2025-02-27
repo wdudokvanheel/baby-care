@@ -4,16 +4,15 @@ import SwiftData
 import SwiftUI
 
 public struct SettingsView: View {
-    @EnvironmentObject
-    var model: MainViewModel
+    @EnvironmentObject var model: MainViewModel
+    @Environment(\.dismiss) var dismiss
 
     static var babiesQuery: FetchDescriptor<Baby> {
         let descriptor = FetchDescriptor<Baby>(sortBy: [SortDescriptor(\.birthDate)])
         return descriptor
     }
 
-    @Query(babiesQuery)
-    var babies: [Baby]
+    @Query(babiesQuery) var babies: [Baby]
 
     public var body: some View {
         BackgroundView {
@@ -32,11 +31,14 @@ public struct SettingsView: View {
 //                            .foregroundStyle(.gray.opacity(0.5))
 //                            .font(.footnote)
 //                    }
-//                    Button("Logout") {
-//                        model.logout()
-//                    }
-//                    .font(.footnote)
-//                    .foregroundColor(.white)
+                    Button("Logout") {
+                        model.logout()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.dismiss()
+                        }
+                    }
+                    .font(.footnote)
+                    .foregroundColor(.white)
                 }
                 .frame(maxHeight: .infinity)
                 .padding(.horizontal, 24)
