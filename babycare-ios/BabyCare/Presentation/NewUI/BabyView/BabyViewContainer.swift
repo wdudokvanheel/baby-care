@@ -40,7 +40,7 @@ struct BabyViewContainer: View {
 
     init() {
         let items = [
-            MenuPanelItem(label: "Sleep", color: Color("SleepColor"), type: .sleep),
+            MenuPanelItem(label: "Sleeping", color: Color("SleepColor"), type: .sleep),
             MenuPanelItem(label: "Feeding", color: Color("FeedingColor"), type: .feed),
             MenuPanelItem(label: "Bottle", color: Color("SleepColor"), type: .bottle)
         ]

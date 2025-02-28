@@ -42,6 +42,7 @@ struct MenuPanel<Content: View>: View {
                                         Text(items[index].label)
                                             .padding()
                                             .foregroundColor(selectedIndex == index ? items[index].color : Color("TextDark"))
+                                            .frame(maxWidth: .infinity)
                                     }
                                 }
                             }
