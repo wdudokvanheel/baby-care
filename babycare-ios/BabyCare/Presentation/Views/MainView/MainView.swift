@@ -7,17 +7,7 @@ struct MainView: View {
         BackgroundView {
             NavigationStack {
                 AuthGuard(model.services.authService) {
-//                    MenuPanel(){
-//                        Text("a")
-//                    }
-//                    VStack(alignment: .center) {
-                        BabyViewContainer()
-//                    }
-//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                    .padding(.top, 12)
-//                    .padding(.bottom, 16)
-//                    .padding(.horizontal, 24)
-//                    .navigationBarHidden(true)
+                    BabyViewContainer()
                 }
 
                 UnAuthGuard(model.services.authService) {
