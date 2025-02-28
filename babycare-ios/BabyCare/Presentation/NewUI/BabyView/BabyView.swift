@@ -32,7 +32,7 @@ struct BabyView: View {
 
                     if showBabySelector {
                         Image(systemName: "chevron.down")
-                            .font(.title2)
+                            .font(.title3)
                             .fontWeight(.semibold)
                             .onTapGesture {
                                 if showBabySelector {
@@ -52,7 +52,8 @@ struct BabyView: View {
 
                     NavigationLink(destination: SettingsView()) {
                         Image(systemName: "gear")
-                            .foregroundStyle(Color("TextDark").opacity(0.5))
+                            .foregroundStyle(Color("TextDark").opacity(0.85))
+                            .font(.title3)
                     }
                 }
                 .padding(.top, 0)

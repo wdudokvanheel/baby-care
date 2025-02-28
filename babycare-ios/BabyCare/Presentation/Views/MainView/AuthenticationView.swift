@@ -68,7 +68,7 @@ public struct AuthenticationView: View {
                                 .foregroundStyle(Color("TextDark"))
                         }
                     }
-                    ActionButton("Login", "rectangle.portrait.and.arrow.right", Color("SleepColor")) {
+                    ActionButton("Login", "rectangle.portrait.and.arrow.right", Color("AccentColor")) {
                         self.error = false
                         self.loading = true
 
