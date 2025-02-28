@@ -22,15 +22,6 @@ public struct SleepCareView: View {
 
     public var body: some View {
         VStack(spacing: 16) {
-            HStack {
-                Text("Sleep Care")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(Color("TextDark"))
-                Spacer()
-            }
-            .padding(0)
-
             SleepCareDetailView(Date(), model.baby)
 
             ExpandingButton(label: "Start sleeping", icon: "arrowtriangle.right.circle", color: Color("SleepColor"), expanded: hasSleepAction, action: model.buttonStartSleep, content: {
@@ -39,7 +30,7 @@ public struct SleepCareView: View {
                 }
             })
 
-            NavigationLink(destination: SleepGraphView(model.baby, model.services.sleepService)){
+            NavigationLink(destination: SleepGraphView(model.baby, model.services.sleepService)) {
                 Panel {
                     VStack {
                         SleepGraphPreview(Date(), model.baby, model.services.sleepService)

@@ -33,6 +33,7 @@
 		2B220AC72B77A73700B183B7 /* DailyFeedDetailsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B220AC62B77A73700B183B7 /* DailyFeedDetailsExt.swift */; };
 		2B220AC92B78F25700B183B7 /* FeedDetailsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B220AC82B78F25700B183B7 /* FeedDetailsContainer.swift */; };
 		2B220ACC2B7906E500B183B7 /* FeedWeekGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B220ACB2B7906E500B183B7 /* FeedWeekGraph.swift */; };
+		2B38D2102D720B140096C9F2 /* BabySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B38D20F2D720B140096C9F2 /* BabySelector.swift */; };
 		2B46AE362B5C73B70019D710 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE352B5C73B70019D710 /* KeychainItem.swift */; };
 		2B46AE3A2B5C81120019D710 /* BabyActionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE392B5C81120019D710 /* BabyActionExt.swift */; };
 		2B46AE422B5D3C3A0019D710 /* SyncRequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE412B5D3C3A0019D710 /* SyncRequestDto.swift */; };
@@ -104,7 +105,6 @@
 		2BF16EBF2B600FF400A84DE3 /* BabyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EBE2B600FF400A84DE3 /* BabyService.swift */; };
 		2BF16EC12B60104000A84DE3 /* BabyDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EC02B60104000A84DE3 /* BabyDto.swift */; };
 		2BF16EC32B6010DE00A84DE3 /* BabyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EC22B6010DE00A84DE3 /* BabyExt.swift */; };
-		2BF16EC52B60159900A84DE3 /* BabySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EC42B60159900A84DE3 /* BabySelector.swift */; };
 		2BF16ED52B613A5B00A84DE3 /* BabyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16ED42B613A5B00A84DE3 /* BabyViewModel.swift */; };
 		2BF16EDC2B613B4F00A84DE3 /* BabyViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EDB2B613B4F00A84DE3 /* BabyViewContainer.swift */; };
 		2BF16EDF2B613E0A00A84DE3 /* SleepControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EDE2B613E0A00A84DE3 /* SleepControlView.swift */; };
@@ -161,6 +161,7 @@
 		2B220AC62B77A73700B183B7 /* DailyFeedDetailsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFeedDetailsExt.swift; sourceTree = "<group>"; };
 		2B220AC82B78F25700B183B7 /* FeedDetailsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailsContainer.swift; sourceTree = "<group>"; };
 		2B220ACB2B7906E500B183B7 /* FeedWeekGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWeekGraph.swift; sourceTree = "<group>"; };
+		2B38D20F2D720B140096C9F2 /* BabySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabySelector.swift; sourceTree = "<group>"; };
 		2B46AE352B5C73B70019D710 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		2B46AE392B5C81120019D710 /* BabyActionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyActionExt.swift; sourceTree = "<group>"; };
 		2B46AE412B5D3C3A0019D710 /* SyncRequestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncRequestDto.swift; sourceTree = "<group>"; };
@@ -234,7 +235,6 @@
 		2BF16EBE2B600FF400A84DE3 /* BabyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyService.swift; sourceTree = "<group>"; };
 		2BF16EC02B60104000A84DE3 /* BabyDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDto.swift; sourceTree = "<group>"; };
 		2BF16EC22B6010DE00A84DE3 /* BabyExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyExt.swift; sourceTree = "<group>"; };
-		2BF16EC42B60159900A84DE3 /* BabySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabySelector.swift; sourceTree = "<group>"; };
 		2BF16ED42B613A5B00A84DE3 /* BabyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyViewModel.swift; sourceTree = "<group>"; };
 		2BF16EDB2B613B4F00A84DE3 /* BabyViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyViewContainer.swift; sourceTree = "<group>"; };
 		2BF16EDE2B613E0A00A84DE3 /* SleepControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlView.swift; sourceTree = "<group>"; };
@@ -343,6 +343,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		2B38D20E2D720A500096C9F2 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				2B5E46AF2D69FBE2003649A8 /* InfoTile.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		2B46AE342B5C73A90019D710 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,10 +382,11 @@
 		2B5E46A82D69FB0C003649A8 /* BabyView */ = {
 			isa = PBXGroup;
 			children = (
+				2B38D20E2D720A500096C9F2 /* Component */,
 				2BF16EDB2B613B4F00A84DE3 /* BabyViewContainer.swift */,
-				2B5E46AF2D69FBE2003649A8 /* InfoTile.swift */,
 				2B5E46B92D6A0CED003649A8 /* Feeding */,
 				2B5E46A92D69FB36003649A8 /* Sleep */,
+				2B38D20F2D720B140096C9F2 /* BabySelector.swift */,
 			);
 			path = BabyView;
 			sourceTree = "<group>";
@@ -561,7 +570,6 @@
 		2BF16ED92B613B2800A84DE3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				2BF16EC42B60159900A84DE3 /* BabySelector.swift */,
 				2B6D4D152B5E9281000F6BFA /* AuthButton.swift */,
 			);
 			path = Components;
@@ -790,7 +798,7 @@
 				2B7A8DC62B71249800A72393 /* SleepAction.swift in Sources */,
 				2BF16EF12B62650D00A84DE3 /* FeedAction.swift in Sources */,
 				2B1552E52B66540C00AD95FE /* SleepLog.swift in Sources */,
-				2BF16EC52B60159900A84DE3 /* BabySelector.swift in Sources */,
+				2B38D2102D720B140096C9F2 /* BabySelector.swift in Sources */,
 				2BF16ED52B613A5B00A84DE3 /* BabyViewModel.swift in Sources */,
 				2B7A8DCE2B726B5D00A72393 /* SleepDetailsView.swift in Sources */,
 				2B0FFD5E2B5AFDD800C20C9A /* AuthenticationService.swift in Sources */,

@@ -22,16 +22,6 @@ public struct FeedingCare: View {
 
     public var body: some View {
         VStack(spacing: 16) {
-            HStack {
-                Text("Breast Feeding")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(Color("TextDark"))
-                    .padding(.top, 0)
-                Spacer()
-            }
-            .padding(0)
-
             FeedingCareDetailView(Date(), model.baby)
 
             ExpandingButton(label: "Start feeding", icon: "arrowtriangle.right.circle", color: Color("FeedingColor"), expanded: hasFeedAction, action: model.buttonStartFeeding, content: {
@@ -40,7 +30,7 @@ public struct FeedingCare: View {
                 }
             })
 
-            NavigationLink(destination: FeedGraphView(model.baby, model.services.feedService)){
+            NavigationLink(destination: FeedGraphView(model.baby, model.services.feedService)) {
                 Panel {
                     VStack {
                         FeedingGraphPreview(Date(), model.baby, model.services.feedService)
@@ -51,7 +41,7 @@ public struct FeedingCare: View {
                     .frame(maxWidth: .infinity, maxHeight: 200)
                 }
             }
-            
+
             Spacer()
         }
         .padding(0)
