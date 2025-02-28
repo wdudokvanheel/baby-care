@@ -1,7 +1,14 @@
 import SwiftData
 import SwiftUI
 
-struct BabyView: View {
+enum BabySubView {
+    case sleep
+    case feed
+    case bottle
+}
+
+// Manages the bottom menu to select subviews and the baby selector to select babies
+struct BabyViewContainer: View {
     @EnvironmentObject
     var services: ServiceContainer
 
@@ -9,14 +16,44 @@ struct BabyView: View {
 
     @State private var baby: Baby?
 
-    @State private var openMenu: Bool = false
+    @State private var openBabySelector: Bool = false
+
+    @State var menuItems: [MenuPanelItem]
+    @State private var selectedIndex: Int = 0
+
+    var selectedMenuItem: MenuPanelItem {
+        menuItems[selectedIndex]
+    }
+
+    var currentView: any View {
+        switch selectedMenuItem.type {
+            case .sleep:
+                let model = SleepCareViewModel(baby: self.baby!, services: self.services)
+                return SleepCareView(model: model)
+            case .feed:
+                let model = FeedingCareViewModel(baby: self.baby!, services: self.services)
+                return FeedingCare(model: model)
+            default:
+                return Text("Error")
+        }
+    }
+
+    init() {
+        let items = [
+            MenuPanelItem(label: "Sleep", color: Color("SleepColor"), type: .sleep),
+            MenuPanelItem(label: "Feeding", color: Color("FeedingColor"), type: .feed),
+            MenuPanelItem(label: "Bottle", color: Color("SleepColor"), type: .bottle)
+        ]
+
+        self._menuItems = State(initialValue: items)
+    }
 
     var showBabySelector: Bool {
         babies.count > 1
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        MenuPanel(items: $menuItems, selectedIndex: $selectedIndex) { VStack(alignment: .leading, spacing: 16) {
             if let baby = baby {
                 HStack(alignment: .center) {
                     Spacer()
@@ -26,7 +63,7 @@ struct BabyView: View {
                         .foregroundStyle(Color("TextDark"))
                         .onTapGesture {
                             if showBabySelector {
-                                openMenu.toggle()
+                                openBabySelector.toggle()
                             }
                         }
 
@@ -36,10 +73,10 @@ struct BabyView: View {
                             .fontWeight(.semibold)
                             .onTapGesture {
                                 if showBabySelector {
-                                    openMenu.toggle()
+                                    openBabySelector.toggle()
                                 }
                             }
-                            .popOver(isPresented: $openMenu, arrowDirection: .up, content: {
+                            .popOver(isPresented: $openBabySelector, arrowDirection: .up, content: {
                                 Picker("Select Baby", selection: $baby) {
                                     ForEach(babies, id: \ .id) { baby in
                                         Text(baby.displayName).tag(baby as Baby?)
@@ -59,24 +96,27 @@ struct BabyView: View {
                 .padding(.top, 0)
                 .padding(.bottom, 8)
 
-                if services.prefService.isPanelVisible(baby, .sleep) {
-                    let model = SleepCareViewModel(baby: baby, services: services)
-                    SleepCareView(model: model)
-                    //                SleepControlView(services: self.model.services, baby: model.baby)
-                }
+                AnyView(currentView)
 
-                if services.prefService.isPanelVisible(baby, .feed) {
-                    let model = FeedingCareViewModel(baby: baby, services: services)
-                    FeedingCare(model: model)
-                        .environmentObject(model)
-
-                    //                FeedControlView(services: services, date: Date(), baby: baby)
-                    //                    .environmentObject(BabyViewModel(services: services, baby: baby))
-                }
-
-                if services.prefService.isPanelVisible(baby, .bottle) {
-                    // BottleControlView(baby: model.baby)
-                }
+//                selectedMenuItem.view
+//                    if services.prefService.isPanelVisible(baby, .sleep) {
+//                        let model = SleepCareViewModel(baby: baby, services: services)
+//                        SleepCareView(model: model)
+//                        //                SleepControlView(services: self.model.services, baby: model.baby)
+//                    }
+//
+//                    if services.prefService.isPanelVisible(baby, .feed) {
+//                        let model = FeedingCareViewModel(baby: baby, services: services)
+//                        FeedingCare(model: model)
+//                            .environmentObject(model)
+//
+//                        //                FeedControlView(services: services, date: Date(), baby: baby)
+//                        //                    .environmentObject(BabyViewModel(services: services, baby: baby))
+//                    }
+//
+//                    if services.prefService.isPanelVisible(baby, .bottle) {
+//                        // BottleControlView(baby: model.baby)
+//                    }
             }
         }
         .padding(.top, 12)
@@ -91,7 +131,8 @@ struct BabyView: View {
             updateSelectedBaby()
         }
         .onChange(of: baby) {
-            self.openMenu = false
+            self.openBabySelector = false
+        }
         }
     }
 

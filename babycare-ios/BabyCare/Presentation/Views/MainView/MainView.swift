@@ -7,11 +7,11 @@ struct MainView: View {
         BackgroundView {
             NavigationStack {
                 AuthGuard(model.services.authService) {
-                    MenuPanel(){
-                        Text("a")
-                    }
+//                    MenuPanel(){
+//                        Text("a")
+//                    }
 //                    VStack(alignment: .center) {
-//                        BabyView()
+                        BabyViewContainer()
 //                    }
 //                    .frame(maxWidth: .infinity, maxHeight: .infinity)
 //                    .padding(.top, 12)

@@ -106,7 +106,7 @@
 		2BF16EC32B6010DE00A84DE3 /* BabyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EC22B6010DE00A84DE3 /* BabyExt.swift */; };
 		2BF16EC52B60159900A84DE3 /* BabySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EC42B60159900A84DE3 /* BabySelector.swift */; };
 		2BF16ED52B613A5B00A84DE3 /* BabyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16ED42B613A5B00A84DE3 /* BabyViewModel.swift */; };
-		2BF16EDC2B613B4F00A84DE3 /* BabyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EDB2B613B4F00A84DE3 /* BabyView.swift */; };
+		2BF16EDC2B613B4F00A84DE3 /* BabyViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EDB2B613B4F00A84DE3 /* BabyViewContainer.swift */; };
 		2BF16EDF2B613E0A00A84DE3 /* SleepControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EDE2B613E0A00A84DE3 /* SleepControlView.swift */; };
 		2BF16EE22B618FCA00A84DE3 /* FeedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EE12B618FCA00A84DE3 /* FeedControlView.swift */; };
 		2BF16EE82B62631A00A84DE3 /* FeedActionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16EE72B62631A00A84DE3 /* FeedActionDto.swift */; };
@@ -236,7 +236,7 @@
 		2BF16EC22B6010DE00A84DE3 /* BabyExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyExt.swift; sourceTree = "<group>"; };
 		2BF16EC42B60159900A84DE3 /* BabySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabySelector.swift; sourceTree = "<group>"; };
 		2BF16ED42B613A5B00A84DE3 /* BabyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyViewModel.swift; sourceTree = "<group>"; };
-		2BF16EDB2B613B4F00A84DE3 /* BabyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyView.swift; sourceTree = "<group>"; };
+		2BF16EDB2B613B4F00A84DE3 /* BabyViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyViewContainer.swift; sourceTree = "<group>"; };
 		2BF16EDE2B613E0A00A84DE3 /* SleepControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlView.swift; sourceTree = "<group>"; };
 		2BF16EE12B618FCA00A84DE3 /* FeedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedControlView.swift; sourceTree = "<group>"; };
 		2BF16EE72B62631A00A84DE3 /* FeedActionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedActionDto.swift; sourceTree = "<group>"; };
@@ -374,15 +374,15 @@
 		2B5E46A82D69FB0C003649A8 /* BabyView */ = {
 			isa = PBXGroup;
 			children = (
-				2BF16EDB2B613B4F00A84DE3 /* BabyView.swift */,
+				2BF16EDB2B613B4F00A84DE3 /* BabyViewContainer.swift */,
 				2B5E46AF2D69FBE2003649A8 /* InfoTile.swift */,
 				2B5E46B92D6A0CED003649A8 /* Feeding */,
-				2B5E46A92D69FB36003649A8 /* SleepView */,
+				2B5E46A92D69FB36003649A8 /* Sleep */,
 			);
 			path = BabyView;
 			sourceTree = "<group>";
 		};
-		2B5E46A92D69FB36003649A8 /* SleepView */ = {
+		2B5E46A92D69FB36003649A8 /* Sleep */ = {
 			isa = PBXGroup;
 			children = (
 				2B8B459F2D68B51000F51D21 /* SleepCareViewModel.swift */,
@@ -392,7 +392,7 @@
 				2B8B459B2D68B4CF00F51D21 /* ActiveSleepView.swift */,
 				2B8C18532D706269006FE7EC /* SleepGraphView.swift */,
 			);
-			path = SleepView;
+			path = Sleep;
 			sourceTree = "<group>";
 		};
 		2B5E46B12D69FC1A003649A8 /* MainView */ = {
@@ -824,7 +824,7 @@
 				2B8B459E2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift in Sources */,
 				2B0FFD602B5B06CE00C20C9A /* BabyActionUpdateDto.swift in Sources */,
 				2B6D4D142B5E89A8000F6BFA /* NotificationRegistrationDto.swift in Sources */,
-				2BF16EDC2B613B4F00A84DE3 /* BabyView.swift in Sources */,
+				2BF16EDC2B613B4F00A84DE3 /* BabyViewContainer.swift in Sources */,
 				2B5E46BD2D6A10D2003649A8 /* FeedingCareViewModel.swift in Sources */,
 				2B220AC72B77A73700B183B7 /* DailyFeedDetailsExt.swift in Sources */,
 				2B8C18542D706269006FE7EC /* SleepGraphView.swift in Sources */,
