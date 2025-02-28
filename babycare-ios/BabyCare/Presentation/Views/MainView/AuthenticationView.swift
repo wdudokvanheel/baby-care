@@ -24,10 +24,28 @@ public struct AuthenticationView: View {
                         TextField("Email", text: $email)
                             .foregroundStyle(Color("TextDark"))
                             .disabled(loading)
+                            .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(
+                                        Color("Background")
+                                            .shadow(.inner(color: Color("ShadowDark"), radius: 3, x: 4, y: 4))
+                                            .shadow(.inner(color: Color("ShadowLight"), radius: 3, x: -4, y: -4))
+                                    )
+                            )
                     }
                     HStack {
                         SecureField("Password", text: $password).disabled(loading)
                             .foregroundStyle(Color("TextDark"))
+                            .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(
+                                        Color("Background")
+                                            .shadow(.inner(color: Color("ShadowDark"), radius: 3, x: 4, y: 4))
+                                            .shadow(.inner(color: Color("ShadowLight"), radius: 3, x: -4, y: -4))
+                                    )
+                            )
                     }
                     if loading {
                         Text("Authenticating...")
@@ -63,7 +81,7 @@ public struct AuthenticationView: View {
                 .padding(8)
             }
             .padding(.top, 16)
-            
+
             Spacer()
         }
         .padding(.horizontal, 24)
