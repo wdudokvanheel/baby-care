@@ -3,6 +3,7 @@ import SwiftUI
 import SwiftUIIntrospect
 
 public struct BackgroundView<Content: View>: View {
+    let height: CGFloat = 60
     let content: Content
 
     public init(@ViewBuilder content: () -> Content) {
@@ -14,6 +15,7 @@ public struct BackgroundView<Content: View>: View {
             VStack {
                 self.content
             }
+            .ignoresSafeArea()
             .background(
                 RoundedRectangle(cornerRadius: 46)
                     .fill(

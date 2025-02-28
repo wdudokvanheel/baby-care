@@ -79,7 +79,9 @@ struct BabyView: View {
                 }
             }
         }
-        .padding(0)
+        .padding(.top, 12)
+        .padding(.bottom, 16)
+        .padding(.horizontal, 24)
         .onAppear {
             // Query data should be available when the view is rendered
             updateSelectedBaby()
