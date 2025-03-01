@@ -34,6 +34,8 @@
 		2B220AC92B78F25700B183B7 /* FeedDetailsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B220AC82B78F25700B183B7 /* FeedDetailsContainer.swift */; };
 		2B220ACC2B7906E500B183B7 /* FeedWeekGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B220ACB2B7906E500B183B7 /* FeedWeekGraph.swift */; };
 		2B38D2102D720B140096C9F2 /* BabySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B38D20F2D720B140096C9F2 /* BabySelector.swift */; };
+		2B38D2122D7302290096C9F2 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 2B38D2112D7302290096C9F2 /* SwiftUIIntrospect */; };
+		2B38D2142D7302290096C9F2 /* SwiftUIIntrospect-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 2B38D2132D7302290096C9F2 /* SwiftUIIntrospect-Static */; };
 		2B46AE362B5C73B70019D710 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE352B5C73B70019D710 /* KeychainItem.swift */; };
 		2B46AE3A2B5C81120019D710 /* BabyActionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE392B5C81120019D710 /* BabyActionExt.swift */; };
 		2B46AE422B5D3C3A0019D710 /* SyncRequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46AE412B5D3C3A0019D710 /* SyncRequestDto.swift */; };
@@ -126,12 +128,24 @@
 		2BF16F0A2B62889000A84DE3 /* FeedActionCreateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF16F092B62889000A84DE3 /* FeedActionCreateDto.swift */; };
 		2BF44F5A2D6F26D100E72A72 /* PopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF44F592D6F26D100E72A72 /* PopOver.swift */; };
 		2BF44F5F2D6F358400E72A72 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF44F5E2D6F358400E72A72 /* SwiftUIIntrospect */; };
-		2BF44F612D6F358400E72A72 /* SwiftUIIntrospect-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF44F602D6F358400E72A72 /* SwiftUIIntrospect-Dynamic */; };
 		2BF44F632D6F358400E72A72 /* SwiftUIIntrospect-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF44F622D6F358400E72A72 /* SwiftUIIntrospect-Static */; };
 		2BF44F662D6F3C3D00E72A72 /* NavigationTransitions in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF44F652D6F3C3D00E72A72 /* NavigationTransitions */; };
 		2BF44F682D6F3EBD00E72A72 /* NavigationTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF44F672D6F3EBD00E72A72 /* NavigationTransitions.swift */; };
 		2BF568022B56B037004B3936 /* BabyActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF568012B56B037004B3936 /* BabyActionService.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2B38D2162D73023C0096C9F2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2B0FFD562B5951FB00C20C9A /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -265,9 +279,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BF44F5F2D6F358400E72A72 /* SwiftUIIntrospect in Frameworks */,
-				2BF44F612D6F358400E72A72 /* SwiftUIIntrospect-Dynamic in Frameworks */,
 				2BF44F632D6F358400E72A72 /* SwiftUIIntrospect-Static in Frameworks */,
+				2B38D2122D7302290096C9F2 /* SwiftUIIntrospect in Frameworks */,
 				2BF44F662D6F3C3D00E72A72 /* NavigationTransitions in Frameworks */,
+				2B38D2142D7302290096C9F2 /* SwiftUIIntrospect-Static in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +684,7 @@
 				2B1F34A92B54865E004EA670 /* Sources */,
 				2B1F34AA2B54865E004EA670 /* Frameworks */,
 				2B1F34AB2B54865E004EA670 /* Resources */,
+				2B38D2162D73023C0096C9F2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -677,9 +693,10 @@
 			name = BabyCare;
 			packageProductDependencies = (
 				2BF44F5E2D6F358400E72A72 /* SwiftUIIntrospect */,
-				2BF44F602D6F358400E72A72 /* SwiftUIIntrospect-Dynamic */,
 				2BF44F622D6F358400E72A72 /* SwiftUIIntrospect-Static */,
 				2BF44F652D6F3C3D00E72A72 /* NavigationTransitions */,
+				2B38D2112D7302290096C9F2 /* SwiftUIIntrospect */,
+				2B38D2132D7302290096C9F2 /* SwiftUIIntrospect-Static */,
 			);
 			productName = BabyCare;
 			productReference = 2B1F34AD2B54865E004EA670 /* BabyCare.app */;
@@ -1008,7 +1025,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1047,7 +1064,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitechular.tinybaby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1103,15 +1120,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2BF44F5E2D6F358400E72A72 /* SwiftUIIntrospect */ = {
+		2B38D2112D7302290096C9F2 /* SwiftUIIntrospect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2BF44F5D2D6F358400E72A72 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = SwiftUIIntrospect;
 		};
-		2BF44F602D6F358400E72A72 /* SwiftUIIntrospect-Dynamic */ = {
+		2B38D2132D7302290096C9F2 /* SwiftUIIntrospect-Static */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2BF44F5D2D6F358400E72A72 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = "SwiftUIIntrospect-Dynamic";
+			productName = "SwiftUIIntrospect-Static";
+		};
+		2BF44F5E2D6F358400E72A72 /* SwiftUIIntrospect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BF44F5D2D6F358400E72A72 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = SwiftUIIntrospect;
 		};
 		2BF44F622D6F358400E72A72 /* SwiftUIIntrospect-Static */ = {
 			isa = XCSwiftPackageProductDependency;

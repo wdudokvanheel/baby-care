@@ -38,7 +38,7 @@ public struct FeedingCare: View {
                             .frame(maxWidth: .infinity)
                     }
                     .padding(0)
-                    .frame(maxWidth: .infinity, maxHeight: 200)
+                    .frame(maxWidth: .infinity, maxHeight: 125)
                 }
             }
 

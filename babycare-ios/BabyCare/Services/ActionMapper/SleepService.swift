@@ -38,8 +38,7 @@ class SleepService: ActionService {
 
         if let baby = action.baby {
             Task {
-                await updateSleepDetails(action.start, baby)
-                await updateSleepDetails(Calendar.current.date(byAdding: .day, value: 1, to: action.start)!, baby)
+                await updateMultipleSleepDetails([action.start, Calendar.current.date(byAdding: .day, value: 1, to: action.start)!], baby)
             }
         }
     }
@@ -88,6 +87,12 @@ class SleepService: ActionService {
 
         let fetchDescriptor = FetchDescriptor<SleepAction>(predicate: filter, sortBy: [SortDescriptor<SleepAction>(\.end, order: .reverse)])
         return Query(fetchDescriptor)
+    }
+
+    public func updateMultipleSleepDetails(_ dates: [Date], _ baby: Baby) async {
+        for date in dates {
+            await updateSleepDetails(date, baby)
+        }
     }
 
     // TODO: Separate from sleepservice to sleepdetailsservice

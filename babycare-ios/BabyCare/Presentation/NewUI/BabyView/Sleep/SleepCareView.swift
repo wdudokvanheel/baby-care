@@ -29,7 +29,6 @@ public struct SleepCareView: View {
                     ActiveSleepView(action)
                 }
             })
-
             NavigationLink(destination: SleepGraphView(model.baby, model.services.sleepService)) {
                 Panel {
                     VStack {
@@ -38,9 +37,10 @@ public struct SleepCareView: View {
                             .frame(maxWidth: .infinity)
                     }
                     .padding(0)
-                    .frame(maxWidth: .infinity, maxHeight: 200)
+                    .frame(maxWidth: .infinity, maxHeight: 125)
                 }
             }
+            Spacer()
         }
         .padding(0)
         .environmentObject(model)
