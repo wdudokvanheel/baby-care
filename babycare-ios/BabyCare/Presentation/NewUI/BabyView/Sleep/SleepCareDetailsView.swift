@@ -33,16 +33,44 @@ public struct SleepCareDetailView: View {
             .frame(maxWidth: .infinity)
 
             InfoTile(
+                "Naps",
+                "sun.max",
+                details.sleepTimeDayInt.formatAsDurationString(false),
+                Color("SleepColor")
+            )
+            .frame(maxWidth: .infinity)
+            
+            InfoTile(
                 "Total Sleep",
                 "clock",
                 details.sleepTimeTotal.formatAsDurationString(false),
                 Color("SleepColor")
             )
             .frame(maxWidth: .infinity)
+        }
+        .padding(0)
+        .frame(maxWidth: .infinity)
+
+        HStack(spacing: 16) {
+            InfoTile(
+                "Bed time",
+                "sunset",
+                details.bedTime?.formatTime() ?? "Unknown",
+                Color("SleepColor")
+            )
+            .frame(maxWidth: .infinity)
 
             InfoTile(
-                "Naps",
-                "sun.max",
+                "Wake up",
+                "sunrise",
+                details.wakeTime?.formatTime() ?? "Unknown",
+                Color("SleepColor")
+            )
+            .frame(maxWidth: .infinity)
+
+            InfoTile(
+                "Week average",
+                "zzz",
                 details.sleepTimeDayInt.formatAsDurationString(false),
                 Color("SleepColor")
             )

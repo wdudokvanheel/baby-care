@@ -56,6 +56,12 @@ public class SleepCareViewModel: ObservableObject {
         return Query(fetchDescriptor)
     }
 
+    func updateDailyDetails(_ date: Date, _ baby: Baby) {
+        Task {
+            await services.sleepService.updateSleepDetails(date, baby)
+        }
+    }
+
     static func sleepDetailsQuery(_ date: Date, _ baby: Baby) -> Query<DailySleepDetails, [DailySleepDetails]> {
         let date = Calendar.current.startOfDay(for: date)
         let babyId = baby.persistentModelID

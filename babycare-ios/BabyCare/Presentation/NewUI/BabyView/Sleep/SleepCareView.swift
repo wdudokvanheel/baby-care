@@ -29,6 +29,9 @@ public struct SleepCareView: View {
                     ActiveSleepView(action)
                 }
             })
+            
+            Spacer()
+            
             NavigationLink(destination: SleepGraphView(model.baby, model.services.sleepService)) {
                 Panel {
                     VStack {
@@ -40,7 +43,9 @@ public struct SleepCareView: View {
                     .frame(maxWidth: .infinity, maxHeight: 125)
                 }
             }
-            Spacer()
+        }
+        .onAppear {
+            model.updateDailyDetails(Date(), model.baby)
         }
         .padding(0)
         .environmentObject(model)
