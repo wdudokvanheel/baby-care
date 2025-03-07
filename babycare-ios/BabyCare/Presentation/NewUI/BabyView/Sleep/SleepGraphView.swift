@@ -38,7 +38,7 @@ struct SleepGraphView: View {
                     .cornerRadius(8)
                 }
                 .chartForegroundStyleScale([
-                    "Night": Color("SleepColor"), "Naps": Color("FeedingColor")
+                    "Night": Color("SleepColor"), "Naps": Color("NapColor")
                 ])
                 .containerRelativeFrame(.vertical, count: 5, span: 2, spacing: 0)
                 .chartScrollableAxes(.horizontal)

@@ -7,6 +7,16 @@ enum BabySubView {
     case bottle
 }
 
+struct CurrentView {
+    let content: any View
+    let menuContent: any View
+
+    init(content: any View, menuContent: any View) {
+        self.content = content
+        self.menuContent = menuContent
+    }
+}
+
 // Manages the bottom menu to select subviews and the baby selector to select babies
 struct BabyViewContainer: View {
     @EnvironmentObject
@@ -20,6 +30,21 @@ struct BabyViewContainer: View {
 
     var selectedMenuItem: MenuPanelItem {
         menuItems[selectedIndex]
+    }
+
+    // A switch is not the cleanest solution, but since the views are dynamic (the baby can change), it can not use pre-constructed views with the viewbuilder
+    // It will return a struct containing both the main view and menu panel view for the currently selected action
+    var currentViewN: CurrentView {
+        if let baby = selectedBaby {
+            switch selectedMenuItem.type {
+            case .sleep:
+                let model = SleepCareViewModel(baby: baby, services: services)
+                return CurrentView(content: SleepCareView(model: model), menuContent: MainMenuSleepView(model: model))
+            default:
+                return CurrentView(content: Text("Error"), menuContent: Text("Error"))
+            }
+        }
+        return CurrentView(content: Text("Error"), menuContent: Text("Error"))
     }
 
     var currentView: any View {
@@ -53,8 +78,9 @@ struct BabyViewContainer: View {
     }
 
     var body: some View {
+        let view = currentViewN
         MenuPanel(items: $menuItems, selectedIndex: $selectedIndex) {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 0) {
                 HStack(alignment: .center) {
                     Spacer()
                     BabySelector(babies: self.babies, selectedBaby: $selectedBaby)
@@ -66,15 +92,50 @@ struct BabyViewContainer: View {
                             .font(.title3)
                     }
                 }
-                .padding(.top, 0)
-                .padding(.bottom, 8)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 0)
 
                 // Show the current view as selected by the menu panel
-                AnyView(currentView)
+                ScrollView {
+                    AnyView(view.content)
+                        .padding(.horizontal, 24)
+                }
+                .padding(0)
+
+                VStack {
+//                    ExpandingButton(label: "Test", icon: "sun.max", color: Color("FeedingColor"), expanded: $expand, action: {
+//                        self.expand.toggle()
+//                    }) {
+//                        VStack {
+//                            Text("Sup")
+//                            Text("Sup")
+//                            Text("Sup")
+//                        }
+//                        .onTapGesture {
+//                            self.expand.toggle()
+//                        }
+//                    }
+//                    .padding(.vertical, 0)
+//                    .padding(.horizontal, 24)
+                    AnyView(view.menuContent)
+                        .padding(.vertical, 0)
+                        .padding(.horizontal, 24)
+                }
+                .frame(maxWidth: .infinity)
+//                .background(Color.red)
+                .padding(.top, 16)
+                .background(
+                    VStack {
+                        Rectangle()
+                            .foregroundColor(Color("MenuLine"))
+                            .frame(height: 1)
+                            .shadow(color: .black, radius: 4, x: 0, y: -2)
+                        Spacer()
+                    }
+                )
             }
             .padding(.top, 12)
             .padding(.bottom, 16)
-            .padding(.horizontal, 24)
             .onAppear {
                 // Query data should be available when the view is rendered
                 updateSelectedBaby()

@@ -4,10 +4,13 @@ import SwiftUI
 public class SleepCareViewModel: ObservableObject {
     @Published
     var baby: Baby
+    @Published
+    var date: Date
 
     var services: ServiceContainer
 
     init(baby: Baby, services: ServiceContainer) {
+        self.date = Date()
         self.baby = baby
         self.services = services
     }
@@ -41,6 +44,24 @@ public class SleepCareViewModel: ObservableObject {
         }
 
         services.sleepService.update(action)
+    }
+
+    func sleepActionsSelectedDate() -> Query<SleepAction, [SleepAction]> {
+        let type = BabyActionType.sleep.rawValue
+        let babyId = baby.persistentModelID
+        let startOfDay = Calendar.current.startOfDay(for: date)
+        let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: startOfDay)!
+
+        let filter = #Predicate<SleepAction> { action in
+            action.action ?? "" == type &&
+                action.start >= yesterday &&
+                action.start < endOfDay &&
+                action.baby?.persistentModelID == babyId
+        }
+
+        var fetchDescriptor = FetchDescriptor<SleepAction>(predicate: filter, sortBy: [SortDescriptor(\SleepAction.start)])
+        return Query(fetchDescriptor)
     }
 
     func activeSleepQuery() -> Query<SleepAction, [SleepAction]> {

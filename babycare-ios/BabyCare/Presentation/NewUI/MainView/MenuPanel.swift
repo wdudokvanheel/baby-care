@@ -44,7 +44,7 @@ struct MenuPanel<Content: View>: View {
                                                 .foregroundColor(selectedIndex == index ? items[index].color : Color("TextDark"))
                                             Spacer()
                                         }
-                                        .padding(.top, 16)
+                                        .padding(.top, 0)
                                         .frame(maxWidth: .infinity)
                                         .frame(maxHeight: .infinity)
 //                                        .background(
@@ -67,15 +67,15 @@ struct MenuPanel<Content: View>: View {
                         }
                         .padding(0)
                         .frame(maxWidth: .infinity, maxHeight: height)
-                        .background(
-                            VStack {
-                                Rectangle()
-                                    .foregroundColor(Color("MenuLine"))
-                                    .frame(height: 1)
-                                    .shadow(color: .black, radius: 4, x: 0, y: -2)
-                                Spacer()
-                            }
-                        )
+//                        .background(
+//                            VStack {
+//                                Rectangle()
+//                                    .foregroundColor(Color("MenuLine"))
+//                                    .frame(height: 1)
+//                                    .shadow(color: .black, radius: 4, x: 0, y: -2)
+//                                Spacer()
+//                            }
+//                        )
                     }
                 }
                 .padding(0)

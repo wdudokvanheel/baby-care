@@ -35,6 +35,7 @@ extension Date {
     func formatDateTimeAsRelativeString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
+//        dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
         dateFormatter.doesRelativeDateFormatting = true
 
@@ -57,6 +58,15 @@ extension Date {
 
         let interval = endDate.timeIntervalSince(self)
         return formatter.string(from: TimeInterval(interval)) ?? "N/A"
+    }
+
+    func timeIntervalToShortString(to endDate: Date) -> String {
+        let interval = endDate.timeIntervalSince(self)
+
+        let minutes = Int(interval) / 60
+        let hours = minutes / 60
+
+        return String(format: "%d:%02d", hours, minutes % 60)
     }
 
     /// Checks if a given date's time is later than the time of the date instance it is called on.
