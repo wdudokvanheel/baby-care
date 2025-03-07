@@ -1,13 +1,12 @@
 import SwiftUI
 
 public struct ActiveFeedingView: View {
-    @EnvironmentObject
-    private var model: FeedingCareViewModel
-
+    let model: FeedingCareViewModel
     let action: FeedAction
 
-    init(_ action: FeedAction) {
+    init(_ action: FeedAction, _ model: FeedingCareViewModel) {
         self.action = action
+        self.model = model
     }
 
     public var body: some View {

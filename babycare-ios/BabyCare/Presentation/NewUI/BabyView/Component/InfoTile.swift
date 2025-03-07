@@ -23,7 +23,7 @@ public struct InfoTile: View {
                     Image(systemName: icon)
                         .foregroundColor(self.color)
                         .font(.title2)
-                        .padding(.bottom, 4)
+                        .padding(.bottom, 6)
 
                     Text(text)
                         .foregroundStyle(Color("TextDark"))

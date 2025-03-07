@@ -5,7 +5,7 @@ struct MenuPanelItem: Identifiable {
     let id = UUID()
     let label: String
     let color: Color
-    let type: BabySubView
+    let type: BabyViewType
 }
 
 struct MenuPanel<Content: View>: View {

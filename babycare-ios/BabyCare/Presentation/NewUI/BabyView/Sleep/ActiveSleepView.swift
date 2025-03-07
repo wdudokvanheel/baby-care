@@ -3,6 +3,7 @@ import SwiftUI
 public struct ActiveSleepView: View {
     @ObservedObject
     var model: SleepCareViewModel
+    
     let action: SleepAction
 
     init(_ action: SleepAction, _ model: SleepCareViewModel) {
@@ -31,7 +32,7 @@ public struct ActiveSleepView: View {
                     .foregroundStyle(Color("TextDark"))
 
                 Spacer()
-                
+
                 if !action.start.isSameDateIgnoringTime(as: Date()) {
                     Text("(\(action.start.formatDateAsRelativeString()))")
                         .foregroundStyle(Color("TextDark").opacity(0.75))

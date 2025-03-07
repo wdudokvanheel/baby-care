@@ -84,6 +84,7 @@
 		2B7A8DDA2B73C07800A72393 /* DailySleepDetailsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */; };
 		2B7A8DDC2B7503FB00A72393 /* ActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A8DDB2B7503FB00A72393 /* ActionService.swift */; };
 		2B8471312D7B1C8000254390 /* MainMenuSleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8471302D7B1C7300254390 /* MainMenuSleepView.swift */; };
+		2B8471332D7B326100254390 /* MainMenuFeedingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8471322D7B325D00254390 /* MainMenuFeedingView.swift */; };
 		2B8B45922D6611A200F51D21 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B45912D6611A200F51D21 /* Logger.swift */; };
 		2B8B45962D67655000F51D21 /* SleepCareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B45952D67655000F51D21 /* SleepCareView.swift */; };
 		2B8B45982D6779F800F51D21 /* SleepCareDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B45972D6779F800F51D21 /* SleepCareDetailsView.swift */; };
@@ -229,6 +230,7 @@
 		2B7A8DD92B73C07800A72393 /* DailySleepDetailsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySleepDetailsExt.swift; sourceTree = "<group>"; };
 		2B7A8DDB2B7503FB00A72393 /* ActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionService.swift; sourceTree = "<group>"; };
 		2B8471302D7B1C7300254390 /* MainMenuSleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuSleepView.swift; sourceTree = "<group>"; };
+		2B8471322D7B325D00254390 /* MainMenuFeedingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuFeedingView.swift; sourceTree = "<group>"; };
 		2B8B45912D6611A200F51D21 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2B8B45952D67655000F51D21 /* SleepCareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCareView.swift; sourceTree = "<group>"; };
 		2B8B45972D6779F800F51D21 /* SleepCareDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCareDetailsView.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 		2B5E46B92D6A0CED003649A8 /* Feeding */ = {
 			isa = PBXGroup;
 			children = (
+				2B8471322D7B325D00254390 /* MainMenuFeedingView.swift */,
 				2B5E46BA2D6A0D22003649A8 /* FeedingCareView.swift */,
 				2B5E46BC2D6A10D2003649A8 /* FeedingCareViewModel.swift */,
 				2B5E46BE2D6A11CE003649A8 /* FeedingCareDetailsView.swift */,
@@ -858,6 +861,7 @@
 				2B0FFD5A2B59521A00C20C9A /* BabyActionCreateDto.swift in Sources */,
 				2BF16F012B62824900A84DE3 /* FeedActionMapper.swift in Sources */,
 				2B0FFD572B5951FB00C20C9A /* ApiService.swift in Sources */,
+				2B8471332D7B326100254390 /* MainMenuFeedingView.swift in Sources */,
 				2B8B459E2D68B4E900F51D21 /* RefreshingElapsedTimeText.swift in Sources */,
 				2B0FFD602B5B06CE00C20C9A /* BabyActionUpdateDto.swift in Sources */,
 				2B6D4D142B5E89A8000F6BFA /* NotificationRegistrationDto.swift in Sources */,

@@ -34,37 +34,32 @@ public struct SleepCareView: View {
             }
 
             VStack {
-                PanelHeader("This week")
-                NavigationLink(destination: SleepGraphView(model.baby, model.services.sleepService)) {
-                    Panel {
-                        VStack {
-                            SleepGraphPreview(Date(), model.baby, model.services.sleepService)
-                                .frame(height: 100)
-                                .frame(maxWidth: .infinity)
-                                .padding(0)
-                        }
-                        .padding(0)
-                        .frame(maxWidth: .infinity, maxHeight: 100)
-                    }
-                    .padding(0)
-                }
-                .padding(.bottom, 4)
-            }
-
-            VStack {
                 PanelHeader("Recent activity")
                 SleepListView(date: model.date, items: self.sleepActions) {
                     print("Clicked \($0.remoteId ?? -1)")
                 }
             }
 
-            VStack {}
-                .frame(maxHeight: .infinity, alignment: .bottom)
+            VStack {
+                PanelHeader("This week")
+                NavigationLink(destination: SleepGraphView(model.baby, model.services.sleepService)) {
+                    Panel {
+                        VStack {
+                            SleepGraphPreview(Date(), model.baby, model.services.sleepService)
+                                .frame(height: 125)
+                                .frame(maxWidth: .infinity)
+                                .padding(0)
+                        }
+                        .padding(0)
+                    }
+                    .padding(0)
+                }
+                .padding(.bottom, 4)
+            }
         }
         .onAppear {
             model.updateDailyDetails(model.date, model.baby)
         }
         .padding(0)
-        .environmentObject(model)
     }
 }

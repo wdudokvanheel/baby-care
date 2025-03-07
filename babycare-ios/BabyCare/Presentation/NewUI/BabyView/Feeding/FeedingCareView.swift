@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-public struct FeedingCare: View {
+public struct FeedingCareView: View {
     @ObservedObject
     var model: FeedingCareViewModel
 
@@ -22,29 +22,27 @@ public struct FeedingCare: View {
 
     public var body: some View {
         VStack(spacing: 16) {
-            FeedingCareDetailView(Date(), model.baby)
+            VStack {
+                PanelHeader("Breast feeding statistics")
+                FeedingCareDetailView(Date(), model.baby)
+            }
 
-            ExpandingButton(label: "Start feeding", icon: "arrowtriangle.right.circle", color: Color("FeedingColor"), expanded: hasFeedAction, action: model.buttonStartFeeding, content: {
-                if let action = self.activeFeedAction {
-                    ActiveFeedingView(action)
-                }
-            })
-
-            NavigationLink(destination: FeedGraphView(model.baby, model.services.feedService)) {
-                Panel {
-                    VStack {
-                        FeedingGraphPreview(Date(), model.baby, model.services.feedService)
-                            .frame(height: 125)
-                            .frame(maxWidth: .infinity)
+            VStack {
+                PanelHeader("This week")
+                NavigationLink(destination: FeedGraphView(model.baby, model.services.feedService)) {
+                    Panel {
+                        VStack {
+                            FeedingGraphPreview(Date(), model.baby, model.services.feedService)
+                                .frame(height: 125)
+                                .frame(maxWidth: .infinity)
+                        }
+                        .padding(0)
+                        .frame(maxWidth: .infinity, maxHeight: 125)
                     }
-                    .padding(0)
-                    .frame(maxWidth: .infinity, maxHeight: 125)
                 }
             }
 
-            Spacer()
         }
         .padding(0)
-        .environmentObject(model)
     }
 }
