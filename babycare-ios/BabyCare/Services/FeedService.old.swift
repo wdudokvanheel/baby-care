@@ -1,10 +1,9 @@
-//import Foundation
-//import SwiftData
-//import SwiftUI
+// import Foundation
+// import SwiftData
+// import SwiftUI
 //
-//class FeedService: ObservableObject {
-//    @Published
-//    public var detailsToday: DayFeedDetailsModel
+// class FeedService: ObservableObject {
+//    @Published public var detailsToday: DayFeedDetailsModel
 //
 //    private let baby: Baby
 //    private let container: ModelContainer
@@ -82,11 +81,11 @@
 //    deinit {
 //        timer?.invalidate()
 //    }
-//}
+// }
 //
-//struct DayFeedDetailsModel {
+// struct DayFeedDetailsModel {
 //    var lastFeed: FeedAction?
 //    var feedingTimeLeft: Int = 0
 //    var feedingTimeRight: Int = 0
 //    var feedingTimeTotal: Int = 0
-//}
+// }

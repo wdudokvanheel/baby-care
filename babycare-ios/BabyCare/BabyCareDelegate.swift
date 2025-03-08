@@ -78,10 +78,8 @@ extension BabyCareDelegate: UNUserNotificationCenterDelegate {
 public class DelegateData {
     private var cancellables = Set<AnyCancellable>()
 
-    @Published
-    public var deviceId: String?
-    @Published
-    public var notificationsGranted: Bool = false
+    @Published public var deviceId: String?
+    @Published public var notificationsGranted: Bool = false
 }
 
 public struct NotificationModel {

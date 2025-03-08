@@ -1,8 +1,7 @@
 import SwiftUI
 
 public struct ActiveSleepView: View {
-    @ObservedObject
-    var model: SleepCareViewModel
+    @ObservedObject    var model: SleepCareViewModel
     
     let action: SleepAction
 

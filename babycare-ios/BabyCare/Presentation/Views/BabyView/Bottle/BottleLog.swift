@@ -2,11 +2,9 @@ import SwiftData
 import SwiftUI
 
 struct BottleLog: View {
-    @EnvironmentObject
-    private var model: BabyViewModel
+    @EnvironmentObject private var model: BabyViewModel
 
-    @Query()
-    var items: [BottleAction]
+    @Query var items: [BottleAction]
 
     init(_ model: BabyViewModel) {
         let type = BabyActionType.bottle.rawValue
@@ -33,8 +31,7 @@ struct BottleLogView: View {
     var model: BabyViewModel
     var items: [BottleAction]
 
-    @State
-    private var selectedBottle: BottleAction?
+    @State private var selectedBottle: BottleAction?
 
     private let gridColumns = [
         GridItem(.flexible(), alignment: .leading),
@@ -75,7 +72,7 @@ struct BottleLogView: View {
             }
         }
     }
-    
+
     func timeIntervalString(from startDate: Date, to endDate: Date) -> String {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full

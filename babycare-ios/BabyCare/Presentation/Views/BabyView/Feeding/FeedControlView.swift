@@ -2,22 +2,15 @@ import SwiftData
 import SwiftUI
 
 struct FeedControlView: View {
-    @EnvironmentObject
-    private var model: BabyViewModel
+    @EnvironmentObject private var model: BabyViewModel
     private let date: Date
     private var feedService: FeedService
 
-    @Query()
-    var currentFeedQuery: [FeedAction]
+    @Query var currentFeedQuery: [FeedAction]
+    @Query var previousFeedQuery: [FeedAction]
+    @Query var detailsQuery: [DailyFeedDetails]
 
-    @Query()
-    var previousFeedQuery: [FeedAction]
-
-    @Query()
-    var detailsQuery: [DailyFeedDetails]
-
-    @State
-    private var feedDuration = 0
+    @State private var feedDuration = 0
 
     var currentFeed: FeedAction? { currentFeedQuery.first }
     var previousFeed: FeedAction? { previousFeedQuery.first }

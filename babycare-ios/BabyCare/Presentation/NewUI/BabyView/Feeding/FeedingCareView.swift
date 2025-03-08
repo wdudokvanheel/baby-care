@@ -2,11 +2,9 @@ import SwiftData
 import SwiftUI
 
 public struct FeedingCareView: View {
-    @ObservedObject
-    var model: FeedingCareViewModel
+    @ObservedObject var model: FeedingCareViewModel
 
-    @Query
-    var feedingQuery: [FeedAction]
+    @Query var feedingQuery: [FeedAction]
     var activeFeedAction: FeedAction? { feedingQuery.first }
     var hasFeedAction: Binding<Bool> {
         Binding<Bool>(
@@ -41,7 +39,6 @@ public struct FeedingCareView: View {
                     }
                 }
             }
-
         }
         .padding(0)
     }

@@ -2,17 +2,13 @@ import SwiftData
 import SwiftUI
 
 struct BottleControlView: View {
-    @EnvironmentObject
-    private var model: BabyViewModel
+    @EnvironmentObject private var model: BabyViewModel
 
-    @Query()
-    var items: [BottleAction]
+    @Query var items: [BottleAction]
 
-    @State
-    private var bottleDuration = 0
+    @State private var bottleDuration = 0
 
-    @State
-    var quantity: String = "0"
+    @State var quantity: String = "0"
 
     var quantityInt: Int64? {
         if quantity.isEmpty {

@@ -3,12 +3,9 @@ import os
 import SwiftUI
 
 public class AuthenticationService: ObservableObject {
-    @Published
-    private(set) var authenticated: Bool = false
-    @Published
-    private(set) var email: String?
-    @Published
-    private(set) var token: String?
+    @Published private(set) var authenticated: Bool = false
+    @Published private(set) var email: String?
+    @Published private(set) var token: String?
 
     init() {
         do {

@@ -2,20 +2,15 @@ import Combine
 import SwiftUI
 
 struct BottleView: View {
-    @Environment(\.presentationMode)
-    private var presentationMode
+    @Environment(\.presentationMode) private var presentationMode
 
-    @State
-    private var showingStartPicker = false
-    @State
-    private var showingEndPicker = false
-    @State
-    private var quantity: String = "0"
-    @State
-    private var showingDeleteConfirmation = false
+    @State private var showingStartPicker = false
+    @State private var showingEndPicker = false
+    @State private var quantity: String = "0"
+    @State private var showingDeleteConfirmation = false
 
-    @State
-    var bottle: BottleAction
+    @State var bottle: BottleAction
+    
     var onChange: (BottleAction) -> Void
     var onDelete: (BottleAction) -> Void
 

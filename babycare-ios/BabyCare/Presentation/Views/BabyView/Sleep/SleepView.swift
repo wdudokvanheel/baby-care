@@ -4,15 +4,11 @@ struct SleepView: View {
     @Environment(\.presentationMode)
     var presentationMode
 
-    @State
-    private var showingStartPicker = false
-    @State
-    private var showingEndPicker = false
-    @State
-    private var showingDeleteConfirmation = false
+    @State private var showingStartPicker = false
+    @State private var showingEndPicker = false
+    @State private var showingDeleteConfirmation = false
 
-    @State
-    var sleep: SleepAction
+    @State var sleep: SleepAction
     var onChange: (SleepAction) -> Void
     var onDelete: (SleepAction) -> Void
 

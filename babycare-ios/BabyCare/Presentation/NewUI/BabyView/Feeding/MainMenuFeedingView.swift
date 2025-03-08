@@ -2,11 +2,9 @@ import SwiftData
 import SwiftUI
 
 struct MainMenuFeedingView: View {
-    @ObservedObject
-    var model: FeedingCareViewModel
+    @ObservedObject var model: FeedingCareViewModel
 
-    @Query
-    var activeFeedQuery: [FeedAction]
+    @Query var activeFeedQuery: [FeedAction]
     var activeFeedAction: FeedAction? { activeFeedQuery.first }
 
     var hasFeedAction: Binding<Bool> {

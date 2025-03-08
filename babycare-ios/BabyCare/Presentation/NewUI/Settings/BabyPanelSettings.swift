@@ -4,12 +4,9 @@ struct BabyPanelSettings: View {
     let baby: Baby
     let prefService: UserPreferencesService
 
-    @State
-    private var sleepEnabled: Bool
-    @State
-    private var feedEnabled: Bool
-    @State
-    private var bottleEnabled: Bool
+    @State private var sleepEnabled: Bool
+    @State private var feedEnabled: Bool
+    @State private var bottleEnabled: Bool
 
     init(baby: Baby, prefService: UserPreferencesService) {
         self.baby = baby
@@ -32,7 +29,7 @@ struct BabyPanelSettings: View {
                 .foregroundStyle(Color("TextDark"))
                 .fontWeight(.medium)
                 .font(.headline)
-            
+
             Panel {
                 VStack(spacing: 4) {
                     Toggle(isOn: $sleepEnabled) {
@@ -67,7 +64,6 @@ struct BabyPanelSettings: View {
                 .tint(Color("SleepColor"))
                 .padding(4)
             }
-            
         }
         .padding(.top, 16)
     }

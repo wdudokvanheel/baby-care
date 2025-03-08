@@ -7,8 +7,7 @@ import SwiftUI
 class MainViewModel: ObservableObject {
     public let services: ServiceContainer
 
-    @Published
-    public var showLogin = false
+    @Published public var showLogin = false
 
     public init(_ services: ServiceContainer) {
         self.services = services

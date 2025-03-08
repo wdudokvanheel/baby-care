@@ -2,8 +2,7 @@ import Foundation
 import SwiftUI
 
 struct RefreshingElapsedTimeText: View {
-    @State
-    private var elapsed: Int
+    @State private var elapsed: Int
 
     let text: String
     let date: Date

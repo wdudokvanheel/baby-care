@@ -5,8 +5,7 @@ public struct FeedingCareDetailView: View {
     let date: Date
     let baby: Baby
 
-    @Query()
-    var query: [DailyFeedDetails]
+    @Query var query: [DailyFeedDetails]
 
     var details: DailyFeedDetails {
         if query.count > 0 {

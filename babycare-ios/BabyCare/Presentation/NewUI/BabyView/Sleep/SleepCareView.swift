@@ -2,16 +2,13 @@ import SwiftData
 import SwiftUI
 
 public struct SleepCareView: View {
-    @ObservedObject
-    var model: SleepCareViewModel
+    @ObservedObject var model: SleepCareViewModel
 
-    @Query
-    var activeSleepQuery: [SleepAction]
+    @Query var activeSleepQuery: [SleepAction]
     var activeSleepAction: SleepAction? { activeSleepQuery.first }
 
     // All actions for the current day
-    @Query
-    var sleepActions: [SleepAction]
+    @Query var sleepActions: [SleepAction]
 
     var hasSleepAction: Binding<Bool> {
         Binding<Bool>(

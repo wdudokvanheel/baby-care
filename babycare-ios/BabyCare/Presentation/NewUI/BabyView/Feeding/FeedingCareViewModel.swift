@@ -2,8 +2,7 @@ import SwiftData
 import SwiftUI
 
 public class FeedingCareViewModel: ObservableObject {
-    @Published
-    var baby: Baby
+    @Published var baby: Baby
 
     var services: ServiceContainer
 
@@ -85,7 +84,7 @@ public class FeedingCareViewModel: ObservableObject {
     static func feedDetailsPastWeekQuery(_ date: Date, _ baby: Baby) -> Query<DailyFeedDetails, [DailyFeedDetails]> {
         return feedDetailsPastDays(date, baby, 7)
     }
-    
+
     static func feedDetailsPastMonthQuery(_ date: Date, _ baby: Baby) -> Query<DailyFeedDetails, [DailyFeedDetails]> {
         return feedDetailsPastDays(date, baby, 31)
     }

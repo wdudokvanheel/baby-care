@@ -2,10 +2,8 @@ import SwiftData
 import SwiftUI
 
 public class SleepCareViewModel: ObservableObject {
-    @Published
-    var baby: Baby
-    @Published
-    var date: Date
+    @Published var baby: Baby
+    @Published var date: Date
 
     var services: ServiceContainer
 

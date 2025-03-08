@@ -2,11 +2,9 @@ import SwiftData
 import SwiftUI
 
 struct MainMenuSleepView: View {
-    @ObservedObject
-    var model: SleepCareViewModel
+    @ObservedObject var model: SleepCareViewModel
 
-    @Query
-    var activeSleepQuery: [SleepAction]
+    @Query var activeSleepQuery: [SleepAction]
     var activeSleepAction: SleepAction? { activeSleepQuery.first }
 
     var hasSleepAction: Binding<Bool> {

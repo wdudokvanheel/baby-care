@@ -4,15 +4,11 @@ struct FeedView: View {
     @Environment(\.presentationMode)
     var presentationMode
 
-    @State
-    private var showingStartPicker = false
-    @State
-    private var showingEndPicker = false
-    @State
-    private var showingDeleteConfirmation = false
+    @State private var showingStartPicker = false
+    @State private var showingEndPicker = false
+    @State private var showingDeleteConfirmation = false
 
-    @State
-    var feeding: FeedAction
+    @State var feeding: FeedAction
     var onChange: (FeedAction) -> Void
     var onDelete: (FeedAction) -> Void
 

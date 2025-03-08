@@ -7,17 +7,13 @@ struct DaySummaryView: View {
     let feedRepo: FeedService
     let bottleRepo = BottleRepository()
 
-    @ObservedObject
-    var model: BabyViewModel
+    @ObservedObject var model: BabyViewModel
 
     var date: Date
 
-    @Query()
-    var sleepItems: [SleepAction]
-    @Query()
-    var feedItems: [FeedAction]
-    @Query()
-    var bottleItems: [BottleAction]
+    @Query var sleepItems: [SleepAction]
+    @Query var feedItems: [FeedAction]
+    @Query var bottleItems: [BottleAction]
 
     init(_ model: BabyViewModel, _ date: Date) {
         self.model = model

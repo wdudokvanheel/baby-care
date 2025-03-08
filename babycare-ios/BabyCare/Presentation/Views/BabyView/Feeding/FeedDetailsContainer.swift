@@ -7,8 +7,7 @@ struct FeedDetailsContainer<Content: View>: View {
     private let baby: Baby
     private let content: (DailyFeedDetails) -> Content
 
-    @Query()
-    var query: [DailyFeedDetails]
+    @Query var query: [DailyFeedDetails]
 
     var details: DailyFeedDetails? {
         if query.count > 0 {
@@ -21,7 +20,7 @@ struct FeedDetailsContainer<Content: View>: View {
         self.date = date
         self.baby = baby
         self.content = content
-        
+
         _query = FeedService.createQueryDetailsByDate(date, baby)
     }
 

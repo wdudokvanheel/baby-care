@@ -9,18 +9,13 @@ enum BabyViewType {
 
 // Manages the bottom menu to select subviews and the baby selector to select babies
 struct BabyViewContainer: View {
-    @EnvironmentObject
-    var services: ServiceContainer
+    @EnvironmentObject var services: ServiceContainer
 
-    @Query
-    private var babies: [Baby]
-    
-    @State
-    private var selectedBaby: Baby?
-    @State
-    var menuItems: [MenuPanelItem]
-    @State
-    private var selectedIndex: Int = 0
+    @Query private var babies: [Baby]
+
+    @State private var selectedBaby: Baby?
+    @State var menuItems: [MenuPanelItem]
+    @State private var selectedIndex: Int = 0
 
     var selectedMenuItem: MenuPanelItem {
         menuItems[selectedIndex]
@@ -70,9 +65,9 @@ struct BabyViewContainer: View {
             VStack(alignment: .leading, spacing: 0) {
                 HStack(alignment: .top) {
                     BabySelector(babies: self.babies, selectedBaby: $selectedBaby)
-                    
+
                     Spacer()
-                    
+
                     NavigationLink(destination: SettingsView()) {
                         Image(systemName: "gear")
                             .foregroundStyle(Color("TextDark").opacity(0.85))

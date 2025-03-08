@@ -1,10 +1,8 @@
 import Foundation
 
 public class ActionMapperService: ObservableObject {
-    @Published
-    private(set) var mappers: [BabyActionType: any ActionMapper] = [:]
-    @Published
-    private(set) var defaultMapper: any ActionMapper
+    @Published private(set) var mappers: [BabyActionType: any ActionMapper] = [:]
+    @Published private(set) var defaultMapper: any ActionMapper
 
     init(services: ServiceContainer) {
         defaultMapper = DefaultActionMapper(services)

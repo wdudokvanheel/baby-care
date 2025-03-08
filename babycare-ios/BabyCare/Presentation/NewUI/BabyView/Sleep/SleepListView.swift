@@ -5,8 +5,7 @@ struct SleepListView: View {
     let items: [SleepAction]
     let select: (SleepAction) -> Void
 
-    @State
-    private var selectedSleep: SleepAction?
+    @State private var selectedSleep: SleepAction?
 
     private let gridColumns = [
         GridItem(.flexible(minimum: 5), alignment: .leading),

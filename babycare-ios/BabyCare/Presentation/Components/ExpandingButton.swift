@@ -6,6 +6,7 @@ public struct ExpandingButton<Content: View>: View {
     let color: Color
     let action: () -> Void
     let content: Content
+
     // Keep a copy of the content, as it might be set to empty when the collapse is triggered, and keeping a cached copy prevents animation glitches
     @State private var frozenContent: Content?
 

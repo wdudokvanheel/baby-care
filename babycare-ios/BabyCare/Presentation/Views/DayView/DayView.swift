@@ -1,11 +1,9 @@
 import SwiftUI
 
 struct DayView: View {
-    @ObservedObject
-    var model: BabyViewModel
+    @ObservedObject var model: BabyViewModel
 
-    @State
-    private var date = Date()
+    @State private var date = Date()
 
     init(model: BabyViewModel) {
         self.model = model

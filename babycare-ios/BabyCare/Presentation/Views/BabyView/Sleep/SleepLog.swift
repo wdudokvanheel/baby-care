@@ -2,13 +2,11 @@ import SwiftData
 import SwiftUI
 
 struct LatestSleepLog: View {
-    @EnvironmentObject
-    private var model: BabyViewModel
+    @EnvironmentObject private var model: BabyViewModel
 
     private let sleepService: SleepService
 
-    @Query()
-    var items: [SleepAction]
+    @Query var items: [SleepAction]
 
     init(_ model: BabyViewModel, _ items: Int = 3) {
         self.sleepService = model.services.actionMapperService.getService(type: .sleep)
@@ -36,8 +34,7 @@ struct SleepLogView: View {
     let sleepService: SleepService
     var items: [SleepAction]
 
-    @State
-    private var selectedSleep: SleepAction?
+    @State private var selectedSleep: SleepAction?
 
     private let gridColumns = [
         GridItem(.flexible(), alignment: .leading),

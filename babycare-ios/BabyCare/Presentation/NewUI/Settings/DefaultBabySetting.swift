@@ -6,10 +6,8 @@ struct DefaultBabySetting: View {
     private let services: ServiceContainer
 
     let babies: [Baby]
-    @State
-    var selected: Baby?
-    @State
-    var loading = true
+    @State var selected: Baby?
+    @State var loading = true
 
     init(babies: [Baby], services: ServiceContainer) {
         self.babies = babies
@@ -36,7 +34,7 @@ struct DefaultBabySetting: View {
     }
 
     var body: some View {
-        Panel{
+        Panel {
             HStack {
                 Text("Default baby")
                     .foregroundColor(Color("TextDark"))

@@ -5,8 +5,7 @@ import SwiftData
 import SwiftUI
 
 struct FeedWeekGraph: View {
-    @Query
-    var query: [DailyFeedDetails]
+    @Query var query: [DailyFeedDetails]
 
     let feedService: FeedService
     let date: Date

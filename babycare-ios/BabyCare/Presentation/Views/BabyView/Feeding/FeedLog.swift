@@ -2,13 +2,11 @@ import SwiftData
 import SwiftUI
 
 struct FeedLog: View {
-    @EnvironmentObject
-    private var model: BabyViewModel
+    @EnvironmentObject private var model: BabyViewModel
 
     private let feedService: FeedService
 
-    @Query()
-    var items: [FeedAction]
+    @Query var items: [FeedAction]
 
     init(_ model: BabyViewModel) {
         self.feedService = model.services.actionMapperService.getService(type: .feed)
@@ -37,8 +35,7 @@ struct FeedLogView: View {
     let feedService: FeedService
     var items: [FeedAction]
 
-    @State
-    private var selectedFeed: FeedAction?
+    @State private var selectedFeed: FeedAction?
 
     private let gridColumns = [
         GridItem(.flexible(), alignment: .leading),

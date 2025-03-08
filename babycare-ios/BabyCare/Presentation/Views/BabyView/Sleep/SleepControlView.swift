@@ -2,15 +2,13 @@ import SwiftData
 import SwiftUI
 
 struct SleepControlView: View {
-    @EnvironmentObject
-    private var model: BabyViewModel
+    @EnvironmentObject private var model: BabyViewModel
     private var sleepService: SleepService
 
-    @Query()
-    var sleepQuery: [SleepAction]
+    @Query var sleepQuery: [SleepAction]
 
-    @State
-    private var sleepDuration = 0
+    @State private var sleepDuration = 0
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     init(services: ServiceContainer, baby: Baby) {
@@ -42,7 +40,7 @@ struct SleepControlView: View {
                 Image(systemName: "moon.fill")
                 Text("Sleep")
                 Spacer()
-                
+
                 NavigationLink(destination: SleepWeekGraph(Date(), model.baby, sleepService: sleepService)) {
                     Image(systemName: "chart.bar.fill")
                 }
@@ -160,8 +158,7 @@ struct SleepControlView: View {
 struct RefreshingInterval: View {
     let date: Date
 
-    @State
-    private var sleepDuration = 0
+    @State private var sleepDuration = 0
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 

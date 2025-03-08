@@ -5,8 +5,7 @@ import SwiftData
 import SwiftUI
 
 struct SleepGraphPreview: View {
-    @Query
-    var query: [DailySleepDetails]
+    @Query var query: [DailySleepDetails]
 
     let sleepService: SleepService
     let date: Date
@@ -28,14 +27,13 @@ struct SleepGraphPreview: View {
             )
             .foregroundStyle(by: .value("Naps", "Naps"))
             .cornerRadius(8)
-            
+
             BarMark(
                 x: .value("Day", day.date.formatted(.dateTime.weekday(.abbreviated))),
                 y: .value("Night", Double(day.sleepTimeNightInt) / 3600)
             )
             .foregroundStyle(by: .value("Night", "Night"))
             .cornerRadius(8)
-
         }
         .padding(0)
         .chartLegend(.hidden)
