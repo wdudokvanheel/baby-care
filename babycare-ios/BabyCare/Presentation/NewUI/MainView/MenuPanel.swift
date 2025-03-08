@@ -47,18 +47,6 @@ struct MenuPanel<Content: View>: View {
                                         .padding(.top, 0)
                                         .frame(maxWidth: .infinity)
                                         .frame(maxHeight: .infinity)
-//                                        .background(
-//                                            selectedIndex == index ?
-//                                            UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: index == 0 ? 56 : 0, bottomTrailingRadius: index == items.count - 1 ? 56 : 0, topTrailingRadius: 0, style: .continuous)
-//                                            .fill(Color("Background")
-//                                                .shadow(.inner(color: Color("ShadowDark").opacity(0.75), radius: 3, x: 3, y: 3))
-//                                                .shadow(.inner(color: Color("ShadowDark"), radius: 4, x: 5, y: 5))
-//                                                .shadow(.inner(color: Color("ShadowDark"), radius: 3, x: -3, y: -3))
-//                                                .shadow(.inner(color: Color("ShadowDark"), radius: 4, x: -5, y: -5))
-//                                            )
-//                                            :
-//                                            nil)
-//                                        .ignoresSafeArea()
                                     }
                                 }
                             }
@@ -67,15 +55,6 @@ struct MenuPanel<Content: View>: View {
                         }
                         .padding(0)
                         .frame(maxWidth: .infinity, maxHeight: height)
-//                        .background(
-//                            VStack {
-//                                Rectangle()
-//                                    .foregroundColor(Color("MenuLine"))
-//                                    .frame(height: 1)
-//                                    .shadow(color: .black, radius: 4, x: 0, y: -2)
-//                                Spacer()
-//                            }
-//                        )
                     }
                 }
                 .padding(0)

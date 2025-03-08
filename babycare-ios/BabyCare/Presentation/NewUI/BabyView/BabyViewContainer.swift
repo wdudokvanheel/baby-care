@@ -12,11 +12,15 @@ struct BabyViewContainer: View {
     @EnvironmentObject
     var services: ServiceContainer
 
-    @Query private var babies: [Baby]
-    @State private var selectedBaby: Baby?
-
-    @State var menuItems: [MenuPanelItem]
-    @State private var selectedIndex: Int = 0
+    @Query
+    private var babies: [Baby]
+    
+    @State
+    private var selectedBaby: Baby?
+    @State
+    var menuItems: [MenuPanelItem]
+    @State
+    private var selectedIndex: Int = 0
 
     var selectedMenuItem: MenuPanelItem {
         menuItems[selectedIndex]
@@ -64,11 +68,11 @@ struct BabyViewContainer: View {
         let view = currentView
         MenuPanel(items: $menuItems, selectedIndex: $selectedIndex) {
             VStack(alignment: .leading, spacing: 0) {
-                HStack(alignment: .center) {
-                    Spacer()
+                HStack(alignment: .top) {
                     BabySelector(babies: self.babies, selectedBaby: $selectedBaby)
+                    
                     Spacer()
-
+                    
                     NavigationLink(destination: SettingsView()) {
                         Image(systemName: "gear")
                             .foregroundStyle(Color("TextDark").opacity(0.85))
@@ -97,7 +101,7 @@ struct BabyViewContainer: View {
                     }
                     .padding(0)
 
-                    // Can't put inner shadows on transparent components, so use some vstacks to create the inner drop shadow
+                    // Can't put inner shadows on transparent components, so use some vstacks to create the inner  shadow to overlay on the content
                     VStack {
                         Rectangle()
                             .fill(LinearGradient(colors: [Color("ShadowDark"), Color("ShadowDark").opacity(0)], startPoint: .top, endPoint: .bottom))
@@ -127,7 +131,7 @@ struct BabyViewContainer: View {
                     }
                 )
             }
-            .padding(.top, 12)
+            .padding(.top, 0)
             .padding(.bottom, 16)
             .onAppear {
                 // Query data should be available when the view is rendered
