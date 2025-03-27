@@ -61,7 +61,7 @@ struct BabyPanelSettings: View {
                 }
                 .foregroundColor(Color("TextDark"))
                 .font(.body)
-                .tint(Color("SleepColor"))
+                .tint(.accentColor)
                 .padding(4)
             }
         }

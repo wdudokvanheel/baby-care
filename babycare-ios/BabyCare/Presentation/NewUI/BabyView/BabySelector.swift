@@ -47,7 +47,7 @@ struct BabySelector: View {
                             }
                             .pickerStyle(.wheel)
                         })
-                    Text(ageString(from: baby.birthDate ?? Date()))
+                    Text("\(ageString(from: baby.birthDate ?? Date())) old")
                         .font(.footnote)
                         .fontWeight(.regular)
                         .foregroundStyle(Color("TextDark").opacity(0.75))

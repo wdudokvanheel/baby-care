@@ -31,6 +31,7 @@ public struct SettingsView: View {
 //                            .foregroundStyle(.gray.opacity(0.5))
 //                            .font(.footnote)
 //                    }
+                    
                     Button("Logout") {
                         model.logout()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -38,7 +39,20 @@ public struct SettingsView: View {
                         }
                     }
                     .font(.footnote)
-                    .foregroundColor(.white)
+                    .padding(.top, 16)
+                    .buttonStyle(.borderedProminent)
+                    .foregroundColor(Color("TextWhite"))
+                    
+                    Button("TestData") {
+                        model.generateTestData()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.dismiss()
+                        }
+                    }
+                    .font(.footnote)
+                    .padding(.top, 16)
+                    .buttonStyle(.borderedProminent)
+                    .foregroundColor(Color("TextWhite"))
                 }
                 .frame(maxHeight: .infinity)
                 .padding(.horizontal, 24)
